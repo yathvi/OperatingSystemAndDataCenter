@@ -1,0 +1,4412 @@
+Asof now this file has 4000+ lines.
+
+I Completed Computer Science Engineering in 2011 and started working as a Full Stack Java Developer. till 2015
+
+From 2015 to March 2024, I was part of 
+
+DevOps Team, 
+Build and Release Engineer, 
+Production Support Team,
+Site Reliability Engineering 
+
+Supporting Java applications or Exposed to Java Applications.
+
+Java (programming language)
+===========================
+https://en.wikipedia.org/wiki/Java_(programming_language)
+
+Major release versions of Java, along with their release dates:
+
+	 ---------------------------------------------------
+	|	Version				|	Date					|
+	|-----------------------|---------------------------|
+	|	JDK Beta			|	1995					|
+	|	JDK 1.0				|	January 23, 1996		|
+	|	JDK 1.1				|	February 19, 1997		|
+	|	J2SE 1.2			|	December 8, 1998		|
+	|	J2SE 1.3			|	May 8, 2000				|
+	|	J2SE 1.4			|	February 6, 2002		|
+	|	J2SE 5.0			|	September 30, 2004		|
+	|	Java SE 6			|	December 11, 2006		|
+	|	Java SE 7			|	July 28, 2011			|
+	|	Java SE 8 (LTS)		|	March 18, 2014			|
+	|	Java SE 9			|	September 21, 2017		|
+	|	Java SE 10			|	March 20, 2018			|
+	|	Java SE 11 (LTS)	|	September 25, 2018		|
+	|	Java SE 12			|	March 19, 2019			|
+	|	Java SE 13			|	September 17, 2019		|
+	|	Java SE 14			|	March 17, 2020			|
+	|	Java SE 15			|	September 15, 2020		|
+	|	Java SE 16			|	March 16, 2021			|
+	|	Java SE 17 (LTS)	|	September 14, 2021		|
+	|	Java SE 18			|	March 22, 2022			|
+	|	Java SE 19			|	September 20, 2022		|
+	|	Java SE 20			|	March 21, 2023			|
+	|	Java SE 21 (LTS)	|	September 19, 2023		|
+	|						|							|
+	 ---------------------------------------------------
+
+What is the first thing to do 
+	to see the new changes/updates in Java or JDK?
+
+	1.	Run Infinite Loop and see the Threads details 
+		-	Using Unix/Linux commands in Mac Terminal which is closer to Operating System
+		-	Java libraries and APIs can be used to gather information about the CPU and underlying hardware (which also includes Threads)
+		
+	2.	Compare the output of Unix/Linux commands and Java libraries/APIs
+		and check how much information/details each layer shows in the output.
+
+
+	3.	When I start a simple Java Process like below in my Mac Laptop either in IntelliJ IDEA IDE or Terminal,
+		I can see 21 Threads running for this Java Process in "Activity Monitor"
+
+		InfiniteLoop.java
+		-----------------
+		
+		public class Test {
+		    public static void main(String[] args) {
+		        while(true) {}
+		    }
+		}
+
+	4.	Maximum I can spin up 2047-2048 Threads in my Mac Laptop.
+
+		Even If start 10000 Threads, Activity Monitor shows max of 2047-2048 Threads.
+		
+		MaxThreadsExample.java
+		----------------------
+
+ ============================================
+||	 ====================================	||
+||	||	PLEASE CHECK BELOW 6 POINTS:	||	||
+||	 ====================================	||
+ ============================================
+
+==========================================================================
+1.	Mac Thread Spin-up Code (How to get details about CPU in java program)
+==========================================================================
+https://chat.openai.com/share/9a319a91-6fcb-4132-8dd3-b57c8a074b0e
+
+SystemInfoPrinter.java
+----------------------
+
+This program will print all the values available in 
+SIGAR(SYSTEM INFORMATION GATHERER AND REPORTER) 
+and 
+OSHI(OPERATING SYSTEM AND HARDWARE INFORMATION) 
+jar.
+
+I have attached the output of SystemInfoPrinter program executed in my Mac
+It has 58000+ lines
+It has all processes running in My Mac , related Threads which you can see in Mac Activity Monitor.
+The SystemInfoPrinter text file contains Sensitive Information, please don't misuse. 
+
+		<dependency>
+			<groupId>org.hyperic</groupId>
+			<artifactId>sigar</artifactId>
+			<version>1.6.5.132-7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.github.oshi</groupId>
+			<artifactId>oshi-core</artifactId>
+			<version>6.4.11</version>
+		</dependency>
+
+
+
+	1.	SIGAR	(SYSTEM INFORMATION GATHERER AND REPORTER)
+	
+		https://chat.openai.com/share/9a319a91-6fcb-4132-8dd3-b57c8a074b0e
+		
+		1.	sigar Library:
+		
+		Overview: Sigar is a cross-platform, cross-language library and command-line tool for accessing system information, including CPU, memory, disk, and network statistics.
+	
+		Example Usage: (Note: Sigar is a native library, so you need to include the appropriate JAR and native libraries in your project.)
+
+		I have committed sigar-bin directory and it files.
+		Also added copySigarBin() function to copy sigar-bin directory and it files during each run.
+		If required, While running this program please set below VM option.
+		-Djava.library.path=sigar-bin
+
+	
+		SIGAR (System Information Gatherer and Reporter) is a cross-platform, cross-language library and 
+		command-line tool for accessing operating system and hardware level information in Java, Perl, Ruby, Python, Erlang, PHP and C#. 
+		See https://bugzilla.redhat.com/show_bug.cgi?id=1307104 for more.
+	
+	
+		https://en.wikipedia.org/wiki/Sigar_(software)
+	
+		Sigar is a free software library (under the Apache License) that provides a cross-platform, cross-language programming interface to low-level information on computer hardware and operating system activity.
+	
+		The library provides bindings for many popular computer languages and has been ported to over 25 different operating system/hardware combinations.
+	
+		Sigar stands for System Information Gatherer And Reporter and was originally developed by Doug MacEachern, the author of the popular mod_perl module for the Apache web server.
+	
+
+
+
+
+	2.	OSHI	(OPERATING SYSTEM AND HARDWARE INFORMATION)
+	
+		https://github.com/oshi/oshi
+	
+		OSHI is a free JNA-based (native) Operating System and Hardware Information library for Java. 
+		It does not require the installation of any additional native libraries and aims to provide 
+		a cross-platform implementation to retrieve system information, 
+		such as OS version, processes, memory and CPU usage, disks and partitions, devices, sensors, etc.
+
+
+
+
+
+==============================
+2.	Dynamic Java Config Reload
+==============================
+https://chat.openai.com/share/0bcf3e20-c7a7-4cd9-99b0-bec383a81750
+
+ConfigLoader.java
+-----------------
+A simple Java program which reloads Configuration every 5 seconds.
+You can edit and save src/main/resources/config.properties while Program is running.
+New changes will reflect in console output.
+
+
+=====================================================================================================================
+3.	Java source code to compile code to byte code to machine code to binary and how it executes in multiprocessor cpu
+=====================================================================================================================
+https://chat.openai.com/share/ff9b95dc-0733-4d58-b197-6139afd6c1d6
+
+
+==========================================================================================================
+4.	Fixing Unspecified Error (Is JVM a user level process or kernel level process or system level process)
+==========================================================================================================
+https://chat.openai.com/share/86ed4f34-a6f9-4526-8363-e3d72a8d0e04
+
+
+==========================
+5.	Java Process vs Thread
+==========================
+https://chat.openai.com/share/ad3ec86a-ba77-4c34-93b9-6f07b53cb8dc
+
+
+=========================================================================
+6.	Memory churn application to test limits of OpenJDK garbage collectors
+	https://github.com/rh-openjdk/churn
+=========================================================================
+
+I searched 'garbage' in https://github.com in Mac Safari browser
+	
+	1.	Filter by
+			Repositories (13.4k)
+		
+		https://github.com/search?q=garbage&type=repositories
+		
+	2.	Languages
+			Java
+			Repositories (1.2K)
+			
+		https://github.com/search?q=garbage+language%3AJava&type=repositories&l=Java
+
+	3.	In 3rd page I found
+	
+			rh-openjdk/churn 
+			Memory churn application to test limits of OpenJDK garbage collectors
+			https://github.com/rh-openjdk/churn
+			
+	4.	Searched 'churn java meaning' in https://www.google.com, found below
+			The churn rate describes the number of allocations of temporary objects per transaction or time slice.
+			Java allows us to allocate a large number of objects very quickly, 
+			but high concurrency and high throughput quickly lead to churn rates beyond what the JVM can sustain.
+
+
+
+=========================================================================
+6.	Memory churn application to test limits of OpenJDK garbage collectors
+	https://github.com/rh-openjdk/churn
+=========================================================================
+
+	Arguments
+	---------
+
+	The arguments to the program (and the run scripts) are optional in
+	which case the program uses suitable defaults
+
+  	-blocks B [default 4] how many data blocks to allocate per work item
+  	-items I [default 4000] how many thousand local/global work items in the work set
+  	-threads T [default 8] how many threads to use to do the processing
+  	-iterations N [default 200] how many times to update the local/gobal work set
+  	-duration D [default off] how long in seconds should churn run. overwrites -iterations
+  	-computations C [default 32] how many computes/write operations are
+   	performed on each allocated object 
+  	-slices S [default 100] number of allocate/compute operations per timed task
+  	-yield Y [default -1] yield (Y = 0) or sleep (for Y msecs) at end of slice
+  
+
+	where B, I, T, N, D, C and S need to be supplied as positive integers
+	and Y may be 0 or a positive.
+
+
+Out-Of-Memory Errors
+====================
+https://www.dynatrace.com/resources/ebooks/javabook/other-java-memory-issues/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ================================================================
+||	 ========================================================	||
+||	||	ALSO PLEASE CHECK BELOW 5 AT THE END OF THIS FILE,	||	||
+||	||	WHICH ARE PART OF OSHI-CORE-6.4.11.JAR				||	||
+||	 ========================================================	||
+ ================================================================
+
+
+ ====================================
+||	oshi.architecture.properties	||
+ ====================================
+
+ ====================================
+||	oshi.linux.filename.properties	||
+ ====================================
+
+ ====================================
+||	oshi.macos.versions.properties	||
+ ====================================
+ 
+ ====================
+||	oshi.properties	||
+ ====================
+ 
+  ===============================
+||	oshi.vmmacaddr.properties	||
+ ================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+----------------------
+Infinite Loops in Java
+----------------------
+https://www.baeldung.com/infinite-loops-java
+
+When I start a simple Java Process like below in my Mac Laptop either in IntelliJ IDEA IDE or Terminal,
+I can see 21 Threads running for this Java Process in "Activity Monitor"
+
+public class Test {
+    public static void main(String[] args) {
+        while(true) {}
+    }
+}
+
+Terminal (macOS)
+-----------------
+https://en.wikipedia.org/wiki/Terminal_(macOS)
+
+As a terminal emulator, the application provides text-based access to the operating system, in contrast to the mostly graphical nature of the user experience of macOS, 
+by providing a command-line interface to the operating system when used in conjunction with a Unix shell, such as zsh (the default interactive shell since macOS Catalina). 
+The user can choose other shells available with macOS, such as the KornShell, tcsh, and bash.
+
+Terminal (Terminal.app) is the terminal emulator included in the macOS operating system by Apple.
+Terminal originated in NeXTSTEP and OPENSTEP, the predecessor operating systems of macOS.
+
+1.	Terminal application provides text-based access to the operating system.
+
+	Below commands can be used in Mac Terminal to check Threads details:
+	 
+
+	jcmd
+	
+	jcmd <pid> Thread.print
+	
+	jstack <pid>
+	
+	jps
+	
+	jps -l
+	
+	jinfo
+	
+	jinfo <pid>
+	
+	jconsole
+
+
+
+(base) yathvi@Madan-MacBook-Pro-175 java % jstack 18399
+2024-02-15 20:40:53
+Full thread dump Java HotSpot(TM) 64-Bit Server VM (21.0.1+12-LTS-29 mixed mode, sharing):
+
+Threads class SMR info:
+_java_thread_list=0x00007fb2a75514a0, length=11, elements={
+0x00007fb2a9008200, 0x00007fb2a8086c00, 0x00007fb2a9014000, 0x00007fb2a9014800,
+0x00007fb2a783ca00, 0x00007fb2a9015000, 0x00007fb2a808a000, 0x00007fb2a808a800,
+0x00007fb2a9823000, 0x00007fb2a808d000, 0x00007fb2a808d800
+}
+
+"main" #1 [6147] prio=5 os_prio=31 cpu=21992.23ms elapsed=22.28s tid=0x00007fb2a9008200 nid=6147 runnable  [0x00007000014f7000]
+   java.lang.Thread.State: RUNNABLE
+	at InfiniteLoop.main(InfiniteLoop.java:5)
+
+"Reference Handler" #9 [22531] daemon prio=10 os_prio=31 cpu=0.38ms elapsed=22.10s tid=0x00007fb2a8086c00 nid=22531 waiting on condition  [0x0000700001e15000]
+   java.lang.Thread.State: RUNNABLE
+	at java.lang.ref.Reference.waitForReferencePendingList(java.base@21.0.1/Native Method)
+	at java.lang.ref.Reference.processPendingReferences(java.base@21.0.1/Reference.java:246)
+	at java.lang.ref.Reference$ReferenceHandler.run(java.base@21.0.1/Reference.java:208)
+
+"Finalizer" #10 [23043] daemon prio=8 os_prio=31 cpu=0.18ms elapsed=22.10s tid=0x00007fb2a9014000 nid=23043 in Object.wait()  [0x0000700001f18000]
+   java.lang.Thread.State: WAITING (on object monitor)
+	at java.lang.Object.wait0(java.base@21.0.1/Native Method)
+	- waiting on <0x0000000787f01670> (a java.lang.ref.NativeReferenceQueue$Lock)
+	at java.lang.Object.wait(java.base@21.0.1/Object.java:366)
+	at java.lang.Object.wait(java.base@21.0.1/Object.java:339)
+	at java.lang.ref.NativeReferenceQueue.await(java.base@21.0.1/NativeReferenceQueue.java:48)
+	at java.lang.ref.ReferenceQueue.remove0(java.base@21.0.1/ReferenceQueue.java:158)
+	at java.lang.ref.NativeReferenceQueue.remove(java.base@21.0.1/NativeReferenceQueue.java:89)
+	- locked <0x0000000787f01670> (a java.lang.ref.NativeReferenceQueue$Lock)
+	at java.lang.ref.Finalizer$FinalizerThread.run(java.base@21.0.1/Finalizer.java:173)
+
+"Signal Dispatcher" #11 [43011] daemon prio=9 os_prio=31 cpu=0.35ms elapsed=22.10s tid=0x00007fb2a9014800 nid=43011 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Service Thread" #12 [42755] daemon prio=9 os_prio=31 cpu=0.10ms elapsed=22.10s tid=0x00007fb2a783ca00 nid=42755 runnable  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Monitor Deflation Thread" #13 [23811] daemon prio=9 os_prio=31 cpu=1.38ms elapsed=22.10s tid=0x00007fb2a9015000 nid=23811 runnable  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"C2 CompilerThread0" #14 [41987] daemon prio=9 os_prio=31 cpu=12.58ms elapsed=22.10s tid=0x00007fb2a808a000 nid=41987 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+   No compile task
+
+"C1 CompilerThread0" #16 [41475] daemon prio=9 os_prio=31 cpu=7.29ms elapsed=22.10s tid=0x00007fb2a808a800 nid=41475 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+   No compile task
+
+"Notification Thread" #17 [40963] daemon prio=9 os_prio=31 cpu=0.13ms elapsed=22.09s tid=0x00007fb2a9823000 nid=40963 runnable  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"Common-Cleaner" #18 [24323] daemon prio=8 os_prio=31 cpu=0.52ms elapsed=22.08s tid=0x00007fb2a808d000 nid=24323 waiting on condition  [0x000070000262d000]
+   java.lang.Thread.State: TIMED_WAITING (parking)
+	at jdk.internal.misc.Unsafe.park(java.base@21.0.1/Native Method)
+	- parking to wait for  <0x0000000787f10d78> (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)
+	at java.util.concurrent.locks.LockSupport.parkNanos(java.base@21.0.1/LockSupport.java:269)
+	at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(java.base@21.0.1/AbstractQueuedSynchronizer.java:1847)
+	at java.lang.ref.ReferenceQueue.await(java.base@21.0.1/ReferenceQueue.java:71)
+	at java.lang.ref.ReferenceQueue.remove0(java.base@21.0.1/ReferenceQueue.java:143)
+	at java.lang.ref.ReferenceQueue.remove(java.base@21.0.1/ReferenceQueue.java:218)
+	at jdk.internal.ref.CleanerImpl.run(java.base@21.0.1/CleanerImpl.java:140)
+	at java.lang.Thread.runWith(java.base@21.0.1/Thread.java:1596)
+	at java.lang.Thread.run(java.base@21.0.1/Thread.java:1583)
+	at jdk.internal.misc.InnocuousThread.run(java.base@21.0.1/InnocuousThread.java:186)
+
+"Attach Listener" #19 [21775] daemon prio=9 os_prio=31 cpu=1.11ms elapsed=0.11s tid=0x00007fb2a808d800 nid=21775 waiting on condition  [0x0000000000000000]
+   java.lang.Thread.State: RUNNABLE
+
+"VM Thread" os_prio=31 cpu=0.84ms elapsed=22.12s tid=0x00007fb2a7604c40 nid=14339 runnable  
+
+"GC Thread#0" os_prio=31 cpu=0.07ms elapsed=22.23s tid=0x00007fb2a7514ef0 nid=19715 runnable  
+
+"G1 Main Marker" os_prio=31 cpu=0.09ms elapsed=22.23s tid=0x00007fb2a7419710 nid=19203 runnable  
+
+"G1 Conc#0" os_prio=31 cpu=0.07ms elapsed=22.23s tid=0x00007fb2a741a570 nid=12291 runnable  
+
+"G1 Refine#0" os_prio=31 cpu=0.07ms elapsed=22.23s tid=0x00007fb2a807e000 nid=18179 runnable  
+
+"G1 Service" os_prio=31 cpu=0.43ms elapsed=22.23s tid=0x00007fb2a7531c70 nid=12803 runnable  
+
+"VM Periodic Task Thread" os_prio=31 cpu=7.00ms elapsed=22.13s tid=0x00007fb2a7536330 nid=13315 waiting on condition  
+
+JNI global refs: 5, weak refs: 0
+
+(base) yathvi@Madan-MacBook-Pro-175 java % 
+
+
+
+
+
+
+
+
+
+
+
+
+Maximum I can spin up 2047-2048 Threads in my Mac Laptop.
+
+Even If start 10000 Threads, Activity Monitor shows max of 2047-2048 Threads.
+
+MaxThreadsExample.java
+
+
+Below is my Mac Configuration:
+------------------------------
+(base) yathvi@Madan-MacBook-Pro-175 ~ % system_profiler SPHardwareDataType
+Hardware:
+
+    Hardware Overview:
+
+      Model Name: MacBook Pro
+      Model Identifier: MacBookPro11,1
+      Processor Name: Dual-Core Intel Core i7
+      Processor Speed: 2.8 GHz
+      Number of Processors: 1
+      Total Number of Cores: 2
+      L2 Cache (per Core): 256 KB
+      L3 Cache: 4 MB
+      Hyper-Threading Technology: Enabled
+      Memory: 8 GB
+      System Firmware Version: 478.0.0.0.0
+      SMC Version (system): 2.16f68
+      Serial Number (system): C02MH0UYFH05
+      Hardware UUID: FA361C76-2D8A-5571-9F2B-4F2FE53283A7
+      Provisioning UDID: FA361C76-2D8A-5571-9F2B-4F2FE53283A7
+
+(base) yathvi@Madan-MacBook-Pro-175 ~ % 
+
+
+(base) yathvi@Madan-MacBook-Pro-175 ~ % sysctl -a
+
+https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/kernel_administration_guide/working_with_sysctl_and_kernel_tunables
+	The sysctl command is used to list, read, and set kernel tunables. It can filter tunables when listing or reading and set tunables temporarily or permanently. Copied!
+
+Since sysctl -a is displaying all commands , I have grep CPU.
+
+(base) yathvi@Madan-MacBook-Pro-175 ~ % sysctl -a | grep cpu
+hw.ncpu: 4
+hw.activecpu: 4
+hw.cpu64bit_capable: 1
+hw.cpufamily: 280134364
+hw.cpufrequency: 2800000000
+hw.cpufrequency_max: 2800000000
+hw.cpufrequency_min: 2800000000
+hw.cpusubfamily: 0
+hw.cpusubtype: 8
+hw.cputype: 7
+hw.logicalcpu: 4
+hw.logicalcpu_max: 4
+hw.physicalcpu: 2
+hw.physicalcpu_max: 2
+hw.cputhreadtype: 1
+machdep.cpu.address_bits.physical: 39
+machdep.cpu.address_bits.virtual: 48
+machdep.cpu.arch_perf.events: 0
+machdep.cpu.arch_perf.events_number: 7
+machdep.cpu.arch_perf.fixed_number: 3
+machdep.cpu.arch_perf.fixed_width: 48
+machdep.cpu.arch_perf.number: 4
+machdep.cpu.arch_perf.version: 3
+machdep.cpu.arch_perf.width: 48
+machdep.cpu.cache.L2_associativity: 8
+machdep.cpu.cache.linesize: 64
+machdep.cpu.cache.size: 256
+machdep.cpu.mwait.extensions: 3
+machdep.cpu.mwait.linesize_max: 64
+machdep.cpu.mwait.linesize_min: 64
+machdep.cpu.mwait.sub_Cstates: 286531872
+machdep.cpu.thermal.ACNT_MCNT: 1
+machdep.cpu.thermal.core_power_limits: 1
+machdep.cpu.thermal.dynamic_acceleration: 1
+machdep.cpu.thermal.energy_policy: 1
+machdep.cpu.thermal.fine_grain_clock_mod: 1
+machdep.cpu.thermal.hardware_feedback: 0
+machdep.cpu.thermal.invariant_APIC_timer: 1
+machdep.cpu.thermal.package_thermal_intr: 1
+machdep.cpu.thermal.sensor: 1
+machdep.cpu.thermal.thresholds: 2
+machdep.cpu.tlb.data.small: 64
+machdep.cpu.tlb.data.small_level1: 64
+machdep.cpu.tlb.inst.large: 8
+machdep.cpu.tlb.shared: 1024
+machdep.cpu.tsc_ccc.denominator: 0
+machdep.cpu.tsc_ccc.numerator: 0
+machdep.cpu.xsave.extended_state: 7 832 832 0
+machdep.cpu.xsave.extended_state1: 1 0 0 0
+machdep.cpu.brand: 0
+machdep.cpu.brand_string: Intel(R) Core(TM) i7-4558U CPU @ 2.80GHz
+machdep.cpu.core_count: 2
+machdep.cpu.cores_per_package: 8
+machdep.cpu.extfamily: 0
+machdep.cpu.extfeature_bits: 142473169152
+machdep.cpu.extfeatures: SYSCALL XD 1GBPAGE EM64T LAHF LZCNT RDTSCP TSCI
+machdep.cpu.extmodel: 4
+machdep.cpu.family: 6
+machdep.cpu.feature_bits: 9221959987971750911
+machdep.cpu.features: FPU VME DE PSE TSC MSR PAE MCE CX8 APIC SEP MTRR PGE MCA CMOV PAT PSE36 CLFSH DS ACPI MMX FXSR SSE SSE2 SS HTT TM PBE SSE3 PCLMULQDQ DTES64 MON DSCPL VMX EST TM2 SSSE3 FMA CX16 TPR PDCM SSE4.1 SSE4.2 x2APIC MOVBE POPCNT AES PCID XSAVE OSXSAVE SEGLIM64 TSCTMR AVX1.0 RDRAND F16C
+machdep.cpu.leaf7_feature_bits: 10155 0
+machdep.cpu.leaf7_feature_bits_edx: 2617247232
+machdep.cpu.leaf7_features: RDWRFSGS TSC_THREAD_OFFSET BMI1 AVX2 SMEP BMI2 ERMS INVPCID FPU_CSDS MDCLEAR IBRS STIBP L1DF SSBD
+machdep.cpu.logical_per_package: 16
+machdep.cpu.max_basic: 13
+machdep.cpu.max_ext: 2147483656
+machdep.cpu.microcode_version: 38
+machdep.cpu.model: 69
+machdep.cpu.processor_flag: 6
+machdep.cpu.signature: 263761
+machdep.cpu.stepping: 1
+machdep.cpu.thread_count: 4
+machdep.cpu.vendor: GenuineIntel
+machdep.xcpm.cpu_thermal_level: 0
+(base) yathvi@Madan-MacBook-Pro-175 ~ % 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+39. Install vim and python3, if not present.
+			apt update
+			apt-get install vim
+			apt-get install python3
+			
+	40.	Copy below content to cpu_hogger.py and cpu_hogger2.py
+
+import math
+import time
+
+def cpu_hogger():
+    while True:
+        # Do some CPU-intensive task
+        result = 0
+        for i in range(10**6):
+            result += math.sqrt(i)
+        time.sleep(0.001)
+
+# Run the CPU hogger function directly
+cpu_hogger()
+
+
+
+
+
+FROM alpine:3.6
+RUN apk add --no-cache python3
+RUN apk add --no-cache g++
+COPY cpu-hogger.py .
+CMD ["python3","./cpu-hogger.py"]
+
+
+
+docker build -t cpu_hogger -f DockerFileCPUHogger .
+
+docker run --name cpu_hogger_container --cpuset-cpus=0 --cpu-period=100000 --cpu-quota=75000 -d cpu_hogger
+
+docker run --name cpu_hogger_container2 --cpuset-cpus=0 --cpu-period=100000 --cpu-quota=75000 -d cpu_hogger2
+
+
+
+docker run --name cpu_hogger_container6 --cpuset-cpus=1 --cpu-period=100000 --cpu-quota=40000 -d cpu_hogger6
+
+
+
+
+docker image inspect c7c49a6c47af
+
+docker rmi e96e10416b64
+
+docker builder prune -a
+
+
+
+
+
+
+
+
+
+
+================================================================
+<==>	SIGAR	(SYSTEM INFORMATION GATHERER AND REPORTER)	<==>
+================================================================
+https://chat.openai.com/share/9a319a91-6fcb-4132-8dd3-b57c8a074b0e
+
+SIGAR (System Information Gatherer and Reporter) is a cross-platform, cross-language library and 
+command-line tool for accessing operating system and hardware level information in Java, Perl, Ruby, Python, Erlang, PHP and C#. 
+See https://bugzilla.redhat.com/show_bug.cgi?id=1307104 for more.
+
+
+
+Sigar (software)
+----------------
+https://en.wikipedia.org/wiki/Sigar_(software)
+
+Sigar is a free software library (under the Apache License) that provides a cross-platform, cross-language programming interface to low-level information on computer hardware and operating system activity.
+
+The library provides bindings for many popular computer languages and has been ported to over 25 different operating system/hardware combinations.
+
+Sigar stands for System Information Gatherer And Reporter and was originally developed by Doug MacEachern, the author of the popular mod_perl module for the Apache web server.
+
+
+
+================================================================
+<==>	OSHI	(OPERATING SYSTEM AND HARDWARE INFORMATION)	<==>
+================================================================
+https://github.com/oshi/oshi
+
+OSHI is a free JNA-based (native) Operating System and Hardware Information library for Java. 
+It does not require the installation of any additional native libraries and aims to provide 
+a cross-platform implementation to retrieve system information, 
+such as OS version, processes, memory and CPU usage, disks and partitions, devices, sensors, etc.
+
+
+
+
+
+
+
+
+
+====================================================================================
+<==>	Mac Thread Spin-up Code (How to get details about CPU in java program)	<==>
+====================================================================================
+
+https://chat.openai.com/share/9a319a91-6fcb-4132-8dd3-b57c8a074b0e
+
+share eclipse vertex code to spin up all available threads in Mac
+.
+.
+Change above code to use Eclipse Vert.x™ Reactive applications on the JVM
+.
+.
+SLF4J: No SLF4J providers were found ...
+.
+.
+Already added below in maven ...
+.
+.
+How to get details about CPU in java program
+
+To get details about the CPU in a Java program, you can use the java.lang.management package, 
+which provides access to various management and monitoring operations for the Java virtual machine. 
+Specifically, you can use the OperatingSystemMXBean to retrieve information about the operating system,
+including details about the CPU.
+
+Here's an example:
+.
+.
+.
+Note that the additional CPU-related information (like load average, memory sizes) might not be available on all operating systems or may require additional permissions.
+
+Please be aware that the com.sun.management.OperatingSystemMXBean interface is specific to the Oracle JDK. 
+If you are using a different JDK, you may need to explore other platform-specific APIs or tools for retrieving similar information.
+
+
+When running the program, you can observe details about the 
+
+operating system, 
+architecture, 
+available processors, 
+and additional CPU-related information if available. 
+
+
+Keep in mind that not all information may be available on all platforms, and the specifics might vary depending on the JVM implementation and operating system.
+.
+.
+I will share you tube link, can you share subtitles to me
+.
+.
+share a java code that can spin maximum threads available in mac
+.
+.
+How to print time in console output
+.
+.
+How to print execution time in System.out.println
+
+.
+.
+
+Below is my Mac configuration
+Hardware Overview:
+
+      Model Name: MacBook Pro
+      Model Identifier: MacBookPro11,1
+      Processor Name: Dual-Core Intel Core i7
+      Processor Speed: 2.8 GHz
+      Number of Processors: 1
+      Total Number of Cores: 2
+      L2 Cache (per Core): 256 KB
+      L3 Cache: 4 MB
+      Hyper-Threading Technology: Enabled
+      Memory: 8 GB
+      System Firmware Version: 478.0.0.0.0
+      SMC Version (system): 2.16f68
+      Serial Number (system): C02MH0UYFH05
+      Hardware UUID: FA361C76-2D8A-5571-9F2B-4F2FE53283A7
+      Provisioning UDID: FA361C76-2D8A-5571-9F2B-4F2FE53283A7
+
+hw.logicalcpu: 4
+hw.logicalcpu_max: 4
+hw.physicalcpu: 2
+hw.physicalcpu_max: 2
+
+I am able to start 100 threads using below java code
+
+for (int i = 0; i < 100; i++) {
+            Thread thread = new Thread(new MyRunnable());
+            thread.start();
+        }
+
+how this 100 threads distributed in physicalcpu and logicalcpu
+
+.
+.
+
+In your hardware configuration, you have:
+
+	hw.logicalcpu: 4 (total logical CPUs available)
+	
+	hw.physicalcpu: 2 (total physical CPUs available)
+	
+When you start multiple threads in a Java program, the operating system and the Java Virtual Machine (JVM) handle the distribution of these threads across available processors.
+
+
+
+In your case, you have two physical CPUs with hyper-threading (total logical CPUs: 4). 
+Hyper-threading allows each physical core to handle multiple threads simultaneously. 
+In this scenario, the operating system scheduler can distribute your 100 threads across these logical CPUs.
+
+However, keep in mind that the actual distribution of threads depends on the scheduling policies of the operating system. 
+The operating system's scheduler determines how threads are mapped to physical and logical CPUs based on factors 
+such as thread priority, load balancing, and other considerations.
+
+For example, on your system with 100 threads and 4 logical CPUs, the scheduler might decide to run 25 threads simultaneously on each logical CPU. 
+The scheduler can switch between threads, allowing multiple threads to make progress even if there are fewer physical CPUs than the total number of threads.
+
+To get more insights into the actual distribution and behavior, you might want to use system monitoring tools or profiling tools specific to your operating system.
+These tools can provide information about thread utilization, CPU usage, and other relevant metrics.
+
+
+.
+.
+
+For above scenario, share me java code which will print physicalcpu, logicalcpu, Thread.currentThread().getId()
+
+.
+.
+
+Below is my Mac configuration
+
+.
+.
+
+please share all available details that can be printed using Java 
+
+.
+.
+
+please share few more which is not listed above
+
+.
+.
+
+share some more in detail
+
+.
+.
+
+share a java code which will print all available values present in System and Runtime
+
+.
+.
+
+Like System and Runtime, share other java libraries (internal or external) which can share CPU/Underlying Hardware in details 
+
+
+Various Java libraries and APIs can be used to gather information about the CPU and underlying hardware. Here are a few libraries that provide different levels of detail:
+
+1.	java.lang.management Package:
+
+	Overview: 	The java.lang.management package provides the ManagementFactory class, 
+				which allows you to access various management and monitoring operations for the Java virtual machine.
+
+
+2.	com.sun.management.OperatingSystemMXBean (Oracle JDK specific):
+	
+	Overview: This is an extension of the OperatingSystemMXBean with additional methods. Keep in mind that it's Oracle JDK specific and might not be available in all Java implementations.
+
+
+3.	oshi Library:
+	
+	Overview: The oshi library provides a comprehensive set of APIs to access system information, including CPU, memory, network, and more.
+
+
+	Remember to include the appropriate dependencies in your project when using external libraries. The oshi library, for example, can be added to your project using Maven or Gradle as specified in the oshi GitHub repository.
+
+.
+.
+
+share few more libraries
+
+.
+.
+
+Certainly! Here are a few more Java libraries that you can use to gather information about the CPU and underlying hardware:
+
+1.	sigar Library:
+
+	Overview: Sigar is a cross-platform, cross-language library and command-line tool for accessing system information, including CPU, memory, disk, and network statistics.
+	
+	Example Usage: (Note: Sigar is a native library, so you need to include the appropriate JAR and native libraries in your project.)
+
+2.	jSysInfo Library:
+
+	Overview: jSysInfo is a lightweight library for accessing system information. It provides information about the CPU, memory, and operating system.
+	
+	Please note that when using external libraries, you need to check the documentation and include the required dependencies in your project.
+	
+.
+.
+
+share few more libraries
+
+.
+.
+
+Certainly! Here are a few more Java libraries that provide various system and hardware-related information:
+
+1.	JNA (Java Native Access) with SIGAR:
+
+	Overview: JNA is a Java library that provides Java programs easy access to native shared libraries. You can use JNA along with the SIGAR library for system information.
+	
+	Example Usage:
+
+	Note: This example uses JNA to load the sigar native library. You need to include the JNA library in your project.
+	
+	
+2.	JMX (Java Management Extensions) for JVM Monitoring:
+
+	Overview: JMX provides a set of APIs to monitor and manage Java applications remotely. You can use JMX to collect information about the Java Virtual Machine (JVM) itself.
+	
+	Example Usage:
+	
+	
+3.	JMH (Java Microbenchmarking Harness) for Microbenchmarks:
+
+	Overview: JMH is a Java library for benchmarking microbenchmarks. While not primarily for system information, it can be used to measure the performance of Java code.
+	
+	Example Usage:
+	
+	Note: JMH is typically used for microbenchmarking and performance testing.
+
+
+	Remember to include the necessary dependencies for the libraries you choose to use in your project.
+
+.
+.
+share few more libraries
+
+.
+.
+
+Certainly! Here are a few more Java libraries that provide different capabilities for system information, hardware details, and monitoring:
+
+	1.	Metrics Library:
+	
+		Overview: Metrics is a powerful library for measuring various aspects of your application's performance, including CPU usage, memory usage, and custom metrics.
+		
+		
+	2.	Apache Commons Lang for System Properties:
+	
+		Overview: Apache Commons Lang includes utilities for working with Java language primitives, strings, and more. It provides a simple way to get system properties.
+
+
+	3.	Jol (Java Object Layout) for Object Layout:
+	
+		Overview: Jol is a Java library that provides tools to analyze object layouts in memory.
+		
+		Note: Jol is particularly useful for analyzing object memory layout.
+
+
+	Remember to include the necessary dependencies for the libraries you choose to use in your project.
+	These libraries provide a range of capabilities, from monitoring system metrics to analyzing object layouts in memory.
+	Choose the ones that best fit your specific requirements.
+
+.
+.
+
+consolidate all this libraries to a single java program
+
+.
+.
+
+how to add below dependency in maven pom?
+
+import org.hyperic.sigar.Sigar;
+import org.hyperic.sigar.SigarException;
+import org.hyperic.sigar.CpuInfo;
+
+.
+.
+
+how to fix below error	...
+
+.
+.
+
+fix below error
+
+.
+.
+
+difference between plugins and dependencies in maven pom
+
+.
+.
+
+is there any java api or java library or java function which will check all possible values in a class and print in System.out.println
+
+
+There isn't a built-in Java API or library that can automatically check all possible values in a class and print them. 
+However, you can achieve 
+
+SIMILAR FUNCTIONALITY USING REFLECTION, 
+
+which allows you to inspect the fields and methods of a class at runtime.
+
+
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
+.
+.
+
+add getDeclaredMethods in above code
+
+.
+.
+
+add method output in above code
+
+.
+.
+
+add a condition in printMethodOutput method to check only for methods which has zero arguments/parameters 
+
+.
+.
+
+while printing methods can you add a condition to check AccessibleObject.checkAccess
+
+.
+.
+
+can you add one more class which is similar to MyClass in above code, but the new class has only static fields and methods.
+
+.
+.
+
+it didn't print output for MyStaticClass
+Instead it printed output for java.lang.Class (Printing all fields for class: java.lang.Class and Printing all methods for class: java.lang.Class). Can you correct the code.
+
+.
+.
+
+update the code to check whether DeclaredMethods has its own Fields, Methods in a nested manner
+
+.
+.
+
+
+
+
+
+
+
+
+
+
+
+
+
+===================================
+<=>	Dynamic Java Config Reload	<=>
+===================================
+https://chat.openai.com/share/0bcf3e20-c7a7-4cd9-99b0-bec383a81750
+
+What are the different ways to load configuration values in a running Java process without restarting Java process.
+	
+	In Java, you can dynamically reload configuration values in a running process without restarting by using various techniques:
+	
+	1.	Properties File Reload:
+		-Use a properties file for configuration.
+		-Periodically check for changes in the file and reload the properties.
+	2.	Java Management Extensions (JMX):
+		-Expose your configuration as JMX MBeans.
+		-Use tools like JConsole to update values during runtime.
+	3.	Apache Commons Configuration:
+		-Utilize libraries like Apache Commons Configuration.
+		-They support automatic reloading of configurations.
+	4.	Spring Cloud Config:
+		-If using the Spring framework, consider Spring Cloud Config.
+		-It supports dynamic updates without restarting.
+	5.	Dynamic Reloading Libraries:
+		-Libraries like Archaius (Netflix) or DynaConf offer dynamic configuration reloading.
+		
+	Remember to handle concurrency issues when implementing dynamic reloading to ensure consistency in a multi-threaded environment.
+
+Explain few more
+
+	Certainly! Here are a few more ways to dynamically reload configuration values in a running Java process:
+	
+	1.	Database-backed Configuration:
+		- Store configuration values in a database.
+		- Periodically query the database for changes and update the in-memory configuration.
+	2.	Custom Reload Mechanism:
+		- Implement a custom reload mechanism using file watchers.
+		- Detect changes in configuration files and reload the updated values.
+	3.	Configuration Refresh Events:
+		- Design your application to emit configuration refresh events.
+		- Implement listeners that react to these events and update the configuration dynamically.
+	4.	Dynamic Class Reloading:
+		- Use tools like JRebel to enable dynamic class reloading.
+		- This allows you to modify classes (including configuration-related classes) without restarting the JVM.
+	5.	Environment Variables or System Properties:
+		- Configure your application to check environment variables or system properties periodically for updated configuration values.
+	6.	Remote Configuration Services:
+		- Utilize services like etcd, Consul, or ZooKeeper for distributed configuration management.
+		- Changes in the centralized configuration store trigger updates in the running application.
+	
+	Choose the approach that best fits your application's architecture and requirements.
+	Each method has its pros and cons, and the choice may depend on factors like simplicity, scalability, and the technologies already in use within your project.
+
+Explain few more
+
+	Certainly! Here are a few additional methods for dynamically reloading configuration values in a running Java process:
+	
+	1.	HotSwapping Configuration Beans:
+		- If using a framework like Spring, you can leverage its support for hot-swapping.
+		- Modify configuration beans and trigger a refresh without restarting the entire application.
+	2.	WebSocket or Messaging Systems:
+		- Use WebSocket or messaging systems to push updated configurations to running instances.
+		- Subscribed instances receive updates and dynamically apply changes.
+	3.	Custom Reloadable Objects:
+		- Create custom reloadable objects that encapsulate configuration.
+		- Implement a mechanism to refresh these objects when changes occur.
+	4.	Aspect-Oriented Programming (AOP):
+		- Use AOP to intercept method calls related to configuration.
+		- Dynamically reload configuration when certain methods are invoked.
+	5.	Dynamic Proxy Objects:
+		- Utilize dynamic proxies to wrap configuration objects.
+		- Intercept calls to configuration methods and update values on the fly.
+	6.	Scheduled Tasks for Refresh:
+		- Implement scheduled tasks to periodically check for configuration changes.
+		- Reload configuration if modifications are detected.
+	7.	Dynamic Bytecode Generation:
+		- Employ bytecode generation libraries like ASM or Byte Buddy.
+		- Dynamically modify classes during runtime to reflect updated configurations.
+	
+	Consider the complexity, performance implications, and maintenance aspects when choosing a method. The most suitable approach often depends on the specific needs and constraints of your application.
+
+
+Explain few more
+
+	Certainly, here are a few more approaches to dynamically reload configuration values in a running Java process:
+	
+	1.	Custom RESTful Endpoint:
+		- Create a RESTful endpoint within your application specifically for updating configurations.
+		- Send a request to this endpoint with updated configuration data, and the application dynamically applies the changes.
+	2.	Dynamic Module System (Java 9+):
+		- If using Java 9 or later, take advantage of the Java Platform Module System (JPMS).
+		- Break your application into modules, and dynamically reload specific modules with updated configurations.
+	3.	Service Discovery and Configuration Management:
+		- Leverage tools like Consul, Eureka, or Kubernetes for service discovery and configuration management.
+		- Update configuration in a centralized system, and services dynamically fetch the changes.
+	4.	Custom Configuration Refresh Strategies:
+		- Implement custom strategies for configuration refresh based on specific events or triggers.
+		- For example, reload configurations on specific user actions or system events.
+	5.	Annotation-Based Configuration:
+		- Use custom annotations on configuration classes.
+		- Implement an annotation processor or runtime reflection to dynamically reload annotated configurations.
+	6.	Database Triggers:
+		- If your configuration is stored in a database, utilize database triggers.
+		- Changes to the configuration table trigger events that your application captures and acts upon.
+	7.	Atomic File Replacement:
+		- Use an atomic file replacement strategy.
+		- Write updated configuration to a temporary file, and atomically replace the original file to avoid race conditions.
+	
+	Always consider the trade-offs and potential impacts on system stability and performance when implementing dynamic configuration reloading.
+	Choose an approach that aligns with your application's architecture and requirements.
+
+Explain few more
+
+Certainly! Here are a few more strategies for dynamically reloading configuration values in a running Java process:
+
+	1.	Distributed Configurations with Apache ZooKeeper:
+		- Use Apache ZooKeeper as a distributed configuration store.
+		- Applications subscribe to changes in ZooKeeper nodes, allowing for dynamic updates across a distributed system.	
+	2.	Consistent Hashing for Configuration Distribution:
+		- Implement consistent hashing to distribute configuration changes.
+		- Nodes responsible for specific ranges of configuration values can dynamically update without affecting the entire system.
+	3.	Immutable Configuration Objects:
+		- Design configuration objects to be immutable.
+		- Instead of modifying existing objects, create new instances with updated values when changes occur.
+	4.	Change Events with Observer Pattern:
+		- Implement the Observer pattern to notify components of configuration changes.
+		- Components register as observers, and the configuration manager notifies them when changes occur.
+	5.	Distributed Message Brokers (e.g., Kafka):
+		- Utilize distributed message brokers like Apache Kafka.
+		- Publish configuration changes as messages, and subscribers receive updates in real-time.
+	6. Versioned Configurations:
+		- Introduce versioning to configurations.
+		- When changes occur, update the configuration version, and components check for version mismatches to trigger updates.
+	7.	Custom Configuration DSL (Domain-Specific Language):
+		- Develop a custom DSL for describing configurations.
+		- Use a parser to dynamically interpret and apply changes specified in the DSL.
+	8.	Dynamic Configuration APIs:
+		- Design a dynamic configuration API that supports runtime updates.
+		- Components can query and update configurations without requiring a full restart.
+		
+	Choose the method that aligns with your application's architecture, scalability requirements, and the nature of configuration changes you expect. Each approach has its own strengths and considerations.
+	
+
+Explain few more
+
+Certainly! Here are a few more strategies for dynamically reloading configuration values in a running Java process:
+
+	1.	Dynamic Scripting (e.g., Groovy, JavaScript):
+		- Embed a scripting engine like Groovy or JavaScript.
+		- Allow users to define and execute scripts that modify configuration at runtime.
+	2.	Cloud Configuration Services (e.g., AWS SSM Parameter Store):
+		- Leverage cloud-based configuration services like AWS Systems Manager (SSM) Parameter Store.
+		- Dynamically fetch configuration values from these services, and updates are reflected in real-time.
+	3.	Dynamic Code Generation:
+		- Generate code dynamically based on configuration specifications.
+		- Changes to the configuration trigger the regeneration of code, allowing for dynamic updates.
+	4.	GraphQL for Configuration Queries:
+		- Implement a GraphQL endpoint for querying and updating configuration.
+		- Clients can request specific configuration fields and mutate values dynamically.
+	5.	Runtime Configuration Dashboards:
+		- Develop a runtime configuration dashboard.
+		- Allow administrators to make changes through a user interface, and the system dynamically applies the updates.
+	6.	Machine Learning for Auto-Configuration:
+		- Use machine learning algorithms to predict optimal configurations.
+		- The system continuously learns and adapts configurations based on runtime behavior.
+	7.	Remote Configuration Repositories:
+		- Store configurations in remote repositories (e.g., Git, SVN).
+		- Periodically pull changes from the repository to update configurations.
+	8.	Feature Flags and Toggles:
+		- Implement feature flags or toggles to control the activation of specific features.
+		- Dynamically enable or disable features based on configuration changes.
+
+Consider the security implications and potential performance overhead associated with each approach. The choice depends on the specific needs of your application and the nature of configuration updates you expect.
+
+
+Share a simple Java code to load configs during runtime without restarting Java process
+.
+.
+Add a condition to check changes periodically and reflect them accordingly 
+.	
+.
+Update the code to run main Java process for 2 minutes 
+.
+.
+share a java code that implements Spring Cloud Config
+.
+.
+Share a Java program where you can start multiple servers (or process/threads)  pointing to different ports  in a single JVM process
+.
+.
+Explain Dynamic Bytecode Generation
+	
+	Dynamic bytecode generation is a technique where new Java bytecode is generated at runtime. It allows you to create, modify, or enhance classes dynamically without having to write the corresponding Java source code and compile it.
+	This capability is particularly useful in scenarios where you need to generate classes on-the-fly, implement AOP (Aspect-Oriented Programming), or create dynamic proxies.
+.
+.
+Explain Java Platform Module System	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=================================================================================================================
+Java source code to compile code to byte code to machine code to binary and how it executes in multiprocessor cpu
+=================================================================================================================
+Java Code to Binary
+===================
+
+https://chat.openai.com/share/ff9b95dc-0733-4d58-b197-6139afd6c1d6
+
+Explain all the steps in detail from converting Java source code to compile code to byte code to machine code to binary and how it executes in multiprocessor cpu
+.
+.
+Can you explain the byte code conversion to machine level code and how a multiprocessor cpu will process in detail  
+.
+.
+Explain Dynamic workload balancing by operating system in detail
+.
+.
+Is Java process or Jvm is a kernel level process or user level process?
+.
+.
+How JVM as a user-level process interacts with operating system to perform dynamic workload balancing in CPU cores? Is operating system kernel involved?
+.
+.
+Is JVM a single process or Multi Process?
+.
+.
+Can JVM run as a multi process?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+======================
+Java Process vs Thread
+======================
+https://chat.openai.com/share/ad3ec86a-ba77-4c34-93b9-6f07b53cb8dc
+
+
+Difference between Java process and Java thread
+.
+.
+Is Java process interrupt operating system?
+.
+.
+Explain Java virtual machine interaction with operating system in detail 
+.
+.
+Difference between jvm and jre
+.
+.
+Will jvm run as a single process or span across multiple processes?
+.
+.
+Is jvm a kernel level process or user level process?
+.
+.
+Explain jvm interaction with operating system that has multiple cores in CPU 
+.
+.
+List the algorithms that can be executed concurrently on multiple cores
+.
+.
+How many jvm process can be launched in 8 core cpu machine?
+.
+.
+List one of the Mac configuration 
+.
+.
+Configure one JVM process to above Mac which should utilize it’s configuration completely 
+.
+.
+Can we launch 2 jvm process with above configuration?
+.
+.
+Can we launch 2 jvm process with above configuration in MacBook Pro 16GB ram?
+.
+.
+What happens if I set initial heap size to 0
+.
+.
+What happens if I set initial heap size to 100m and maximum heap size to 8g for resource intensive application 
+.
+.
+Will heap expansion interrupt Operating system kernel?
+.
+.
+Is eclipse vertex event loop thread kernel level thread or user level thread?
+.
+.
+How eclipse vertex event loop thread use jvm, jre and operating system 
+.
+.
+How eclipse vertex event loop thread use jvm, jre and operating system that has multiple cpu cores
+.
+.
+Will a Single process span across multiple cores of a cpu?
+.
+.
+Can a single process span across multiple cores of a cpu with out threading?
+.
+.
+Difference between concurrent and parallel execution 
+.
+.
+
+Is my below understanding correct?
+
+1.	JVM as a single User Level Process converts JAVA byte code to machine code using JIT.
+2.	Operating System as a Kernel Level Process pick the machine instructions from this machine code to schedule on all available 8 cores to execute in parallel.
+3.	Since Operating System Kernel Level Process is scheduling on all 8 cores, JVM as a User Level Process is not involved in any way while executing on the CPU.
+4. 	JVM User Level Process as delegated its control to Operating System Kernel Level Process after converting byte code to machine code using JIT.
+
+
+Your understanding is mostly correct, but there's a slight nuance in how JVM and the operating system interact. Let me provide a more detailed explanation:
+
+1.	JVM as a User-Level Process:
+		The Java Virtual Machine (JVM) is indeed a user-level process. It interprets and executes Java bytecode. The JVM includes components such as the Class Loader, JIT Compiler, and Garbage Collector.
+		The JIT (Just-In-Time) compiler within the JVM translates Java bytecode to native machine code at runtime. This is done to improve the performance of the Java program.
+2.	Operating System as Kernel-Level Process:
+		The operating system (OS) kernel is a kernel-level process. Its responsibilities include managing system resources, scheduling processes, handling I/O, and providing a secure and isolated environment for processes.
+		The OS scheduler determines how processes are executed on CPU cores.
+3.	Interaction between JVM and OS:
+		While the JVM is executing Java code, it interacts with the operating system. For example, it may request memory from the OS, perform I/O operations, or interact with native libraries.
+		The JVM itself does not manage the scheduling of threads on CPU cores; that is the responsibility of the OS scheduler.
+4.	Parallel Execution on Multiple Cores:
+		When your Java program is running and the OS scheduler decides to execute it, the JVM can take advantage of parallel execution on multiple CPU cores.
+		The OS scheduler assigns different threads of the Java process to different CPU cores if the workload allows for parallelism.
+5.	Control Delegation:
+		The JVM does not entirely delegate control to the OS. The JVM manages its internal components, including the garbage collector and thread scheduler. However, the OS handles low-level CPU scheduling and resource management.
+		
+		
+		In summary, the JVM and the operating system work together during the execution of a Java program. 
+		The JVM interacts with the OS for certain operations, and the OS scheduler determines how threads are scheduled on available CPU cores. 
+		The JVM manages its internal processes and components, and the OS handles low-level system resource management.
+
+	.
+	.
+	.
+	.
+
+is there any parameter to set CPU cores while running a java process?
+
+	As of my knowledge cutoff date in January 2022, there is no standard Java Virtual Machine (JVM) parameter that directly allows you to set the number of CPU cores for a Java process.
+	The JVM relies on the underlying operating system's scheduler to manage thread execution and CPU core assignment.
+	However, you can indirectly influence the behavior of parallelism and thread execution in a Java program using certain JVM parameters and programming techniques:
+
+.
+.
+
+When I execute below simple Infinite Loop in my Mac Laptop
+public class Test {
+    public static void main(String[] args) {
+        while(true) {}
+    }
+}
+It creates 1 process ID and 20+ threads in Activity Monitor, please explain in detail
+.
+.
+
+
+
+
+
+
+
+
+
+
+
+
+
+======================================================================================================
+Fixing Unspecified Error (Is JVM a user level process or kernel level process or system level process)
+======================================================================================================
+
+https://chat.openai.com/share/86ed4f34-a6f9-4526-8363-e3d72a8d0e04
+
+how to fix below error
+.
+.
+no libsigar ...
+.
+.
+how to add java.library.path in code
+.
+.
+how to set java.library.path in IntelliJ IDEA
+.
+.
+how to print output in java
+.
+.
+while using System.out.println how to print method name and its value
+.
+.
+fix below error ...
+.
+.
+list all available Java Garbage Collections
+.
+.
+list few more
+.
+.
+list few more
+.
+.
+list few more
+.
+.
+print all above listed as VM options
+.
+.
+.
+.
+.
+Is JVM a user level process or kernel level process or system level process?
+
+
+The Java Virtual Machine (JVM) is typically considered a user-level process.
+It operates as an application on a host operating system and runs Java applications. 
+The JVM abstracts the underlying hardware and operating system details, providing a platform-independent environment for Java programs to execute.
+
+When you run a Java application, the JVM is launched as a process within the user space of the operating system.
+It interacts with the underlying operating system through system calls but is not a kernel-level process.
+
+It's important to note that the JVM itself doesn't have direct access to the physical hardware.
+Instead, it relies on the host operating system's services to manage resources such as memory, CPU, and I/O.
+The JVM handles memory management, garbage collection, and execution of Java bytecode, while the operating system takes care of system-level tasks.
+
+
+
+
+is Garbage collection run as user level process or kernel level process?
+
+
+
+
+Garbage collection in Java is typically implemented as part of the Java Virtual Machine (JVM) and is executed as a user-level process.
+It is not a kernel-level process.
+
+When the garbage collector runs, it is managed by the JVM, which is itself a user-level process running on top of the operating system.
+The garbage collector is responsible for reclaiming memory that is no longer in use by the Java program, and it operates within the memory allocated to the Java process.
+
+The garbage collector interacts with the Java heap, identifying and reclaiming memory occupied by objects that are no longer reachable or referenced by the program.
+The JVM handles memory management and garbage collection internally, without direct involvement of the operating system's kernel.
+
+While garbage collection is a user-level process, it can, however, trigger system-level events such as blocking the application briefly during garbage collection cycles.
+Advanced garbage collectors, such as those designed for low-latency or concurrent operation, aim to minimize the impact on application performance by running concurrently with the application threads.
+
+In summary, garbage collection in Java is a user-level process managed by the JVM, and it operates within the context of the Java application's memory space.
+
+
+
+
+what if we set -Xms=512MB and -Xmx=8GB and run a CPU/Memory intensive application which runs Full GC every 1 second, will it run as a user level process or kernel level process?
+
+
+
+
+In Java, the garbage collection process is generally managed by the Java Virtual Machine (JVM) as part of the user-level process.
+Regardless of the memory settings (such as -Xms and -Xmx) and the frequency of Full Garbage Collection (Full GC) cycles, the garbage collection itself is a user-level activity.
+
+In your scenario, where you have set the initial heap size (-Xms) to 512MB and the maximum heap size (-Xmx) to 8GB, the Full GC will be triggered when the JVM determines that a major garbage collection is necessary.
+This might occur due to factors like heap space being nearly exhausted or other conditions depending on the garbage collection algorithm in use.
+
+The Full GC activity, as part of the garbage collection process, is managed by the JVM and occurs within the boundaries of the Java process. 
+It does not involve direct interaction with the operating system's kernel. 
+The user-level JVM interacts with the operating system to allocate and deallocate memory, but the garbage collection itself is a user-level process.
+
+It's important to note that frequent Full GC cycles, especially occurring every second, may impact the overall performance of your application due to increased pause times during garbage collection.
+If your application is CPU and memory intensive, you may need to tune the garbage collection settings and potentially explore different garbage collection algorithms to achieve better performance.
+
+
+
+
+The user-level JVM interacts with the operating system to allocate and deallocate memory, but the garbage collection itself is a user-level process. In above scenario JVM interacts with Operating System frequently, will it cause any system overhead at kernel level?
+
+
+
+
+Yes, the JVM interacts with the operating system for memory management, and frequent garbage collection activity can indeed lead to system overhead at the kernel level.
+While garbage collection itself is a user-level process, the interactions between the JVM and the operating system's kernel can have implications for system performance.
+
+Here are some potential areas where system overhead may be observed:
+
+1.	Memory Allocation and Deallocation:
+	The JVM communicates with the operating system's memory manager to allocate and deallocate memory for the Java application. 
+	Frequent memory allocation and deallocation due to garbage collection cycles can lead to system overhead as the operating system responds to these requests.
+
+2.	Page Faults and Virtual Memory Management:
+	The JVM's memory management may result in page faults and interactions with the virtual memory subsystem of the operating system. 
+	Frequent garbage collection cycles can influence the demand for physical memory pages, potentially leading to increased paging activity.
+	
+3.	Context Switching:
+	During garbage collection, the JVM may pause application threads, perform garbage collection tasks, and then resume the application threads.
+	Context switching between the JVM and application threads can incur overhead at the kernel level.
+
+4.	I/O Operations (e.g., Swap Activity):
+	If the system is under memory pressure, the operating system may perform swapping, moving data between RAM and swap space on disk.
+	Frequent garbage collection cycles might contribute to increased I/O operations associated with swapping.
+
+5.	CPU Utilization:
+	Garbage collection involves CPU-intensive tasks, and the CPU utilization of the JVM may impact the overall system CPU usage.
+	Frequent Full GC cycles, especially in CPU-intensive applications, can contribute to higher CPU load.
+
+
+To mitigate the impact of garbage collection on system overhead, you can consider the following:
+
+1.	Garbage Collection Tuning: Adjust garbage collection settings, choose appropriate garbage collection algorithms, and fine-tune parameters based on your application's characteristics.
+
+2.	Monitoring and Profiling: Use monitoring tools and profilers to analyze garbage collection behavior and identify areas for improvement.
+
+3.	Heap Sizing: Set appropriate initial heap size (-Xms) and maximum heap size (-Xmx) values to balance memory usage and garbage collection frequency.
+
+4.	Concurrency and Parallelism: Consider garbage collectors designed for concurrent or parallel operation to reduce pause times and distribute the garbage collection load.
+
+
+It's essential to carefully tune the JVM and garbage collection settings based on your application's requirements and characteristics to achieve optimal performance while minimizing system overhead.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Garbage Collection in Java – What is GC and How it Works in the JVM
+-------------------------------------------------------------------
+https://www.freecodecamp.org/news/garbage-collection-in-java-what-is-gc-and-how-it-works-in-the-jvm/
+
+
+
+
+
+
+
+
+
+time (Unix)
+-----------
+	https://en.wikipedia.org/wiki/Time_(Unix)
+
+	Usage:
+	time host wikipedia.org
+	
+	User time vs system time
+		The total CPU time is the combination of the amount of time the CPU or CPUs spent performing some action for a program and the amount of time they spent performing system calls for the kernel on the program's behalf.
+		When a program loops through an array, it is accumulating user CPU time. Conversely, when a program executes a system call such as exec or fork, it is accumulating system CPU time.
+	
+	Real time vs CPU time
+		The term "real time" in this context refers to elapsed wall-clock time, like using a stop watch.
+		The total CPU time (user time + sys time) may be more or less than that value.
+		Because a program may spend some time waiting and not executing at all (whether in user mode or system mode) the real time may be greater than the total CPU time.
+		Because a program may fork children whose CPU times (both user and sys) are added to the values reported by the time command, but on a multicore system these tasks are run in parallel,
+		the total CPU time may be greater than the real time.
+	
+System call
+-----------
+	https://en.wikipedia.org/wiki/System_call
+	
+		In computing, a system call (commonly abbreviated to syscall) is the programmatic way in which a computer program requests a service from the operating system on which it is executed.
+		This may include hardware-related services (for example, accessing a hard disk drive or accessing the device's camera), creation and execution of new processes, and communication with integral kernel services such as process scheduling.
+		System calls provide an essential interface between a process and the operating system.
+	
+		In most systems, system calls can only be made from userspace processes, while in some systems, OS/360 and successors for example, privileged system code also issues system calls.
+	
+		.
+		.
+	
+		On Unix, Unix-like and other POSIX-compliant operating systems, popular system calls are open, read, write, close, wait, exec, fork, exit, and kill. 
+		Many modern operating systems have hundreds of system calls. For example, Linux and OpenBSD each have over 300 different calls, NetBSD has close to 500, 
+		FreeBSD has over 500, Windows has close to 2000, divided between win32k (graphical) and ntdll (core) system calls while Plan 9 has 51.
+
+		Tools such as strace, ftrace and truss allow a process to execute from start and report all system calls the process invokes, or can attach to an already running process 
+		and intercept any system call made by the said process if the operation does not violate the permissions of the user. 
+		This special ability of the program is usually also implemented with system calls such as ptrace or system calls on files in procfs.
+
+	
+Class MemoryUsage
+	https://docs.oracle.com/javase/8/docs/api/java/lang/management/MemoryUsage.html
+	Explained init(-Xms) , used , committed , max(-Xmx)
+	
+	Below is a picture showing an example of a memory pool:
+		|--------|
+           init
+        |---------------|
+               used
+        |---------------------------|
+                  committed
+        |----------------------------------------------|
+                            max
+
+Permgen vs Metaspace in Java
+----------------------------
+	https://www.baeldung.com/java-permgen-metaspace
+	
+		The default maximum memory size for 32-bit JVM is 64 MB and 82 MB for the 64-bit version.
+		PermGen (Permanent Generation) is a special heap space separated from the main memory heap.
+		
+		The JVM keeps track of loaded class metadata in the PermGen. 
+		Additionally, the JVM stores all the static content in this memory section.
+		This includes all the static methods, primitive variables, and references to the static objects.
+
+		Furthermore, it contains data about bytecode, names, and JIT information.
+		Before Java 7, the String Pool was also part of this memory. The disadvantages of the fixed pool size are listed in our write-up.
+
+
+jstat
+-----
+	https://docs.oracle.com/javase/8/docs/technotes/tools/unix/jstat.html
+	
+	-gc option
+	
+	Garbage-collected heap statistics.
+
+	S0C: Current survivor space 0 capacity (kB).
+
+	S1C: Current survivor space 1 capacity (kB).
+
+	S0U: Survivor space 0 utilization (kB).
+
+	S1U: Survivor space 1 utilization (kB).
+
+	EC: Current eden space capacity (kB).
+
+	EU: Eden space utilization (kB).
+
+	OC: Current old space capacity (kB).
+
+	OU: Old space utilization (kB).
+
+	MC: Metaspace capacity (kB).
+
+	MU: Metacspace utilization (kB).
+
+	CCSC: Compressed class space capacity (kB).
+
+	CCSU: Compressed class space used (kB).
+
+	YGC: Number of young generation garbage collection events.
+
+	YGCT: Young generation garbage collection time.
+
+	FGC: Number of full GC events.
+
+	FGCT: Full garbage collection time.
+
+	GCT: Total garbage collection time.
+
+
+
+
+
+
+
+
+https://github.com/tools4j/elara
+--------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+14 Useful Linux Networking Commands
+-----------------------------------
+https://geekflare.com/linux-networking-commands/
+
+How to check if port is in use on Linux or Unix
+-----------------------------------------------
+https://www.cyberciti.biz/faq/unix-linux-check-if-port-is-in-use-command/
+sudo lsof -i -P -n | grep LISTEN 
+sudo netstat -tulpn | grep LISTEN
+sudo nmap -sTU -O IP-address-Here
+
+apk add iproute2
+
+/ # ss
+Netid        State        Recv-Q         Send-Q                 Local Address:Port                 Peer Address:Port        Process
+/ # 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+================================================
+Eclipse Vert.x™ Reactive applications on the JVM
+================================================
+https://vertx.io
+
+Resource-efficient
+------------------
+Handle more requests with less resources compared to traditional stacks and frameworks based on blocking I/O.
+Vert.x is a great fit for all kinds of execution environments, including constrained environments like virtual machines and containers.
+Don't waste resources, increase deployment density and save money!
+
+Concurrent and asynchronous
+---------------------------
+People told you asynchronous programming is too hard for you?
+We strive to make programming with Vert.x an approachable experience,
+without sacrificing correctness and performance.
+
+You pick the model that works best for the task at hand:
+callbacks, promises, futures, reactive extensions, and (Kotlin) coroutines.
+
+Flexible
+--------
+Vert.x is a toolkit, not a framework, so it is naturally very composable and embeddable.
+We have no strong opinion on what your application structure should be like.
+
+Select the modules and clients you need and compose them as you craft your application.
+Vert.x will always adapt and scale depending on your needs.
+
+Ecosystem
+----------
+Web APIs, databases, messaging, event streams, cloud, registries, security.. you name it.
+Vert.x has you covered with a comprehensive end-to-end reactive clients stack for modern applications.
+And if you can’t find what you are looking for, there is a very strong chance that someone else has done it in the wider Vert.x open-source ecosystem. Vert.x is a safe investment for your technology stack.
+
+
+Vert.x in Action teaches you how to build responsive, resilient, and scalable JVM applications with Vert.x using well-established reactive design patterns.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(base) yathvi@Madan-MacBook-Pro-175 ~ % system_profiler --help
+Usage: system_profiler [-listDataTypes]
+       system_profiler [-xml | -json] [-timeout n] [-detailLevel n]
+       system_profiler [-xml | -json] [-timeout n] [dataType1 ... dataTypeN]
+
+  -detailLevel n    specifies the level of detail for the report
+                      mini = short report (contains no identifying or personal information)
+                      basic = basic hardware and network information
+                      full = all available information
+
+  -listDataTypes    lists all the available datatypes
+
+  -xml              generates xml output instead of plain text
+                    if redirected to a file with the extension ".spx"
+                    the file can be opened in System Profiler.app
+
+  -json             generates json output instead of plain text
+
+  -timeout          specifies the maximum time to spend gathering information
+                    the default is 180 seconds, 0 means no timeout
+
+  Redirect stderr to /dev/null to suppress progress and error messages.
+
+Examples:
+
+  system_profiler
+     Generates a text report with the standard detail level.
+
+  system_profiler -detailLevel mini
+     Generates a short report without identifying/personal information.
+
+  system_profiler -listDataTypes
+     Shows a list of the available data types.
+
+  system_profiler SPSoftwareDataType SPNetworkDataType
+     Generates a text report containing only software and network data.
+
+  system_profiler -xml >MySystem.spx
+     Creates a XML file which can be opened by System Profiler.app
+
+(base) yathvi@Madan-MacBook-Pro-175 ~ % 
+
+
+
+
+
+
+
+
+(base) yathvi@Madan-MacBook-Pro-175 ~ % system_profiler -listDataTypes
+Available Datatypes:
+SPParallelATADataType
+SPUniversalAccessDataType
+SPSecureElementDataType
+SPApplicationsDataType
+SPAudioDataType
+SPBluetoothDataType
+SPCameraDataType
+SPCardReaderDataType
+SPiBridgeDataType
+SPDeveloperToolsDataType
+SPDiagnosticsDataType
+SPDisabledSoftwareDataType
+SPDiscBurningDataType
+SPEthernetDataType
+SPExtensionsDataType
+SPFibreChannelDataType
+SPFireWireDataType
+SPFirewallDataType
+SPFontsDataType
+SPFrameworksDataType
+SPDisplaysDataType
+SPHardwareDataType
+SPInstallHistoryDataType
+SPInternationalDataType
+SPLegacySoftwareDataType
+SPNetworkLocationDataType
+SPLogsDataType
+SPManagedClientDataType
+SPMemoryDataType
+SPNVMeDataType
+SPNetworkDataType
+SPPCIDataType
+SPParallelSCSIDataType
+SPPowerDataType
+SPPrefPaneDataType
+SPPrintersSoftwareDataType
+SPPrintersDataType
+SPConfigurationProfileDataType
+SPRawCameraDataType
+SPSASDataType
+SPSerialATADataType
+SPSPIDataType
+SPSmartCardsDataType
+SPSoftwareDataType
+SPStartupItemDataType
+SPStorageDataType
+SPSyncServicesDataType
+SPThunderboltDataType
+SPUSBDataType
+SPNetworkVolumeDataType
+SPWWANDataType
+SPAirPortDataType
+(base) yathvi@Madan-MacBook-Pro-175 ~ % 
+
+
+
+(base) yathvi@Madan-MacBook-Pro-175 ~ % system_profiler SPSoftwareDataType  
+Software:
+
+    System Software Overview:
+
+      System Version: macOS 11.7.6 (20G1231)
+      Kernel Version: Darwin 20.6.0
+      Boot Volume: Macintosh HD
+      Boot Mode: Normal
+      Computer Name: MacBook Pro (9)
+      User Name: Yathvi Tej (yathvi)
+      Secure Virtual Memory: Enabled
+      System Integrity Protection: Enabled
+      Time since boot: 2 days 23:45
+
+(base) yathvi@Madan-MacBook-Pro-175 ~ % 
+
+
+
+
+
+(base) yathvi@Madan-MacBook-Pro-175 ~ % system_profiler SPFirewallDataType
+Firewall:
+
+    Firewall Settings:
+
+      Mode: Limit incoming connections to specific services and applications
+      Services:
+          File Sharing (SMB): Allow all connections
+      Applications:
+          com.apple.WebKit.Networking: Allow all connections
+          com.cisco.Cisco Webex Meetings: Allow all connections
+          com.google.Chrome: Allow all connections
+          com.jetbrains.intellij: Allow all connections
+          com.jetbrains.intellij.ce: Allow all connections
+          com.netacad.PacketTracer8.2.1: Allow all connections
+          org.mozilla.updater: Allow all connections
+          org.virtualbox.app.VirtualBoxVM: Allow all connections
+      Firewall Logging: Yes
+      Stealth Mode: Yes
+
+(base) yathvi@Madan-MacBook-Pro-175 ~ % 
+
+
+
+
+
+
+
+
+
+
+
+(base) yathvi@Madan-MacBook-Pro-175 ~ % system_profiler SPMemoryDataType       
+Memory:
+
+    Memory Slots:
+
+      ECC: Disabled
+      Upgradeable Memory: No
+
+        BANK 0/DIMM0:
+
+          Size: 4 GB
+          Type: DDR3
+          Speed: 1600 MHz
+          Status: OK
+          Manufacturer: 0x80AD
+          Part Number: 0x484D54343531533641465238412D50422020
+          Serial Number: -
+
+        BANK 1/DIMM0:
+
+          Size: 4 GB
+          Type: DDR3
+          Speed: 1600 MHz
+          Status: OK
+          Manufacturer: 0x80AD
+          Part Number: 0x484D54343531533641465238412D50422020
+          Serial Number: -
+
+(base) yathvi@Madan-MacBook-Pro-175 ~ % 
+
+
+
+
+
+
+
+
+
+(base) yathvi@Madan-MacBook-Pro-175 ~ % system_profiler SPPowerDataType       
+Power:
+
+    Battery Information:
+
+      Model Information:
+          Manufacturer: SMP
+          Device Name: bq20z451
+          Pack Lot Code: 0
+          PCB Lot Code: 0
+          Firmware Version: 702
+          Hardware Revision: 000a
+          Cell Revision: 379
+      Charge Information:
+          Fully Charged: No
+          Charging: No
+          Full Charge Capacity (mAh): 4232
+          State of Charge (%): 93
+      Health Information:
+          Cycle Count: 2163
+          Condition: Service Recommended
+
+    System Power Settings:
+
+      AC Power:
+          System Sleep Timer (Minutes): 1
+          Disk Sleep Timer (Minutes): 10
+          Display Sleep Timer (Minutes): 10
+          Wake on AC Change: No
+          Wake on Clamshell Open: Yes
+          Wake on LAN: Yes
+          AutoPowerOff Delay: 259200
+          AutoPowerOff Enabled: 1
+          Display Sleep Uses Dim: Yes
+          Hibernate Mode: 3
+          PrioritizeNetworkReachabilityOverSleep: 0
+      Battery Power:
+          System Sleep Timer (Minutes): 1
+          Disk Sleep Timer (Minutes): 10
+          Display Sleep Timer (Minutes): 10
+          Wake on AC Change: No
+          Wake on Clamshell Open: Yes
+          AutoPowerOff Delay: 259200
+          AutoPowerOff Enabled: 1
+          Current Power Source: Yes
+          Display Sleep Uses Dim: Yes
+          Hibernate Mode: 3
+          Reduce Brightness: Yes
+
+    Hardware Configuration:
+
+      UPS Installed: No
+
+    AC Charger Information:
+
+      Connected: No
+      Charging: No
+
+    Power Events:
+
+        Next Scheduled Events:
+
+              appPID: 381
+              Type: Wake
+              Scheduled By: com.apple.alarm.user-visible-Weekly Usage Report
+              Time: 2/18/24, 6:30 AM
+              UserVisible: 0
+
+              appPID: 394
+              Type: Wake
+              Scheduled By: com.apple.alarm.user-visible-Weekly Usage Report
+              Time: 2/18/24, 7:21 AM
+              UserVisible: 0
+
+(base) yathvi@Madan-MacBook-Pro-175 ~ % 
+
+
+
+
+
+
+
+
+
+
+
+(base) yathvi@Madan-MacBook-Pro-175 ~ % system_profiler SPSerialATADataType
+SATA:
+
+    Apple SSD Controller:
+
+      Vendor: Apple
+      Product: SSD Controller
+      Physical Interconnect: PCI
+      Link Width: x2
+      Link Speed: 5.0 GT/s
+      Description: AHCI Version 1.30 Supported
+
+        APPLE SSD SM0512F:
+
+          Capacity: 500.28 GB (500,277,790,720 bytes)
+          Model: APPLE SSD SM0512F                       
+          Revision: UXM2JA1Q
+          Serial Number: S1K5NYAF240606      
+          Native Command Queuing: Yes
+          Queue Depth: 32
+          Removable Media: No
+          Detachable Drive: No
+          BSD Name: disk0
+          Medium Type: Solid State
+          TRIM Support: Yes
+          Partition Map Type: GPT (GUID Partition Table)
+          S.M.A.R.T. status: Verified
+          Volumes:
+            EFI:
+              Capacity: 209.7 MB (209,715,200 bytes)
+              File System: MS-DOS FAT32
+              BSD Name: disk0s1
+              Content: EFI
+              Volume UUID: 0E239BC6-F960-3107-89CF-1C97F78BB46B
+            disk0s2:
+              Capacity: 500.07 GB (500,068,036,608 bytes)
+              BSD Name: disk0s2
+              Content: Apple_APFS
+
+(base) yathvi@Madan-MacBook-Pro-175 ~ % 
+
+
+
+
+
+
+
+(base) yathvi@Madan-MacBook-Pro-175 ~ % system_profiler SPStorageDataType    
+Storage:
+
+    Macintosh HD:
+
+      Free: 72.56 GB (72,557,268,992 bytes)
+      Capacity: 500.07 GB (500,068,036,608 bytes)
+      Mount Point: /System/Volumes/Update/mnt1
+      File System: APFS
+      Writable: Yes
+      Ignore Ownership: No
+      BSD Name: disk1s1
+      Volume UUID: DFAAAF6A-76DB-4623-AD3F-B2F0310F1989
+      Physical Drive:
+          Device Name: APPLE SSD SM0512F
+          Media Name: AppleAPFSMedia
+          Medium Type: SSD
+          Protocol: PCI
+          Internal: Yes
+          Partition Map Type: Unknown
+          S.M.A.R.T. Status: Verified
+
+    Macintosh HD - Data:
+
+      Free: 72.56 GB (72,557,268,992 bytes)
+      Capacity: 500.07 GB (500,068,036,608 bytes)
+      Mount Point: /System/Volumes/Data
+      File System: APFS
+      Writable: Yes
+      Ignore Ownership: No
+      BSD Name: disk1s2
+      Volume UUID: A2934D10-4CCA-4D26-A1B8-BB0587860836
+      Physical Drive:
+          Device Name: APPLE SSD SM0512F
+          Media Name: AppleAPFSMedia
+          Medium Type: SSD
+          Protocol: PCI
+          Internal: Yes
+          Partition Map Type: Unknown
+          S.M.A.R.T. Status: Verified
+
+    Macintosh HD:
+
+      Free: 72.56 GB (72,557,268,992 bytes)
+      Capacity: 500.07 GB (500,068,036,608 bytes)
+      Mount Point: /
+      File System: APFS
+      Writable: No
+      Ignore Ownership: No
+      BSD Name: disk1s1s1
+      Volume UUID: 0F7CEAE5-991A-46A2-B868-F30A77B74DA4
+      Physical Drive:
+          Device Name: APPLE SSD SM0512F
+          Media Name: AppleAPFSMedia
+          Medium Type: SSD
+          Protocol: PCI
+          Internal: Yes
+          Partition Map Type: Unknown
+          S.M.A.R.T. Status: Verified
+
+(base) yathvi@Madan-MacBook-Pro-175 ~ % 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+========================================================
+Download sigar-1.6.4.jar : sigar << s << Jar File Download
+========================================================
+http://www.java2s.com/Code/Jar/s/Downloadsigar164jar.htm
+
+sigar/sigar-1.6.4.jar.zip( 397 k)
+
+The download jar file contains the following class files or Java source files.
+
+
+
+META-INF/MANIFEST.MF
+org.hyperic.jni.ArchLoader.class
+org.hyperic.jni.ArchLoaderException.class
+org.hyperic.jni.ArchName.class
+org.hyperic.jni.ArchNameTask.class
+org.hyperic.jni.ArchNotSupportedException.class
+org.hyperic.jni.CopyDependsTask.class
+org.hyperic.sigar.Cpu.class
+org.hyperic.sigar.CpuInfo.class
+org.hyperic.sigar.CpuPerc.class
+org.hyperic.sigar.CpuTimer.class
+org.hyperic.sigar.CurrentProcessSummary.class
+org.hyperic.sigar.DirStat.class
+org.hyperic.sigar.DirUsage.class
+org.hyperic.sigar.DiskUsage.class
+org.hyperic.sigar.FileAttrs.class
+org.hyperic.sigar.FileInfo.class
+org.hyperic.sigar.FileSystem.class
+org.hyperic.sigar.FileSystemMap.class
+org.hyperic.sigar.FileSystemUsage.class
+org.hyperic.sigar.FileTail.class
+org.hyperic.sigar.FileWatcher.class
+org.hyperic.sigar.FileWatcherThread.class
+org.hyperic.sigar.Humidor.class
+org.hyperic.sigar.Mem.class
+org.hyperic.sigar.MultiProcCpu.class
+org.hyperic.sigar.MultiProcMem.class
+org.hyperic.sigar.NetConnection.class
+org.hyperic.sigar.NetFlags.class
+org.hyperic.sigar.NetInfo.class
+org.hyperic.sigar.NetInterfaceConfig.class
+org.hyperic.sigar.NetInterfaceStat.class
+org.hyperic.sigar.NetRoute.class
+org.hyperic.sigar.NetServices.class
+org.hyperic.sigar.NetStat.class
+org.hyperic.sigar.NfsClientV2.class
+org.hyperic.sigar.NfsClientV3.class
+org.hyperic.sigar.NfsFileSystem.class
+org.hyperic.sigar.NfsServerV2.class
+org.hyperic.sigar.NfsServerV3.class
+org.hyperic.sigar.NfsUnreachableException.class
+org.hyperic.sigar.OperatingSystem.class
+org.hyperic.sigar.ProcCpu.class
+org.hyperic.sigar.ProcCred.class
+org.hyperic.sigar.ProcCredName.class
+org.hyperic.sigar.ProcEnv.class
+org.hyperic.sigar.ProcExe.class
+org.hyperic.sigar.ProcFd.class
+org.hyperic.sigar.ProcFileMirror.class
+org.hyperic.sigar.ProcMem.class
+org.hyperic.sigar.ProcStat.class
+org.hyperic.sigar.ProcState.class
+org.hyperic.sigar.ProcTime.class
+org.hyperic.sigar.ProcUtil.class
+org.hyperic.sigar.RPC.class
+org.hyperic.sigar.ResourceLimit.class
+org.hyperic.sigar.Sigar.class
+org.hyperic.sigar.SigarCacheObject.class
+org.hyperic.sigar.SigarException.class
+org.hyperic.sigar.SigarFileNotFoundException.class
+org.hyperic.sigar.SigarInvoker.class
+org.hyperic.sigar.SigarLoader.class
+org.hyperic.sigar.SigarLog.class
+org.hyperic.sigar.SigarNotImplementedException.class
+org.hyperic.sigar.SigarPermissionDeniedException.class
+org.hyperic.sigar.SigarProxy.class
+org.hyperic.sigar.SigarProxyCache.class
+org.hyperic.sigar.SigarVersion.class
+org.hyperic.sigar.SudoFileInputStream.class
+org.hyperic.sigar.Swap.class
+org.hyperic.sigar.SysInfo.class
+org.hyperic.sigar.Tcp.class
+org.hyperic.sigar.ThreadCpu.class
+org.hyperic.sigar.Uptime.class
+org.hyperic.sigar.Who.class
+org.hyperic.sigar.cmd.CpuInfo.class
+org.hyperic.sigar.cmd.Df.class
+org.hyperic.sigar.cmd.Du.class
+org.hyperic.sigar.cmd.EventLogTail.class
+org.hyperic.sigar.cmd.FileVersionInfo.class
+org.hyperic.sigar.cmd.Free.class
+org.hyperic.sigar.cmd.Ifconfig.class
+org.hyperic.sigar.cmd.Iostat.class
+org.hyperic.sigar.cmd.Kill.class
+org.hyperic.sigar.cmd.Ls.class
+org.hyperic.sigar.cmd.MemWatch.class
+org.hyperic.sigar.cmd.MultiPs.class
+org.hyperic.sigar.cmd.NetInfo.class
+org.hyperic.sigar.cmd.Netstat.class
+org.hyperic.sigar.cmd.Nfsstat.class
+org.hyperic.sigar.cmd.Pidof.class
+org.hyperic.sigar.cmd.ProcFileInfo.class
+org.hyperic.sigar.cmd.ProcInfo.class
+org.hyperic.sigar.cmd.ProcModuleInfo.class
+org.hyperic.sigar.cmd.Ps.class
+org.hyperic.sigar.cmd.Route.class
+org.hyperic.sigar.cmd.Runner.class
+org.hyperic.sigar.cmd.Shell.class
+org.hyperic.sigar.cmd.ShowArgs.class
+org.hyperic.sigar.cmd.ShowEnv.class
+org.hyperic.sigar.cmd.SigarCommandBase.class
+org.hyperic.sigar.cmd.SysInfo.class
+org.hyperic.sigar.cmd.Tail.class
+org.hyperic.sigar.cmd.Time.class
+org.hyperic.sigar.cmd.Top.class
+org.hyperic.sigar.cmd.Ulimit.class
+org.hyperic.sigar.cmd.Uptime.class
+org.hyperic.sigar.cmd.Version.class
+org.hyperic.sigar.cmd.Watch.class
+org.hyperic.sigar.cmd.Who.class
+org.hyperic.sigar.cmd.Win32Service.class
+org.hyperic.sigar.jmx.AbstractMBean.class
+org.hyperic.sigar.jmx.CpuTimerMBean.class
+org.hyperic.sigar.jmx.SigarCpu.class
+org.hyperic.sigar.jmx.SigarCpuInfo.class
+org.hyperic.sigar.jmx.SigarCpuPerc.class
+org.hyperic.sigar.jmx.SigarInvokerJMX.class
+org.hyperic.sigar.jmx.SigarLoadAverage.class
+org.hyperic.sigar.jmx.SigarMem.class
+org.hyperic.sigar.jmx.SigarProcess.class
+org.hyperic.sigar.jmx.SigarProcessMBean.class
+org.hyperic.sigar.jmx.SigarRegistry.class
+org.hyperic.sigar.jmx.SigarSwap.class
+org.hyperic.sigar.pager.DefaultPagerProcessor.class
+org.hyperic.sigar.pager.ListPageFetcher.class
+org.hyperic.sigar.pager.PageControl.class
+org.hyperic.sigar.pager.PageFetchException.class
+org.hyperic.sigar.pager.PageFetcher.class
+org.hyperic.sigar.pager.PageList.class
+org.hyperic.sigar.pager.Pager.class
+org.hyperic.sigar.pager.PagerEventHandler.class
+org.hyperic.sigar.pager.PagerProcessor.class
+org.hyperic.sigar.pager.PagerProcessorExt.class
+org.hyperic.sigar.pager.SortAttribute.class
+org.hyperic.sigar.pager.StaticPageFetcher.class
+org.hyperic.sigar.ptql.MalformedQueryException.class
+org.hyperic.sigar.ptql.ProcessFinder.class
+org.hyperic.sigar.ptql.ProcessQuery.class
+org.hyperic.sigar.ptql.ProcessQueryFactory.class
+org.hyperic.sigar.ptql.QueryLoadException.class
+org.hyperic.sigar.ptql.SigarProcessQuery.class
+org.hyperic.sigar.ptql.StringPattern.class
+org.hyperic.sigar.shell.CollectionCompleter.class
+org.hyperic.sigar.shell.FileCompleter.class
+org.hyperic.sigar.shell.MultiwordShellCommand.class
+org.hyperic.sigar.shell.NormalQuitCommandException.class
+org.hyperic.sigar.shell.ProcessQueryCompleter.class
+org.hyperic.sigar.shell.SIGINT.class
+org.hyperic.sigar.shell.ShellBase.class
+org.hyperic.sigar.shell.ShellCommandBase.class
+org.hyperic.sigar.shell.ShellCommandExecException.class
+org.hyperic.sigar.shell.ShellCommandHandler.class
+org.hyperic.sigar.shell.ShellCommandInitException.class
+org.hyperic.sigar.shell.ShellCommandMapper.class
+org.hyperic.sigar.shell.ShellCommandUsageException.class
+org.hyperic.sigar.shell.ShellCommand_alias.class
+org.hyperic.sigar.shell.ShellCommand_get.class
+org.hyperic.sigar.shell.ShellCommand_help.class
+org.hyperic.sigar.shell.ShellCommand_quit.class
+org.hyperic.sigar.shell.ShellCommand_set.class
+org.hyperic.sigar.shell.ShellCommand_sleep.class
+org.hyperic.sigar.shell.ShellCommand_source.class
+org.hyperic.sigar.shell.ShellIntHandler.class
+org.hyperic.sigar.test.GetPass.class
+org.hyperic.sigar.test.Proxy.class
+org.hyperic.sigar.test.RunThreadCpu.class
+org.hyperic.sigar.test.SigarTestCase.class
+org.hyperic.sigar.test.SigarTestPrinter.class
+org.hyperic.sigar.test.SigarTestRunner.class
+org.hyperic.sigar.test.TestCpu.class
+org.hyperic.sigar.test.TestCpuInfo.class
+org.hyperic.sigar.test.TestFQDN.class
+org.hyperic.sigar.test.TestFileInfo.class
+org.hyperic.sigar.test.TestFileSystem.class
+org.hyperic.sigar.test.TestHumidor.class
+org.hyperic.sigar.test.TestInvoker.class
+org.hyperic.sigar.test.TestLoadAverage.class
+org.hyperic.sigar.test.TestLog.class
+org.hyperic.sigar.test.TestMem.class
+org.hyperic.sigar.test.TestNetIf.class
+org.hyperic.sigar.test.TestNetInfo.class
+org.hyperic.sigar.test.TestNetRoute.class
+org.hyperic.sigar.test.TestNetStat.class
+org.hyperic.sigar.test.TestNetStatPort.class
+org.hyperic.sigar.test.TestNfsClientV2.class
+org.hyperic.sigar.test.TestNfsClientV3.class
+org.hyperic.sigar.test.TestNfsServerV2.class
+org.hyperic.sigar.test.TestNfsServerV3.class
+org.hyperic.sigar.test.TestPTQL.class
+org.hyperic.sigar.test.TestProcArgs.class
+org.hyperic.sigar.test.TestProcEnv.class
+org.hyperic.sigar.test.TestProcExe.class
+org.hyperic.sigar.test.TestProcFd.class
+org.hyperic.sigar.test.TestProcList.class
+org.hyperic.sigar.test.TestProcMem.class
+org.hyperic.sigar.test.TestProcModules.class
+org.hyperic.sigar.test.TestProcStat.class
+org.hyperic.sigar.test.TestProcState.class
+org.hyperic.sigar.test.TestProcTime.class
+org.hyperic.sigar.test.TestResourceLimit.class
+org.hyperic.sigar.test.TestSignal.class
+org.hyperic.sigar.test.TestSwap.class
+org.hyperic.sigar.test.TestTcpStat.class
+org.hyperic.sigar.test.TestThreadCpu.class
+org.hyperic.sigar.test.TestThreads.class
+org.hyperic.sigar.test.TestUptime.class
+org.hyperic.sigar.test.TestVMware.class
+org.hyperic.sigar.test.TestWho.class
+org.hyperic.sigar.util.Getline.class
+org.hyperic.sigar.util.GetlineCompleter.class
+org.hyperic.sigar.util.IteratorIterator.class
+org.hyperic.sigar.util.PrintfFormat.class
+org.hyperic.sigar.util.ReferenceMap.class
+org.hyperic.sigar.util.WeakReferenceMap.class
+org.hyperic.sigar.vmware.ConnectParams.class
+org.hyperic.sigar.vmware.VM.class
+org.hyperic.sigar.vmware.VMControlLibrary.class
+org.hyperic.sigar.vmware.VMwareException.class
+org.hyperic.sigar.vmware.VMwareObject.class
+org.hyperic.sigar.vmware.VMwareServer.class
+org.hyperic.sigar.win32.EventLog.class
+org.hyperic.sigar.win32.EventLogNotification.class
+org.hyperic.sigar.win32.EventLogRecord.class
+org.hyperic.sigar.win32.EventLogThread.class
+org.hyperic.sigar.win32.FileVersion.class
+org.hyperic.sigar.win32.LocaleInfo.class
+org.hyperic.sigar.win32.MetaBase.class
+org.hyperic.sigar.win32.Pdh.class
+org.hyperic.sigar.win32.RegistryKey.class
+org.hyperic.sigar.win32.Service.class
+org.hyperic.sigar.win32.ServiceConfig.class
+org.hyperic.sigar.win32.Win32.class
+org.hyperic.sigar.win32.Win32Exception.class
+org.hyperic.sigar.win32.test.TestEventLog.class
+org.hyperic.sigar.win32.test.TestFileVersion.class
+org.hyperic.sigar.win32.test.TestLocaleInfo.class
+org.hyperic.sigar.win32.test.TestMetaBase.class
+org.hyperic.sigar.win32.test.TestPdh.class
+org.hyperic.sigar.win32.test.TestRegistryKey.class
+org.hyperic.sigar.win32.test.TestService.class
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=========
+oshi-core
+=========
+https://www.oshi.ooo/oshi-core/apidocs/overview-tree.html
+
+ -------------------------------
+|	Hierarchy For All Packages	|
+ -------------------------------
+ 
+ 
+Package Hierarchies:
+--------------------
+
+oshi, oshi.annotation, oshi.annotation.concurrent, oshi.driver.linux, oshi.driver.linux.proc, oshi.driver.mac, oshi.driver.mac.disk, oshi.driver.mac.net, 
+oshi.driver.unix, oshi.driver.unix.aix, oshi.driver.unix.aix.perfstat, oshi.driver.unix.freebsd, oshi.driver.unix.freebsd.disk, oshi.driver.unix.openbsd.disk, 
+oshi.driver.unix.solaris, oshi.driver.unix.solaris.disk, oshi.driver.unix.solaris.kstat, oshi.driver.windows, oshi.driver.windows.perfmon, oshi.driver.windows.registry, 
+oshi.driver.windows.wmi, oshi.hardware, oshi.hardware.common, oshi.hardware.platform.linux, oshi.hardware.platform.mac, oshi.hardware.platform.unix, oshi.hardware.platform.unix.aix, 
+oshi.hardware.platform.unix.freebsd, oshi.hardware.platform.unix.openbsd, oshi.hardware.platform.unix.solaris, oshi.hardware.platform.windows, oshi.jna, oshi.jna.platform.linux, 
+oshi.jna.platform.mac, oshi.jna.platform.unix, oshi.jna.platform.windows, oshi.software.common, oshi.software.os, oshi.software.os.linux, oshi.software.os.mac, oshi.software.os.unix.aix, 
+oshi.software.os.unix.freebsd, oshi.software.os.unix.openbsd, oshi.software.os.unix.solaris, oshi.software.os.windows, oshi.util, oshi.util.platform.linux, oshi.util.platform.mac, 
+oshi.util.platform.unix.freebsd, oshi.util.platform.unix.openbsd, oshi.util.platform.unix.solaris, oshi.util.platform.windows, oshi.util.tuples
+
+
+Class Hierarchy
+---------------
+
+java.lang.Object
+oshi.hardware.common.AbstractBaseboard (implements oshi.hardware.Baseboard)
+oshi.hardware.platform.unix.UnixBaseboard
+oshi.hardware.common.AbstractCentralProcessor (implements oshi.hardware.CentralProcessor)
+oshi.hardware.platform.unix.openbsd.OpenBsdCentralProcessor
+oshi.hardware.common.AbstractComputerSystem (implements oshi.hardware.ComputerSystem)
+oshi.hardware.platform.unix.openbsd.OpenBsdComputerSystem
+oshi.hardware.common.AbstractDisplay (implements oshi.hardware.Display)
+oshi.hardware.platform.unix.UnixDisplay
+oshi.software.common.AbstractFileSystem (implements oshi.software.os.FileSystem)
+oshi.software.os.unix.aix.AixFileSystem
+oshi.software.os.unix.freebsd.FreeBsdFileSystem
+oshi.software.os.linux.LinuxFileSystem
+oshi.software.os.mac.MacFileSystem
+oshi.software.os.unix.openbsd.OpenBsdFileSystem
+oshi.software.os.unix.solaris.SolarisFileSystem
+oshi.software.os.windows.WindowsFileSystem
+oshi.hardware.common.AbstractFirmware (implements oshi.hardware.Firmware)
+oshi.hardware.platform.unix.openbsd.OpenBsdFirmware
+oshi.hardware.common.AbstractGlobalMemory (implements oshi.hardware.GlobalMemory)
+oshi.hardware.platform.linux.LinuxGlobalMemory
+oshi.hardware.common.AbstractGraphicsCard (implements oshi.hardware.GraphicsCard)
+oshi.hardware.common.AbstractHardwareAbstractionLayer (implements oshi.hardware.HardwareAbstractionLayer)
+oshi.hardware.platform.unix.aix.AixHardwareAbstractionLayer
+oshi.hardware.platform.unix.freebsd.FreeBsdHardwareAbstractionLayer
+oshi.hardware.platform.linux.LinuxHardwareAbstractionLayer
+oshi.hardware.platform.mac.MacHardwareAbstractionLayer
+oshi.hardware.platform.unix.openbsd.OpenBsdHardwareAbstractionLayer
+oshi.hardware.platform.unix.solaris.SolarisHardwareAbstractionLayer
+oshi.hardware.platform.windows.WindowsHardwareAbstractionLayer
+oshi.hardware.common.AbstractHWDiskStore (implements oshi.hardware.HWDiskStore)
+oshi.hardware.platform.unix.aix.AixHWDiskStore
+oshi.hardware.platform.unix.freebsd.FreeBsdHWDiskStore
+oshi.hardware.platform.linux.LinuxHWDiskStore
+oshi.hardware.platform.mac.MacHWDiskStore
+oshi.hardware.platform.unix.openbsd.OpenBsdHWDiskStore
+oshi.hardware.platform.unix.solaris.SolarisHWDiskStore
+oshi.hardware.platform.windows.WindowsHWDiskStore
+oshi.software.common.AbstractInternetProtocolStats (implements oshi.software.os.InternetProtocolStats)
+oshi.software.os.unix.aix.AixInternetProtocolStats
+oshi.software.os.unix.freebsd.FreeBsdInternetProtocolStats
+oshi.software.os.linux.LinuxInternetProtocolStats
+oshi.software.os.mac.MacInternetProtocolStats
+oshi.software.os.unix.openbsd.OpenBsdInternetProtocolStats
+oshi.software.os.unix.solaris.SolarisInternetProtocolStats
+oshi.software.os.windows.WindowsInternetProtocolStats
+oshi.hardware.common.AbstractLogicalVolumeGroup (implements oshi.hardware.LogicalVolumeGroup)
+oshi.hardware.common.AbstractNetworkIF (implements oshi.hardware.NetworkIF)
+oshi.hardware.platform.unix.aix.AixNetworkIF
+oshi.hardware.platform.unix.BsdNetworkIF
+oshi.hardware.platform.linux.LinuxNetworkIF
+oshi.hardware.platform.mac.MacNetworkIF
+oshi.hardware.platform.unix.solaris.SolarisNetworkIF
+oshi.hardware.platform.windows.WindowsNetworkIF
+oshi.software.common.AbstractNetworkParams (implements oshi.software.os.NetworkParams)
+oshi.software.os.unix.openbsd.OpenBsdNetworkParams
+oshi.software.common.AbstractOperatingSystem (implements oshi.software.os.OperatingSystem)
+oshi.software.os.unix.aix.AixOperatingSystem
+oshi.software.os.unix.freebsd.FreeBsdOperatingSystem
+oshi.software.os.linux.LinuxOperatingSystem
+oshi.software.os.mac.MacOperatingSystem
+oshi.software.os.unix.openbsd.OpenBsdOperatingSystem
+oshi.software.os.unix.solaris.SolarisOperatingSystem
+oshi.software.os.windows.WindowsOperatingSystem
+oshi.software.common.AbstractOSFileStore (implements oshi.software.os.OSFileStore)
+oshi.software.os.unix.aix.AixOSFileStore
+oshi.software.os.unix.freebsd.FreeBsdOSFileStore
+oshi.software.os.linux.LinuxOSFileStore
+oshi.software.os.mac.MacOSFileStore
+oshi.software.os.unix.openbsd.OpenBsdOSFileStore
+oshi.software.os.unix.solaris.SolarisOSFileStore
+oshi.software.os.windows.WindowsOSFileStore
+oshi.software.common.AbstractOSProcess (implements oshi.software.os.OSProcess)
+oshi.software.os.unix.aix.AixOSProcess
+oshi.software.os.unix.freebsd.FreeBsdOSProcess
+oshi.software.os.linux.LinuxOSProcess
+oshi.software.os.mac.MacOSProcess
+oshi.software.os.unix.openbsd.OpenBsdOSProcess
+oshi.software.os.unix.solaris.SolarisOSProcess
+oshi.software.os.windows.WindowsOSProcess
+oshi.software.common.AbstractOSThread (implements oshi.software.os.OSThread)
+oshi.software.os.unix.aix.AixOSThread
+oshi.software.os.unix.freebsd.FreeBsdOSThread
+oshi.software.os.linux.LinuxOSThread
+oshi.software.os.mac.MacOSThread
+oshi.software.os.unix.openbsd.OpenBsdOSThread
+oshi.software.os.unix.solaris.SolarisOSThread
+oshi.software.os.windows.WindowsOSThread
+oshi.hardware.common.AbstractPowerSource (implements oshi.hardware.PowerSource)
+oshi.hardware.platform.unix.aix.AixPowerSource
+oshi.hardware.platform.unix.freebsd.FreeBsdPowerSource
+oshi.hardware.platform.linux.LinuxPowerSource
+oshi.hardware.platform.mac.MacPowerSource
+oshi.hardware.platform.unix.openbsd.OpenBsdPowerSource
+oshi.hardware.platform.unix.solaris.SolarisPowerSource
+oshi.hardware.platform.windows.WindowsPowerSource
+oshi.hardware.common.AbstractSensors (implements oshi.hardware.Sensors)
+oshi.hardware.common.AbstractSoundCard (implements oshi.hardware.SoundCard)
+oshi.hardware.common.AbstractUsbDevice (implements oshi.hardware.UsbDevice)
+oshi.hardware.platform.unix.aix.AixUsbDevice
+oshi.hardware.platform.unix.freebsd.FreeBsdUsbDevice
+oshi.hardware.platform.linux.LinuxUsbDevice
+oshi.hardware.platform.mac.MacUsbDevice
+oshi.hardware.platform.unix.openbsd.OpenBsdUsbDevice
+oshi.hardware.platform.unix.solaris.SolarisUsbDevice
+oshi.hardware.platform.windows.WindowsUsbDevice
+oshi.hardware.common.AbstractVirtualMemory (implements oshi.hardware.VirtualMemory)
+oshi.jna.platform.unix.AixLibc.AixLwpsInfo
+oshi.jna.platform.unix.AixLibc.AixPsInfo
+oshi.jna.platform.unix.AixLibc.Timestruc
+oshi.driver.linux.proc.Auxv
+oshi.util.platform.unix.freebsd.BsdSysctlUtil
+oshi.hardware.CentralProcessor.LogicalProcessor
+oshi.hardware.CentralProcessor.PhysicalProcessor
+oshi.hardware.CentralProcessor.ProcessorCache
+oshi.hardware.CentralProcessor.ProcessorIdentifier
+oshi.util.platform.mac.CFUtil
+oshi.jna.platform.unix.CLibrary.BsdIp6stat
+oshi.jna.platform.unix.CLibrary.BsdIpstat
+oshi.jna.platform.unix.CLibrary.BsdTcpstat
+oshi.jna.platform.unix.CLibrary.BsdUdpstat
+oshi.util.Constants
+oshi.driver.linux.proc.CpuInfo
+oshi.driver.linux.proc.CpuStat
+oshi.driver.linux.Devicetree
+oshi.driver.windows.DeviceTree
+oshi.driver.unix.openbsd.disk.Disklabel
+oshi.driver.linux.proc.DiskStats
+oshi.driver.linux.Dmidecode
+oshi.util.EdidUtil
+oshi.driver.windows.EnumWindows
+oshi.util.ExecutingCommand
+oshi.util.FileSystemUtil
+oshi.util.FileUtil
+oshi.util.FormatUtil
+oshi.driver.mac.disk.Fsstat
+oshi.util.platform.unix.openbsd.FstatUtil
+oshi.driver.unix.freebsd.disk.GeomDiskList
+oshi.driver.unix.freebsd.disk.GeomPartList
+oshi.util.GlobalConfig
+oshi.driver.windows.registry.HkeyPerformanceDataUtil
+oshi.driver.windows.registry.HkeyUserData
+oshi.hardware.HWPartition
+oshi.software.os.InternetProtocolStats.IPConnection
+oshi.software.os.InternetProtocolStats.TcpStats
+oshi.software.os.InternetProtocolStats.UdpStats
+oshi.driver.unix.solaris.disk.Iostat
+oshi.util.platform.unix.solaris.KstatUtil
+oshi.util.platform.unix.solaris.KstatUtil.KstatChain (implements java.lang.AutoCloseable)
+oshi.driver.windows.perfmon.LoadAverage
+oshi.driver.windows.LogicalProcessorInformation
+oshi.driver.unix.aix.Ls
+oshi.driver.unix.aix.Lscfg
+oshi.driver.linux.Lshal
+oshi.driver.unix.solaris.disk.Lshal
+oshi.driver.linux.Lshw
+oshi.driver.unix.aix.Lspv
+oshi.driver.unix.aix.Lssrad
+oshi.util.Memoizer
+oshi.driver.windows.perfmon.MemoryInformation
+oshi.driver.unix.freebsd.disk.Mount
+oshi.driver.windows.wmi.MSAcpiThermalZoneTemperature
+oshi.driver.windows.wmi.MSFTStorage
+oshi.driver.windows.registry.NetSessionData
+oshi.driver.mac.net.NetStat
+oshi.driver.unix.NetStat
+oshi.driver.mac.net.NetStat.IFdata
+oshi.driver.windows.wmi.OhmHardware
+oshi.driver.windows.wmi.OhmSensor
+oshi.util.platform.unix.openbsd.OpenBsdSysctlUtil
+oshi.software.os.OperatingSystem.OSVersionInfo
+oshi.software.os.OperatingSystem.ProcessFiltering
+oshi.software.os.OperatingSystem.ProcessSorting
+oshi.software.os.OSDesktopWindow
+oshi.software.os.OSService
+oshi.software.os.OSSession
+oshi.software.os.OSThread.ThreadFiltering
+oshi.driver.windows.perfmon.PagingFile
+oshi.util.tuples.Pair<A,B>
+oshi.util.ParseUtil
+oshi.util.platform.windows.PerfCounterQuery
+oshi.util.platform.windows.PerfCounterQueryHandler (implements java.lang.AutoCloseable)
+oshi.util.platform.windows.PerfCounterWildcardQuery
+oshi.util.platform.windows.PerfDataUtil
+oshi.util.platform.windows.PerfDataUtil.PerfCounter
+oshi.driver.windows.perfmon.PerfmonConstants
+oshi.driver.windows.perfmon.PerfmonDisabled
+oshi.driver.unix.aix.perfstat.PerfstatConfig
+oshi.driver.unix.aix.perfstat.PerfstatCpu
+oshi.driver.unix.aix.perfstat.PerfstatDisk
+oshi.driver.unix.aix.perfstat.PerfstatMemory
+oshi.driver.unix.aix.perfstat.PerfstatNetInterface
+oshi.driver.unix.aix.perfstat.PerfstatProcess
+oshi.driver.unix.aix.perfstat.PerfstatProtocol
+oshi.driver.windows.perfmon.PhysicalDisk
+oshi.hardware.PhysicalMemory
+com.sun.jna.PointerType (implements com.sun.jna.NativeMapped)
+com.sun.jna.ptr.ByReference
+com.sun.jna.platform.win32.BaseTSD.ULONG_PTRByReference
+oshi.jna.ByRef.CloseableULONGptrByReference (implements java.lang.AutoCloseable)
+com.sun.jna.ptr.IntByReference
+oshi.jna.ByRef.CloseableIntByReference (implements java.lang.AutoCloseable)
+com.sun.jna.platform.unix.LibCAPI.size_t.ByReference
+oshi.jna.ByRef.CloseableSizeTByReference (implements java.lang.AutoCloseable)
+com.sun.jna.ptr.LongByReference
+oshi.jna.ByRef.CloseableLongByReference (implements java.lang.AutoCloseable)
+com.sun.jna.ptr.NativeLongByReference
+oshi.jna.ByRef.CloseableNativeLongByReference (implements java.lang.AutoCloseable)
+com.sun.jna.ptr.PointerByReference
+oshi.jna.ByRef.CloseablePointerByReference (implements java.lang.AutoCloseable)
+com.sun.jna.platform.win32.WinDef.LONGLONGByReference
+oshi.jna.ByRef.CloseableLONGLONGByReference (implements java.lang.AutoCloseable)
+com.sun.jna.platform.win32.WinNT.HANDLEByReference
+oshi.jna.ByRef.CloseableHANDLEByReference (implements java.lang.AutoCloseable)
+com.sun.jna.platform.mac.CoreFoundation.CFTypeRef
+oshi.jna.platform.mac.SystemConfiguration.SCNetworkInterfaceRef
+oshi.driver.windows.perfmon.ProcessInformation
+oshi.driver.windows.perfmon.ProcessorInformation
+oshi.driver.windows.registry.ProcessPerformanceData
+oshi.driver.windows.registry.ProcessPerformanceData.PerfCounterBlock
+oshi.driver.linux.proc.ProcessStat
+oshi.driver.windows.registry.ProcessWtsData
+oshi.driver.windows.registry.ProcessWtsData.WtsInfo
+oshi.util.platform.linux.ProcPath
+oshi.util.platform.unix.freebsd.ProcstatUtil
+oshi.driver.unix.solaris.disk.Prtvtoc
+oshi.driver.unix.aix.PsInfo
+oshi.driver.unix.solaris.PsInfo
+oshi.util.tuples.Quartet<A,B,C,D>
+oshi.util.tuples.Quintet<A,B,C,D,E>
+oshi.driver.windows.registry.SessionWtsData
+oshi.util.platform.mac.SmcUtil
+oshi.jna.platform.unix.SolarisLibc.SolarisLwpsInfo
+oshi.jna.platform.unix.SolarisLibc.SolarisPrUsage
+oshi.jna.platform.unix.SolarisLibc.SolarisPsInfo
+oshi.jna.platform.unix.SolarisLibc.Timestruc
+com.sun.jna.Structure
+oshi.jna.platform.unix.CLibrary.Addrinfo (implements java.lang.AutoCloseable)
+oshi.jna.platform.unix.CLibrary.Addrinfo.ByReference (implements com.sun.jna.Structure.ByReference)
+oshi.jna.platform.unix.CLibrary.Sockaddr
+oshi.jna.platform.unix.CLibrary.Sockaddr.ByReference (implements com.sun.jna.Structure.ByReference)
+oshi.jna.platform.mac.CoreGraphics.CGPoint
+oshi.jna.platform.mac.CoreGraphics.CGRect (implements java.lang.AutoCloseable)
+oshi.jna.platform.mac.CoreGraphics.CGSize
+oshi.jna.platform.unix.FreeBsdLibc.CpTime (implements java.lang.AutoCloseable)
+oshi.jna.platform.unix.FreeBsdLibc.FreeBsdUtmpx
+oshi.jna.platform.unix.FreeBsdLibc.Timeval
+oshi.jna.platform.mac.IOKit.SMCKeyData (implements java.lang.AutoCloseable)
+oshi.jna.platform.mac.IOKit.SMCKeyDataKeyInfo
+oshi.jna.platform.mac.IOKit.SMCKeyDataPLimitData
+oshi.jna.platform.mac.IOKit.SMCKeyDataVers
+oshi.jna.platform.mac.IOKit.SMCVal (implements java.lang.AutoCloseable)
+com.sun.jna.platform.win32.IPHlpAPI.MIB_IF_ROW2
+oshi.jna.Struct.CloseableMibIfRow2 (implements java.lang.AutoCloseable)
+com.sun.jna.platform.win32.IPHlpAPI.MIB_IFROW
+oshi.jna.Struct.CloseableMibIfRow (implements java.lang.AutoCloseable)
+com.sun.jna.platform.win32.IPHlpAPI.MIB_TCPSTATS
+oshi.jna.Struct.CloseableMibTcpStats (implements java.lang.AutoCloseable)
+com.sun.jna.platform.win32.IPHlpAPI.MIB_UDPSTATS
+oshi.jna.Struct.CloseableMibUdpStats (implements java.lang.AutoCloseable)
+com.sun.jna.platform.linux.LibC.Sysinfo
+oshi.jna.Struct.CloseableSysinfo (implements java.lang.AutoCloseable)
+oshi.jna.platform.linux.LinuxLibc.Exit_status
+oshi.jna.platform.linux.LinuxLibc.LinuxUtmpx
+oshi.jna.platform.linux.LinuxLibc.Ut_Tv
+oshi.jna.platform.windows.NtDll.CURDIR
+oshi.jna.platform.windows.NtDll.PEB
+oshi.jna.platform.windows.NtDll.PROCESS_BASIC_INFORMATION
+oshi.jna.platform.windows.NtDll.RTL_DRIVE_LETTER_CURDIR
+oshi.jna.platform.windows.NtDll.RTL_USER_PROCESS_PARAMETERS
+oshi.jna.platform.windows.NtDll.STRING
+oshi.jna.platform.windows.NtDll.UNICODE_STRING
+oshi.jna.platform.unix.OpenBsdLibc.Bcachestats
+oshi.jna.platform.unix.OpenBsdLibc.Timeval
+com.sun.jna.platform.win32.Pdh.PDH_RAW_COUNTER
+oshi.jna.Struct.CloseablePdhRawCounter (implements java.lang.AutoCloseable)
+oshi.jna.platform.windows.PowrProf.BATTERY_INFORMATION (implements java.lang.AutoCloseable)
+oshi.jna.platform.windows.PowrProf.BATTERY_MANUFACTURE_DATE (implements java.lang.AutoCloseable)
+oshi.jna.platform.windows.PowrProf.BATTERY_QUERY_INFORMATION (implements java.lang.AutoCloseable)
+oshi.jna.platform.windows.PowrProf.BATTERY_STATUS (implements java.lang.AutoCloseable)
+oshi.jna.platform.windows.PowrProf.BATTERY_WAIT_STATUS (implements java.lang.AutoCloseable)
+oshi.jna.platform.windows.PowrProf.ProcessorPowerInformation
+oshi.jna.platform.windows.PowrProf.SystemBatteryState (implements java.lang.AutoCloseable)
+com.sun.jna.platform.win32.Psapi.PERFORMANCE_INFORMATION
+oshi.jna.Struct.CloseablePerformanceInformation (implements java.lang.AutoCloseable)
+com.sun.jna.platform.win32.SetupApi.SP_DEVICE_INTERFACE_DATA
+oshi.jna.Struct.CloseableSpDeviceInterfaceData (implements java.lang.AutoCloseable)
+com.sun.jna.platform.win32.SetupApi.SP_DEVINFO_DATA
+oshi.jna.Struct.CloseableSpDevinfoData (implements java.lang.AutoCloseable)
+oshi.jna.platform.unix.SolarisLibc.Exit_status
+oshi.jna.platform.unix.SolarisLibc.SolarisUtmpx
+oshi.jna.platform.unix.SolarisLibc.Timeval
+com.sun.jna.platform.mac.SystemB.HostCpuLoadInfo
+oshi.jna.Struct.CloseableHostCpuLoadInfo (implements java.lang.AutoCloseable)
+oshi.jna.platform.mac.SystemB.InSockInfo
+oshi.jna.platform.mac.SystemB.MacUtmpx
+oshi.jna.platform.mac.SystemB.ProcFdInfo
+oshi.jna.platform.mac.SystemB.ProcFileInfo
+com.sun.jna.platform.mac.SystemB.ProcTaskAllInfo
+oshi.jna.Struct.CloseableProcTaskAllInfo (implements java.lang.AutoCloseable)
+com.sun.jna.platform.mac.SystemB.ProcTaskInfo
+oshi.jna.Struct.CloseableProcTaskInfo (implements java.lang.AutoCloseable)
+com.sun.jna.platform.mac.SystemB.RUsageInfoV2
+oshi.jna.Struct.CloseableRUsageInfoV2 (implements java.lang.AutoCloseable)
+oshi.jna.platform.mac.SystemB.SocketFdInfo (implements java.lang.AutoCloseable)
+oshi.jna.platform.mac.SystemB.SocketInfo
+oshi.jna.platform.mac.SystemB.TcpSockInfo
+com.sun.jna.platform.mac.SystemB.Timeval
+oshi.jna.Struct.CloseableTimeval (implements java.lang.AutoCloseable)
+com.sun.jna.platform.mac.SystemB.VMStatistics
+oshi.jna.Struct.CloseableVMStatistics (implements java.lang.AutoCloseable)
+com.sun.jna.platform.mac.SystemB.VnodePathInfo
+oshi.jna.Struct.CloseableVnodePathInfo (implements java.lang.AutoCloseable)
+com.sun.jna.platform.mac.SystemB.XswUsage
+oshi.jna.Struct.CloseableXswUsage (implements java.lang.AutoCloseable)
+com.sun.jna.platform.win32.Tlhelp32.PROCESSENTRY32
+com.sun.jna.platform.win32.Tlhelp32.PROCESSENTRY32.ByReference (implements com.sun.jna.Structure.ByReference)
+oshi.jna.ByRef.CloseablePROCESSENTRY32ByReference (implements java.lang.AutoCloseable)
+com.sun.jna.Union
+oshi.jna.platform.mac.SystemB.Pri
+com.sun.jna.platform.win32.WinBase.SYSTEM_INFO
+oshi.jna.Struct.CloseableSystemInfo (implements java.lang.AutoCloseable)
+oshi.util.platform.mac.SysctlUtil
+oshi.driver.linux.Sysfs
+oshi.SystemInfo
+oshi.driver.windows.perfmon.SystemInformation
+oshi.driver.unix.solaris.kstat.SystemPages
+oshi.driver.mac.ThreadInfo
+oshi.driver.mac.ThreadInfo.ThreadStats
+oshi.driver.windows.perfmon.ThreadInformation
+oshi.driver.windows.registry.ThreadPerformanceData
+oshi.driver.windows.registry.ThreadPerformanceData.PerfCounterBlock
+java.lang.Throwable (implements java.io.Serializable)
+java.lang.Exception
+java.lang.RuntimeException
+oshi.util.GlobalConfig.PropertyException
+oshi.util.tuples.Triplet<A,B,C>
+oshi.driver.unix.aix.Uptime
+oshi.driver.linux.proc.UpTime
+oshi.util.UserGroupInfo
+oshi.util.Util
+oshi.driver.linux.Who
+oshi.driver.mac.Who
+oshi.driver.unix.aix.Who
+oshi.driver.unix.freebsd.Who
+oshi.driver.unix.solaris.Who
+oshi.driver.unix.Who
+oshi.driver.windows.wmi.Win32BaseBoard
+oshi.driver.windows.wmi.Win32Bios
+oshi.driver.windows.wmi.Win32ComputerSystem
+oshi.driver.windows.wmi.Win32ComputerSystemProduct
+oshi.driver.windows.wmi.Win32DiskDrive
+oshi.driver.windows.wmi.Win32DiskDriveToDiskPartition
+oshi.driver.windows.wmi.Win32DiskPartition
+oshi.driver.windows.wmi.Win32Fan
+oshi.driver.windows.wmi.Win32LogicalDisk
+oshi.driver.windows.wmi.Win32LogicalDiskToPartition
+oshi.driver.windows.wmi.Win32OperatingSystem
+oshi.driver.windows.wmi.Win32PhysicalMemory
+oshi.driver.windows.wmi.Win32Process
+oshi.driver.windows.wmi.Win32ProcessCached
+oshi.driver.windows.wmi.Win32Processor
+oshi.driver.windows.wmi.Win32VideoController
+oshi.driver.mac.WindowInfo
+oshi.util.platform.windows.WmiQueryHandler
+oshi.util.platform.windows.WmiUtil
+oshi.driver.unix.Xrandr
+oshi.driver.unix.Xwininfo
+
+
+Interface Hierarchy
+-------------------
+
+com.sun.jna.AltCallingConvention
+com.sun.jna.win32.StdCall
+com.sun.jna.win32.StdCallLibrary (also extends com.sun.jna.Library)
+com.sun.jna.platform.win32.NtDll
+oshi.jna.platform.windows.NtDll
+oshi.hardware.Baseboard
+oshi.jna.ByRef
+oshi.hardware.CentralProcessor
+java.lang.Comparable<T>
+oshi.hardware.UsbDevice
+oshi.hardware.ComputerSystem
+oshi.hardware.Display
+oshi.software.os.FileSystem
+oshi.hardware.Firmware
+oshi.hardware.GlobalMemory
+oshi.hardware.GraphicsCard
+oshi.hardware.HardwareAbstractionLayer
+oshi.hardware.HWDiskStore
+oshi.software.os.InternetProtocolStats
+com.sun.jna.Library
+oshi.jna.platform.unix.CLibrary (also extends com.sun.jna.platform.unix.LibCAPI)
+oshi.jna.platform.unix.AixLibc
+oshi.jna.platform.unix.FreeBsdLibc
+oshi.jna.platform.linux.LinuxLibc (also extends com.sun.jna.platform.linux.LibC)
+oshi.jna.platform.unix.OpenBsdLibc
+oshi.jna.platform.unix.SolarisLibc
+oshi.jna.platform.mac.SystemB (also extends com.sun.jna.platform.mac.SystemB)
+oshi.jna.platform.mac.CoreGraphics
+com.sun.jna.platform.mac.IOKit
+oshi.jna.platform.mac.IOKit
+com.sun.jna.platform.linux.LibC (also extends com.sun.jna.platform.unix.LibCAPI)
+oshi.jna.platform.linux.LinuxLibc (also extends oshi.jna.platform.unix.CLibrary)
+com.sun.jna.platform.win32.PowrProf
+oshi.jna.platform.windows.PowrProf
+com.sun.jna.win32.StdCallLibrary (also extends com.sun.jna.win32.StdCall)
+com.sun.jna.platform.win32.NtDll
+oshi.jna.platform.windows.NtDll
+com.sun.jna.platform.mac.SystemB (also extends com.sun.jna.platform.unix.LibCAPI)
+oshi.jna.platform.mac.SystemB (also extends oshi.jna.platform.unix.CLibrary)
+oshi.jna.platform.mac.SystemConfiguration
+oshi.hardware.LogicalVolumeGroup
+oshi.hardware.NetworkIF
+oshi.software.os.NetworkParams
+oshi.software.os.OperatingSystem
+oshi.software.os.OSFileStore
+oshi.software.os.OSProcess
+oshi.software.os.OSThread
+oshi.util.platform.windows.PerfCounterQuery.PdhCounterProperty
+oshi.util.platform.windows.PerfCounterWildcardQuery.PdhCounterWildcardProperty
+oshi.hardware.PowerSource
+com.sun.jna.platform.unix.Reboot
+com.sun.jna.platform.unix.LibCAPI (also extends com.sun.jna.platform.unix.Resource)
+oshi.jna.platform.unix.CLibrary (also extends com.sun.jna.Library)
+oshi.jna.platform.unix.AixLibc
+oshi.jna.platform.unix.FreeBsdLibc
+oshi.jna.platform.linux.LinuxLibc (also extends com.sun.jna.platform.linux.LibC)
+oshi.jna.platform.unix.OpenBsdLibc
+oshi.jna.platform.unix.SolarisLibc
+oshi.jna.platform.mac.SystemB (also extends com.sun.jna.platform.mac.SystemB)
+com.sun.jna.platform.linux.LibC (also extends com.sun.jna.Library)
+oshi.jna.platform.linux.LinuxLibc (also extends oshi.jna.platform.unix.CLibrary)
+com.sun.jna.platform.mac.SystemB (also extends com.sun.jna.Library)
+oshi.jna.platform.mac.SystemB (also extends oshi.jna.platform.unix.CLibrary)
+com.sun.jna.platform.unix.Resource
+com.sun.jna.platform.unix.LibCAPI (also extends com.sun.jna.platform.unix.Reboot)
+oshi.jna.platform.unix.CLibrary (also extends com.sun.jna.Library)
+oshi.jna.platform.unix.AixLibc
+oshi.jna.platform.unix.FreeBsdLibc
+oshi.jna.platform.linux.LinuxLibc (also extends com.sun.jna.platform.linux.LibC)
+oshi.jna.platform.unix.OpenBsdLibc
+oshi.jna.platform.unix.SolarisLibc
+oshi.jna.platform.mac.SystemB (also extends com.sun.jna.platform.mac.SystemB)
+com.sun.jna.platform.linux.LibC (also extends com.sun.jna.Library)
+oshi.jna.platform.linux.LinuxLibc (also extends oshi.jna.platform.unix.CLibrary)
+com.sun.jna.platform.mac.SystemB (also extends com.sun.jna.Library)
+oshi.jna.platform.mac.SystemB (also extends oshi.jna.platform.unix.CLibrary)
+oshi.hardware.Sensors
+oshi.hardware.SoundCard
+oshi.jna.Struct
+oshi.hardware.VirtualMemory
+
+
+Annotation Type Hierarchy
+-------------------------
+
+oshi.annotation.concurrent.GuardedBy (implements java.lang.annotation.Annotation)
+oshi.annotation.concurrent.Immutable (implements java.lang.annotation.Annotation)
+oshi.annotation.concurrent.NotThreadSafe (implements java.lang.annotation.Annotation)
+oshi.annotation.SuppressForbidden (implements java.lang.annotation.Annotation)
+oshi.annotation.concurrent.ThreadSafe (implements java.lang.annotation.Annotation)
+
+
+Enum Hierarchy
+--------------
+
+java.lang.Object
+java.lang.Enum<E> (implements java.lang.Comparable<T>, java.io.Serializable)
+oshi.hardware.CentralProcessor.ProcessorCache.Type
+oshi.hardware.CentralProcessor.TickType
+oshi.driver.linux.proc.DiskStats.IoStat
+oshi.software.os.InternetProtocolStats.TcpState
+oshi.driver.windows.perfmon.MemoryInformation.PageSwapProperty (implements oshi.util.platform.windows.PerfCounterQuery.PdhCounterProperty)
+oshi.driver.windows.wmi.MSAcpiThermalZoneTemperature.TemperatureProperty
+oshi.driver.windows.wmi.MSFTStorage.PhysicalDiskProperty
+oshi.driver.windows.wmi.MSFTStorage.StoragePoolProperty
+oshi.driver.windows.wmi.MSFTStorage.StoragePoolToPhysicalDiskProperty
+oshi.driver.windows.wmi.MSFTStorage.VirtualDiskProperty
+oshi.hardware.NetworkIF.IfOperStatus
+oshi.driver.windows.wmi.OhmHardware.IdentifierProperty
+oshi.driver.windows.wmi.OhmSensor.ValueProperty
+oshi.software.os.OSProcess.State
+oshi.software.os.OSService.State
+oshi.driver.windows.perfmon.PagingFile.PagingPercentProperty (implements oshi.util.platform.windows.PerfCounterQuery.PdhCounterProperty)
+oshi.driver.windows.perfmon.PhysicalDisk.PhysicalDiskProperty (implements oshi.util.platform.windows.PerfCounterWildcardQuery.PdhCounterWildcardProperty)
+oshi.PlatformEnum
+oshi.hardware.PowerSource.CapacityUnits
+oshi.jna.platform.windows.PowrProf.BATTERY_QUERY_INFORMATION_LEVEL
+oshi.driver.windows.perfmon.ProcessInformation.HandleCountProperty (implements oshi.util.platform.windows.PerfCounterWildcardQuery.PdhCounterWildcardProperty)
+oshi.driver.windows.perfmon.ProcessInformation.IdleProcessorTimeProperty (implements oshi.util.platform.windows.PerfCounterWildcardQuery.PdhCounterWildcardProperty)
+oshi.driver.windows.perfmon.ProcessInformation.ProcessPerformanceProperty (implements oshi.util.platform.windows.PerfCounterWildcardQuery.PdhCounterWildcardProperty)
+oshi.driver.windows.perfmon.ProcessorInformation.InterruptsProperty (implements oshi.util.platform.windows.PerfCounterQuery.PdhCounterProperty)
+oshi.driver.windows.perfmon.ProcessorInformation.ProcessorFrequencyProperty (implements oshi.util.platform.windows.PerfCounterWildcardQuery.PdhCounterWildcardProperty)
+oshi.driver.windows.perfmon.ProcessorInformation.ProcessorTickCountProperty (implements oshi.util.platform.windows.PerfCounterWildcardQuery.PdhCounterWildcardProperty)
+oshi.driver.windows.perfmon.ProcessorInformation.ProcessorUtilityTickCountProperty (implements oshi.util.platform.windows.PerfCounterWildcardQuery.PdhCounterWildcardProperty)
+oshi.driver.linux.proc.ProcessStat.PidStat
+oshi.driver.linux.proc.ProcessStat.PidStatM
+oshi.driver.windows.perfmon.SystemInformation.ContextSwitchProperty (implements oshi.util.platform.windows.PerfCounterQuery.PdhCounterProperty)
+oshi.driver.windows.perfmon.SystemInformation.ProcessorQueueLengthProperty (implements oshi.util.platform.windows.PerfCounterQuery.PdhCounterProperty)
+oshi.driver.windows.perfmon.ThreadInformation.ThreadPerformanceProperty (implements oshi.util.platform.windows.PerfCounterWildcardQuery.PdhCounterWildcardProperty)
+oshi.driver.windows.wmi.Win32BaseBoard.BaseBoardProperty
+oshi.driver.windows.wmi.Win32Bios.BiosProperty
+oshi.driver.windows.wmi.Win32Bios.BiosSerialProperty
+oshi.driver.windows.wmi.Win32ComputerSystem.ComputerSystemProperty
+oshi.driver.windows.wmi.Win32ComputerSystemProduct.ComputerSystemProductProperty
+oshi.driver.windows.wmi.Win32DiskDrive.DiskDriveProperty
+oshi.driver.windows.wmi.Win32DiskDriveToDiskPartition.DriveToPartitionProperty
+oshi.driver.windows.wmi.Win32DiskPartition.DiskPartitionProperty
+oshi.driver.windows.wmi.Win32Fan.SpeedProperty
+oshi.driver.windows.wmi.Win32LogicalDisk.LogicalDiskProperty
+oshi.driver.windows.wmi.Win32LogicalDiskToPartition.DiskToPartitionProperty
+oshi.driver.windows.wmi.Win32OperatingSystem.OSVersionProperty
+oshi.driver.windows.wmi.Win32PhysicalMemory.PhysicalMemoryProperty
+oshi.driver.windows.wmi.Win32PhysicalMemory.PhysicalMemoryPropertyWin8
+oshi.driver.windows.wmi.Win32Process.CommandLineProperty
+oshi.driver.windows.wmi.Win32Process.ProcessXPProperty
+oshi.driver.windows.wmi.Win32Processor.BitnessProperty
+oshi.driver.windows.wmi.Win32Processor.ProcessorIdProperty
+oshi.driver.windows.wmi.Win32Processor.VoltProperty
+oshi.driver.windows.wmi.Win32VideoController.VideoControllerProperty
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+oshi.SystemInfo
+
+oshi.hardware.CentralProcessor
+
+
+
+
+
+
+
+
+
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+package oshi;
+
+import com.sun.jna.Platform;
+import java.util.function.Supplier;
+import oshi.hardware.HardwareAbstractionLayer;
+import oshi.hardware.platform.linux.LinuxHardwareAbstractionLayer;
+import oshi.hardware.platform.mac.MacHardwareAbstractionLayer;
+import oshi.hardware.platform.unix.aix.AixHardwareAbstractionLayer;
+import oshi.hardware.platform.unix.freebsd.FreeBsdHardwareAbstractionLayer;
+import oshi.hardware.platform.unix.openbsd.OpenBsdHardwareAbstractionLayer;
+import oshi.hardware.platform.unix.solaris.SolarisHardwareAbstractionLayer;
+import oshi.hardware.platform.windows.WindowsHardwareAbstractionLayer;
+import oshi.software.os.OperatingSystem;
+import oshi.software.os.linux.LinuxOperatingSystem;
+import oshi.software.os.mac.MacOperatingSystem;
+import oshi.software.os.unix.aix.AixOperatingSystem;
+import oshi.software.os.unix.freebsd.FreeBsdOperatingSystem;
+import oshi.software.os.unix.openbsd.OpenBsdOperatingSystem;
+import oshi.software.os.unix.solaris.SolarisOperatingSystem;
+import oshi.software.os.windows.WindowsOperatingSystem;
+import oshi.util.Memoizer;
+
+public class SystemInfo {
+    private static final PlatformEnum CURRENT_PLATFORM = PlatformEnum.getValue(Platform.getOSType());
+    private static final String NOT_SUPPORTED = "Operating system not supported: ";
+    private final Supplier<OperatingSystem> os = Memoizer.memoize(SystemInfo::createOperatingSystem);
+    private final Supplier<HardwareAbstractionLayer> hardware = Memoizer.memoize(SystemInfo::createHardware);
+
+    public SystemInfo() {
+    }
+
+    public static PlatformEnum getCurrentPlatform() {
+        return CURRENT_PLATFORM;
+    }
+
+    public OperatingSystem getOperatingSystem() {
+        return (OperatingSystem)this.os.get();
+    }
+
+    private static OperatingSystem createOperatingSystem() {
+        switch (CURRENT_PLATFORM) {
+            case WINDOWS:
+                return new WindowsOperatingSystem();
+            case LINUX:
+            case ANDROID:
+                return new LinuxOperatingSystem();
+            case MACOS:
+                return new MacOperatingSystem();
+            case SOLARIS:
+                return new SolarisOperatingSystem();
+            case FREEBSD:
+                return new FreeBsdOperatingSystem();
+            case AIX:
+                return new AixOperatingSystem();
+            case OPENBSD:
+                return new OpenBsdOperatingSystem();
+            default:
+                throw new UnsupportedOperationException("Operating system not supported: " + CURRENT_PLATFORM.getName());
+        }
+    }
+
+    public HardwareAbstractionLayer getHardware() {
+        return (HardwareAbstractionLayer)this.hardware.get();
+    }
+
+    private static HardwareAbstractionLayer createHardware() {
+        switch (CURRENT_PLATFORM) {
+            case WINDOWS:
+                return new WindowsHardwareAbstractionLayer();
+            case LINUX:
+            case ANDROID:
+                return new LinuxHardwareAbstractionLayer();
+            case MACOS:
+                return new MacHardwareAbstractionLayer();
+            case SOLARIS:
+                return new SolarisHardwareAbstractionLayer();
+            case FREEBSD:
+                return new FreeBsdHardwareAbstractionLayer();
+            case AIX:
+                return new AixHardwareAbstractionLayer();
+            case OPENBSD:
+                return new OpenBsdHardwareAbstractionLayer();
+            default:
+                throw new UnsupportedOperationException("Operating system not supported: " + CURRENT_PLATFORM.getName());
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+package oshi.hardware;
+
+import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
+import java.util.Properties;
+import java.util.function.Supplier;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import oshi.annotation.concurrent.Immutable;
+import oshi.annotation.concurrent.ThreadSafe;
+import oshi.util.FileUtil;
+import oshi.util.Memoizer;
+import oshi.util.ParseUtil;
+import oshi.util.Util;
+
+@ThreadSafe
+public interface CentralProcessor {
+    ProcessorIdentifier getProcessorIdentifier();
+
+    long getMaxFreq();
+
+    long[] getCurrentFreq();
+
+    List<LogicalProcessor> getLogicalProcessors();
+
+    List<PhysicalProcessor> getPhysicalProcessors();
+
+    List<ProcessorCache> getProcessorCaches();
+
+    double getSystemCpuLoadBetweenTicks(long[] var1);
+
+    long[] getSystemCpuLoadTicks();
+
+    double[] getSystemLoadAverage(int var1);
+
+    default double getSystemCpuLoad(long delay) {
+        long start = System.nanoTime();
+        long[] oldTicks = this.getSystemCpuLoadTicks();
+        long toWait = delay - (System.nanoTime() - start) / 1000000L;
+        if (toWait > 0L) {
+            Util.sleep(delay);
+        }
+
+        return this.getSystemCpuLoadBetweenTicks(oldTicks);
+    }
+
+    default double[] getProcessorCpuLoad(long delay) {
+        long start = System.nanoTime();
+        long[][] oldTicks = this.getProcessorCpuLoadTicks();
+        long toWait = delay - (System.nanoTime() - start) / 1000000L;
+        if (toWait > 0L) {
+            Util.sleep(delay);
+        }
+
+        return this.getProcessorCpuLoadBetweenTicks(oldTicks);
+    }
+
+    double[] getProcessorCpuLoadBetweenTicks(long[][] var1);
+
+    long[][] getProcessorCpuLoadTicks();
+
+    int getLogicalProcessorCount();
+
+    int getPhysicalProcessorCount();
+
+    int getPhysicalPackageCount();
+
+    long getContextSwitches();
+
+    long getInterrupts();
+
+    @Immutable
+    public static final class ProcessorIdentifier {
+        private static final String OSHI_ARCHITECTURE_PROPERTIES = "oshi.architecture.properties";
+        private final String cpuVendor;
+        private final String cpuName;
+        private final String cpuFamily;
+        private final String cpuModel;
+        private final String cpuStepping;
+        private final String processorID;
+        private final String cpuIdentifier;
+        private final boolean cpu64bit;
+        private final long cpuVendorFreq;
+        private final Supplier<String> microArchictecture;
+
+        public ProcessorIdentifier(String cpuVendor, String cpuName, String cpuFamily, String cpuModel, String cpuStepping, String processorID, boolean cpu64bit) {
+            this(cpuVendor, cpuName, cpuFamily, cpuModel, cpuStepping, processorID, cpu64bit, -1L);
+        }
+
+        public ProcessorIdentifier(String cpuVendor, String cpuName, String cpuFamily, String cpuModel, String cpuStepping, String processorID, boolean cpu64bit, long vendorFreq) {
+            this.microArchictecture = Memoizer.memoize(this::queryMicroarchitecture);
+            this.cpuVendor = cpuVendor.startsWith("0x") ? this.queryVendorFromImplementer(cpuVendor) : cpuVendor;
+            this.cpuName = cpuName;
+            this.cpuFamily = cpuFamily;
+            this.cpuModel = cpuModel;
+            this.cpuStepping = cpuStepping;
+            this.processorID = processorID;
+            this.cpu64bit = cpu64bit;
+            StringBuilder sb = new StringBuilder();
+            if (cpuVendor.contentEquals("GenuineIntel")) {
+                sb.append(cpu64bit ? "Intel64" : "x86");
+            } else {
+                sb.append(cpuVendor);
+            }
+
+            sb.append(" Family ").append(cpuFamily);
+            sb.append(" Model ").append(cpuModel);
+            sb.append(" Stepping ").append(cpuStepping);
+            this.cpuIdentifier = sb.toString();
+            if (vendorFreq > 0L) {
+                this.cpuVendorFreq = vendorFreq;
+            } else {
+                Pattern pattern = Pattern.compile("@ (.*)$");
+                Matcher matcher = pattern.matcher(cpuName);
+                if (matcher.find()) {
+                    String unit = matcher.group(1);
+                    this.cpuVendorFreq = ParseUtil.parseHertz(unit);
+                } else {
+                    this.cpuVendorFreq = -1L;
+                }
+            }
+
+        }
+
+        public String getVendor() {
+            return this.cpuVendor;
+        }
+
+        public String getName() {
+            return this.cpuName;
+        }
+
+        public String getFamily() {
+            return this.cpuFamily;
+        }
+
+        public String getModel() {
+            return this.cpuModel;
+        }
+
+        public String getStepping() {
+            return this.cpuStepping;
+        }
+
+        public String getProcessorID() {
+            return this.processorID;
+        }
+
+        public String getIdentifier() {
+            return this.cpuIdentifier;
+        }
+
+        public boolean isCpu64bit() {
+            return this.cpu64bit;
+        }
+
+        public long getVendorFreq() {
+            return this.cpuVendorFreq;
+        }
+
+        public String getMicroarchitecture() {
+            return (String)this.microArchictecture.get();
+        }
+
+        private String queryMicroarchitecture() {
+            String arch = null;
+            Properties archProps = FileUtil.readPropertiesFromFilename("oshi.architecture.properties");
+            StringBuilder sb = new StringBuilder();
+            String ucVendor = this.cpuVendor.toUpperCase(Locale.ROOT);
+            if (ucVendor.contains("AMD")) {
+                sb.append("amd.");
+            } else if (ucVendor.contains("ARM")) {
+                sb.append("arm.");
+            } else if (ucVendor.contains("IBM")) {
+                int powerIdx = this.cpuName.indexOf("_POWER");
+                if (powerIdx > 0) {
+                    arch = this.cpuName.substring(powerIdx + 1);
+                }
+            } else if (ucVendor.contains("APPLE")) {
+                sb.append("apple.");
+            }
+
+            if (Util.isBlank(arch) && !sb.toString().equals("arm.")) {
+                sb.append(this.cpuFamily);
+                arch = archProps.getProperty(sb.toString());
+            }
+
+            if (Util.isBlank(arch)) {
+                sb.append('.').append(this.cpuModel);
+                arch = archProps.getProperty(sb.toString());
+            }
+
+            if (Util.isBlank(arch)) {
+                sb.append('.').append(this.cpuStepping);
+                arch = archProps.getProperty(sb.toString());
+            }
+
+            return Util.isBlank(arch) ? "unknown" : arch;
+        }
+
+        private String queryVendorFromImplementer(String cpuVendor) {
+            Properties archProps = FileUtil.readPropertiesFromFilename("oshi.architecture.properties");
+            String vendor = archProps.getProperty("hw_impl." + this.cpuVendor);
+            return vendor == null ? cpuVendor : vendor;
+        }
+
+        public String toString() {
+            return this.getIdentifier();
+        }
+    }
+
+    @Immutable
+    public static class ProcessorCache {
+        private final byte level;
+        private final byte associativity;
+        private final short lineSize;
+        private final int cacheSize;
+        private final Type type;
+
+        public ProcessorCache(byte level, byte associativity, short lineSize, int cacheSize, Type type) {
+            this.level = level;
+            this.associativity = associativity;
+            this.lineSize = lineSize;
+            this.cacheSize = cacheSize;
+            this.type = type;
+        }
+
+        public ProcessorCache(int level, int associativity, int lineSize, long cacheSize, Type type) {
+            this((byte)level, (byte)associativity, (short)lineSize, (int)cacheSize, type);
+        }
+
+        public byte getLevel() {
+            return this.level;
+        }
+
+        public byte getAssociativity() {
+            return this.associativity;
+        }
+
+        public short getLineSize() {
+            return this.lineSize;
+        }
+
+        public int getCacheSize() {
+            return this.cacheSize;
+        }
+
+        public Type getType() {
+            return this.type;
+        }
+
+        public String toString() {
+            return "ProcessorCache [L" + this.level + " " + this.type + ", cacheSize=" + this.cacheSize + ", " + (this.associativity > 0 ? this.associativity + "-way" : "unknown") + " associativity, lineSize=" + this.lineSize + "]";
+        }
+
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            } else if (obj != null && obj instanceof ProcessorCache) {
+                ProcessorCache other = (ProcessorCache)obj;
+                return this.associativity == other.associativity && this.cacheSize == other.cacheSize && this.level == other.level && this.lineSize == other.lineSize && this.type == other.type;
+            } else {
+                return false;
+            }
+        }
+
+        public int hashCode() {
+            return Objects.hash(new Object[]{this.associativity, this.cacheSize, this.level, this.lineSize, this.type});
+        }
+
+        public static enum Type {
+            UNIFIED,
+            INSTRUCTION,
+            DATA,
+            TRACE;
+
+            private Type() {
+            }
+
+            public String toString() {
+                return this.name().substring(0, 1) + this.name().substring(1).toLowerCase(Locale.ROOT);
+            }
+        }
+    }
+
+    @Immutable
+    public static class PhysicalProcessor {
+        private final int physicalPackageNumber;
+        private final int physicalProcessorNumber;
+        private final int efficiency;
+        private final String idString;
+
+        public PhysicalProcessor(int physicalPackageNumber, int physicalProcessorNumber) {
+            this(physicalPackageNumber, physicalProcessorNumber, 0, "");
+        }
+
+        public PhysicalProcessor(int physicalPackageNumber, int physicalProcessorNumber, int efficiency, String idString) {
+            this.physicalPackageNumber = physicalPackageNumber;
+            this.physicalProcessorNumber = physicalProcessorNumber;
+            this.efficiency = efficiency;
+            this.idString = idString;
+        }
+
+        public int getPhysicalPackageNumber() {
+            return this.physicalPackageNumber;
+        }
+
+        public int getPhysicalProcessorNumber() {
+            return this.physicalProcessorNumber;
+        }
+
+        public int getEfficiency() {
+            return this.efficiency;
+        }
+
+        public String getIdString() {
+            return this.idString;
+        }
+
+        public String toString() {
+            return "PhysicalProcessor [package/core=" + this.physicalPackageNumber + "/" + this.physicalProcessorNumber + ", efficiency=" + this.efficiency + ", idString=" + this.idString + "]";
+        }
+    }
+
+    @Immutable
+    public static class LogicalProcessor {
+        private final int processorNumber;
+        private final int physicalProcessorNumber;
+        private final int physicalPackageNumber;
+        private final int numaNode;
+        private final int processorGroup;
+
+        public LogicalProcessor(int processorNumber, int physicalProcessorNumber, int physicalPackageNumber) {
+            this(processorNumber, physicalProcessorNumber, physicalPackageNumber, 0, 0);
+        }
+
+        public LogicalProcessor(int processorNumber, int physicalProcessorNumber, int physicalPackageNumber, int numaNode) {
+            this(processorNumber, physicalProcessorNumber, physicalPackageNumber, numaNode, 0);
+        }
+
+        public LogicalProcessor(int processorNumber, int physicalProcessorNumber, int physicalPackageNumber, int numaNode, int processorGroup) {
+            this.processorNumber = processorNumber;
+            this.physicalProcessorNumber = physicalProcessorNumber;
+            this.physicalPackageNumber = physicalPackageNumber;
+            this.numaNode = numaNode;
+            this.processorGroup = processorGroup;
+        }
+
+        public int getProcessorNumber() {
+            return this.processorNumber;
+        }
+
+        public int getPhysicalProcessorNumber() {
+            return this.physicalProcessorNumber;
+        }
+
+        public int getPhysicalPackageNumber() {
+            return this.physicalPackageNumber;
+        }
+
+        public int getNumaNode() {
+            return this.numaNode;
+        }
+
+        public int getProcessorGroup() {
+            return this.processorGroup;
+        }
+
+        public String toString() {
+            return "LogicalProcessor [processorNumber=" + this.processorNumber + ", coreNumber=" + this.physicalProcessorNumber + ", packageNumber=" + this.physicalPackageNumber + ", numaNode=" + this.numaNode + ", processorGroup=" + this.processorGroup + "]";
+        }
+    }
+
+    public static enum TickType {
+        USER(0),
+        NICE(1),
+        SYSTEM(2),
+        IDLE(3),
+        IOWAIT(4),
+        IRQ(5),
+        SOFTIRQ(6),
+        STEAL(7);
+
+        private final int index;
+
+        private TickType(int value) {
+            this.index = value;
+        }
+
+        public int getIndex() {
+            return this.index;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ====================================
+||	oshi.architecture.properties	||
+ ====================================
+ 
+# Mapping of cpu implementer to vendor
+
+hw_impl.0x41=ARM
+hw_impl.0x42=Broadcom
+hw_impl.0x43=Cavium
+hw_impl.0x44=DEC
+hw_impl.0x46=FUJITSU
+hw_impl.0x48=HiSilicon
+hw_impl.0x49=Infineon
+hw_impl.0x4d=Motorola/Freescale
+hw_impl.0x4e=NVIDIA
+hw_impl.0x50=APM
+hw_impl.0x51=Qualcomm
+hw_impl.0x53=Samsung
+hw_impl.0x56=Marvell
+hw_impl.0x61=Apple
+hw_impl.0x66=Faraday
+hw_impl.0x69=Intel
+hw_impl.0x70=Phytium
+hw_impl.0xc0=Ampere
+
+# Mapping of family and model to architecture/core
+
+# Intel
+# See https://en.wikichip.org/wiki/intel/cpuid
+15=Netburst
+
+11.1=Knights Corner
+11.0=Knights Ferry
+
+6.186=Raptor Lake
+6.183=Raptor Lake
+6.167=Rocket Lake
+6.165=Comet Lake
+6.158.13=Coffee Lake
+6.158.12=Coffee Lake
+6.158.11=Coffee Lake
+6.158.10=Coffee Lake
+6.158.9=Kaby Lake
+6.156=Jasper Lake
+6.154=Alder Lake
+6.151=Alder Lake
+6.150=Elkhart Lake
+6.143=Sapphire Rapids
+6.142.13=Comet Lake
+6.142.12=Whiskey Lake
+6.142.11=Whiskey Lake
+6.142.10=Coffee Lake
+6.142.9=Amber Lake
+6.141=Tiger Lake
+6.140=Tiger Lake
+6.138=Lakefield
+6.134=Tremont
+6.133=Knights Mill
+6.126=Ice Lake (Client)
+6.125=Ice Lake (Client)
+6.122=Goldmont Plus
+6.108=Ice Lake (Server)
+6.106=Ice Lake (Server)
+6.102=Cannon Lake
+6.95=Goldmont
+6.94=Skylake (Client)
+6.93=Silvermont
+6.92=Goldmont
+6.90=Silvermont
+6.87=Knights Landing
+6.86=Broadwell (Server)
+6.85.10 Cooper Lake
+6.85.7=Cascade Lake
+6.85.6=Cascade Lake
+6.85.5=Cascade Lake
+6.85.4=Skylake (Server)
+6.85.3=Skylake (Server)
+6.85.2=Skylake (Server)
+6.85.1=Skylake (Server)
+6.79=Broadwell (Server)
+6.78=Skylake (Client)
+6.77=Silvermont
+6.76=Airmont
+6.74=Silvermont
+6.71=Broadwell (Client)
+6.70=Haswell (Client)
+6.69=Haswell (Client)
+6.63=Haswell (Server)
+6.62=Ivy Bridge (Server)
+6.61=Broadwell (Client)
+6.60=Haswell (Client)
+6.58=Ivy Bridge (Client)
+6.55=Silvermont
+6.54=Saltwell
+6.53=Saltwell
+6.47=Westmere (Server)
+6.46=Nehalem (Server)
+6.45=Sandy Bridge (Server)
+6.44=Westmere (Server)
+6.42=Sandy Bridge (Client)
+6.39=Saltwell
+6.38=Bonnell
+6.37=Westmere (Client)
+6.31=Nehalem (Client)
+6.30=Nehalem (Client) / Nehalem (Server)
+6.29=Penryn (Server)
+6.28=Bonnell
+6.26=Nehalem (Server)
+6.23=Penryn (Client) / Penryn (Server)
+6.22=Core 2 (Client)
+6.21=Pentium M
+6.15=Core 2 (Client)
+6.14=Modified Pentium M
+6.13=Pentium M
+6.11=P6
+6.10=P6
+6.9=Pentium M
+6.8=P6
+6.7=P6
+6.6=P6
+6.5=P6
+6.3=P6
+6.1=P6
+
+5.10=Lakemont
+5.9=Lakemont
+5.8=P5
+5.7=P5
+5.4=P5
+5.2=P5
+5.1=P5
+
+4=80486
+
+# CPUID not implemented before 80486
+
+# AMD
+amd.4=i486
+amd.5.6=K6
+amd.5.6=K6
+amd.5.7=K6
+amd.5.8=K6-2
+amd.5.9=K6-3
+amd.5.10=Geode
+amd.5.13=K6-3
+amd.6=Athlon K7
+amd.15=K8 / Hammer
+amd.16=K10
+amd.17=K8 & K10 Hybrid
+amd.18=K10 (Llano) / K12
+amd.20=Bobcat
+amd.21.0=Bulldozer
+amd.21.1=Bulldozer
+amd.21.2=Piledriver
+amd.21.16=Piledriver
+amd.21.17=Piledriver
+amd.21.18=Piledriver
+amd.21.19=Piledriver
+amd.21.20=Piledriver
+amd.21.21=Piledriver
+amd.21.22=Piledriver
+amd.21.23=Piledriver
+amd.21.24=Piledriver
+amd.21.25=Piledriver
+amd.21.26=Piledriver
+amd.21.27=Piledriver
+amd.21.28=Piledriver
+amd.21.29=Piledriver
+amd.21.30=Piledriver
+amd.21.31=Piledriver
+amd.21.48=Steamroller
+amd.21.49=Steamroller
+amd.21.50=Steamroller
+amd.21.51=Steamroller
+amd.21.52=Steamroller
+amd.21.53=Steamroller
+amd.21.54=Steamroller
+amd.21.55=Steamroller
+amd.21.56=Steamroller
+amd.21.57=Steamroller
+amd.21.58=Steamroller
+amd.21.59=Steamroller
+amd.21.60=Steamroller
+amd.21.61=Steamroller
+amd.21.62=Steamroller
+amd.21.63=Steamroller
+amd.21.112=Excavator
+amd.21.113=Excavator
+amd.21.114=Excavator
+amd.21.115=Excavator
+amd.21.116=Excavator
+amd.21.117=Excavator
+amd.21.118=Excavator
+amd.21.119=Excavator
+amd.21.120=Excavator
+amd.21.121=Excavator
+amd.21.122=Excavator
+amd.21.123=Excavator
+amd.21.124=Excavator
+amd.21.125=Excavator
+amd.21.126=Excavator
+amd.21.127=Excavator
+amd.22.0=Jaguar
+amd.22.1=Jaguar
+amd.22.2=Jaguar
+amd.22.3=Jaguar
+amd.22.4=Jaguar
+amd.22.5=Jaguar
+amd.22.6=Jaguar
+amd.22.7=Jaguar
+amd.22.8=Jaguar
+amd.22.9=Jaguar
+amd.22.10=Jaguar
+amd.22.11=Jaguar
+amd.22.12=Jaguar
+amd.22.13=Jaguar
+amd.22.14=Jaguar
+amd.22.15=Jaguar
+amd.22.48=Puma
+amd.22.49=Puma
+amd.22.50=Puma
+amd.22.51=Puma
+amd.22.52=Puma
+amd.22.53=Puma
+amd.22.54=Puma
+amd.22.55=Puma
+amd.22.56=Puma
+amd.22.57=Puma
+amd.22.58=Puma
+amd.22.59=Puma
+amd.22.60=Puma
+amd.22.61=Puma
+amd.22.62=Puma
+amd.22.63=Puma
+amd.23.1=Zen
+amd.23.8=Zen+
+amd.23.17=Zen
+amd.23.24=Zen / Zen+
+amd.23.49=Zen 2
+amd.23.113=Zen 2
+amd.24=Hygon Dhyana
+amd.25=Zen 3
+
+# ARM
+# ARM uses MIDR rather than CPUID. Using architecture.model
+arm.0x600=ARM600
+arm.0x610=ARM610
+arm.0x700=ARM700
+arm.0x710=ARM710
+arm.0x810=ARM810
+arm.0x920=ARM920
+arm.0x922=ARM922
+arm.0x926=ARM926
+arm.0x940=ARM940
+arm.0x946=ARM946
+arm.0x966=ARM966
+arm.0xa20=ARM1020
+arm.0xa22=ARM1022
+arm.0xa26=ARM1026
+arm.0xb02=ARM11 MPCore
+arm.0xb36=ARM1136
+arm.0xb56=ARM1156
+arm.0xb76=ARM1176
+arm.0xc05=Cortex-A5
+arm.0xc07=Cortex-A7
+arm.0xc08=Cortex-A8
+arm.0xc09=Cortex-A9
+arm.0xc0d=Cortex-A12
+arm.0xc0f=Cortex-A15
+arm.0xc0e=Cortex-A17
+arm.0xc14=Cortex-R4
+arm.0xc15=Cortex-R5
+arm.0xc17=Cortex-R7
+arm.0xc18=Cortex-R8
+arm.0xc20=Cortex-M0
+arm.0xc21=Cortex-M1
+arm.0xc23=Cortex-M3
+arm.0xc24=Cortex-M4
+arm.0xc27=Cortex-M7
+arm.0xc60=Cortex-M0+
+arm.0xd01=Cortex-A32
+arm.0xd02=Cortex-A34
+arm.0xd03=Cortex-A53
+arm.0xd04=Cortex-A35
+arm.0xd05=Cortex-A55
+arm.0xd07=Cortex-A57
+arm.0xd08=Cortex-A72
+arm.0xd09=Cortex-A73
+arm.0xd0a=Cortex-A75
+arm.0xd0b=Cortex-A76
+arm.0xd0c=Neoverse-N1
+arm.0xd0d=Cortex-A77
+arm.0xd0e=Cortex-A76
+arm.0xd13=Cortex-R52
+arm.0xd20=Cortex-M23
+arm.0xd21=Cortex-M33
+arm.0xd22=Cortex-M55
+arm.0xd40=Neoverse-V1
+arm.0xd41=Cortex-A78
+arm.0xd44=Cortex-X1
+arm.0xd46=Cortex-A510
+arm.0xd47=Cortex-A710
+arm.0xd48=Cortex-X2
+arm.0xd49=Neoverse-N2
+arm.0xd4a=Neoverse-E1
+arm.0xd4d=Cortex-A715
+arm.0xd4e=Cortex-X3
+
+# Apple
+apple.0x1b588bb3=ARM64 SoC: Firestorm + Icestorm
+apple.0xda33d83d=ARM64 SoC: Avalanche + Blizzard
+apple.0x8765edea=ARM64 SoC: Everest + Sawtooth
+apple.0x573b5eec=x86_64 Rosetta 2 (Virtual Westmere)
+
+
+
+
+
+
+
+
+
+
+ ====================================
+||	oshi.linux.filename.properties	||
+ ====================================
+
+#Mapping filename to a family representation
+
+blackcat=Black Cat
+bluewhite64=BlueWhite64
+e-smith=SME Server
+eos=FreeEOS
+hlfs=HLFS
+lfs=Linux-From-Scratch
+linuxppc=Linux-PPC
+meego=MeeGo
+mandakelinux=Mandrake
+mklinux=MkLinux
+nld=Novell Linux Desktop
+novell=SUSE Linux
+SuSE=SUSE Linux
+pld=PLD
+redhat=Red Hat Linux
+sles=SUSE Linux ES9
+sun=Sun JDS
+synoinfo=Synology
+tinysofa=Tiny Sofa
+turbolinux=TurboLinux
+ultrapenguin=UltraPenguin
+va=VA-Linux
+vmware=VMWareESX
+yellowdog=Yellow Dog
+
+
+
+ ====================================
+||	oshi.macos.versions.properties	||
+ ====================================
+ 
+ # Mapping of macOS version numbers to names
+14=Sonoma
+13=Ventura
+12=Monterey
+11=Big Sur
+# During transition, sometimes Big Sur showed as 10.16
+10.16=Big Sur
+10.15=Catalina
+10.14=Mojave
+10.13=High Sierra
+10.12=Sierra
+# OS X
+10.11=El Capitan
+10.10=Yosemite
+10.9=Mavericks
+10.8=Mountain Lion
+10.7=Lion
+10.6=Snow Leopard
+10.5=Leopard
+10.4=Tiger
+10.3=Panther
+10.2=Jaguar
+10.1=Puma
+10.0=Cheetah
+
+ 
+ ====================
+||	oshi.properties	||
+ ====================
+ 
+ # This properties file is automatically loaded at startup of the GlobalConfig
+# class. The defaults below may be overwritten by either replacing this file
+# with your own equivalent file on the class path, or programmatically using
+# GlobalConfig.set(<property name>, <value>);
+#
+# The property names are included as constants in the GlobalConfig class for
+# convenience.
+
+# Some containers enable alternate locations for the Linux /proc filesystem
+# to provide container-level output in preference to system-level output.
+# The /proc filesystem location
+oshi.util.proc.path=/proc
+
+# The WMI query timeout in milliseconds
+# Default is -1, no timeout
+oshi.util.wmi.timeout=-1
+
+# Whether to perform WMI queries for command lines in a batch for all running
+# processes. Individual WMI queries for the command line take about 50ms while
+# querying the entire process list takes about 200ms. If you regularly expect
+# to query command lines for more than a few processes this should be enabled
+# for better performance. If you only rarely query command lines, leaving this
+# disabled will be faster and conserve some resources. Defaults to false.
+oshi.os.windows.commandline.batch=false
+
+# Whether to update the OSProcess state on Windows to SUSPENDED if all its
+# threads are suspended. This requires querying thread states and can impact
+# performance as Process list queries can take much longer. Users may still
+# determine this value themselves by querying process thread details and
+# checking if all are suspended, but may use this switch if they desire this
+# check done for many processes at once.
+oshi.os.windows.procstate.suspended=false
+
+# Whether to use "Processor Utility" for System and per-processor CPU Load ticks
+# (on Windows 8 and higher) to match CPU usage with the Windows Task Manager.
+#
+# Windows Task Manager displays a measure of Processor Utility, which is an
+# amount of work completed by the processor compared to the processor running
+# full time at nominal frequency. Because of features which change CPU frequency
+# such as Intel Speed Step, Intel Turbo Boost, AMD Precision Boost, and others,
+# it is possible for this value to exceed 100% (although Task Manager caps it
+# at 100%).
+#
+# By default, OSHI uses "Processor Time" which measures active and idle times
+# for each processor. CPU load is active time divided by total time. This matches
+# the interpretation of Unix-based systems, the Task Manager for Windows 7 and
+# earlier, The Task Manager "Details" tab for Process CPU usage (and OSHI's
+# per-process CPU usage), and Windows Sysinternals Process Explorer.
+#
+# Setting this value to true will allow OSHI's CPU Load values to match the
+# Windows Task manager output (except that OSHI's numbers will not be capped
+# at 100%) and will measure "work completed" rather than "processor time not idle".
+# In the case load exceeds 100%, it is possible for "idle" ticks to decrease,
+# i.e., the change between ticks would result in "negative idle time".
+#
+# For this calculation to produce meaningful data, the ticks used to calculate
+# usage must have come from the same instance of CentralProcessor. Also, the first
+# polling interval must be less than 7 minutes to properly initialize values.
+oshi.os.windows.cpu.utility=false
+
+# Whether to attempt to fetch Windows performance counter data for processes
+# and threads from HKEY_PERFORMANCE_DATA in the registry. Windows docs say
+# to use the PDH API in preference to this, but the multiple native calls
+# with JNA result in slower performance than a one-time grab of the data
+# from the registry. Unfortunately, registry calls are more subject to
+# problems with registry corruption, counter deletion when changing language
+# settings, and other factors. Although the code will recover from failure
+# to read these counters from the registry, it may be preferable to disable
+# this attempt if failure is known/expected. Setting this property to false
+# will skip the registry check and use the API-recommended (but slower)
+# performance counter API (or WMI as a backup).
+oshi.os.windows.hkeyperfdata=true
+
+# Whether to start a daemon thread to provide Load Averages for Windows.
+# Load Average is a metric on Linux, macOS, and Unix operating systems that
+# provides the average number of processes running or waiting for CPU (on
+# Linux, the metric includes processes waiting for other resources such as
+# disks.) While Windows does not provide this metric, the Processor Queue
+# Length performance counter added to the average recent processor usage
+# provides a similar metric.
+#
+# If this property is set true, a daemon thread will be started which will
+# calculate an equivalent metric to Unix load average.
+oshi.os.windows.loadaverage=false
+
+# Whether a class of performance counters is disabled. It is possible to
+# disable performance counters by changing registry values, which can improve
+# overall OS performance (such as for gaming) if the counters aren't desired.
+#
+# When attempting to query counters, OSHI provides a (one time) log warning
+# for the performance counter itself and a (each time) COM exception if the
+# WMI table backing up the counter fails. The associated log messages can be
+# confusing to users or developers of applications which depend on OSHI.
+#
+# If counters are either intentionally disabled, or the application depending
+# on OSHI does not require any of the relevant performance counters, setting
+# these values to true will skip querying these counters and return 0 values
+# for the associated metrics. No log messages will be generated.
+#
+# If these values are not set at all, OSHI will query the registry to determine
+# whether they are disabled and warn users if this is the case (this is the default).
+# The associated Windows registry keys are at:
+# HKLM\SYSTEM\CurrentControlSet\Services\PerfOS\Performance\Disable Performance Counters
+# HKLM\SYSTEM\CurrentControlSet\Services\PerfProc\Performance\Disable Performance Counters
+# HKLM\SYSTEM\CurrentControlSet\Services\PerfDisk\Performance\Disable Performance Counters
+# where a value of 0 is not disabled and any other value disables counters.
+#
+# PerfOS counters used for CPU ticks, swap file usage, page swaps, context switches, interrupts
+oshi.os.windows.perfos.disabled=
+#
+# PerfProc counters used for process and thread priority, time, IO, memory usage
+# (also see config for oshi.os.windows.hkeyperfdata)
+oshi.os.windows.perfproc.disabled=
+#
+# PerfDisk counters used for HWDiskStore reads/writes/queue length/xfer time
+oshi.os.windows.perfdisk.disabled=
+
+# On Linux, use of udev is normally preferred for loading hardware information such as
+# USB devices, power sources, disk information etc. Some details can be loaded
+# via sysfs as a backup, but others require udev. To disable use of udev
+# and directly use the fallbacks (or omit details that otherwise require udev)
+# set this to false. Defaults to true.
+oshi.os.linux.allowudev=true
+
+# On Linux, most process metrics are read from the proc pseudo-filesystem.
+# On macOS, process environment is read via sysctl
+# When operating without elevated permissions, this results in frequent error
+# messages for failures to read the process environment files. Set this to true
+# to receive these warnings.
+oshi.os.linux.procfs.logwarning=false
+oshi.os.mac.sysctl.logwarning=false
+
+# On macOS, Linux, and Unix systems, the default getSessions() method on the
+# OperatingSystem interface uses native code (see {@code man getutxent}) that
+# is not thread safe. OSHI's use of this code is synchronized and may be used
+# in a multi-threaded environment without introducing any additional conflicts.
+# Users should note, however, that other operating system code may access the
+# same native code.
+#
+# The oshi.driver.unix.Who#queryWho() method produces similar output parsing
+# the output of the Posix-standard "who" command, and may internally employ
+# reentrant code on some platforms. Setting this configuration to true will
+# use the command-line variant.  Defaults to false.
+oshi.os.unix.whoCommand=false
+
+# Solaris 11.4 deprecated the previous kstat API and introduced kstat2, with
+# additional features. OSHI uses the new API if it is available. However,
+# there may be a file descriptor leak when parallel GC is in use. Setting
+# this configuration to false will always use the original kstat API even if
+# Kstat2 is available.
+oshi.os.solaris.allowKstat2=true
+
+# The name of the System event log containing bootup event IDs 12 and 6005.
+#
+# This is used for a one-time calculation of system boot time that should be
+# consistent across process runs regardless of sleep/hibernate cycles, at
+# the small cost of ~250ms latency reading upon WindowsOperatingSystem
+# initialization.
+#
+# If the specified log is the empty string, or doesn't contain a bootup event,
+# boot time will be calculated by subtracting up time from current time. This
+# may vary by up to a millisecond between program executions and does not
+# properly account for sleep/hibernate cycles, but when using the empty string
+# is fast and may be preferred if only approximate boot time is desired.
+#
+# If a non-empty invalid log name is specified, the name "Application" will
+# be used. The default is System
+oshi.os.windows.eventlog=System
+
+# Memoizer default expiration in milliseconds (return values will be cached this long)
+# Must be positive (negative value will never refresh)
+# Should be less than 1 second
+# Default is 300 milliseconds
+oshi.util.memoizer.expiration=300
+
+# FileSystem types which are network-based and should be excluded from local-only lists
+oshi.network.filesystem.types=afs,cifs,smbfs,sshfs,ncpfs,ncp,nfs,nfs4,gfs,gds2,glusterfs
+
+#  Linux defines a set of virtual file systems
+#  "anon_inodefs", anonymous inodes - inodes without filenames
+#  "autofs", automounter file system, used by Linux, Solaris, FreeBSD
+#  "bdev", keep track of block_device vs major/minor mapping
+#  "binfmt_misc", Binary format support file system
+#  "bpf", Virtual filesystem for Berkeley Paket Filter
+#  "cgroup", Cgroup file system
+#  "cgroup2", Cgroup file system
+#  "configfs", Config file system
+#  "cpuset", pseudo-filesystem interface to the kernel cpuset mechanism
+#  "dax", Direct Access (DAX) can be used on memory-backed block devices
+#  "debugfs", Debug file system
+#  "devpts", Dev pseudo terminal devices file system
+#  "devtmpfs", Dev temporary file system
+#  "drm", Direct Rendering Manager
+#  "ecryptfs", POSIX-compliant enterprise cryptographic filesystem for Linux
+#  "efivarfs", (U)EFI variable filesystem
+#  "fuse", //
+#  NOTE: FUSE's fuseblk is not evalued because used as file system
+#  representation of a FUSE block storage
+#  "fuseblk" FUSE block file system
+#  "fusectl", FUSE control file system
+#  "hugetlbfs", Huge pages support file system
+#  "inotifyfs", support inotify
+#  "mqueue", Message queue file system
+#  "nfsd", NFS file system
+#  "overlay", Overlay file system https://wiki.archlinux.org/index.php/Overlay_filesystem
+#  "pipefs", for pipes but only visible inside kernel
+#  "proc", Proc file system, used by Linux and Solaris
+#  "pstore", Pstore file system
+#  "ramfs", Old filesystem used for RAM disks
+#  "rootfs", Minimal fs to support kernel boot
+#  "rpc_pipefs", Sun RPC file system
+#  "securityfs", Kernel security file system
+#  "selinuxfs", SELinux file system
+#  "sunrpc", Sun RPC file system
+#  "sysfs", SysFS file system
+#  "systemd-1", Systemd file system
+#  "tmpfs", Temporary file system
+#  NOTE: tmpfs is evaluated apart, because Linux, Solaris, FreeBSD use it for
+#  RAMdisks
+#  "tracefs", thin stackable file system for capturing file system traces
+#  "usbfs", removed in linux 3.5 but still seen in some systems
+#  FreeBSD / Solaris defines a set of virtual file systems
+#  "procfs", Proc file system
+#  "devfs", Dev temporary file system
+#  "ctfs", Contract file system
+#  "fdescfs", fd
+#  "objfs", Object file system
+#  "mntfs", Mount file system
+#  "sharefs", Share file system
+#  "lofs" Library file system
+#  "SquashFS" read-only filesystem used by snap on eg. Ubuntu
+oshi.pseudo.filesystem.types=anon_inodefs,autofs,bdev,binfmt_misc,bpf,cgroup,cgroup2,configfs,cpuset,dax,debugfs,devpts,devtmpfs,drm,ecryptfs,efivarfs,fuse,fusectl,hugetlbfs,inotifyfs,mqueue,nfsd,overlay,proc,procfs,pstore,rootfs,rpc_pipefs,securityfs,selinuxfs,sunrpc,sysfs,systemd-1,tracefs,usbfs,procfs,devfs,ctfs,fdescfs,objfs,mntfs,sharefs,lofs,squashfs
+
+# Paths and volumes to exclude from FileSystem listings on these operating systems.
+# These are excluded if they match using PathMatcher syntax.  See
+# https://docs.oracle.com/javase/7/docs/api/java/nio/file/FileSystem.html#getPathMatcher(java.lang.String)
+# The "glob:" syntax is automatically added unless another syntax (regex:) is specified.
+# Similar syntax may be used for "includes" which take precedence over excludes.
+
+# Note: glob:* mathches all paths not starting with /
+oshi.os.aix.filesystem.path.excludes=/run**,/sys**,/dev,/proc**,*
+oshi.os.aix.filesystem.volume.excludes=/proc
+
+oshi.os.freebsd.filesystem.path.excludes=/system**,/tmp**,/dev,/dev/fd**
+oshi.os.freebsd.filesystem.volume.excludes=rpool*
+
+oshi.os.linux.filesystem.path.excludes=/run**,/sys**,/proc**,/dev,**/shm
+
+oshi.os.mac.filesystem.volume.excludes=devfs,map *
+
+oshi.os.openbsd.filesystem.path.excludes=/tmp**,/dev
+
+oshi.os.solaris.filesystem.path.excludes=/system**,/tmp**,/dev,/dev/fd**
+oshi.os.solaris.filesystem.volume.excludes=rpool
+
+ 
+ 
+  ===============================
+||	oshi.vmmacaddr.properties	||
+ ================================
+
+# MAC addresses corresponding to known VMs
+00\:50\:56=VMware ESX 3
+00\:0C\:29=VMware ESX 3
+00\:05\:69=VMware ESX 3
+00\:03\:FF=Microsoft Hyper-V
+00\:1C\:42=Parallels Desktop
+00\:0F\:4B=Virtual Iron 4
+00\:16\:3E=Xen or Oracle VM
+08\:00\:27=VirtualBox
+02\:42\:AC=Docker Container
+

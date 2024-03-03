@@ -1,0 +1,627 @@
+ ================================================================================================
+<==>	Cryptography and Hashing Fundamentals in Python and Java	<==>	15.5 total hours	||
+ ================================================================================================
+
+	18. What is frequency analysis?
+		.
+		For example in an english language text some letters are more frequent than others
+		(E, A, O, I and T)
+
+	45. Random and pseudo-random numbers
+		.
+		The main problem as far as one time pad is concerned is how to generate the random numbers
+		Random number generation is the generation of sequence of numbers that cannot be reasonably
+		predicted better than by a random chance.
+		
+		True Random Numbers
+		-------------------
+		If we measure some physical phenomenon then we end up with true random numbers
+		For example:
+			radioactive decay or atmospheric noise
+			
+				-> values have uniform distribution
+				-> the values are independent of each other
+				-> not so efficient: quite expensive to generate (measure) these numbers
+				
+		
+		
+		Pseudo-Random Numbers (fake randomness)
+		---------------------------------------
+		Instead of measuring some physical phenomenon, we use computers to generate random numbers
+		PROBLEM: computers are deterministic !!!
+			-> values have uniform distribution
+			-> values are NOT independent of each other
+			-> there are efficient algorithms to generate these pseudo-random values
+		
+	89. Integer factorization problem
+		.
+		If a fast approach is invented to factor large integers then internet sites would no longer be secure
+
+
+
+
+
+
+Course content
+
+
+
+
+
+
+Section 1: Introduction														(3min)
+	
+	1. Introduction		(3min)
+
+
+Section 2: Cryptography Fundamentals										(12min)
+
+	2. What is cryptography?												(5min)
+	3. Symmetric encryption													(3min)
+	4. Asymmetric encryption												(3min)
+	Quiz 1: Encryption Basics Quiz
+
+
+Section 3: ### SYMMETRIC (PRIVATE KEY) CRYPTOGRAPHY ###						(1min)
+
+	5. Symmetric cryptosystems												(1min)
+
+
+Section 4: Caesar Cipher Theory												(13min)
+
+	6. What is Caesar cipher?												(3min)
+	7. Caesar cipher - encryption and decryption							(4min)
+	8. Caesar cipher example												(6min)
+	Quiz 2: Caesar Cipher Quiz
+
+
+Section 5: Caesar Cipher Implementation (Python)							(14min)
+
+	9. Caesar cipher implementation I										(6min)
+	10. Caesar cipher implementation II										(3min)
+	11. Caesar cipher implementation III									(4min)
+
+
+Section 6: Caesar Cipher Implementation (Java)								(13min)
+
+	12. Caesar cipher implementation I										(6min)
+	13. Caesar cipher implementation II										(3min)
+	14. Caesar cipher implementation III									(3min)
+
+
+Section 7: Cracking Caesar Cipher											(55min)
+
+	15. Cracking Caesar cipher with brute-force attack						(3min)
+	Quiz 3: Brute-Force Attack Quiz
+	16. Cracking Caesar-cipher with brute-force implementation (Python)		(5min)
+	17. Cracking Caesar-cipher with brute-force implementation (Java)		(7min)
+	18. What is frequency analysis?											(4min)
+	19. Frequency analysis implementation (Python)							(8min)
+	20. Frequency analysis implementation (Java)							(8min)
+	21. Cracking Caesar-cipher with frequency analysis (Python)				(10min)
+	22. Cracking Caesar-cipher with frequency analysis (Java)				(9min)
+	Quiz 4: Frequency Analysis Quiz
+
+
+Section 8: Detecting Languages												(39min)
+
+	23. Detecting english language introduction								(5min)
+	24. Detecting english language implementation I (Python)				(8min)
+	25. Detecting english language implementation II (Python)				(5min)
+	26. Detecting english language implementation III (Python)				(4min)
+	27. Detecting english language implementation I (Java)					(6min)
+	28. Detecting english language implementation II (Java)					(7min)
+	29. Detecting english language implementation III (Java)				(2min)
+	30. Language detection with machine learning							(3min)
+
+
+Section 9: Vigenere Cipher Theory											(15min)
+
+	31. What is the Vigenere cipher?										(6min)
+	32. Vigenere cipher encryption and decryption							(3min)
+	33. Vigenere cipher example												(6min)
+	Quiz 5: Vigenere Cipher Quiz
+
+
+Section 10: Vigenere Cipher Implementation (Python)							(12min)
+
+	34. Vigenere cipher implementation I									(5min)
+	35. Vigenere cipher implementation II									(7min)
+
+
+Section 11: Vigenere Cipher Implementation (Java)
+
+	36. Vigenere cipher implementation I									(5min)
+	37. Vigenere cipher implementation II									(5min)
+
+
+Section 12: Cracking the Vigenere Cipher (Kasiski Algorithm)				(22min)
+
+	38. Kasiski-algorithm introduction I									(3min)
+	39. Kasiski-algorithm introduction II									(7min)
+	40. Kasiski-algorithm introduction III									(9min)
+	41. Kasiski-algorithm introduction IV									(3min)
+
+
+Section 13: One Time Pad (Vernam Cipher)									(21min)
+
+	42. What is a One Time Pad (OTP)?										(6min)
+	43. One time pad and the XOR logical operator							(10min)
+	44. One time pad example												(5min)
+	Quiz 6: One Time Pad Quiz
+
+
+Section 14: Randomness in Cryptography										(13min)
+
+	45. Random and pseudo-random numbers									(13min)
+	Quiz 7: Randomness Quiz
+
+
+Section 15: One Time Pad Implementation (Python)							(13min)
+
+	46. One time pad implementation I										(4min)
+	47. One time pad implementation II										(5min)
+	48. One time pad implementation III										(3min)
+
+
+Section 16: One Time Pad Implementation (Java)
+
+	49. One time pad implementation I										(4min)
+	50. One time pad implementation II										(5min)
+	51. One time pad implementation III										(3min)
+
+
+Section 17: Cracking One Time Pad											(8min)
+
+	52. Cracking one time pad - Shannon's secrecy							(8min)
+	Quiz 8: Cracking One Time Pad Quiz
+
+
+Section 18: Data Encryption Standard (DES)									(37min)
+
+	53. What is the Data Encryption Standard (DES)?							(8min)
+	54. DES cryptosystem theory II											(5min)
+	Quiz 9: Data Encryption Standard (DES) Quiz
+	55. DES cryptosystem theory III											(7min)
+	Quiz 10: Data Encryption Standard (DES) Quiz
+	56. DES cryptosystem theory IV											(8min)
+	57. DES cryptosystem theory V											(8min)
+	58. DES cryptosystem theory VI											(2min)
+	Quiz 11: Data Encryption Standard (DES) Quiz
+
+
+Section 19: Data Encryption Standard (DES) Implementation (Python)			(15min)
+
+	59. DES cryptosystem implementation I									(4min)
+	60. DES cryptosystem implementation II									(7min)
+	61. DES cryptosystem implementation III									(4min)
+
+
+Section 20: Data Encryption Standard (DES) Implementation (Java)			(21min)
+
+	62. DES cryptosystem implementation I									(5min)
+	63. DES cryptosystem implementation II									(10min)
+	64. DES cryptosystem implementation III									(4min)
+	65. DES cryptosystem implementation IV									(2min)
+
+
+Section 21: Cracking Data Encryption Standard (DES)							(15min)
+
+	66. Brute-force DES cracking											(4min)
+	67. Linear cryptoanalysis												(7min)
+	68. Differential cryptoanalysis											(3min)
+	Quiz 12: Cracking DES Quiz
+
+
+Section 22: Advanced Encryption Standard (AES)								(31min)
+
+	69. AES cryptosystem theory I											(4min)
+	Quiz 13: AES Basics Quiz
+	70. AES cryptosystem theory II											(5min)
+	71. AES cryptosystem theory III											(6min)
+	Quiz 14: AES Cryptosystem Quiz
+	72. AES cryptosystem theory IV											(8min)
+	73. AES cryptosystem theory V											(7min)
+
+
+Section 23: Advanced Encryption Standard (AES) Implementation (Python)		(16min)
+
+	74. AES cryptosystem implementation I									(4min)
+	75. AES cryptosystem implementation II									(8min)
+	76. AES cryptosystem implementation III									(5min)
+
+
+Section 24: Advanced Encryption Standard (AES) Implementation (Java)		(9min)
+
+	77. AES cryptosystem implementation I									(5min)
+	78. AES cryptosystem implementation II									(5min)
+
+
+Section 25: Cracking Advanced Encryption Standard (AES)						(5min)
+
+	79. Shannon's confusion and diffusion									(5min)
+	Quiz 15: Confusion and Diffusion Quiz
+
+
+Section 26: ### ASYMMETRIC (PUBLIC KEY) CRYPTOGRAPHY ###					(1min)
+
+	80. Asymmetric cryptosystems											(1min)
+
+
+Section 27: Asymmetric Cryptosystems										(11min)
+
+	81. Problems with private key cryptosystems								(4min)
+	82. Asymmetric cryptosystems basics										(3min)
+	83. Random numbers and prime numbers									(4min)
+	Quiz 16: Asymmetric Cryptosystems Quiz
+
+
+Section 28: Modular Arithmetic												(1hr 15min)
+
+	84. Modular arithmetic fundamentals										(4min)
+	Quiz 17: Modular Arithmetic Quiz
+	85. Finding primes - naive approach (Python)							(9min)
+	86. Finding primes - naive approach (Java)								(7min)
+	87. Finding primes - advanced algorithms (Python)						(10min)
+	88. Finding primes - advanced algorithms (Java)							(11min)
+	Quiz 18: Finding Primes Quiz
+	89. Integer factorization problem										(3min)
+	90. Integer factorization implementation (Python)						(6min)
+	91. Integer factorization implementation (Java)							(5min)
+	92. Discrete logarithm problem											(3min)
+	93. Discrete logarithm implementation (Python)							(5min)
+	94. Discrete logarithm implementation (Java)							(7min)
+	Quiz 19: Modular Operations Quiz
+	95. Why to use prime numbers at all?									(5min)
+
+
+Section 29: Diffie-Hellman Key Exchange										(19min)
+
+	96. Diffie-Hellman key exchange basics									(4min)
+	97. Diffie-Hellman key exchange - the algorithm							(5min)
+	98. Diffie-Hellman key exchange - example								(4min)
+	99. Why to use primes and primitive roots?								(6min)
+	Quiz 20: Diffie-Hellman Cryptosystem Quiz
+
+
+Section 30: Diffie-Hellman Cryptosystem Implementation (Python)				(5min)
+
+	100. Diffie-Hellman key exchange algorithm implementation				(5min)
+
+
+Section 31: Diffie-Hellman Cryptosystem Implementation (Java)				(9min)
+
+	101. Diffie-Hellman key exchange algorithm implementation				(9min)
+
+
+Section 32: Cracking Diffie-Hellman Cryptosystem							(11min)
+
+	102. Cracking Diffie-Hellman cryptosystem								(4min)
+	103. Man in the middle attack											(7min)
+	Quiz 21: Cracking Diffie-Hellman Cryptosystem Quiz
+
+
+Section 33: RSA																(17min)
+
+	104. RSA cryptosystem basics											(6min)
+	105. RSA cryptosystem - the algorithm									(6min)
+	106. RSA cryptosystem - example											(5min)
+	Quiz 22: RSA Basics Quiz
+
+
+Section 34: Advanced Modular Arithmetic										(56min)
+
+	107. Euclidean algorithm (GCD) introduction								(6min)
+	108. Euclidean algorithm (GCD) implementation (Python)					(4min)
+	109. Euclidean algorithm (GCD) implementation (Java)					(5min)
+	Quiz 23: Euclidean Algorithm Quiz
+	110. Modular inverse introduction										(4min)
+	111. Modular inverse implementation (Python)							(5min)
+	112. Modular inverse implementation (Java)								(4min)
+	Quiz 24: Modular Inverse Quiz
+	113. Extended Euclidean algorithm introduction							(9min)
+	114. Extended Euclidean algorithm implementation (Python)				(12min)
+	115. Extended Euclidean algorithm implementation (Java)					(1min)
+	116. Extended Euclidean algorithm stack memory visualization			(8min)
+	Quiz 25: Extended Euclidean Algorithm Quiz
+
+
+Section 35: RSA Implementation (Python)										(40min)
+
+	117. RSA cryptosystem implementation I									(6min)
+	118. RSA cryptosystem implementation II									(7min)
+	119. RSA cryptosystem implementation III								(5min)
+	120. RSA cryptosystem implementation IV									(3min)
+	121. RSA combined with AES implementation I								(5min)
+	122. RSA combined with AES implementation II							(8min)
+	123. RSA combined with AES implementation III							(5min)
+
+
+Section 36: RSA Implementation (Java)										(41min)
+
+	124. RSA cryptosystem implementation I									(3min)
+	125. RSA cryptosystem implementation II									(4min)
+	126. RSA cryptosystem implementation III								(7min)
+	127. RSA cryptosystem implementation IV									(3min)
+	128. RSA combined with AES implementation I								(7min)
+	129. RSA combined with AES implementation II							(11min)
+	130. RSA combined with AES implementation III							(6min)
+
+
+Section 37: Cracking RSA													(4min)
+
+	131. The problem of factorization										(4min)
+
+
+Section 38: Elliptic Curve Cryptography (ECC)								(49min)
+
+	132. Why do we need elliptic curve cryptography?						(3min)
+	133. What are elliptic curves?											(4min)
+	134. Point addition and point doubling									(14min)
+	135. Double and add algorithm											(5min)
+	136. Elliptic curve discrete logarithm problem							(4min)
+	137. Elliptic curve based Diffie-Hellman key exchange algorithm			(6min)
+	138. Digital signatures with elliptic curves							(11min)
+	139. RSA and elliptic curve cryptography								(3min)
+	140. Useful article on elliptic curves									(1min)
+	Quiz 26: Elliptic Curve Cryptography Quiz
+
+
+Section 39: Elliptic Curve Cryptography (ECC) Implementation (Python)		(18min)
+
+	141. Elliptic curve cryptography (ECC) implementation I					(8min)
+	142. Elliptic curve cryptography (ECC) implementation II				(6min)
+	143. Elliptic curve cryptography (ECC) implementation III				(4min)
+
+
+Section 40: Elliptic Curve Digital Signature Algorithms (ECDSA) Implementation (Python)	(10min)
+
+	144. ECDSA implementation I												(6min)
+	145. ECDSA implementation II											(5min)
+
+
+Section 41: Elliptic Curve Cryptography (ECC) Implementation (Java)			(17min)
+
+	146. Elliptic curve cryptography (ECC) implementation I					(8min)
+	147. Elliptic curve cryptography (ECC) implementation II				(5min)
+	148. Elliptic curve cryptography (ECC) implementation III				(5min)
+
+
+Section 42: Elliptic Curve Digital Signature Algorithms (ECDSA) Implementation (Java)	(24min)
+
+	149. ECDSA implementation I												(10min)
+	150. ECDSA implementation II											(8min)
+	151. ECDSA implementation III											(6min)
+
+
+Section 43: Cracking the Elliptic Curve Cryptosystem (ECC)					(5min)
+
+	152. Cracking the elliptic curve cryptosystem							(5min)
+
+
+Section 44: ### CERTIFICATES ###											(12min)
+
+	153. What are root and intermediate certificates?						(12min)
+	154. Coming soon ...													(0min)
+
+
+Section 45: ### HASHING ###													(21min)
+
+	155. What is hashing in cryptography?									(5min)
+	156. Properties of hashing												(5min)
+	157. The birthday paradox												(11min)
+	Quiz 27: Hashing Basics Quiz
+
+
+Section 46: Hashing Algorithms Implementation (Python)						(11min)
+
+	158. MD5 hashing algorithm implementation								(4min)
+	159. SHA256 hashing algorithm implementation							(4min)
+	160. SHA512 hashing algorithm implementation							(3min)
+
+
+Section 47: Hashing Algorithms Implementation (Java)						(12min)
+
+	161. MD5 hashing algorithm implementation								(7min)
+	162. SHA256 hashing algorithm implementation							(5min)
+
+
+Section 48: ### APPLICATIONS OF CRYPTOGRAPHY###								(37min)
+
+	163. Applications of cryptographic hashes								(7min)
+	164. Cryptocurrencies (Bitcoin and Ethereum)							(13min)
+	165. HTTP, HTTPS and TLS												(9min)
+	166. WEP and WPA														(8min)
+
+
+Section 49: Course Materials (DOWNLOADS)									(1min)
+
+	167. Course materials													(1min)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ ================================================================================
+<==>	The Complete SSL and TLS Guide HTTP to HTTPS	<==>	11 total hours	||
+ ================================================================================
+
+Section 1: Course Introduction												(4min)
+
+	1. Intro																(3min)
+	2. Let's get connected! Join the Learning Community						(1min)
+
+
+Section 2: Introduction to the HTTPS and TLS								(50min)
+
+	3. Section 1 Introduction												(1min)
+	4. Overview of researches dedicated to SSL, TLS and HTTPS				(9min)
+	5. Overview of the certificates of some popular websites				(6min)
+	6. Difference between HTTP and HTTPS									(9min)
+	7. Analyzing traffic using Wireshark									(5min)
+	8. TCP/IP stack by example												(8min)
+	9. Analyzing HTTP protocol using Wireshark								(6min)
+	10. Analyzing HTTPS and TLS using Wireshark								(5min)
+
+
+Section 3: Encryption and hashing overview									(45min)
+
+	11. Section 2 Introduction												(1min)
+	12. Symmetric Key Encryption											(2min)
+	13. Symmetric Key Encryption Algorithms									(4min)
+	14. Hashing Overview													(7min)
+	15. MD5 hashing algorithm												(5min)
+	16. SHA hashing algorithm and HMAC overview								(6min)
+	17. Asymmetric keys overview											(2min)
+	18. Encryption using asymmetric keys									(3min)
+	19. Signing data using assymmetric keys									(5min)
+	20. RSA Overview														(2min)
+	21. PKI - Public Key Infrastructure Overview							(4min)
+	22. Certificate overview												(5min)
+
+
+Section 4: RSA, Certificates and Chain of Trust								(1hr 11min)
+
+	23. Section 3 Introduction												(1min)
+	24. Installing OpenSSL													(1min)
+	25. Using OpenSSL for RSA keys generation								(9min)
+	26. Exploring certificate of Instagram									(10min)
+	27. Exploring certificate of Google										(5min)
+	28. Exploring certificate of Comodo										(6min)
+	29. Root CA and root certificates in the OS								(8min)
+	30. How Chain of Trust is built											(9min)
+	31. Verifying chain of certificates										(5min)
+	32. Verifying SSL certificate and certificates chain					(11min)
+	33. PKI, Chain of trust and certificates summary						(4min)
+	34. Certificate domain scopes											(3min)
+
+
+Section 5: SSL, TLS and HTTPS												(1hr 39min)
+
+	35. Section 4 Introduction												(1min)
+	36. Introduction to the SSL and TLS										(3min)
+	37. History and versions of the SSL and TLS								(7min)
+	38. Why RSA is not used for data encryption in HTTPS					(4min)
+	39. How TLS session is established										(5min)
+	40. Analyzing TLS session setup using Wireshark							(13min)
+	41. Overview of cipher suites											(5min)
+	42. Encryption key generation by the web browser						(4min)
+	43. Delivering encryption key using Diffie Hellman key exchange			(3min)
+	44. Diffie Hellman overview												(3min)
+	45. Modulus operation													(3min)
+	46. Diffie Hellman algorithm											(9min)
+	47. Elliptic Curve Cryptography Overview								(2min)
+	48. Point Addition on Elliptic Curve									(6min)
+	49. Multiple Point Addition												(5min)
+	50. Point Doubling and Optimization										(6min)
+	51. Elliptic Curve Discrete Log Problem									(3min)
+	52. Comparing formulas													(3min)
+	53. ECDHE - Elliptic Curve Diffie Hellman Exchange						(6min)
+	54. Exploring ECDHE with ECDSA											(10min)
+
+
+Section 6: Launching TLS secured website with free domain and hosting		(1hr 39min)
+
+	55. Section 5 Introduction												(1min)
+	56. Free domains overview												(2min)
+	57. Setting up free domain and hosting using GitHub Pages				(10min)
+	58. Exploring TLS session with our website at Github.io - PART 1		(8min)
+	59. Exploring TLS session with our website at Github.io - PART 2		(8min)
+
+
+Section 7: Custom domain with free hosting									(47min)
+
+	60. Section 6 Introduction												(1min)
+	61. Planning next steps with Paid Domain								(2min)
+	62. Buying a domain														(11min)
+	63. Setting up free hosting												(12min)
+	64. Overview of the TLS settings at the free hosting					(5min)
+	65. OPTIONAL - Trying to install free Let's Encrypt TLS certificate on free hosting (16min)
+
+
+Section 8: Free TLS certificate (Let's Encrypt) at paid hosting				(1hr 32 min)
+
+	66. Section 7 Introduction												(1min)
+	67. VPS vs Dedicated Server												(7min)
+	68. Hosting Services Overview - PART 1									(7min)
+	69. Hosting Services Overview - PART 2									(9min)
+	70. Buying a droplet at DigitalOcean									(11min)
+	71. Launching Wordpress website with HTTPS								(13min)
+	72. Exploring our brand new TLS Certificate								(7min)
+	73. Finishing Wordpress installation									(3min)
+	74. Let's Encrypt and Certbot Overview									(10min)
+	75. Exploring TLS certificates via shell								(12min)
+	76. Exploring certbot configuration and testing renewal					(12min)
+	77. What we have got so far												(2min)
+
+
+Section 9: Cloudflare with free TLS certificate								(1hr)
+
+	78. Section 8 Introduction												(1min)
+	79. Reverse Proxy and Cloudflare										(6min)
+	80. Overview of the current setup										(1min)
+	81. Moving our website to Cloudflare									(9min)
+	82. Exploring free TLS certificate from Cloudflare						(4min)
+	83. Exploring TLS settings at Cloudflare								(5min)
+	84. Cloudflare SSL Operation Modes										(14min)
+	85. Flexible SSL Operation Mode at Cloudflare							(13min)
+	86. Off SSL Operation Mode at Cloudflare								(7min)
+
+
+Section 10: Configuring NGINX web server and installing TLS certificate		(55min)
+
+	87. Section 9 Introduction												(1min)
+	88. Current Setup and planning next steps								(2min)
+	89. Installing Nginx web server											(14min)
+	90. Configuring Nginx web server										(12min)
+	91. Setting up Cloudflare Origin TLS certificate						(17min)
+	92. Cloudflare summary													(2min)
+	93. Disable Cloudflare													(7min)
+
+
+Section 11: Creating self-signed certificate using OpenSSL					(31min)
+
+	94. Section 10 Introduction												(1min)
+	95. Current Nginx server setup overview									(3min)
+	96. CSR - Certificate Signing Request									(5min)
+	97. Generate Self-Signed certificate using OpenSSL						(14min)
+	98. Self-signed certificate overview									(3min)
+	99. Cloudflare and self-signed certificate								(6min)
+
+
+Section 12: Getting and installing custom certificate						(1hr 6min)
+
+	100. Section 11 Introduction											(1min)
+	101. Paid certificates overview											(9min)
+	102. Getting 90-days valid free TLS certificate							(16min)
+	103. Installing Custom TLS Certificate									(7min)
+	104. Analyzing our new custom TLS Certificate							(4min)
+	105. Our TLS Setup is not complete										(7min)
+	106. Installing TLS certificate of intermediate CA						(7min)
+	107. HTTP and HTTPS versions of website									(3min)
+	108. Configuring 301 Redirects to HTTPS									(10min)
+	109. Custom TLS Certificate Summary										(2min)
+
+
+Section 13: Cleanup															(5min)
+
+	110. Cleanup															(5min)
+
+Section 14: Summary															(2min)
+
+	111. Summary															(1min)
+	112. Bonus Lecture														(1min)

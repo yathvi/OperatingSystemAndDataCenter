@@ -1,0 +1,3309 @@
+Spin up Alpine docker image
+As of now this file has 3000+ lines
+Just scroll and check what text you can able to read.
+
+# Description:  Loads kernel parameters that are specified in /etc/sysctl.conf
+
+File: /etc/udhcpd.conf
+# Sample udhcpd configuration file (/etc/udhcpd.conf)
+# Values shown are defaults
+# The start and end of the IP lease block
+start		192.168.0.20
+end		192.168.0.254
+
+# The following are BOOTP specific options
+# next server to use in bootstrap
+#siaddr		192.168.0.22	# default: 0.0.0.0 (none)
+
+
+# The remainder of options are DHCP options and can be specified with the
+# keyword 'opt' or 'option'. If an option can take multiple items, such
+# as the dns option, they can be listed on the same line, or multiple
+# lines.
+# Examples:
+opt	dns	192.168.10.2 192.168.10.10
+option	subnet	255.255.255.0
+opt	router	192.168.10.2
+opt	wins	192.168.10.10
+option	dns	129.219.13.81	# appended to above DNS servers for a total of 3
+option	domain	local
+option	lease	864000		# default: 10 days
+option	msstaticroutes	10.0.0.0/8 10.127.0.1		# single static route
+option	staticroutes	10.0.0.0/8 10.127.0.1, 10.11.12.0/24 10.11.12.1
+
+
+
+# Obsolete options, no longer supported
+#opt logsrv     IP_LIST # [0x07] 704/UDP log server (not syslog!)
+#opt namesrv    IP_LIST # [0x05] IEN 116 name server, obsolete (August 1979!!!)
+#opt cookiesrv  IP_LIST # [0x08] RFC 865 "quote of the day" server, rarely (never?) used
+#opt timesrv    IP_LIST # [0x04] RFC 868 time server, rarely (never?) used
+
+
+File: /etc/apk/repositories
+https://dl-cdn.alpinelinux.org/alpine/v3.19/main
+https://dl-cdn.alpinelinux.org/alpine/v3.19/community
+
+
+File: /etc/hosts
+127.0.0.1	localhost
+::1	localhost ip6-localhost ip6-loopback
+fe00::0	ip6-localnet
+ff00::0	ip6-mcastprefix
+ff02::1	ip6-allnodes
+ff02::2	ip6-allrouters
+172.17.0.2	48ebf4410a18
+
+
+
+
+File: /etc/apk/arch
+x86_64
+
+
+
+File: /etc/sysctl.conf
+# content of this file will override /etc/sysctl.d/*
+
+
+File: /etc/issue
+Welcome to Alpine Linux 3.19
+Kernel \r on an \m (\l)
+
+
+Alpine Docker Image Guide
+-------------------------
+https://chat.openai.com/share/583f37b8-8402-4ed7-9b8a-44a8a712b710
+https://chat.openai.com/c/111d4bdd-d9a6-4578-b78e-702cd7d8fa14
+
+
+dd (Data Dump): The dd command is a versatile tool used for copying and converting files, including creating disk images and copying data between devices.
+
+df (Disk Free):	The df command is used to display information about disk space usage on a file system.
+
+dmesg is a command in Unix-like operating systems, including Linux, that is used to display the messages from the kernel ring buffer. The kernel ring buffer is a circular buffer used by the kernel to store log messages and diagnostic information about the system's hardware, software, and other events. The term "dmesg" stands for "display message" or "diagnostic message."
+
+
+what is APIC , FACP, DSDT, FACS, FACS, HPET, MCFG table
+The terms you've mentioned refer to different tables and components in the Advanced Configuration and Power Interface (ACPI) specification. ACPI is an open industry specification that defines a flexible and extensible interface for operating systems to discover and configure hardware components, manage power, and perform other system-related functions. The ACPI tables provide the operating system with information about the system's configuration, power management capabilities, and more.
+APIC (Advanced Programmable Interrupt Controller):
+FACP (Fixed ACPI Description Table):
+DSDT (Differentiated System Description Table):
+FACS (Firmware ACPI Control Structure):
+HPET (High Precision Event Timer):
+MCFG (PCI Express Memory Mapped Configuration Space Base Address Description Table):
+
+
+
+DMA stands for "Direct Memory Access." It is a feature of computer systems that allows certain hardware subsystems to access the system's main memory (RAM) independently of the central processing unit (CPU). DMA is used to enhance the efficiency of data transfers between devices, reducing the CPU's involvement in managing these transfers.
+
+what is MWAIT in BIOS SETUP
+
+	MWAIT (Monitor Wait) is an instruction used in Intel processors, and it is related to power management features, specifically in the context of the Advanced Configuration and Power Interface (ACPI). MWAIT is often mentioned in the BIOS (Basic Input/Output System) setup or configuration because it can be used to control certain aspects of a system's power management behavior.
+
+	Here's a brief overview:
+
+	1.	Power Management States:
+			Modern processors support various power management states, often denoted as C-states. These states represent different levels of power consumption and performance.
+	2.	MWAIT Instruction:
+			The MWAIT instruction is used by the processor to enter a specific low-power state. It allows the processor to "wait" for an event to occur while consuming minimal power.
+			MWAIT is often used in conjunction with ACPI to enable the operating system to manage power efficiently. The operating system or firmware (BIOS/UEFI) can use MWAIT to put the processor in a low-power state when there is no immediate processing to be done.
+	3.	BIOS Setup:
+			In the BIOS setup or configuration, there might be options related to power management, and MWAIT could be mentioned in the context of configuring how the system handles low-power states.
+			Users might find settings related to C-states or MWAIT in the BIOS, allowing them to customize how the system behaves in terms of power consumption and performance.
+	4.	System Performance vs. Power Consumption:
+			Adjusting MWAIT or C-state settings in the BIOS can have an impact on system performance and power consumption. Users might be able to choose between performance-oriented settings (which keep the processor in higher-power states for faster response) and power-saving settings (which allow the processor to enter lower-power states to conserve energy).
+			Keep in mind that the availability and specific options related to MWAIT or C-states can vary between different motherboard manufacturers and BIOS versions. Users interested in optimizing power management settings should refer to their system's documentation or consult the manufacturer's support resources for guidance on configuring MWAIT or related settings in the BIOS setup.
+
+
+dumpkmap is a utility used to display the kernel's keymap in a readable format. It is often associated with Linux systems and is used for examining the keyboard mapping configuration that the kernel uses. The keyboard mapping determines how keycodes generated by the keyboard are translated into characters or actions by the operating system.
+
+
+ionice is a command in Unix-like operating systems, including Linux, that is used to control the I/O scheduling class and priority of processes. The term "ionice" stands for "I/O nice," and it is a way to adjust the priority of input/output (I/O) operations for a specific process.
+
+
+dmesg is a command in Unix-like operating systems, including Linux, that is used to display the messages from the kernel ring buffer. The kernel ring buffer is a circular buffer used by the kernel to store log messages and diagnostic information about the system's hardware, software, and other events. The term "dmesg" stands for "display message" or "diagnostic message.
+
+
+lzop is a command-line utility used for compressing and decompressing files. It is part of the LZO compression algorithm family, which is designed to provide fast compression and decompression with relatively low memory usage. LZO stands for "Lempel-Ziv-Oberhumer," named after the developers who created the algorithm.
+
+
+mpstat is a command-line utility on Unix-like operating systems, including Linux, that is used to display and monitor detailed processor statistics. The name "mpstat" stands for "multiple processor statistics," and it is part of the sysstat package, which includes several tools for system performance monitoring.
+
+/bin # mpstat
+Linux 5.10.76-linuxkit (48ebf4410a18)	01/17/24	_x86_64_	(2 CPU)
+
+14:08:22     CPU    %usr   %nice    %sys %iowait    %irq   %soft  %steal  %guest   %idle
+14:08:22     all    0.62    0.00    1.31    0.26    0.00    0.08    0.00    0.00   97.73
+/bin # 
+
+
+
+
+
+netstat is a command-line network utility tool available in Unix-like operating systems, including Linux and macOS. It provides information about various network-related activities and services on a system. The name "netstat" is derived from "network statistics."
+
+/bin # netstat -h
+netstat: unrecognized option: h
+BusyBox v1.36.1 (2023-11-07 18:53:09 UTC) multi-call binary.
+
+Usage: netstat [-ral] [-tuwx] [-enWp]
+
+Display networking information
+
+	-r	Routing table
+	-a	All sockets
+	-l	Listening sockets
+		Else: connected sockets
+	-t	TCP sockets
+	-u	UDP sockets
+	-w	Raw sockets
+	-x	Unix sockets
+		Else: all socket types
+	-e	Other/more information
+	-n	Don't resolve names
+	-W	Wide display
+	-p	Show PID/program name for sockets
+/bin # 
+
+
+/bin # netstat -r
+Kernel IP routing table
+Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface
+default         172.17.0.1      0.0.0.0         UG        0 0          0 eth0
+172.17.0.0      *               255.255.0.0     U         0 0          0 eth0
+/bin # 
+
+
+/bin # netstat -a
+Active Internet connections (servers and established)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       
+Active UNIX domain sockets (servers and established)
+Proto RefCnt Flags       Type       State         I-Node Path
+/bin # 
+
+
+/bin # netstat -l
+Active Internet connections (only servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       
+Active UNIX domain sockets (only servers)
+Proto RefCnt Flags       Type       State         I-Node Path
+/bin # 
+
+
+/bin # netstat -t
+Active Internet connections (w/o servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       
+/bin # 
+
+
+/bin # netstat -u
+Active Internet connections (w/o servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       
+/bin # 
+
+
+/bin # netstat -w
+Active Internet connections (w/o servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       
+/bin # 
+
+
+/bin # netstat -x
+Active UNIX domain sockets (w/o servers)
+Proto RefCnt Flags       Type       State         I-Node Path
+/bin # 
+
+
+/bin # netstat -e
+Active Internet connections (w/o servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       
+Active UNIX domain sockets (w/o servers)
+Proto RefCnt Flags       Type       State         I-Node Path
+/bin # 
+
+
+/bin # netstat -n
+Active Internet connections (w/o servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       
+Active UNIX domain sockets (w/o servers)
+Proto RefCnt Flags       Type       State         I-Node Path
+/bin # 
+
+
+/bin # netstat -W
+Active Internet connections (w/o servers)
+Proto Recv-Q Send-Q Local Address                                       Foreign Address                                     State       
+Active UNIX domain sockets (w/o servers)
+Proto RefCnt Flags       Type       State         I-Node Path
+/bin # 
+
+
+/bin # netstat -p
+Active Internet connections (w/o servers)
+Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name    
+Active UNIX domain sockets (w/o servers)
+Proto RefCnt Flags       Type       State         I-Node PID/Program name    Path
+/bin # 
+
+Keep in mind that netstat has been deprecated on some systems, and the recommended alternative is often the ss command. The ss command provides similar functionality but is designed to be more efficient and is part of the iproute2 package. For example:
+
+ss -tulw
+
+
+
+
+
+
+
+
+
+
+mknod is a command in Unix-like operating systems that is used to create special files, also known as device files or nodes, in the filesystem. Special files are a way for processes to communicate with or access various hardware devices, including disks, terminals, printers, and more. mknod allows users to manually create these special files.
+
+
+ipcalc is a command-line utility used to calculate various network-related information for a given IP address or network. It is commonly used on Unix-like operating systems, including Linux. The name "ipcalc" stands for "IP Calculator."
+
+
+kbd_mode is a command-line utility in Unix-like operating systems that is used to display or set the keyboard mode on the system. The keyboard mode refers to the behavior of the keyboard and how it interprets key presses.
+
+
+
+
+
+
+What is below link?
+
+/bin # link
+BusyBox v1.36.1 (2023-11-07 18:53:09 UTC) multi-call binary.
+
+Usage: link FILE LINK
+
+Create hard LINK to FILE
+/bin # 
+
+
+
+
+==============================================================================================
+resource-constrained environments such as embedded systems or minimalistic Linux distributions
+==============================================================================================
+The output you provided is from the BusyBox command-line interface, specifically the link command. BusyBox is a software suite that provides simplified and compact versions of common Unix utilities in a single executable. It is often used in resource-constrained environments such as embedded systems or minimalistic Linux distributions.
+In the context of BusyBox, the link command is used to create a hard link between two files. Here's the information from the output:
+
+
+
+
+
+
+
+
+
+
+
+
+/bin # uname -a
+Linux 48ebf4410a18 5.10.76-linuxkit #1 SMP Mon Nov 8 10:21:19 UTC 2021 x86_64 Linux
+/bin # cat /etc/os-release 
+NAME="Alpine Linux"
+ID=alpine
+VERSION_ID=3.19.0
+PRETTY_NAME="Alpine Linux v3.19"
+HOME_URL="https://alpinelinux.org/"
+BUG_REPORT_URL="https://gitlab.alpinelinux.org/alpine/aports/-/issues"
+/bin # ls -lrt bbconfig
+lrwxrwxrwx    1 root     root            12 Dec  7 09:43 bbconfig -> /bin/busybox
+/bin # 
+
+
+=========================================================================================
+resource-constrained environments, such as embedded systems or containerized environments
+=========================================================================================
+The busybox utility is a single executable that combines several stripped-down versions of common UNIX utilities into a single binary. It is often used in resource-constrained environments, such as embedded systems or containerized environments, to provide a compact implementation of basic command-line tools.
+
+
+
+
+
+
+
+
+
+
+
+
+
+The link command is particularly useful in environments where disk space is limited, as it allows multiple filenames to reference the same physical data on disk without duplicating the content.
+
+
+
+
+
+The mount command in Unix-like operating systems is used to attach a filesystem to a specified directory, making the content of that filesystem accessible at the specified mount point. It is a crucial command for managing filesystems and storage devices.
+
+To check the currently mounted filesystems along with their mount points, you can use either the mount or df command. Here are examples of both commands:
+
+mount
+
+df -h
+=====
+The df (disk free) command is primarily used to display information about disk space usage, but it also shows mounted filesystems and their mount points.
+
+/ # df -h
+Filesystem                Size      Used Available Use% Mounted on
+overlay                  58.4G     32.3G     23.1G  58% /
+tmpfs                    64.0M         0     64.0M   0% /dev
+shm                      64.0M         0     64.0M   0% /dev/shm
+/dev/vda1                58.4G     32.3G     23.1G  58% /etc/resolv.conf
+/dev/vda1                58.4G     32.3G     23.1G  58% /etc/hostname
+/dev/vda1                58.4G     32.3G     23.1G  58% /etc/hosts
+overlay                  58.4G     32.3G     23.1G  58% /test2
+/ # 
+
+
+In Linux and Unix-like operating systems, a "mountpoint" refers to a directory or a location in the filesystem where a separate filesystem is attached or "mounted." When a filesystem is mounted at a specific mountpoint, the files and directories within that filesystem become accessible starting from that location in the overall filesystem hierarchy.
+
+The mountpoint command in Linux is used to check if a given directory is a mountpoint. It is a simple utility that provides a quick way to determine whether a particular directory is the mountpoint for a filesystem.
+
+/ # mountpoint /dev
+/dev is a mountpoint
+/ # mountpoint /dev/shm
+/dev/shm is a mountpoint
+/ # 
+
+
+
+
+
+nice is a command and a system call in Unix-like operating systems that allows users to adjust the priority of a process. The priority level determines how much CPU time a process gets in relation to other processes. Lower priority values mean higher priority for the process, and higher priority values mean lower priority.
+
+The nice command is used to launch a command with a specified priority, or it can be used to change the priority of an already running process.
+
+Here's a basic overview of how the nice command works:
+
+
+nice [options] [command [arguments...]]
+
+nice -n 10 ./my_program
+This example launches the my_program executable with a nice value of 10. A higher nice value indicates a lower priority.
+
+Options:
+-n or --adjustment: Specifies the nice value. Values range from -20 (highest priority) to 19 (lowest priority). The default nice value is 10.
+-20 to 19: Specifies the nice value directly, without using the -n option.
+
+Changing Priority of Running Processes:
+If you want to change the priority of a process that is already running, you can use the renice command. This command requires the process ID (PID) of the target process.
+
+renice -n 10 -p 1234
+This example changes the priority of the process with PID 1234 to a nice value of 10.
+
+Viewing Nice Values:
+The ps command can be used to view the nice values of running processes. The nice value is typically displayed in the NI (nice) column.
+
+ps aux
+The nice command is useful when you want to control the priority of processes, especially in a multi-user environment or when you want to ensure that certain tasks do not monopolize the CPU. Keep in mind that adjusting process priorities might require superuser (root) privileges in some cases. Additionally, some systems use a different mechanism called the Completely Fair Scheduler (CFS) or other schedulers, which may affect how priorities are managed.
+
+
+
+
+The pidof command in Unix-like operating systems is used to find the process IDs (PIDs) of running processes based on their process names. It is a simple utility that helps users quickly identify the PIDs associated with a particular process name.
+
+/bin # pidof base64
+9521
+/bin # 
+
+
+
+pipe_progress
+-------------
+https://github.com/brgl/busybox/blob/master/debianutils/pipe_progress.c
+
+
+
+The printenv command in Unix-like operating systems is used to display the values of environment variables. Environment variables are key-value pairs that store information about the system environment, user preferences, and configuration settings. The printenv command allows users to view the values of these variables.
+
+/bin # printenv
+HOSTNAME=48ebf4410a18
+SHLVL=4
+HOME=/root
+OLDPWD=/
+TERM=xterm
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+PWD=/bin
+/bin # 
+
+
+The rev command in Unix-like operating systems is a simple utility that reverses the characters in each line of a text file or standard input (stdin). The name "rev" is derived from "reverse."
+
+rev filename.txt
+
+echo "Hello, World!" | rev
+
+
+
+The run-parts command in Unix-like operating systems is a tool that runs all the executable files in a specified directory. It is commonly used for running system-wide or package-specific scripts in a controlled manner.
+
+run-parts /etc/cron.daily
+
+0 2 * * * run-parts /etc/cron.daily
+
+
+
+setpriv is a command in Unix-like operating systems, specifically in the Linux environment. It is part of the util-linux package and provides a way to set certain process attributes, including privileges and resource limits. The setpriv command is designed to be used in scripts or as part of system configurations.
+
+
+
+setserial is a command-line utility in Unix-like operating systems, including Linux, that is used to configure the serial port settings on a system. Serial ports, often referred to as RS-232 or COM ports, are commonly used for communication with devices such as modems, printers, and various embedded systems.
+
+To display the current serial port settings:
+setserial -g /dev/ttyS*
+
+/bin # setserial -g /dev/ttyS*
+/dev/ttyS0, UART: 16550A, Port: 0x03f8, IRQ: 4
+/dev/ttyS1, UART: 16550A, Port: 0x02f8, IRQ: 3
+/dev/ttyS2, UART: unknown, Port: 0x03e8, IRQ: 4
+/dev/ttyS3, UART: unknown, Port: 0x02e8, IRQ: 3
+/bin # 
+
+
+The setserial command allows users to configure various parameters of serial ports, including the baud rate, data bits, stop bits, and parity. It is particularly useful for adjusting the settings of serial devices when needed. Note that the availability of setserial and the specific options it supports may vary between different Unix-like systems.
+
+
+The stat command in Unix-like operating systems is used to display detailed information about the status of a file or a file system. It provides various details about a file, including its size, permissions, inode number, timestamps, and more.
+
+/bin # stat /tmp/text1.txt 
+  File: /tmp/text1.txt
+  Size: 6         	Blocks: 8          IO Block: 4096   regular file
+Device: 8fh/143d	Inode: 3446927     Links: 2
+Access: (0644/-rw-r--r--)  Uid: (    0/    root)   Gid: (    0/    root)
+Access: 2024-01-17 13:06:21.803935000 +0000
+Modify: 2024-01-17 12:59:14.152567000 +0000
+Change: 2024-01-17 13:02:30.536634000 +0000
+/bin # 
+
+
+/bin # stat grep
+  File: grep
+  Size: 166024    	Blocks: 328        IO Block: 4096   regular file
+Device: 8fh/143d	Inode: 3294328     Links: 1
+Access: (0755/-rwxr-xr-x)  Uid: (    0/    root)   Gid: (    0/    root)
+Access: 2024-01-16 20:11:48.509724000 +0000
+Modify: 2023-05-13 14:12:18.000000000 +0000
+Change: 2024-01-16 20:11:44.556724000 +0000
+/bin # 
+
+
+The sync command in Unix-like operating systems is used to ensure that all data in memory is written to disk. This helps to synchronize the data in memory with the data on disk by flushing the file system buffers. The sync command is particularly useful for ensuring data integrity and reducing the risk of data loss in the event of a system crash or power failure.
+
+usleep microseconds
+
+nanosleep
+
+sleep
+
+
+The watch command in Unix-like operating systems is used to execute a command periodically, displaying the output in real-time. It is commonly used for monitoring and observing changes in the output of commands, such as log files, system status, or other dynamic data.
+
+watch -n 1 ls -l
+
+This command runs the ls -l command every 1 second (-n 1) and displays the output, updating the terminal with the latest results.
+
+Monitoring Log Files:
+---------------------
+watch -n 2 tail /var/log/syslog
+
+This command monitors changes to the /var/log/syslog file every 2 seconds.
+
+System Monitoring:
+------------------
+watch -n 1 top
+
+This command displays real-time updates of system statistics using the top command.
+
+Checking Disk Space:
+--------------------
+watch df -h
+
+This command shows real-time updates of disk space usage using the df command.
+
+Monitoring Network Connections:
+-------------------------------
+watch -n 2 netstat -an
+
+This command displays real-time updates of network connections using the netstat command.
+
+
+The cat command is a Unix and Unix-like operating system utility that is used to concatenate and display the content of files. The primary purpose of the cat command is to concatenate files and output them to the standard output (usually the terminal). However, it is also commonly used for simply displaying the contents of a single file.
+
+The zcat command is a Unix and Linux utility that allows you to view the contents of compressed files without decompressing them first. It is specifically designed to work with gzip-compressed files. The zcat command is essentially a combination of the cat command and the zcat command.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The term "dmesg" stands for "display message" or "diagnostic message."
+
+/bin # dmesg
+[    0.000000] Linux version 5.10.76-linuxkit (root@buildkitsandbox) (gcc (Alpine 10.2.1_pre1) 10.2.1 20201203, GNU ld (GNU Binutils) 2.35.2) #1 SMP Mon Nov 8 10:21:19 UTC 2021
+[    0.000000] Command line: earlyprintk=serial linuxkit.unified_cgroup_hierarchy=1 page_poison=1 vsyscall=emulate panic=1 nospec_store_bypass_disable noibrs noibpb no_stf_barrier mitigations=off console=ttyS0 console=ttyS1  vpnkit.connect=connect://2/1999
+[    0.000000] x86/fpu: Supporting XSAVE feature 0x001: 'x87 floating point registers'
+[    0.000000] x86/fpu: Supporting XSAVE feature 0x002: 'SSE registers'
+[    0.000000] x86/fpu: Supporting XSAVE feature 0x004: 'AVX registers'
+[    0.000000] x86/fpu: xstate_offset[2]:  576, xstate_sizes[2]:  256
+[    0.000000] x86/fpu: Enabled xstate features 0x7, context size is 832 bytes, using 'standard' format.
+[    0.000000] BIOS-provided physical RAM map:
+[    0.000000] BIOS-e820: [mem 0x0000000000000000-0x000000000009fbff] usable
+[    0.000000] BIOS-e820: [mem 0x0000000000100000-0x000000007fffffff] usable
+[    0.000000] printk: bootconsole [earlyser0] enabled
+[    0.000000] ERROR: earlyprintk= earlyser already used
+[    0.000000] ERROR: earlyprintk= earlyser already used
+[    0.000000] NX (Execute Disable) protection: active
+[    0.000000] SMBIOS 2.6 present.
+[    0.000000] DMI:  BHYVE, BIOS 1.00 03/14/2014
+[    0.000000] tsc: Fast TSC calibration failed
+[    0.000000] e820: update [mem 0x00000000-0x00000fff] usable ==> reserved
+[    0.000000] e820: remove [mem 0x000a0000-0x000fffff] usable
+[    0.000000] last_pfn = 0x80000 max_arch_pfn = 0x400000000
+[    0.000000] MTRR default type: uncachable
+[    0.000000] MTRR variable ranges disabled:
+[    0.000000] Disabled
+[    0.000000] x86/PAT: MTRRs disabled, skipping PAT initialization too.
+[    0.000000] CPU MTRRs all blank - virtualized system.
+[    0.000000] x86/PAT: Configuration [0-7]: WB  WT  UC- UC  WB  WT  UC- UC  
+[    0.000000] found SMP MP-table at [mem 0x000f0000-0x000f000f]
+[    0.000000] Kernel/User page tables isolation: disabled on command line.
+[    0.000000] Using GB pages for direct mapping
+[    0.000000] RAMDISK: [mem 0x78f03000-0x7fffffff]
+[    0.000000] ACPI: Early table checksum verification disabled
+[    0.000000] ACPI: RSDP 0x00000000000F2400 000024 (v02 BHYVE )
+[    0.000000] ACPI: XSDT 0x00000000000F2480 000044 (v01 BHYVE  BVXSDT   00000001 INTL 20140828)
+[    0.000000] ACPI: APIC 0x00000000000F2500 000062 (v01 BHYVE  BVMADT   00000001 INTL 20140828)
+[    0.000000] ACPI: FACP 0x00000000000F2A00 00010C (v05 BHYVE  BVFACP   00000001 INTL 20140828)
+[    0.000000] ACPI: DSDT 0x00000000000F2C00 000A2D (v02 BHYVE  BVDSDT   00000001 INTL 20140828)
+[    0.000000] ACPI: FACS 0x00000000000F2BC0 000040
+[    0.000000] ACPI: FACS 0x00000000000F2BC0 000040
+[    0.000000] ACPI: HPET 0x00000000000F2B40 000038 (v01 BHYVE  BVHPET   00000001 INTL 20140828)
+[    0.000000] ACPI: MCFG 0x00000000000F2B80 00003C (v01 BHYVE  BVMCFG   00000001 INTL 20140828)
+[    0.000000] ACPI: Reserving APIC table memory at [mem 0xf2500-0xf2561]
+[    0.000000] ACPI: Reserving FACP table memory at [mem 0xf2a00-0xf2b0b]
+[    0.000000] ACPI: Reserving DSDT table memory at [mem 0xf2c00-0xf362c]
+[    0.000000] ACPI: Reserving FACS table memory at [mem 0xf2bc0-0xf2bff]
+[    0.000000] ACPI: Reserving FACS table memory at [mem 0xf2bc0-0xf2bff]
+[    0.000000] ACPI: Reserving HPET table memory at [mem 0xf2b40-0xf2b77]
+[    0.000000] ACPI: Reserving MCFG table memory at [mem 0xf2b80-0xf2bbb]
+[    0.000000] ACPI: Local APIC address 0xfee00000
+[    0.000000] system APIC only can use physical flat
+[    0.000000] Setting APIC routing to physical flat.
+[    0.000000] Zone ranges:
+[    0.000000]   DMA      [mem 0x0000000000001000-0x0000000000ffffff]
+[    0.000000]   DMA32    [mem 0x0000000001000000-0x000000007fffffff]
+[    0.000000]   Normal   empty
+[    0.000000]   Device   empty
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000000001000-0x000000000009efff]
+[    0.000000]   node   0: [mem 0x0000000000100000-0x000000007fffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000000001000-0x000000007fffffff]
+[    0.000000] On node 0 totalpages: 524190
+[    0.000000]   DMA zone: 64 pages used for memmap
+[    0.000000]   DMA zone: 21 pages reserved
+[    0.000000]   DMA zone: 3998 pages, LIFO batch:0
+[    0.000000]   DMA32 zone: 8128 pages used for memmap
+[    0.000000]   DMA32 zone: 520192 pages, LIFO batch:63
+[    0.000000] On node 0, zone DMA: 1 pages in unavailable ranges
+[    0.000000] On node 0, zone DMA: 97 pages in unavailable ranges
+[    0.000000] ACPI: PM-Timer IO Port: 0x408
+[    0.000000] ACPI: Local APIC address 0xfee00000
+[    0.000000] system APIC only can use physical flat
+[    0.000000] ACPI: LAPIC_NMI (acpi_id[0xff] high edge lint[0x1])
+[    0.000000] IOAPIC[0]: apic_id 0, version 17, address 0xfec00000, GSI 0-23
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 0 global_irq 2 high edge)
+[    0.000000] ACPI: INT_SRC_OVR (bus 0 bus_irq 9 global_irq 9 low level)
+[    0.000000] ACPI: IRQ0 used by override.
+[    0.000000] ACPI: IRQ9 used by override.
+[    0.000000] Using ACPI (MADT) for SMP configuration information
+[    0.000000] ACPI: HPET id: 0x80860701 base: 0xfed00000
+[    0.000000] smpboot: Allowing 2 CPUs, 0 hotplug CPUs
+[    0.000000] [mem 0x80000000-0xffffffff] available for PCI devices
+[    0.000000] Booting paravirtualized kernel on bare hardware
+[    0.000000] clocksource: refined-jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1910969940391419 ns
+[    0.000000] setup_percpu: NR_CPUS:128 nr_cpumask_bits:128 nr_cpu_ids:2 nr_node_ids:1
+[    0.000000] percpu: Embedded 54 pages/cpu s181400 r8192 d31592 u1048576
+[    0.000000] pcpu-alloc: s181400 r8192 d31592 u1048576 alloc=1*2097152
+[    0.000000] pcpu-alloc: [0] 0 1 
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 515977
+[    0.000000] Kernel command line: earlyprintk=serial linuxkit.unified_cgroup_hierarchy=1 page_poison=1 vsyscall=emulate panic=1 nospec_store_bypass_disable noibrs noibpb no_stf_barrier mitigations=off console=ttyS0 console=ttyS1  vpnkit.connect=connect://2/1999
+[    0.000000] Dentry cache hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 131072 (order: 8, 1048576 bytes, linear)
+[    0.000000] mem auto-init: stack:byref_all(zero), heap alloc:off, heap free:off
+[    0.000000] Memory: 1913604K/2096760K available (14348K kernel code, 2310K rwdata, 3496K rodata, 1612K init, 2912K bss, 182896K reserved, 0K cma-reserved)
+[    0.000000] random: get_random_u32 called from ____cache_alloc+0x441/0x61f with crng_init=0
+[    0.000000] ftrace: allocating 49041 entries in 192 pages
+[    0.000000] ftrace: allocated 192 pages with 2 groups
+[    0.000000] rcu: Hierarchical RCU implementation.
+[    0.000000] rcu: 	RCU restricting CPUs from NR_CPUS=128 to nr_cpu_ids=2.
+[    0.000000] 	Rude variant of Tasks RCU enabled.
+[    0.000000] 	Tracing variant of Tasks RCU enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 100 jiffies.
+[    0.000000] rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=2
+[    0.000000] NR_IRQS: 8448, nr_irqs: 440, preallocated irqs: 16
+[    0.000000] Console: colour dummy device 80x25
+[    0.000000] printk: console [ttyS0] enabled
+[    0.000000] ACPI: Core revision 20200925
+[    0.000000] ACPI BIOS Warning (bug): Incorrect checksum in table [DSDT] - 0x7E, should be 0xDB (20200925/tbprint-173)
+[    0.000000] clocksource: hpet: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 191126044627 ns
+[    0.000000] APIC: Switch to symmetric I/O mode setup
+[    0.001000] ..TIMER: vector=0x30 apic1=0 pin1=2 apic2=-1 pin2=-1
+[    0.009000] tsc: Unable to calibrate against PIT
+[    0.010000] tsc: using PMTIMER reference calibration
+[    0.011000] tsc: Detected 2797.875 MHz processor
+[    0.000011] clocksource: tsc-early: mask: 0xffffffffffffffff max_cycles: 0x28546940b5f, max_idle_ns: 440795282489 ns
+[    0.004875] Calibrating delay loop (skipped), value calculated using timer frequency.. 5595.75 BogoMIPS (lpj=2797875)
+[    0.005879] pid_max: default: 32768 minimum: 301
+[    0.006964] LSM: Security Framework initializing
+[    0.008876] Yama: becoming mindful.
+[    0.009924] Mount-cache hash table entries: 4096 (order: 3, 32768 bytes, linear)
+[    0.010883] Mountpoint-cache hash table entries: 4096 (order: 3, 32768 bytes, linear)
+[    0.014328] Last level iTLB entries: 4KB 1024, 2MB 1024, 4MB 1024
+[    0.014875] Last level dTLB entries: 4KB 1024, 2MB 1024, 4MB 1024, 1GB 4
+[    0.015881] Speculative Store Bypass: Vulnerable
+[    0.016875] SRBDS: Unknown: Dependent on hypervisor status
+[    0.017977] Freeing SMP alternatives memory: 20K
+[    0.088229] smpboot: CPU0: Intel(R) Core(TM) i7-4558U CPU @ 2.80GHz (family: 0x6, model: 0x45, stepping: 0x1)
+[    0.090159] Performance Events: unsupported p6 CPU model 69 no PMU driver, software events only.
+[    0.091020] rcu: Hierarchical SRCU implementation.
+[    0.093318] NMI watchdog: Perf NMI watchdog permanently disabled
+[    0.093997] smp: Bringing up secondary CPUs ...
+[    0.095088] x86: Booting SMP configuration:
+[    0.095902] .... node  #0, CPUs:      #1
+[    0.000000] smpboot: CPU 1 Converting physical 0 to logical die 1
+[    0.000000] calibrate_delay_direct() dropping max bogoMips estimate 0 = 18464673
+[    0.000000] calibrate_delay_direct() dropping max bogoMips estimate 1 = 5053266
+[    0.000000] calibrate_delay_direct() dropping max bogoMips estimate 2 = 4289584
+[    0.000000] calibrate_delay_direct() dropping max bogoMips estimate 4 = 3363383
+[    0.000000] calibrate_delay_direct() failed to get a good estimate for loops_per_jiffy.
+[    0.000000] Probably due to long platform interrupts. Consider using "lpj=" boot option.
+[    0.180041] smp: Brought up 1 node, 2 CPUs
+[    0.180880] smpboot: Max logical packages: 2
+[    0.181878] smpboot: Total of 2 processors activated (10166.88 BogoMIPS)
+[    0.183287] devtmpfs: initialized
+[    0.183952] x86/mm: Memory block size: 128MB
+[    0.186245] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1911260446275000 ns
+[    0.186886] futex hash table entries: 512 (order: 3, 32768 bytes, linear)
+[    0.189237] NET: Registered protocol family 16
+[    0.190150] audit: initializing netlink subsys (disabled)
+[    0.192035] thermal_sys: Registered thermal governor 'step_wise'
+[    0.192051] audit: type=2000 audit(1705428035.200:1): state=initialized audit_enabled=0 res=1
+[    0.192054] cpuidle: using governor ladder
+[    0.194920] cpuidle: using governor menu
+[    0.196036] ACPI FADT declares the system doesn't support PCIe ASPM, so disable it
+[    0.196874] ACPI: bus type PCI registered
+[    0.197873] acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5
+[    0.199067] PCI: MMCONFIG for domain 0000 [bus 00-ff] at [mem 0xe0000000-0xefffffff] (base 0xe0000000)
+[    0.199880] PCI: not using MMCONFIG
+[    0.200912] PCI: Using configuration type 1 for base access
+[    0.205534] Kprobes globally optimized
+[    0.207950] HugeTLB registered 1.00 GiB page size, pre-allocated 0 pages
+[    0.208884] HugeTLB registered 2.00 MiB page size, pre-allocated 0 pages
+[    0.227602] cryptd: max_cpu_qlen set to 1000
+[    0.259112] ACPI: Added _OSI(Module Device)
+[    0.259882] ACPI: Added _OSI(Processor Device)
+[    0.260877] ACPI: Added _OSI(3.0 _SCP Extensions)
+[    0.261879] ACPI: Added _OSI(Processor Aggregator Device)
+[    0.262890] ACPI: Added _OSI(Linux-Dell-Video)
+[    0.263879] ACPI: Added _OSI(Linux-Lenovo-NV-HDMI-Audio)
+[    0.264890] ACPI: Added _OSI(Linux-HPI-Hybrid-Graphics)
+[    0.266456] ACPI: 1 ACPI AML tables successfully acquired and loaded
+[    0.271037] ACPI: Interpreter enabled
+[    0.271889] ACPI: (supports S0 S5)
+[    0.272869] ACPI: Using IOAPIC for interrupt routing
+[    0.273109] PCI: MMCONFIG for domain 0000 [bus 00-ff] at [mem 0xe0000000-0xefffffff] (base 0xe0000000)
+[    0.273993] PCI: MMCONFIG at [mem 0xe0000000-0xefffffff] reserved in ACPI motherboard resources
+[    0.274898] PCI: Using host bridge windows from ACPI; if necessary, use "pci=nocrs" and report a bug
+[    0.279740] ACPI: PCI Root Bridge [PC00] (domain 0000 [bus 00])
+[    0.279888] acpi PNP0A03:00: _OSC: OS supports [ExtendedConfig ASPM ClockPM Segments MSI HPX-Type3]
+[    0.281064] acpi PNP0A03:00: host bridge window [mem 0x00000000-0xd0000fffff window] ([0x8000000000-0xd0000fffff] ignored, not CPU addressable)
+[    0.281883] acpi PNP0A03:00: host bridge window expanded to [mem 0x00000000-0x7fffffffff window]; [mem 0x00000000-0x7fffffffff window] ignored
+[    0.283004] PCI host bridge to bus 0000:00
+[    0.283879] pci_bus 0000:00: root bus resource [io  0x0000-0x0cf7 window]
+[    0.284884] pci_bus 0000:00: root bus resource [io  0x0d00-0x1fff window]
+[    0.285882] pci_bus 0000:00: root bus resource [io  0x2000-0x215f window]
+[    0.286882] pci_bus 0000:00: root bus resource [mem 0x00000000-0x7fffffffff window]
+[    0.287885] pci_bus 0000:00: root bus resource [bus 00]
+[    0.289091] pci 0000:00:00.0: [1275:1275] type 00 class 0x060000
+[    0.290974] pci 0000:00:00.0: reg 0x30: [mem 0x00000000-0x000007ff pref]
+[    0.292741] pci 0000:00:01.0: [1af4:1000] type 00 class 0x020000
+[    0.293076] pci 0000:00:01.0: reg 0x10: [io  0x2000-0x201f]
+[    0.294893] pci 0000:00:01.0: reg 0x14: [mem 0xc0000000-0xc0001fff]
+[    0.297041] pci 0000:00:01.0: reg 0x30: [mem 0x00000000-0x000007ff pref]
+[    0.301076] pci 0000:00:02.0: [1af4:1001] type 00 class 0x010000
+[    0.303079] pci 0000:00:02.0: reg 0x10: [io  0x2080-0x20ff]
+[    0.303980] pci 0000:00:02.0: reg 0x14: [mem 0xc0002000-0xc0003fff]
+[    0.306151] pci 0000:00:02.0: reg 0x30: [mem 0x00000000-0x000007ff pref]
+[    0.308471] pci 0000:00:03.0: [1af4:103f] type 00 class 0x020000
+[    0.309089] pci 0000:00:03.0: reg 0x10: [io  0x2100-0x211f]
+[    0.309991] pci 0000:00:03.0: reg 0x14: [mem 0xc0004000-0xc0005fff]
+[    0.312396] pci 0000:00:03.0: reg 0x30: [mem 0x00000000-0x000007ff pref]
+[    0.314140] pci 0000:00:04.0: [1af4:1005] type 00 class 0x100000
+[    0.316016] pci 0000:00:04.0: reg 0x10: [io  0x2120-0x213f]
+[    0.316973] pci 0000:00:04.0: reg 0x14: [mem 0xc0006000-0xc0007fff]
+[    0.318532] pci 0000:00:04.0: reg 0x30: [mem 0x00000000-0x000007ff pref]
+[    0.319869] pci 0000:00:1f.0: [8086:7000] type 00 class 0x060100
+[    0.320869] pci 0000:00:1f.0: reg 0x30: [mem 0x00000000-0x000007ff pref]
+[    0.321269] pci_bus 0000:00: on NUMA node 0
+[    0.321492] ACPI: PCI Interrupt Link [LNKA] (IRQs 3 4 *5 6 7 9 10 11 12 14 15)
+[    0.322070] ACPI: PCI Interrupt Link [LNKB] (IRQs 3 4 5 *6 7 9 10 11 12 14 15)
+[    0.322997] ACPI: PCI Interrupt Link [LNKC] (IRQs 3 4 5 6 *7 9 10 11 12 14 15)
+[    0.324920] ACPI: PCI Interrupt Link [LNKD] (IRQs 3 4 5 6 7 9 *10 11 12 14 15)
+[    0.325972] ACPI: PCI Interrupt Link [LNKE] (IRQs 3 4 5 6 7 9 10 11 12 14 15) *0, disabled.
+[    0.327012] ACPI: PCI Interrupt Link [LNKF] (IRQs 3 4 5 6 7 9 10 11 12 14 15) *0, disabled.
+[    0.327983] ACPI: PCI Interrupt Link [LNKG] (IRQs 3 4 5 6 7 9 10 11 12 14 15) *0, disabled.
+[    0.328980] ACPI: PCI Interrupt Link [LNKH] (IRQs 3 4 5 6 7 9 10 11 12 14 15) *0, disabled.
+[    0.330152] SCSI subsystem initialized
+[    0.330942] libata version 3.00 loaded.
+[    0.330975] ACPI: bus type USB registered
+[    0.332893] usbcore: registered new interface driver usbfs
+[    0.333894] usbcore: registered new interface driver hub
+[    0.334888] usbcore: registered new device driver usb
+[    0.335902] pps_core: LinuxPPS API ver. 1 registered
+[    0.336872] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.337897] PTP clock support registered
+[    0.339154] NetLabel: Initializing
+[    0.339908] NetLabel:  domain hash size = 128
+[    0.340874] NetLabel:  protocols = UNLABELED CIPSOv4 CALIPSO
+[    0.341921] NetLabel:  unlabeled traffic allowed by default
+[    0.342878] PCI: Using ACPI for IRQ routing
+[    0.440869] PCI: pci_cache_line_size set to 64 bytes
+[    0.440869] e820: reserve RAM buffer [mem 0x0009fc00-0x0009ffff]
+[    0.440869] hpet0: at MMIO 0xfed00000, IRQs 2, 8, 0, 0, 0, 0, 0, 0
+[    0.440875] hpet0: 8 comparators, 32-bit 10.000000 MHz counter
+[    0.442095] clocksource: Switched to clocksource tsc-early
+[    0.606046] VFS: Disk quotas dquot_6.6.0
+[    0.607718] VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+[    0.613728] FS-Cache: Loaded
+[    0.615227] CacheFiles: Loaded
+[    0.616987] pnp: PnP ACPI init
+[    0.618736] system 00:00: [io  0x0220-0x0223] has been reserved
+[    0.621138] system 00:00: [io  0x0224-0x0227] has been reserved
+[    0.623626] system 00:00: [io  0x04d0-0x04d1] has been reserved
+[    0.627054] system 00:00: [io  0x0400-0x0407] has been reserved
+[    0.629968] system 00:00: [mem 0xe0000000-0xefffffff] has been reserved
+[    0.632962] system 00:00: Plug and Play ACPI device, IDs PNP0c02 (active)
+[    0.633028] pnp 00:01: Plug and Play ACPI device, IDs PNP0501 (active)
+[    0.633065] pnp 00:02: Plug and Play ACPI device, IDs PNP0501 (active)
+[    0.633091] pnp 00:03: Plug and Play ACPI device, IDs PNP0b00 (active)
+[    0.633099] pnp: PnP ACPI: found 4 devices
+[    0.666901] clocksource: acpi_pm: mask: 0xffffff max_cycles: 0xffffff, max_idle_ns: 2085701024 ns
+[    0.671276] NET: Registered protocol family 2
+[    0.673817] IP idents hash table entries: 32768 (order: 6, 262144 bytes, linear)
+[    0.679035] tcp_listen_portaddr_hash hash table entries: 1024 (order: 2, 16384 bytes, linear)
+[    0.683907] TCP established hash table entries: 16384 (order: 5, 131072 bytes, linear)
+[    0.687879] TCP bind hash table entries: 16384 (order: 6, 262144 bytes, linear)
+[    0.696132] TCP: Hash tables configured (established 16384 bind 16384)
+[    0.702227] UDP hash table entries: 1024 (order: 3, 32768 bytes, linear)
+[    0.705087] UDP-Lite hash table entries: 1024 (order: 3, 32768 bytes, linear)
+[    0.709134] NET: Registered protocol family 1
+[    0.713176] NET: Registered protocol family 44
+[    0.715285] pci 0000:00:01.0: BAR 6: assigned [mem 0x80000000-0x800007ff pref]
+[    0.718986] pci 0000:00:02.0: BAR 6: assigned [mem 0x80000800-0x80000fff pref]
+[    0.722090] pci 0000:00:03.0: BAR 6: assigned [mem 0x80001000-0x800017ff pref]
+[    0.725826] pci 0000:00:04.0: BAR 6: assigned [mem 0x80001800-0x80001fff pref]
+[    0.726804] pci 0000:00:1f.0: BAR 6: assigned [mem 0x80002000-0x800027ff pref]
+[    0.736658] pci_bus 0000:00: resource 4 [io  0x0000-0x0cf7 window]
+[    0.738973] pci_bus 0000:00: resource 5 [io  0x0d00-0x1fff window]
+[    0.739965] pci_bus 0000:00: resource 6 [io  0x2000-0x215f window]
+[    0.745036] pci_bus 0000:00: resource 7 [mem 0x00000000-0x7fffffffff window]
+[    0.751564] pci 0000:00:1f.0: Activating ISA DMA hang workarounds
+[    0.754419] PCI: CLS 0 bytes, default 64
+[    0.756276] Trying to unpack rootfs image as initramfs...
+[    5.240932] Freeing initrd memory: 115700K
+[    5.245469] RAPL PMU: API unit is 2^-32 Joules, 0 fixed counters, 163840 ms ovfl timer
+[    5.344343] workingset: timestamp_bits=46 max_order=19 bucket_order=0
+[    5.349153] squashfs: version 4.0 (2009/01/31) Phillip Lougher
+[    5.354366] FS-Cache: Netfs 'cifs' registered for caching
+[    5.358268] Key type cifs.idmap registered
+[    5.360395] fuse: init (API version 7.32)
+[    5.364125] SGI XFS with ACLs, security attributes, quota, no debug enabled
+[    5.369654] 9p: Installing v9fs 9p2000 file system support
+[    5.372562] FS-Cache: Netfs '9p' registered for caching
+[    5.397808] NET: Registered protocol family 38
+[    5.400730] Key type asymmetric registered
+[    5.402695] Asymmetric key parser 'x509' registered
+[    5.405220] Block layer SCSI generic (bsg) driver version 0.4 loaded (major 247)
+[    5.409728] io scheduler mq-deadline registered
+[    5.413914] io scheduler kyber registered
+[    5.416554] io scheduler bfq registered
+[    5.419716] shpchp: Standard Hot Plug PCI Controller Driver version: 0.4
+[    5.424093] hv_vmbus: registering driver hyperv_fb
+[    5.427077] intel_idle: Please enable MWAIT in BIOS SETUP
+[    5.427153] input: Power Button as /devices/LNXSYSTM:00/LNXPWRBN:00/input/input0
+[    5.430500] ACPI: Power Button [PWRF]
+[    5.433474] virtio-pci 0000:00:01.0: virtio_pci: leaving for legacy driver
+[    5.437356] virtio-pci 0000:00:02.0: virtio_pci: leaving for legacy driver
+[    5.440762] virtio-pci 0000:00:03.0: virtio_pci: leaving for legacy driver
+[    5.443859] virtio-pci 0000:00:04.0: virtio_pci: leaving for legacy driver
+[    5.447099] Serial: 8250/16550 driver, 4 ports, IRQ sharing disabled
+[    5.450309] 00:01: ttyS0 at I/O 0x3f8 (irq = 4, base_baud = 115200) is a 16550A
+[    5.453603] 00:02: ttyS1 at I/O 0x2f8 (irq = 3, base_baud = 115200) is a 16550A
+[    5.463976] Non-volatile memory driver v1.3
+[    5.470753] Hangcheck: starting hangcheck timer 0.9.1 (tick is 180 seconds, margin is 60 seconds).
+[    5.488626] random: fast init done
+[    5.490491] random: crng init done
+[    5.494275] brd: module loaded
+[    5.497819] loop: module loaded
+[    5.509046] the cryptoloop driver has been deprecated and will be removed in in Linux 5.16
+[    5.513306] virtio_blk virtio1: [vda] 124999680 512-byte logical blocks (64.0 GB/59.6 GiB)
+[    5.517618] vda: detected capacity change from 0 to 63999836160
+[    5.522362]  vda: vda1
+[    5.525542] VMware PVSCSI driver - version 1.0.7.0-k
+[    5.529231] hv_vmbus: registering driver hv_storvsc
+[    5.534506] tun: Universal TUN/TAP device driver, 1.6
+[    5.543255] VMware vmxnet3 virtual NIC driver - version 1.5.0.0-k-NAPI
+[    5.548989] hv_vmbus: registering driver hv_netvsc
+[    5.549883] Fusion MPT base driver 3.04.20
+[    5.552845] Copyright (c) 1999-2008 LSI Corporation
+[    5.558977] Fusion MPT SPI Host driver 3.04.20
+[    5.563454] i8042: PNP: No PS/2 controller found.
+[    5.566075] hv_vmbus: registering driver hyperv_keyboard
+[    5.569099] mousedev: PS/2 mouse device common for all mice
+[    5.574004] input: PC Speaker as /devices/platform/pcspkr/input/input1
+[    5.578206] ACPI Error: Could not enable RealTimeClock event (20200925/evxfevnt-182)
+[    5.582362] ACPI Warning: Could not enable fixed event - RealTimeClock (4) (20200925/evxface-618)
+[    5.587957] rtc_cmos 00:03: registered as rtc0
+[    5.592266] rtc_cmos 00:03: setting system clock to 2024-01-16T18:00:41 UTC (1705428041)
+[    5.597017] rtc_cmos 00:03: alarms up to one day, y3k, 114 bytes nvram
+[    5.600528] i2c /dev entries driver
+[    5.602395] device-mapper: ioctl: 4.43.0-ioctl (2020-10-01) initialised: dm-devel@redhat.com
+[    5.608324] intel_pstate: CPU model not supported
+[    5.613462] usbcore: registered new interface driver usbhid
+[    5.619734] usbhid: USB HID core driver
+[    5.624261] hv_utils: Registering HyperV Utility Driver
+[    5.627072] hv_vmbus: registering driver hv_utils
+[    5.631753] hv_vmbus: registering driver hv_balloon
+[    5.633974] GACT probability on
+[    5.636226] Mirror/redirect action on
+[    5.637837] Simple TC action Loaded
+[    5.639462] u32 classifier
+[    5.640885]     Performance counters on
+[    5.646367]     input device check on
+[    5.647820]     Actions configured
+[    5.649601] xt_time: kernel timezone is -0000
+[    5.651777] IPVS: Registered protocols (TCP, UDP, SCTP, AH, ESP)
+[    5.654658] IPVS: Connection hash table configured (size=4096, memory=64Kbytes)
+[    5.658115] IPVS: Each connection entry needs 288 bytes at least
+[    5.658180] IPVS: ipvs loaded.
+[    5.659473] IPVS: [rr] scheduler registered.
+[    5.661390] IPVS: [wrr] scheduler registered.
+[    5.663178] IPVS: [lc] scheduler registered.
+[    5.664899] IPVS: [wlc] scheduler registered.
+[    5.666590] IPVS: [fo] scheduler registered.
+[    5.668708] IPVS: [ovf] scheduler registered.
+[    5.670797] IPVS: [lblc] scheduler registered.
+[    5.672552] IPVS: [lblcr] scheduler registered.
+[    5.674659] IPVS: [dh] scheduler registered.
+[    5.677088] IPVS: [sh] scheduler registered.
+[    5.679096] IPVS: [mh] scheduler registered.
+[    5.681710] IPVS: [sed] scheduler registered.
+[    5.684766] IPVS: [nq] scheduler registered.
+[    5.687079] IPVS: ftp: loaded support on port[0] = 21
+[    5.689401] ipip: IPv4 and MPLS over IPv4 tunneling driver
+[    5.692424] gre: GRE over IPv4 demultiplexor driver
+[    5.694945] ipt_CLUSTERIP: ClusterIP Version 0.8 loaded successfully
+[    5.697800] NET: Registered protocol family 10
+[    5.700609] Segment Routing with IPv6
+[    5.703471] NET: Registered protocol family 17
+[    5.705169] Bridge firewalling registered
+[    5.708210] 8021q: 802.1Q VLAN Support v1.8
+[    5.709832] 9pnet: Installing 9P2000 support
+[    5.711525] Key type dns_resolver registered
+[    5.713487] oprofile: using NMI timer interrupt.
+[    5.715405] IPI shorthand broadcast: enabled
+[    5.717035] AVX2 version of gcm_enc/dec engaged.
+[    5.718712] AES CTR mode by8 optimization enabled
+[    5.726668] sched_clock: Marking stable (5734744843, -8130615)->(6145666556, -419052328)
+[    5.731257] registered taskstats version 1
+[    5.733404] Key type ._fscrypt registered
+[    5.735347] Key type .fscrypt registered
+[    5.737039] Key type fscrypt-provisioning registered
+[    5.744911] Key type encrypted registered
+[    5.746753] ima: No TPM chip found, activating TPM-bypass!
+[    5.749283] ima: Allocated hash algorithm: sha256
+[    5.752034] ima: No architecture policies found
+[    5.754102] evm: Initialising EVM extended attributes:
+[    5.756209] evm: security.ima
+[    5.757560] evm: security.capability
+[    5.759206] evm: HMAC attrs: 0x1
+[    5.764100] Freeing unused kernel image (initmem) memory: 1612K
+[    5.766669] Write protecting the kernel read-only data: 20480k
+[    5.775357] Freeing unused kernel image (text/rodata gap) memory: 2032K
+[    5.778520] Freeing unused kernel image (rodata/data gap) memory: 600K
+[    5.781366] Run /init as init process
+[    5.783260]   with arguments:
+[    5.783262]     /init
+[    5.783263]     nospec_store_bypass_disable
+[    5.783264]     noibrs
+[    5.783265]     noibpb
+[    5.783266]     no_stf_barrier
+[    5.783267]   with environment:
+[    5.783268]     HOME=/
+[    5.783269]     TERM=linux
+[    6.296087] tsc: Refined TSC clocksource calibration: 2797.983 MHz
+[    6.298752] clocksource: tsc: mask: 0xffffffffffffffff max_cycles: 0x2854cf4f2b9, max_idle_ns: 440795205102 ns
+[    6.321387] clocksource: Switched to clocksource tsc
+[    7.510438] NET: Registered protocol family 40
+[    9.207090] IPVS: ftp: loaded support on port[0] = 21
+[    9.475998] IPVS: ftp: loaded support on port[0] = 21
+[    9.695380] IPVS: ftp: loaded support on port[0] = 21
+[   10.580848] IPVS: ftp: loaded support on port[0] = 21
+[   10.671388] EXT4-fs (vda1): mounted filesystem with ordered data mode. Opts: (null)
+[   11.035986] IPVS: ftp: loaded support on port[0] = 21
+[   11.239657] IPv6: ADDRCONF(NETDEV_CHANGE): services1: link becomes ready
+[   11.243640] IPv6: ADDRCONF(NETDEV_CHANGE): services0: link becomes ready
+[   11.280633] IPVS: ftp: loaded support on port[0] = 21
+[   11.322268] Adding 1048572k swap on /var/lib/swap.  Priority:-2 extents:5 across:1081340k 
+[   14.881008] grpcfuse: loading out-of-tree module taints kernel.
+[   14.885035] grpcfuse module loaded
+[   15.909262] Initializing XFRM netlink socket
+[   16.460448] IPVS: ftp: loaded support on port[0] = 21
+[   16.827868] IPVS: ftp: loaded support on port[0] = 21
+[   17.031765] IPVS: ftp: loaded support on port[0] = 21
+[   66.356348] docker0: port 1(veth8e39805) entered blocking state
+[   66.359099] docker0: port 1(veth8e39805) entered disabled state
+[   66.363103] device veth8e39805 entered promiscuous mode
+[   66.505467] IPVS: ftp: loaded support on port[0] = 21
+[   66.661770] eth0: renamed from vetha45b020
+[   66.668691] IPv6: ADDRCONF(NETDEV_CHANGE): veth8e39805: link becomes ready
+[   66.671188] docker0: port 1(veth8e39805) entered blocking state
+[   66.673156] docker0: port 1(veth8e39805) entered forwarding state
+[   66.675765] IPv6: ADDRCONF(NETDEV_CHANGE): docker0: link becomes ready
+[  133.211341] docker0: port 1(veth8e39805) entered disabled state
+[  133.213823] vetha45b020: renamed from eth0
+[  133.230735] docker0: port 1(veth8e39805) entered disabled state
+[  133.234439] device veth8e39805 left promiscuous mode
+[  133.236161] docker0: port 1(veth8e39805) entered disabled state
+[  400.052104] docker0: port 1(vethb0e4f78) entered blocking state
+[  400.054067] docker0: port 1(vethb0e4f78) entered disabled state
+[  400.057013] device vethb0e4f78 entered promiscuous mode
+[  400.141226] IPVS: ftp: loaded support on port[0] = 21
+[  400.277634] eth0: renamed from vethb2aca13
+[  400.283583] IPv6: ADDRCONF(NETDEV_CHANGE): vethb0e4f78: link becomes ready
+[  400.286215] docker0: port 1(vethb0e4f78) entered blocking state
+[  400.288379] docker0: port 1(vethb0e4f78) entered forwarding state
+[  414.014402] docker0: port 1(vethb0e4f78) entered disabled state
+[  414.017106] vethb2aca13: renamed from eth0
+[  414.033216] docker0: port 1(vethb0e4f78) entered disabled state
+[  414.038451] device vethb0e4f78 left promiscuous mode
+[  414.040461] docker0: port 1(vethb0e4f78) entered disabled state
+[  439.421626] docker0: port 1(veth289d584) entered blocking state
+[  439.423651] docker0: port 1(veth289d584) entered disabled state
+[  439.426025] device veth289d584 entered promiscuous mode
+[  439.487464] IPVS: ftp: loaded support on port[0] = 21
+[  439.625866] eth0: renamed from vethe657ce8
+[  439.632629] IPv6: ADDRCONF(NETDEV_CHANGE): veth289d584: link becomes ready
+[  439.635209] docker0: port 1(veth289d584) entered blocking state
+[  439.637147] docker0: port 1(veth289d584) entered forwarding state
+[  906.683084] docker0: port 1(veth289d584) entered disabled state
+[  906.686023] vethe657ce8: renamed from eth0
+[  906.709583] docker0: port 1(veth289d584) entered disabled state
+[  906.712069] device veth289d584 left promiscuous mode
+[  906.713650] docker0: port 1(veth289d584) entered disabled state
+[ 1141.744088] docker0: port 1(veth742ddb1) entered blocking state
+[ 1141.745969] docker0: port 1(veth742ddb1) entered disabled state
+[ 1141.749005] device veth742ddb1 entered promiscuous mode
+[ 1141.811320] IPVS: ftp: loaded support on port[0] = 21
+[ 1141.940708] eth0: renamed from veth99433e7
+[ 1141.947930] IPv6: ADDRCONF(NETDEV_CHANGE): veth742ddb1: link becomes ready
+[ 1141.950472] docker0: port 1(veth742ddb1) entered blocking state
+[ 1141.952382] docker0: port 1(veth742ddb1) entered forwarding state
+[ 1184.762568] docker0: port 1(veth742ddb1) entered disabled state
+[ 1184.765012] veth99433e7: renamed from eth0
+[ 1184.779251] docker0: port 1(veth742ddb1) entered disabled state
+[ 1184.783804] device veth742ddb1 left promiscuous mode
+[ 1184.785465] docker0: port 1(veth742ddb1) entered disabled state
+[ 1305.518064] clocksource: timekeeping watchdog on CPU0: hpet read-back delay of 494300ns, attempt 4, marking unstable
+[ 1305.545568] tsc: Marking TSC unstable due to clocksource watchdog
+[ 1305.577548] TSC found unstable after boot, most likely due to broken BIOS. Use 'tsc=unstable'.
+[ 1305.589741] sched_clock: Marking unstable (1305585600492, -8076941)<-(1305996575940, -419052328)
+[ 1305.594754] clocksource: Checking clocksource tsc synchronization from CPU 0.
+[ 1305.599814] clocksource: Switched to clocksource hpet
+[ 1423.229106] hrtimer: interrupt took 3325200 ns
+[ 1477.768752] docker0: port 1(veth5763e0b) entered blocking state
+[ 1477.770698] docker0: port 1(veth5763e0b) entered disabled state
+[ 1477.777127] device veth5763e0b entered promiscuous mode
+[ 1477.920428] IPVS: ftp: loaded support on port[0] = 21
+[ 1478.296845] eth0: renamed from veth629b407
+[ 1478.303740] IPv6: ADDRCONF(NETDEV_CHANGE): veth5763e0b: link becomes ready
+[ 1478.306692] docker0: port 1(veth5763e0b) entered blocking state
+[ 1478.309029] docker0: port 1(veth5763e0b) entered forwarding state
+[ 1533.717304] docker0: port 1(veth5763e0b) entered disabled state
+[ 1533.719929] veth629b407: renamed from eth0
+[ 1533.737554] docker0: port 1(veth5763e0b) entered disabled state
+[ 1533.739939] device veth5763e0b left promiscuous mode
+[ 1533.741549] docker0: port 1(veth5763e0b) entered disabled state
+[ 1593.429652] docker0: port 1(vethb758abe) entered blocking state
+[ 1593.431604] docker0: port 1(vethb758abe) entered disabled state
+[ 1593.434364] device vethb758abe entered promiscuous mode
+[ 1593.578425] IPVS: ftp: loaded support on port[0] = 21
+[ 1593.994438] eth0: renamed from veth7f80204
+[ 1594.000450] IPv6: ADDRCONF(NETDEV_CHANGE): vethb758abe: link becomes ready
+[ 1594.003488] docker0: port 1(vethb758abe) entered blocking state
+[ 1594.005628] docker0: port 1(vethb758abe) entered forwarding state
+[ 1683.561281] veth7f80204: renamed from eth0
+[ 1683.569304] docker0: port 1(vethb758abe) entered disabled state
+[ 1683.584861] docker0: port 1(vethb758abe) entered disabled state
+[ 1683.587521] device vethb758abe left promiscuous mode
+[ 1683.589133] docker0: port 1(vethb758abe) entered disabled state
+[ 1690.746577] docker0: port 1(veth88024d9) entered blocking state
+[ 1690.748897] docker0: port 1(veth88024d9) entered disabled state
+[ 1690.753154] device veth88024d9 entered promiscuous mode
+[ 1690.910707] IPVS: ftp: loaded support on port[0] = 21
+[ 1691.297647] eth0: renamed from veth11e0c7a
+[ 1691.306753] IPv6: ADDRCONF(NETDEV_CHANGE): veth88024d9: link becomes ready
+[ 1691.310658] docker0: port 1(veth88024d9) entered blocking state
+[ 1691.312611] docker0: port 1(veth88024d9) entered forwarding state
+[ 1798.178432] docker0: port 2(veth650f5eb) entered blocking state
+[ 1798.180411] docker0: port 2(veth650f5eb) entered disabled state
+[ 1798.183312] device veth650f5eb entered promiscuous mode
+[ 1798.376741] IPVS: ftp: loaded support on port[0] = 21
+[ 1798.792192] eth0: renamed from veth9bab153
+[ 1798.809249] IPv6: ADDRCONF(NETDEV_CHANGE): veth650f5eb: link becomes ready
+[ 1798.817042] docker0: port 2(veth650f5eb) entered blocking state
+[ 1798.817042] docker0: port 2(veth650f5eb) entered forwarding state
+[ 1961.171206] docker0: port 2(veth650f5eb) entered disabled state
+[ 1961.173771] veth9bab153: renamed from eth0
+[ 1961.195103] docker0: port 2(veth650f5eb) entered disabled state
+[ 1961.198246] device veth650f5eb left promiscuous mode
+[ 1961.200023] docker0: port 2(veth650f5eb) entered disabled state
+[ 1985.198038] docker0: port 2(veth757d8cd) entered blocking state
+[ 1985.200069] docker0: port 2(veth757d8cd) entered disabled state
+[ 1985.203930] device veth757d8cd entered promiscuous mode
+[ 1985.404509] IPVS: ftp: loaded support on port[0] = 21
+[ 1985.759847] eth0: renamed from veth7df9f24
+[ 1985.765682] IPv6: ADDRCONF(NETDEV_CHANGE): veth757d8cd: link becomes ready
+[ 1985.768822] docker0: port 2(veth757d8cd) entered blocking state
+[ 1985.771274] docker0: port 2(veth757d8cd) entered forwarding state
+[ 2087.316632] docker0: port 2(veth757d8cd) entered disabled state
+[ 2087.320330] veth7df9f24: renamed from eth0
+[ 2087.338182] docker0: port 2(veth757d8cd) entered disabled state
+[ 2087.341659] device veth757d8cd left promiscuous mode
+[ 2087.343871] docker0: port 2(veth757d8cd) entered disabled state
+[ 2129.780811] docker0: port 2(vethff34b2f) entered blocking state
+[ 2129.782716] docker0: port 2(vethff34b2f) entered disabled state
+[ 2129.787883] device vethff34b2f entered promiscuous mode
+[ 2129.870945] IPVS: ftp: loaded support on port[0] = 21
+[ 2130.273663] eth0: renamed from veth709c8b6
+[ 2130.280592] IPv6: ADDRCONF(NETDEV_CHANGE): vethff34b2f: link becomes ready
+[ 2130.283429] docker0: port 2(vethff34b2f) entered blocking state
+[ 2130.286184] docker0: port 2(vethff34b2f) entered forwarding state
+[ 2131.018538] docker0: port 2(vethff34b2f) entered disabled state
+[ 2131.020903] veth709c8b6: renamed from eth0
+[ 2131.040601] docker0: port 2(vethff34b2f) entered disabled state
+[ 2131.044612] device vethff34b2f left promiscuous mode
+[ 2131.046818] docker0: port 2(vethff34b2f) entered disabled state
+[ 2143.109787] docker0: port 2(veth95b956d) entered blocking state
+[ 2143.112327] docker0: port 2(veth95b956d) entered disabled state
+[ 2143.125823] device veth95b956d entered promiscuous mode
+[ 2143.270382] IPVS: ftp: loaded support on port[0] = 21
+[ 2143.604908] eth0: renamed from vethe41f352
+[ 2143.611732] IPv6: ADDRCONF(NETDEV_CHANGE): veth95b956d: link becomes ready
+[ 2143.614562] docker0: port 2(veth95b956d) entered blocking state
+[ 2143.616702] docker0: port 2(veth95b956d) entered forwarding state
+[ 2163.192235] docker0: port 2(veth95b956d) entered disabled state
+[ 2163.194628] vethe41f352: renamed from eth0
+[ 2163.213265] docker0: port 2(veth95b956d) entered disabled state
+[ 2163.216239] device veth95b956d left promiscuous mode
+[ 2163.217864] docker0: port 2(veth95b956d) entered disabled state
+[ 2226.610788] docker0: port 1(veth88024d9) entered disabled state
+[ 2226.613468] veth11e0c7a: renamed from eth0
+[ 2226.635962] docker0: port 1(veth88024d9) entered disabled state
+[ 2226.639183] device veth88024d9 left promiscuous mode
+[ 2226.640796] docker0: port 1(veth88024d9) entered disabled state
+[ 2496.849125] docker0: port 1(veth78a8b77) entered blocking state
+[ 2496.851461] docker0: port 1(veth78a8b77) entered disabled state
+[ 2496.861254] device veth78a8b77 entered promiscuous mode
+[ 2497.086961] IPVS: ftp: loaded support on port[0] = 21
+[ 2497.269642] eth0: renamed from veth49a27ec
+[ 2497.276438] IPv6: ADDRCONF(NETDEV_CHANGE): veth78a8b77: link becomes ready
+[ 2497.279186] docker0: port 1(veth78a8b77) entered blocking state
+[ 2497.281138] docker0: port 1(veth78a8b77) entered forwarding state
+[ 3594.234095] docker0: port 1(veth78a8b77) entered disabled state
+[ 3594.237931] veth49a27ec: renamed from eth0
+[ 3594.257340] docker0: port 1(veth78a8b77) entered disabled state
+[ 3594.260044] device veth78a8b77 left promiscuous mode
+[ 3594.261675] docker0: port 1(veth78a8b77) entered disabled state
+[ 3613.491816] docker0: port 1(veth5a82b11) entered blocking state
+[ 3613.493736] docker0: port 1(veth5a82b11) entered disabled state
+[ 3613.499346] device veth5a82b11 entered promiscuous mode
+[ 3613.726528] IPVS: ftp: loaded support on port[0] = 21
+[ 3613.915491] eth0: renamed from vethf9ffc5a
+[ 3613.924349] IPv6: ADDRCONF(NETDEV_CHANGE): veth5a82b11: link becomes ready
+[ 3613.926818] docker0: port 1(veth5a82b11) entered blocking state
+[ 3613.928813] docker0: port 1(veth5a82b11) entered forwarding state
+[ 3614.000377] docker0: port 1(veth5a82b11) entered disabled state
+[ 3614.002726] vethf9ffc5a: renamed from eth0
+[ 3614.024392] docker0: port 1(veth5a82b11) entered disabled state
+[ 3614.029154] device veth5a82b11 left promiscuous mode
+[ 3614.031514] docker0: port 1(veth5a82b11) entered disabled state
+[ 3620.532348] docker0: port 1(veth7270924) entered blocking state
+[ 3620.534296] docker0: port 1(veth7270924) entered disabled state
+[ 3620.537213] device veth7270924 entered promiscuous mode
+[ 3620.731926] IPVS: ftp: loaded support on port[0] = 21
+[ 3620.918548] eth0: renamed from veth3d93f02
+[ 3620.925785] IPv6: ADDRCONF(NETDEV_CHANGE): veth7270924: link becomes ready
+[ 3620.928325] docker0: port 1(veth7270924) entered blocking state
+[ 3620.930267] docker0: port 1(veth7270924) entered forwarding state
+[ 3812.114151] docker0: port 1(veth7270924) entered disabled state
+[ 3812.116720] veth3d93f02: renamed from eth0
+[ 3812.134948] docker0: port 1(veth7270924) entered disabled state
+[ 3812.137912] device veth7270924 left promiscuous mode
+[ 3812.139549] docker0: port 1(veth7270924) entered disabled state
+[ 3814.679961] docker0: port 1(vethf3ec1ec) entered blocking state
+[ 3814.682332] docker0: port 1(vethf3ec1ec) entered disabled state
+[ 3814.686276] device vethf3ec1ec entered promiscuous mode
+[ 3814.901539] IPVS: ftp: loaded support on port[0] = 21
+[ 3815.096872] eth0: renamed from veth417f11f
+[ 3815.103340] IPv6: ADDRCONF(NETDEV_CHANGE): vethf3ec1ec: link becomes ready
+[ 3815.105783] docker0: port 1(vethf3ec1ec) entered blocking state
+[ 3815.107741] docker0: port 1(vethf3ec1ec) entered forwarding state
+[ 4185.423332] docker0: port 2(vethd6a993f) entered blocking state
+[ 4185.425634] docker0: port 2(vethd6a993f) entered disabled state
+[ 4185.429510] device vethd6a993f entered promiscuous mode
+[ 4185.729346] IPVS: ftp: loaded support on port[0] = 21
+[ 4185.987703] eth0: renamed from vethaf625a1
+[ 4185.993612] IPv6: ADDRCONF(NETDEV_CHANGE): vethd6a993f: link becomes ready
+[ 4185.996849] docker0: port 2(vethd6a993f) entered blocking state
+[ 4185.999226] docker0: port 2(vethd6a993f) entered forwarding state
+[ 4667.309832] docker0: port 2(vethd6a993f) entered disabled state
+[ 4667.312765] vethaf625a1: renamed from eth0
+[ 4667.328760] docker0: port 2(vethd6a993f) entered disabled state
+[ 4667.332660] device vethd6a993f left promiscuous mode
+[ 4667.334351] docker0: port 2(vethd6a993f) entered disabled state
+[ 4669.915152] docker0: port 2(vethdbe4d72) entered blocking state
+[ 4669.917103] docker0: port 2(vethdbe4d72) entered disabled state
+[ 4669.921631] device vethdbe4d72 entered promiscuous mode
+[ 4670.119727] IPVS: ftp: loaded support on port[0] = 21
+[ 4670.327993] eth0: renamed from veth12532b5
+[ 4670.334569] IPv6: ADDRCONF(NETDEV_CHANGE): vethdbe4d72: link becomes ready
+[ 4670.337634] docker0: port 2(vethdbe4d72) entered blocking state
+[ 4670.339907] docker0: port 2(vethdbe4d72) entered forwarding state
+[ 4933.826704] ICMPv6: process `grep' is using deprecated sysctl (syscall) net.ipv6.neigh.eth0.base_reachable_time - use net.ipv6.neigh.eth0.base_reachable_time_ms instead
+[ 4933.832328] ICMPv6: process `cat' is using deprecated sysctl (syscall) net.ipv6.neigh.eth0.base_reachable_time - use net.ipv6.neigh.eth0.base_reachable_time_ms instead
+[ 4933.858741] ICMPv6: process `grep' is using deprecated sysctl (syscall) net.ipv6.neigh.eth0.retrans_time - use net.ipv6.neigh.eth0.retrans_time_ms instead
+[ 4933.863903] ICMPv6: process `cat' is using deprecated sysctl (syscall) net.ipv6.neigh.eth0.retrans_time - use net.ipv6.neigh.eth0.retrans_time_ms instead
+[ 4933.885823] ICMPv6: process `grep' is using deprecated sysctl (syscall) net.ipv6.neigh.ip6tnl0.base_reachable_time - use net.ipv6.neigh.ip6tnl0.base_reachable_time_ms instead
+[ 6670.249449] docker0: port 2(vethdbe4d72) entered disabled state
+[ 6670.254881] veth12532b5: renamed from eth0
+[ 6670.297471] docker0: port 2(vethdbe4d72) entered disabled state
+[ 6670.305815] device vethdbe4d72 left promiscuous mode
+[ 6670.307813] docker0: port 2(vethdbe4d72) entered disabled state
+[ 6689.657050] docker0: port 1(vethf3ec1ec) entered disabled state
+[ 6689.659517] veth417f11f: renamed from eth0
+[ 6689.683437] docker0: port 1(vethf3ec1ec) entered disabled state
+[ 6689.686463] device vethf3ec1ec left promiscuous mode
+[ 6689.688067] docker0: port 1(vethf3ec1ec) entered disabled state
+[ 6781.398805] docker0: port 1(veth9ebecdf) entered blocking state
+[ 6781.401425] docker0: port 1(veth9ebecdf) entered disabled state
+[ 6781.406106] device veth9ebecdf entered promiscuous mode
+[ 6781.645728] IPVS: ftp: loaded support on port[0] = 21
+[ 6781.958897] eth0: renamed from vethe9c6c38
+[ 6781.965853] IPv6: ADDRCONF(NETDEV_CHANGE): veth9ebecdf: link becomes ready
+[ 6781.968296] docker0: port 1(veth9ebecdf) entered blocking state
+[ 6781.970265] docker0: port 1(veth9ebecdf) entered forwarding state
+[ 7810.483407] vethe9c6c38: renamed from eth0
+[ 7810.509785] docker0: port 1(veth9ebecdf) entered disabled state
+[ 7810.515272] docker0: port 1(veth9ebecdf) entered disabled state
+[ 7810.517890] device veth9ebecdf left promiscuous mode
+[ 7810.519507] docker0: port 1(veth9ebecdf) entered disabled state
+[ 7839.417626] docker0: port 1(veth0b12f03) entered blocking state
+[ 7839.419810] docker0: port 1(veth0b12f03) entered disabled state
+[ 7839.424279] device veth0b12f03 entered promiscuous mode
+[ 7839.646562] IPVS: ftp: loaded support on port[0] = 21
+[ 7839.820934] eth0: renamed from veth86a9a23
+[ 7839.828188] IPv6: ADDRCONF(NETDEV_CHANGE): veth0b12f03: link becomes ready
+[ 7839.830870] docker0: port 1(veth0b12f03) entered blocking state
+[ 7839.832998] docker0: port 1(veth0b12f03) entered forwarding state
+/bin # 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/bin # bbconfig
+CONFIG_HAVE_DOT_CONFIG=y
+CONFIG_DESKTOP=y
+# CONFIG_EXTRA_COMPAT is not set
+# CONFIG_FEDORA_COMPAT is not set
+# CONFIG_INCLUDE_SUSv2 is not set
+CONFIG_LONG_OPTS=y
+CONFIG_SHOW_USAGE=y
+CONFIG_FEATURE_VERBOSE_USAGE=y
+CONFIG_FEATURE_COMPRESS_USAGE=y
+CONFIG_LFS=y
+# CONFIG_PAM is not set
+CONFIG_FEATURE_DEVPTS=y
+CONFIG_FEATURE_UTMP=y
+CONFIG_FEATURE_WTMP=y
+CONFIG_FEATURE_PIDFILE=y
+CONFIG_PID_FILE_PATH="/run"
+CONFIG_BUSYBOX=y
+# CONFIG_FEATURE_SHOW_SCRIPT is not set
+CONFIG_FEATURE_INSTALLER=y
+# CONFIG_INSTALL_NO_USR is not set
+CONFIG_FEATURE_SUID=y
+# CONFIG_FEATURE_SUID_CONFIG is not set
+# CONFIG_FEATURE_SUID_CONFIG_QUIET is not set
+# CONFIG_FEATURE_PREFER_APPLETS is not set
+CONFIG_BUSYBOX_EXEC_PATH="/bin/busybox"
+# CONFIG_SELINUX is not set
+# CONFIG_FEATURE_CLEAN_UP is not set
+CONFIG_FEATURE_SYSLOG_INFO=y
+CONFIG_FEATURE_SYSLOG=y
+# CONFIG_STATIC is not set
+CONFIG_PIE=y
+# CONFIG_NOMMU is not set
+# CONFIG_BUILD_LIBBUSYBOX is not set
+# CONFIG_FEATURE_LIBBUSYBOX_STATIC is not set
+# CONFIG_FEATURE_INDIVIDUAL is not set
+# CONFIG_FEATURE_SHARED_BUSYBOX is not set
+CONFIG_CROSS_COMPILER_PREFIX=""
+CONFIG_SYSROOT=""
+CONFIG_EXTRA_CFLAGS=""
+CONFIG_EXTRA_LDFLAGS=""
+CONFIG_EXTRA_LDLIBS=""
+# CONFIG_USE_PORTABLE_CODE is not set
+# CONFIG_STACK_OPTIMIZATION_386 is not set
+# CONFIG_STATIC_LIBGCC is not set
+# CONFIG_INSTALL_APPLET_SYMLINKS is not set
+# CONFIG_INSTALL_APPLET_HARDLINKS is not set
+# CONFIG_INSTALL_APPLET_SCRIPT_WRAPPERS is not set
+CONFIG_INSTALL_APPLET_DONT=y
+# CONFIG_INSTALL_SH_APPLET_SYMLINK is not set
+# CONFIG_INSTALL_SH_APPLET_HARDLINK is not set
+# CONFIG_INSTALL_SH_APPLET_SCRIPT_WRAPPER is not set
+CONFIG_PREFIX="/home/ncopa/aports/main/busybox/pkg/busybox"
+# CONFIG_DEBUG is not set
+# CONFIG_DEBUG_PESSIMIZE is not set
+# CONFIG_DEBUG_SANITIZE is not set
+# CONFIG_UNIT_TEST is not set
+# CONFIG_WERROR is not set
+# CONFIG_WARN_SIMPLE_MSG is not set
+CONFIG_NO_DEBUG_LIB=y
+# CONFIG_DMALLOC is not set
+# CONFIG_EFENCE is not set
+# CONFIG_FEATURE_USE_BSS_TAIL is not set
+CONFIG_FLOAT_DURATION=y
+CONFIG_FEATURE_RTMINMAX=y
+CONFIG_FEATURE_RTMINMAX_USE_LIBC_DEFINITIONS=y
+CONFIG_FEATURE_BUFFERS_USE_MALLOC=y
+# CONFIG_FEATURE_BUFFERS_GO_ON_STACK is not set
+# CONFIG_FEATURE_BUFFERS_GO_IN_BSS is not set
+CONFIG_PASSWORD_MINLEN=6
+CONFIG_MD5_SMALL=0
+CONFIG_SHA1_SMALL=0
+# CONFIG_SHA1_HWACCEL is not set
+# CONFIG_SHA256_HWACCEL is not set
+CONFIG_SHA3_SMALL=0
+CONFIG_FEATURE_NON_POSIX_CP=y
+# CONFIG_FEATURE_VERBOSE_CP_MESSAGE is not set
+CONFIG_FEATURE_USE_SENDFILE=y
+CONFIG_FEATURE_COPYBUF_KB=64
+CONFIG_MONOTONIC_SYSCALL=y
+# CONFIG_IOCTL_HEX2STR_ERROR is not set
+CONFIG_FEATURE_EDITING=y
+CONFIG_FEATURE_EDITING_MAX_LEN=2048
+CONFIG_FEATURE_EDITING_VI=y
+CONFIG_FEATURE_EDITING_HISTORY=8192
+CONFIG_FEATURE_EDITING_SAVEHISTORY=y
+# CONFIG_FEATURE_EDITING_SAVE_ON_EXIT is not set
+CONFIG_FEATURE_REVERSE_SEARCH=y
+CONFIG_FEATURE_TAB_COMPLETION=y
+CONFIG_FEATURE_USERNAME_COMPLETION=y
+CONFIG_FEATURE_EDITING_FANCY_PROMPT=y
+CONFIG_FEATURE_EDITING_WINCH=y
+CONFIG_FEATURE_EDITING_ASK_TERMINAL=y
+CONFIG_LOCALE_SUPPORT=y
+CONFIG_UNICODE_SUPPORT=y
+CONFIG_UNICODE_USING_LOCALE=y
+# CONFIG_FEATURE_CHECK_UNICODE_IN_ENV is not set
+CONFIG_SUBST_WCHAR=63
+CONFIG_LAST_SUPPORTED_WCHAR=1114111
+CONFIG_UNICODE_COMBINING_WCHARS=y
+CONFIG_UNICODE_WIDE_WCHARS=y
+# CONFIG_UNICODE_BIDI_SUPPORT is not set
+# CONFIG_UNICODE_NEUTRAL_TABLE is not set
+CONFIG_UNICODE_PRESERVE_BROKEN=y
+# CONFIG_LOOP_CONFIGURE is not set
+# CONFIG_NO_LOOP_CONFIGURE is not set
+CONFIG_TRY_LOOP_CONFIGURE=y
+CONFIG_FEATURE_SEAMLESS_XZ=y
+CONFIG_FEATURE_SEAMLESS_LZMA=y
+CONFIG_FEATURE_SEAMLESS_BZ2=y
+CONFIG_FEATURE_SEAMLESS_GZ=y
+CONFIG_FEATURE_SEAMLESS_Z=y
+# CONFIG_AR is not set
+# CONFIG_FEATURE_AR_LONG_FILENAMES is not set
+# CONFIG_FEATURE_AR_CREATE is not set
+# CONFIG_UNCOMPRESS is not set
+CONFIG_GUNZIP=y
+CONFIG_ZCAT=y
+CONFIG_FEATURE_GUNZIP_LONG_OPTIONS=y
+CONFIG_BUNZIP2=y
+CONFIG_BZCAT=y
+CONFIG_UNLZMA=y
+CONFIG_LZCAT=y
+CONFIG_LZMA=y
+CONFIG_UNXZ=y
+CONFIG_XZCAT=y
+# CONFIG_XZ is not set
+CONFIG_BZIP2=y
+CONFIG_BZIP2_SMALL=8
+CONFIG_FEATURE_BZIP2_DECOMPRESS=y
+CONFIG_CPIO=y
+CONFIG_FEATURE_CPIO_O=y
+CONFIG_FEATURE_CPIO_P=y
+CONFIG_FEATURE_CPIO_IGNORE_DEVNO=y
+CONFIG_FEATURE_CPIO_RENUMBER_INODES=y
+# CONFIG_DPKG is not set
+# CONFIG_DPKG_DEB is not set
+CONFIG_GZIP=y
+CONFIG_FEATURE_GZIP_LONG_OPTIONS=y
+CONFIG_GZIP_FAST=2
+CONFIG_FEATURE_GZIP_LEVELS=y
+CONFIG_FEATURE_GZIP_DECOMPRESS=y
+CONFIG_LZOP=y
+CONFIG_UNLZOP=y
+CONFIG_LZOPCAT=y
+# CONFIG_LZOP_COMPR_HIGH is not set
+# CONFIG_RPM is not set
+# CONFIG_RPM2CPIO is not set
+CONFIG_TAR=y
+CONFIG_FEATURE_TAR_LONG_OPTIONS=y
+CONFIG_FEATURE_TAR_CREATE=y
+CONFIG_FEATURE_TAR_AUTODETECT=y
+CONFIG_FEATURE_TAR_FROM=y
+CONFIG_FEATURE_TAR_OLDGNU_COMPATIBILITY=y
+CONFIG_FEATURE_TAR_OLDSUN_COMPATIBILITY=y
+CONFIG_FEATURE_TAR_GNU_EXTENSIONS=y
+# CONFIG_FEATURE_TAR_TO_COMMAND is not set
+CONFIG_FEATURE_TAR_UNAME_GNAME=y
+CONFIG_FEATURE_TAR_NOPRESERVE_TIME=y
+# CONFIG_FEATURE_TAR_SELINUX is not set
+CONFIG_UNZIP=y
+CONFIG_FEATURE_UNZIP_CDF=y
+CONFIG_FEATURE_UNZIP_BZIP2=y
+CONFIG_FEATURE_UNZIP_LZMA=y
+CONFIG_FEATURE_UNZIP_XZ=y
+CONFIG_FEATURE_LZMA_FAST=y
+CONFIG_FEATURE_VERBOSE=y
+CONFIG_FEATURE_TIMEZONE=y
+CONFIG_FEATURE_PRESERVE_HARDLINKS=y
+CONFIG_FEATURE_HUMAN_READABLE=y
+CONFIG_BASENAME=y
+CONFIG_CAT=y
+CONFIG_FEATURE_CATN=y
+CONFIG_FEATURE_CATV=y
+CONFIG_CHGRP=y
+CONFIG_CHMOD=y
+CONFIG_CHOWN=y
+CONFIG_FEATURE_CHOWN_LONG_OPTIONS=y
+CONFIG_CHROOT=y
+CONFIG_CKSUM=y
+# CONFIG_CRC32 is not set
+CONFIG_COMM=y
+CONFIG_CP=y
+CONFIG_FEATURE_CP_LONG_OPTIONS=y
+CONFIG_FEATURE_CP_REFLINK=y
+CONFIG_CUT=y
+# CONFIG_FEATURE_CUT_REGEX is not set
+CONFIG_DATE=y
+CONFIG_FEATURE_DATE_ISOFMT=y
+# CONFIG_FEATURE_DATE_NANO is not set
+CONFIG_FEATURE_DATE_COMPAT=y
+CONFIG_DD=y
+CONFIG_FEATURE_DD_SIGNAL_HANDLING=y
+CONFIG_FEATURE_DD_THIRD_STATUS_LINE=y
+CONFIG_FEATURE_DD_IBS_OBS=y
+CONFIG_FEATURE_DD_STATUS=y
+CONFIG_DF=y
+CONFIG_FEATURE_DF_FANCY=y
+CONFIG_FEATURE_SKIP_ROOTFS=y
+CONFIG_DIRNAME=y
+CONFIG_DOS2UNIX=y
+CONFIG_UNIX2DOS=y
+CONFIG_DU=y
+CONFIG_FEATURE_DU_DEFAULT_BLOCKSIZE_1K=y
+CONFIG_ECHO=y
+CONFIG_FEATURE_FANCY_ECHO=y
+CONFIG_ENV=y
+CONFIG_EXPAND=y
+CONFIG_UNEXPAND=y
+CONFIG_EXPR=y
+CONFIG_EXPR_MATH_SUPPORT_64=y
+CONFIG_FACTOR=y
+CONFIG_FALSE=y
+CONFIG_FOLD=y
+CONFIG_HEAD=y
+CONFIG_FEATURE_FANCY_HEAD=y
+CONFIG_HOSTID=y
+CONFIG_ID=y
+CONFIG_GROUPS=y
+CONFIG_INSTALL=y
+CONFIG_FEATURE_INSTALL_LONG_OPTIONS=y
+CONFIG_LINK=y
+CONFIG_LN=y
+# CONFIG_LOGNAME is not set
+CONFIG_LS=y
+CONFIG_FEATURE_LS_FILETYPES=y
+CONFIG_FEATURE_LS_FOLLOWLINKS=y
+CONFIG_FEATURE_LS_RECURSIVE=y
+CONFIG_FEATURE_LS_WIDTH=y
+CONFIG_FEATURE_LS_SORTFILES=y
+CONFIG_FEATURE_LS_TIMESTAMPS=y
+CONFIG_FEATURE_LS_USERNAME=y
+CONFIG_FEATURE_LS_COLOR=y
+CONFIG_FEATURE_LS_COLOR_IS_DEFAULT=y
+CONFIG_MD5SUM=y
+CONFIG_SHA1SUM=y
+CONFIG_SHA256SUM=y
+CONFIG_SHA512SUM=y
+CONFIG_SHA3SUM=y
+CONFIG_FEATURE_MD5_SHA1_SUM_CHECK=y
+CONFIG_MKDIR=y
+CONFIG_MKFIFO=y
+CONFIG_MKNOD=y
+CONFIG_MKTEMP=y
+CONFIG_MV=y
+CONFIG_NICE=y
+CONFIG_NL=y
+CONFIG_NOHUP=y
+CONFIG_NPROC=y
+CONFIG_OD=y
+CONFIG_PASTE=y
+CONFIG_PRINTENV=y
+CONFIG_PRINTF=y
+CONFIG_PWD=y
+CONFIG_READLINK=y
+CONFIG_FEATURE_READLINK_FOLLOW=y
+CONFIG_REALPATH=y
+CONFIG_RM=y
+CONFIG_RMDIR=y
+CONFIG_SEQ=y
+CONFIG_SHRED=y
+CONFIG_SHUF=y
+CONFIG_SLEEP=y
+CONFIG_FEATURE_FANCY_SLEEP=y
+CONFIG_SORT=y
+CONFIG_FEATURE_SORT_BIG=y
+# CONFIG_FEATURE_SORT_OPTIMIZE_MEMORY is not set
+CONFIG_SPLIT=y
+# CONFIG_FEATURE_SPLIT_FANCY is not set
+CONFIG_STAT=y
+CONFIG_FEATURE_STAT_FORMAT=y
+CONFIG_FEATURE_STAT_FILESYSTEM=y
+CONFIG_STTY=y
+CONFIG_SUM=y
+CONFIG_SYNC=y
+CONFIG_FEATURE_SYNC_FANCY=y
+CONFIG_FSYNC=y
+CONFIG_TAC=y
+CONFIG_TAIL=y
+CONFIG_FEATURE_FANCY_TAIL=y
+CONFIG_TEE=y
+CONFIG_FEATURE_TEE_USE_BLOCK_IO=y
+CONFIG_TEST=y
+CONFIG_TEST1=y
+CONFIG_TEST2=y
+CONFIG_FEATURE_TEST_64=y
+CONFIG_TIMEOUT=y
+CONFIG_TOUCH=y
+CONFIG_FEATURE_TOUCH_SUSV3=y
+CONFIG_TR=y
+CONFIG_FEATURE_TR_CLASSES=y
+CONFIG_FEATURE_TR_EQUIV=y
+CONFIG_TRUE=y
+CONFIG_TRUNCATE=y
+# CONFIG_TSORT is not set
+CONFIG_TTY=y
+CONFIG_UNAME=y
+CONFIG_UNAME_OSNAME="Linux"
+CONFIG_BB_ARCH=y
+CONFIG_UNIQ=y
+CONFIG_UNLINK=y
+CONFIG_USLEEP=y
+CONFIG_UUDECODE=y
+# CONFIG_BASE32 is not set
+CONFIG_BASE64=y
+CONFIG_UUENCODE=y
+CONFIG_WC=y
+CONFIG_FEATURE_WC_LARGE=y
+CONFIG_WHO=y
+# CONFIG_W is not set
+# CONFIG_USERS is not set
+CONFIG_WHOAMI=y
+CONFIG_YES=y
+CONFIG_CHVT=y
+CONFIG_CLEAR=y
+CONFIG_DEALLOCVT=y
+CONFIG_DUMPKMAP=y
+# CONFIG_FGCONSOLE is not set
+CONFIG_KBD_MODE=y
+CONFIG_LOADFONT=y
+CONFIG_SETFONT=y
+CONFIG_FEATURE_SETFONT_TEXTUAL_MAP=y
+CONFIG_DEFAULT_SETFONT_DIR="/usr/share"
+CONFIG_FEATURE_LOADFONT_PSF2=y
+CONFIG_FEATURE_LOADFONT_RAW=y
+CONFIG_LOADKMAP=y
+CONFIG_OPENVT=y
+CONFIG_RESET=y
+CONFIG_RESIZE=y
+CONFIG_FEATURE_RESIZE_PRINT=y
+CONFIG_SETCONSOLE=y
+# CONFIG_FEATURE_SETCONSOLE_LONG_OPTIONS is not set
+CONFIG_SETKEYCODES=y
+CONFIG_SETLOGCONS=y
+CONFIG_SHOWKEY=y
+CONFIG_PIPE_PROGRESS=y
+CONFIG_RUN_PARTS=y
+CONFIG_FEATURE_RUN_PARTS_LONG_OPTIONS=y
+# CONFIG_FEATURE_RUN_PARTS_FANCY is not set
+# CONFIG_START_STOP_DAEMON is not set
+# CONFIG_FEATURE_START_STOP_DAEMON_LONG_OPTIONS is not set
+# CONFIG_FEATURE_START_STOP_DAEMON_FANCY is not set
+CONFIG_WHICH=y
+# CONFIG_MINIPS is not set
+# CONFIG_NUKE is not set
+# CONFIG_RESUME is not set
+# CONFIG_RUN_INIT is not set
+CONFIG_AWK=y
+CONFIG_FEATURE_AWK_LIBM=y
+CONFIG_FEATURE_AWK_GNU_EXTENSIONS=y
+CONFIG_CMP=y
+CONFIG_DIFF=y
+CONFIG_FEATURE_DIFF_LONG_OPTIONS=y
+CONFIG_FEATURE_DIFF_DIR=y
+# CONFIG_ED is not set
+# CONFIG_PATCH is not set
+CONFIG_SED=y
+CONFIG_VI=y
+CONFIG_FEATURE_VI_MAX_LEN=4096
+CONFIG_FEATURE_VI_8BIT=y
+CONFIG_FEATURE_VI_COLON=y
+CONFIG_FEATURE_VI_COLON_EXPAND=y
+CONFIG_FEATURE_VI_YANKMARK=y
+CONFIG_FEATURE_VI_SEARCH=y
+# CONFIG_FEATURE_VI_REGEX_SEARCH is not set
+CONFIG_FEATURE_VI_USE_SIGNALS=y
+CONFIG_FEATURE_VI_DOT_CMD=y
+CONFIG_FEATURE_VI_READONLY=y
+CONFIG_FEATURE_VI_SETOPTS=y
+CONFIG_FEATURE_VI_SET=y
+CONFIG_FEATURE_VI_WIN_RESIZE=y
+CONFIG_FEATURE_VI_ASK_TERMINAL=y
+CONFIG_FEATURE_VI_UNDO=y
+CONFIG_FEATURE_VI_UNDO_QUEUE=y
+CONFIG_FEATURE_VI_UNDO_QUEUE_MAX=256
+# CONFIG_FEATURE_VI_VERBOSE_STATUS is not set
+CONFIG_FEATURE_ALLOW_EXEC=y
+CONFIG_FIND=y
+CONFIG_FEATURE_FIND_PRINT0=y
+CONFIG_FEATURE_FIND_MTIME=y
+CONFIG_FEATURE_FIND_ATIME=y
+CONFIG_FEATURE_FIND_CTIME=y
+CONFIG_FEATURE_FIND_MMIN=y
+# CONFIG_FEATURE_FIND_AMIN is not set
+# CONFIG_FEATURE_FIND_CMIN is not set
+CONFIG_FEATURE_FIND_PERM=y
+CONFIG_FEATURE_FIND_TYPE=y
+CONFIG_FEATURE_FIND_EXECUTABLE=y
+CONFIG_FEATURE_FIND_XDEV=y
+CONFIG_FEATURE_FIND_MAXDEPTH=y
+CONFIG_FEATURE_FIND_NEWER=y
+CONFIG_FEATURE_FIND_INUM=y
+# CONFIG_FEATURE_FIND_SAMEFILE is not set
+CONFIG_FEATURE_FIND_EXEC=y
+CONFIG_FEATURE_FIND_EXEC_PLUS=y
+CONFIG_FEATURE_FIND_USER=y
+CONFIG_FEATURE_FIND_GROUP=y
+CONFIG_FEATURE_FIND_NOT=y
+CONFIG_FEATURE_FIND_DEPTH=y
+CONFIG_FEATURE_FIND_PAREN=y
+CONFIG_FEATURE_FIND_SIZE=y
+CONFIG_FEATURE_FIND_PRUNE=y
+CONFIG_FEATURE_FIND_QUIT=y
+CONFIG_FEATURE_FIND_DELETE=y
+CONFIG_FEATURE_FIND_EMPTY=y
+CONFIG_FEATURE_FIND_PATH=y
+CONFIG_FEATURE_FIND_REGEX=y
+# CONFIG_FEATURE_FIND_CONTEXT is not set
+CONFIG_FEATURE_FIND_LINKS=y
+CONFIG_GREP=y
+CONFIG_EGREP=y
+CONFIG_FGREP=y
+CONFIG_FEATURE_GREP_CONTEXT=y
+CONFIG_XARGS=y
+CONFIG_FEATURE_XARGS_SUPPORT_CONFIRMATION=y
+CONFIG_FEATURE_XARGS_SUPPORT_QUOTES=y
+CONFIG_FEATURE_XARGS_SUPPORT_TERMOPT=y
+CONFIG_FEATURE_XARGS_SUPPORT_ZERO_TERM=y
+CONFIG_FEATURE_XARGS_SUPPORT_REPL_STR=y
+CONFIG_FEATURE_XARGS_SUPPORT_PARALLEL=y
+CONFIG_FEATURE_XARGS_SUPPORT_ARGS_FILE=y
+# CONFIG_BOOTCHARTD is not set
+# CONFIG_FEATURE_BOOTCHARTD_BLOATED_HEADER is not set
+# CONFIG_FEATURE_BOOTCHARTD_CONFIG_FILE is not set
+CONFIG_HALT=y
+CONFIG_POWEROFF=y
+CONFIG_REBOOT=y
+CONFIG_FEATURE_WAIT_FOR_INIT=y
+# CONFIG_FEATURE_CALL_TELINIT is not set
+CONFIG_TELINIT_PATH=""
+CONFIG_INIT=y
+# CONFIG_LINUXRC is not set
+CONFIG_FEATURE_USE_INITTAB=y
+CONFIG_FEATURE_KILL_REMOVED=y
+CONFIG_FEATURE_KILL_DELAY=0
+CONFIG_FEATURE_INIT_SCTTY=y
+CONFIG_FEATURE_INIT_SYSLOG=y
+CONFIG_FEATURE_INIT_QUIET=y
+# CONFIG_FEATURE_INIT_COREDUMPS is not set
+CONFIG_INIT_TERMINAL_TYPE="linux"
+# CONFIG_FEATURE_INIT_MODIFY_CMDLINE is not set
+CONFIG_FEATURE_SHADOWPASSWDS=y
+# CONFIG_USE_BB_PWD_GRP is not set
+# CONFIG_USE_BB_SHADOW is not set
+# CONFIG_USE_BB_CRYPT is not set
+# CONFIG_USE_BB_CRYPT_SHA is not set
+CONFIG_ADD_SHELL=y
+CONFIG_REMOVE_SHELL=y
+CONFIG_ADDGROUP=y
+CONFIG_FEATURE_ADDUSER_TO_GROUP=y
+CONFIG_ADDUSER=y
+CONFIG_FEATURE_CHECK_NAMES=y
+CONFIG_LAST_ID=256000
+CONFIG_FIRST_SYSTEM_ID=100
+CONFIG_LAST_SYSTEM_ID=999
+CONFIG_CHPASSWD=y
+CONFIG_FEATURE_DEFAULT_PASSWD_ALGO="sha512"
+CONFIG_CRYPTPW=y
+CONFIG_MKPASSWD=y
+CONFIG_DELUSER=y
+CONFIG_DELGROUP=y
+CONFIG_FEATURE_DEL_USER_FROM_GROUP=y
+CONFIG_GETTY=y
+CONFIG_LOGIN=y
+CONFIG_LOGIN_SESSION_AS_CHILD=y
+CONFIG_LOGIN_SCRIPTS=y
+CONFIG_FEATURE_NOLOGIN=y
+CONFIG_FEATURE_SECURETTY=y
+CONFIG_PASSWD=y
+CONFIG_FEATURE_PASSWD_WEAK_CHECK=y
+CONFIG_SU=y
+CONFIG_FEATURE_SU_SYSLOG=y
+CONFIG_FEATURE_SU_CHECKS_SHELLS=y
+CONFIG_FEATURE_SU_BLANK_PW_NEEDS_SECURE_TTY=y
+# CONFIG_SULOGIN is not set
+CONFIG_VLOCK=y
+CONFIG_CHATTR=y
+CONFIG_FSCK=y
+CONFIG_LSATTR=y
+# CONFIG_TUNE2FS is not set
+# CONFIG_MODPROBE_SMALL is not set
+CONFIG_DEPMOD=y
+CONFIG_INSMOD=y
+CONFIG_LSMOD=y
+CONFIG_FEATURE_LSMOD_PRETTY_2_6_OUTPUT=y
+CONFIG_MODINFO=y
+CONFIG_MODPROBE=y
+CONFIG_FEATURE_MODPROBE_BLACKLIST=y
+CONFIG_RMMOD=y
+CONFIG_FEATURE_CMDLINE_MODULE_OPTIONS=y
+# CONFIG_FEATURE_MODPROBE_SMALL_CHECK_ALREADY_LOADED is not set
+# CONFIG_FEATURE_2_4_MODULES is not set
+# CONFIG_FEATURE_INSMOD_VERSION_CHECKING is not set
+# CONFIG_FEATURE_INSMOD_KSYMOOPS_SYMBOLS is not set
+# CONFIG_FEATURE_INSMOD_LOADINKMEM is not set
+# CONFIG_FEATURE_INSMOD_LOAD_MAP is not set
+# CONFIG_FEATURE_INSMOD_LOAD_MAP_FULL is not set
+CONFIG_FEATURE_CHECK_TAINTED_MODULE=y
+# CONFIG_FEATURE_INSMOD_TRY_MMAP is not set
+CONFIG_FEATURE_MODUTILS_ALIAS=y
+CONFIG_FEATURE_MODUTILS_BIN=y
+CONFIG_FEATURE_MODUTILS_SYMBOLS=y
+CONFIG_DEFAULT_MODULES_DIR="/lib/modules"
+CONFIG_DEFAULT_DEPMOD_FILE="modules.dep"
+CONFIG_ACPID=y
+CONFIG_FEATURE_ACPID_COMPAT=y
+CONFIG_BLKDISCARD=y
+CONFIG_BLKID=y
+CONFIG_FEATURE_BLKID_TYPE=y
+CONFIG_BLOCKDEV=y
+CONFIG_CAL=y
+# CONFIG_CHRT is not set
+CONFIG_DMESG=y
+CONFIG_FEATURE_DMESG_PRETTY=y
+CONFIG_EJECT=y
+CONFIG_FEATURE_EJECT_SCSI=y
+CONFIG_FALLOCATE=y
+CONFIG_FATATTR=y
+CONFIG_FBSET=y
+CONFIG_FEATURE_FBSET_FANCY=y
+CONFIG_FEATURE_FBSET_READMODE=y
+# CONFIG_FDFORMAT is not set
+CONFIG_FDISK=y
+# CONFIG_FDISK_SUPPORT_LARGE_DISKS is not set
+CONFIG_FEATURE_FDISK_WRITABLE=y
+CONFIG_FEATURE_AIX_LABEL=y
+CONFIG_FEATURE_SGI_LABEL=y
+CONFIG_FEATURE_SUN_LABEL=y
+CONFIG_FEATURE_OSF_LABEL=y
+CONFIG_FEATURE_GPT_LABEL=y
+CONFIG_FEATURE_FDISK_ADVANCED=y
+CONFIG_FINDFS=y
+CONFIG_FLOCK=y
+CONFIG_FDFLUSH=y
+# CONFIG_FREERAMDISK is not set
+# CONFIG_FSCK_MINIX is not set
+# CONFIG_FSFREEZE is not set
+CONFIG_FSTRIM=y
+CONFIG_GETOPT=y
+CONFIG_FEATURE_GETOPT_LONG=y
+CONFIG_HEXDUMP=y
+CONFIG_HD=y
+CONFIG_XXD=y
+CONFIG_HWCLOCK=y
+CONFIG_FEATURE_HWCLOCK_ADJTIME_FHS=y
+CONFIG_IONICE=y
+CONFIG_IPCRM=y
+CONFIG_IPCS=y
+CONFIG_LAST=y
+# CONFIG_FEATURE_LAST_FANCY is not set
+CONFIG_LOSETUP=y
+# CONFIG_LSPCI is not set
+CONFIG_LSUSB=y
+CONFIG_MDEV=y
+CONFIG_FEATURE_MDEV_CONF=y
+CONFIG_FEATURE_MDEV_RENAME=y
+CONFIG_FEATURE_MDEV_RENAME_REGEXP=y
+CONFIG_FEATURE_MDEV_EXEC=y
+CONFIG_FEATURE_MDEV_LOAD_FIRMWARE=y
+CONFIG_FEATURE_MDEV_DAEMON=y
+CONFIG_MESG=y
+CONFIG_FEATURE_MESG_ENABLE_ONLY_GROUP=y
+# CONFIG_MKE2FS is not set
+# CONFIG_MKFS_EXT2 is not set
+# CONFIG_MKFS_MINIX is not set
+# CONFIG_FEATURE_MINIX2 is not set
+# CONFIG_MKFS_REISER is not set
+CONFIG_MKDOSFS=y
+CONFIG_MKFS_VFAT=y
+CONFIG_MKSWAP=y
+CONFIG_FEATURE_MKSWAP_UUID=y
+CONFIG_MORE=y
+CONFIG_MOUNT=y
+CONFIG_FEATURE_MOUNT_FAKE=y
+CONFIG_FEATURE_MOUNT_VERBOSE=y
+CONFIG_FEATURE_MOUNT_HELPERS=y
+CONFIG_FEATURE_MOUNT_LABEL=y
+# CONFIG_FEATURE_MOUNT_NFS is not set
+CONFIG_FEATURE_MOUNT_CIFS=y
+CONFIG_FEATURE_MOUNT_FLAGS=y
+CONFIG_FEATURE_MOUNT_FSTAB=y
+# CONFIG_FEATURE_MOUNT_OTHERTAB is not set
+CONFIG_MOUNTPOINT=y
+CONFIG_NOLOGIN=y
+CONFIG_NOLOGIN_DEPENDENCIES=y
+CONFIG_NSENTER=y
+CONFIG_PIVOT_ROOT=y
+CONFIG_RDATE=y
+CONFIG_RDEV=y
+# CONFIG_READPROFILE is not set
+CONFIG_RENICE=y
+CONFIG_REV=y
+# CONFIG_RTCWAKE is not set
+# CONFIG_SCRIPT is not set
+# CONFIG_SCRIPTREPLAY is not set
+# CONFIG_SETARCH is not set
+CONFIG_LINUX32=y
+CONFIG_LINUX64=y
+CONFIG_SETPRIV=y
+CONFIG_FEATURE_SETPRIV_DUMP=y
+CONFIG_FEATURE_SETPRIV_CAPABILITIES=y
+CONFIG_FEATURE_SETPRIV_CAPABILITY_NAMES=y
+CONFIG_SETSID=y
+CONFIG_SWAPON=y
+CONFIG_FEATURE_SWAPON_DISCARD=y
+CONFIG_FEATURE_SWAPON_PRI=y
+CONFIG_SWAPOFF=y
+CONFIG_FEATURE_SWAPONOFF_LABEL=y
+CONFIG_SWITCH_ROOT=y
+# CONFIG_TASKSET is not set
+# CONFIG_FEATURE_TASKSET_FANCY is not set
+# CONFIG_FEATURE_TASKSET_CPULIST is not set
+# CONFIG_UEVENT is not set
+CONFIG_UMOUNT=y
+CONFIG_FEATURE_UMOUNT_ALL=y
+CONFIG_UNSHARE=y
+# CONFIG_WALL is not set
+CONFIG_FEATURE_MOUNT_LOOP=y
+CONFIG_FEATURE_MOUNT_LOOP_CREATE=y
+# CONFIG_FEATURE_MTAB_SUPPORT is not set
+CONFIG_VOLUMEID=y
+CONFIG_FEATURE_VOLUMEID_BCACHE=y
+CONFIG_FEATURE_VOLUMEID_BTRFS=y
+CONFIG_FEATURE_VOLUMEID_CRAMFS=y
+CONFIG_FEATURE_VOLUMEID_EROFS=y
+CONFIG_FEATURE_VOLUMEID_EXFAT=y
+CONFIG_FEATURE_VOLUMEID_EXT=y
+CONFIG_FEATURE_VOLUMEID_F2FS=y
+CONFIG_FEATURE_VOLUMEID_FAT=y
+# CONFIG_FEATURE_VOLUMEID_HFS is not set
+CONFIG_FEATURE_VOLUMEID_ISO9660=y
+CONFIG_FEATURE_VOLUMEID_JFS=y
+CONFIG_FEATURE_VOLUMEID_LFS=y
+CONFIG_FEATURE_VOLUMEID_LINUXRAID=y
+CONFIG_FEATURE_VOLUMEID_LINUXSWAP=y
+CONFIG_FEATURE_VOLUMEID_LUKS=y
+CONFIG_FEATURE_VOLUMEID_MINIX=y
+CONFIG_FEATURE_VOLUMEID_NILFS=y
+CONFIG_FEATURE_VOLUMEID_NTFS=y
+CONFIG_FEATURE_VOLUMEID_OCFS2=y
+CONFIG_FEATURE_VOLUMEID_REISERFS=y
+# CONFIG_FEATURE_VOLUMEID_ROMFS is not set
+CONFIG_FEATURE_VOLUMEID_SQUASHFS=y
+# CONFIG_FEATURE_VOLUMEID_SYSV is not set
+CONFIG_FEATURE_VOLUMEID_UBIFS=y
+CONFIG_FEATURE_VOLUMEID_UDF=y
+CONFIG_FEATURE_VOLUMEID_XFS=y
+CONFIG_ADJTIMEX=y
+# CONFIG_ASCII is not set
+CONFIG_BBCONFIG=y
+CONFIG_FEATURE_COMPRESS_BBCONFIG=y
+CONFIG_BC=y
+CONFIG_DC=y
+CONFIG_FEATURE_DC_BIG=y
+# CONFIG_FEATURE_DC_LIBM is not set
+CONFIG_FEATURE_BC_INTERACTIVE=y
+CONFIG_FEATURE_BC_LONG_OPTIONS=y
+CONFIG_BEEP=y
+CONFIG_FEATURE_BEEP_FREQ=440
+CONFIG_FEATURE_BEEP_LENGTH_MS=30
+# CONFIG_CHAT is not set
+# CONFIG_FEATURE_CHAT_NOFAIL is not set
+# CONFIG_FEATURE_CHAT_TTY_HIFI is not set
+# CONFIG_FEATURE_CHAT_IMPLICIT_CR is not set
+# CONFIG_FEATURE_CHAT_SWALLOW_OPTS is not set
+# CONFIG_FEATURE_CHAT_SEND_ESCAPES is not set
+# CONFIG_FEATURE_CHAT_VAR_ABORT_LEN is not set
+# CONFIG_FEATURE_CHAT_CLR_ABORT is not set
+# CONFIG_CONSPY is not set
+CONFIG_CROND=y
+CONFIG_FEATURE_CROND_D=y
+CONFIG_FEATURE_CROND_CALL_SENDMAIL=y
+CONFIG_FEATURE_CROND_SPECIAL_TIMES=y
+CONFIG_FEATURE_CROND_DIR="/var/spool/cron"
+CONFIG_CRONTAB=y
+# CONFIG_DEVFSD is not set
+# CONFIG_DEVFSD_MODLOAD is not set
+# CONFIG_DEVFSD_FG_NP is not set
+# CONFIG_DEVFSD_VERBOSE is not set
+# CONFIG_FEATURE_DEVFS is not set
+# CONFIG_DEVMEM is not set
+CONFIG_FBSPLASH=y
+# CONFIG_FLASH_ERASEALL is not set
+# CONFIG_FLASH_LOCK is not set
+# CONFIG_FLASH_UNLOCK is not set
+# CONFIG_FLASHCP is not set
+# CONFIG_HDPARM is not set
+# CONFIG_FEATURE_HDPARM_GET_IDENTITY is not set
+# CONFIG_FEATURE_HDPARM_HDIO_SCAN_HWIF is not set
+# CONFIG_FEATURE_HDPARM_HDIO_UNREGISTER_HWIF is not set
+# CONFIG_FEATURE_HDPARM_HDIO_DRIVE_RESET is not set
+# CONFIG_FEATURE_HDPARM_HDIO_TRISTATE_HWIF is not set
+# CONFIG_FEATURE_HDPARM_HDIO_GETSET_DMA is not set
+# CONFIG_HEXEDIT is not set
+# CONFIG_I2CGET is not set
+# CONFIG_I2CSET is not set
+# CONFIG_I2CDUMP is not set
+# CONFIG_I2CDETECT is not set
+# CONFIG_I2CTRANSFER is not set
+CONFIG_INOTIFYD=y
+CONFIG_LESS=y
+CONFIG_FEATURE_LESS_MAXLINES=9999999
+CONFIG_FEATURE_LESS_BRACKETS=y
+CONFIG_FEATURE_LESS_FLAGS=y
+CONFIG_FEATURE_LESS_TRUNCATE=y
+CONFIG_FEATURE_LESS_MARKS=y
+CONFIG_FEATURE_LESS_REGEXP=y
+CONFIG_FEATURE_LESS_WINCH=y
+CONFIG_FEATURE_LESS_ASK_TERMINAL=y
+CONFIG_FEATURE_LESS_DASHCMD=y
+CONFIG_FEATURE_LESS_LINENUMS=y
+CONFIG_FEATURE_LESS_RAW=y
+CONFIG_FEATURE_LESS_ENV=y
+# CONFIG_LSSCSI is not set
+# CONFIG_MAKEDEVS is not set
+# CONFIG_FEATURE_MAKEDEVS_LEAF is not set
+# CONFIG_FEATURE_MAKEDEVS_TABLE is not set
+# CONFIG_MAN is not set
+CONFIG_MICROCOM=y
+# CONFIG_MIM is not set
+# CONFIG_MT is not set
+CONFIG_NANDWRITE=y
+CONFIG_NANDDUMP=y
+CONFIG_PARTPROBE=y
+CONFIG_RAIDAUTORUN=y
+CONFIG_READAHEAD=y
+CONFIG_RFKILL=y
+# CONFIG_RUNLEVEL is not set
+# CONFIG_RX is not set
+# CONFIG_SEEDRNG is not set
+# CONFIG_SETFATTR is not set
+CONFIG_SETSERIAL=y
+CONFIG_STRINGS=y
+CONFIG_TIME=y
+CONFIG_TREE=y
+# CONFIG_TS is not set
+CONFIG_TTYSIZE=y
+# CONFIG_UBIATTACH is not set
+# CONFIG_UBIDETACH is not set
+# CONFIG_UBIMKVOL is not set
+# CONFIG_UBIRMVOL is not set
+# CONFIG_UBIRSVOL is not set
+# CONFIG_UBIUPDATEVOL is not set
+# CONFIG_UBIRENAME is not set
+CONFIG_VOLNAME=y
+CONFIG_WATCHDOG=y
+CONFIG_FEATURE_WATCHDOG_OPEN_TWICE=y
+CONFIG_FEATURE_IPV6=y
+CONFIG_FEATURE_UNIX_LOCAL=y
+# CONFIG_FEATURE_PREFER_IPV4_ADDRESS is not set
+CONFIG_VERBOSE_RESOLUTION_ERRORS=y
+# CONFIG_FEATURE_ETC_NETWORKS is not set
+# CONFIG_FEATURE_ETC_SERVICES is not set
+CONFIG_FEATURE_HWIB=y
+# CONFIG_FEATURE_TLS_SHA1 is not set
+CONFIG_ARP=y
+CONFIG_ARPING=y
+CONFIG_BRCTL=y
+CONFIG_FEATURE_BRCTL_FANCY=y
+CONFIG_FEATURE_BRCTL_SHOW=y
+# CONFIG_DNSD is not set
+CONFIG_ETHER_WAKE=y
+# CONFIG_FTPD is not set
+# CONFIG_FEATURE_FTPD_WRITE is not set
+# CONFIG_FEATURE_FTPD_ACCEPT_BROKEN_LIST is not set
+# CONFIG_FEATURE_FTPD_AUTHENTICATION is not set
+# CONFIG_FTPGET is not set
+# CONFIG_FTPPUT is not set
+# CONFIG_FEATURE_FTPGETPUT_LONG_OPTIONS is not set
+CONFIG_HOSTNAME=y
+CONFIG_DNSDOMAINNAME=y
+# CONFIG_HTTPD is not set
+CONFIG_FEATURE_HTTPD_PORT_DEFAULT=0
+# CONFIG_FEATURE_HTTPD_RANGES is not set
+# CONFIG_FEATURE_HTTPD_SETUID is not set
+# CONFIG_FEATURE_HTTPD_BASIC_AUTH is not set
+# CONFIG_FEATURE_HTTPD_AUTH_MD5 is not set
+# CONFIG_FEATURE_HTTPD_CGI is not set
+# CONFIG_FEATURE_HTTPD_CONFIG_WITH_SCRIPT_INTERPR is not set
+# CONFIG_FEATURE_HTTPD_SET_REMOTE_PORT_TO_ENV is not set
+# CONFIG_FEATURE_HTTPD_ENCODE_URL_STR is not set
+# CONFIG_FEATURE_HTTPD_ERROR_PAGES is not set
+# CONFIG_FEATURE_HTTPD_PROXY is not set
+# CONFIG_FEATURE_HTTPD_GZIP is not set
+# CONFIG_FEATURE_HTTPD_ETAG is not set
+# CONFIG_FEATURE_HTTPD_LAST_MODIFIED is not set
+# CONFIG_FEATURE_HTTPD_DATE is not set
+# CONFIG_FEATURE_HTTPD_ACL_IP is not set
+CONFIG_IFCONFIG=y
+CONFIG_FEATURE_IFCONFIG_STATUS=y
+CONFIG_FEATURE_IFCONFIG_SLIP=y
+CONFIG_FEATURE_IFCONFIG_MEMSTART_IOADDR_IRQ=y
+CONFIG_FEATURE_IFCONFIG_HW=y
+CONFIG_FEATURE_IFCONFIG_BROADCAST_PLUS=y
+CONFIG_IFENSLAVE=y
+# CONFIG_IFPLUGD is not set
+CONFIG_IFUP=y
+CONFIG_IFDOWN=y
+CONFIG_IFUPDOWN_IFSTATE_PATH="/run/ifstate"
+CONFIG_FEATURE_IFUPDOWN_IP=y
+CONFIG_FEATURE_IFUPDOWN_IPV4=y
+CONFIG_FEATURE_IFUPDOWN_IPV6=y
+# CONFIG_FEATURE_IFUPDOWN_MAPPING is not set
+CONFIG_FEATURE_IFUPDOWN_EXTERNAL_DHCP=y
+# CONFIG_INETD is not set
+# CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_ECHO is not set
+# CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_DISCARD is not set
+# CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_TIME is not set
+# CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_DAYTIME is not set
+# CONFIG_FEATURE_INETD_SUPPORT_BUILTIN_CHARGEN is not set
+# CONFIG_FEATURE_INETD_RPC is not set
+CONFIG_IP=y
+CONFIG_IPADDR=y
+CONFIG_IPLINK=y
+CONFIG_IPROUTE=y
+CONFIG_IPTUNNEL=y
+CONFIG_IPRULE=y
+CONFIG_IPNEIGH=y
+CONFIG_FEATURE_IP_ADDRESS=y
+CONFIG_FEATURE_IP_LINK=y
+CONFIG_FEATURE_IP_ROUTE=y
+CONFIG_FEATURE_IP_ROUTE_DIR="/etc/iproute2"
+CONFIG_FEATURE_IP_TUNNEL=y
+CONFIG_FEATURE_IP_RULE=y
+CONFIG_FEATURE_IP_NEIGH=y
+CONFIG_FEATURE_IP_RARE_PROTOCOLS=y
+CONFIG_IPCALC=y
+CONFIG_FEATURE_IPCALC_LONG_OPTIONS=y
+CONFIG_FEATURE_IPCALC_FANCY=y
+# CONFIG_FAKEIDENTD is not set
+CONFIG_NAMEIF=y
+CONFIG_FEATURE_NAMEIF_EXTENDED=y
+CONFIG_NBDCLIENT=y
+CONFIG_NC=y
+# CONFIG_NETCAT is not set
+CONFIG_NC_SERVER=y
+CONFIG_NC_EXTRA=y
+CONFIG_NC_110_COMPAT=y
+CONFIG_NETSTAT=y
+CONFIG_FEATURE_NETSTAT_WIDE=y
+CONFIG_FEATURE_NETSTAT_PRG=y
+CONFIG_NSLOOKUP=y
+CONFIG_FEATURE_NSLOOKUP_BIG=y
+CONFIG_FEATURE_NSLOOKUP_LONG_OPTIONS=y
+CONFIG_NTPD=y
+CONFIG_FEATURE_NTPD_SERVER=y
+CONFIG_FEATURE_NTPD_CONF=y
+CONFIG_FEATURE_NTP_AUTH=y
+CONFIG_PING=y
+CONFIG_PING6=y
+CONFIG_FEATURE_FANCY_PING=y
+CONFIG_PSCAN=y
+CONFIG_ROUTE=y
+CONFIG_SLATTACH=y
+# CONFIG_SSL_CLIENT is not set
+# CONFIG_TC is not set
+# CONFIG_FEATURE_TC_INGRESS is not set
+# CONFIG_TCPSVD is not set
+# CONFIG_UDPSVD is not set
+# CONFIG_TELNET is not set
+# CONFIG_FEATURE_TELNET_TTYPE is not set
+# CONFIG_FEATURE_TELNET_AUTOLOGIN is not set
+# CONFIG_FEATURE_TELNET_WIDTH is not set
+# CONFIG_TELNETD is not set
+# CONFIG_FEATURE_TELNETD_STANDALONE is not set
+CONFIG_FEATURE_TELNETD_PORT_DEFAULT=0
+# CONFIG_FEATURE_TELNETD_INETD_WAIT is not set
+# CONFIG_TFTP is not set
+# CONFIG_FEATURE_TFTP_PROGRESS_BAR is not set
+# CONFIG_FEATURE_TFTP_HPA_COMPAT is not set
+# CONFIG_TFTPD is not set
+# CONFIG_FEATURE_TFTP_GET is not set
+# CONFIG_FEATURE_TFTP_PUT is not set
+# CONFIG_FEATURE_TFTP_BLOCKSIZE is not set
+# CONFIG_TFTP_DEBUG is not set
+# CONFIG_TLS is not set
+CONFIG_TRACEROUTE=y
+CONFIG_TRACEROUTE6=y
+CONFIG_FEATURE_TRACEROUTE_VERBOSE=y
+CONFIG_FEATURE_TRACEROUTE_USE_ICMP=y
+CONFIG_TUNCTL=y
+CONFIG_FEATURE_TUNCTL_UG=y
+CONFIG_VCONFIG=y
+CONFIG_WGET=y
+CONFIG_FEATURE_WGET_LONG_OPTIONS=y
+CONFIG_FEATURE_WGET_STATUSBAR=y
+CONFIG_FEATURE_WGET_FTP=y
+CONFIG_FEATURE_WGET_AUTHENTICATION=y
+CONFIG_FEATURE_WGET_TIMEOUT=y
+CONFIG_FEATURE_WGET_HTTPS=y
+# CONFIG_FEATURE_WGET_OPENSSL is not set
+CONFIG_WHOIS=y
+CONFIG_ZCIP=y
+# CONFIG_UDHCPD is not set
+# CONFIG_FEATURE_UDHCPD_BASE_IP_ON_MAC is not set
+# CONFIG_FEATURE_UDHCPD_WRITE_LEASES_EARLY is not set
+CONFIG_DHCPD_LEASES_FILE=""
+# CONFIG_DUMPLEASES is not set
+# CONFIG_DHCPRELAY is not set
+CONFIG_UDHCPC=y
+CONFIG_FEATURE_UDHCPC_ARPING=y
+CONFIG_FEATURE_UDHCPC_SANITIZEOPT=y
+CONFIG_UDHCPC_DEFAULT_SCRIPT="/usr/share/udhcpc/default.script"
+CONFIG_UDHCPC6_DEFAULT_SCRIPT="/usr/share/udhcpc/default.script"
+CONFIG_UDHCPC6=y
+CONFIG_FEATURE_UDHCPC6_RFC3646=y
+CONFIG_FEATURE_UDHCPC6_RFC4704=y
+CONFIG_FEATURE_UDHCPC6_RFC4833=y
+CONFIG_FEATURE_UDHCPC6_RFC5970=y
+CONFIG_UDHCPC_DEFAULT_INTERFACE="eth0"
+# CONFIG_FEATURE_UDHCP_PORT is not set
+CONFIG_UDHCP_DEBUG=0
+CONFIG_UDHCPC_SLACK_FOR_BUGGY_SERVERS=80
+CONFIG_FEATURE_UDHCP_RFC3397=y
+CONFIG_FEATURE_UDHCP_8021Q=y
+CONFIG_IFUPDOWN_UDHCPC_CMD_OPTIONS="-b -R"
+# CONFIG_LPD is not set
+# CONFIG_LPR is not set
+# CONFIG_LPQ is not set
+CONFIG_FEATURE_MIME_CHARSET="us-ascii"
+CONFIG_MAKEMIME=y
+# CONFIG_POPMAILDIR is not set
+# CONFIG_FEATURE_POPMAILDIR_DELIVERY is not set
+CONFIG_REFORMIME=y
+CONFIG_FEATURE_REFORMIME_COMPAT=y
+CONFIG_SENDMAIL=y
+CONFIG_FEATURE_FAST_TOP=y
+CONFIG_FEATURE_SHOW_THREADS=y
+CONFIG_FREE=y
+CONFIG_FUSER=y
+CONFIG_IOSTAT=y
+CONFIG_KILL=y
+CONFIG_KILLALL=y
+CONFIG_KILLALL5=y
+CONFIG_LSOF=y
+CONFIG_MPSTAT=y
+CONFIG_NMETER=y
+CONFIG_PGREP=y
+CONFIG_PKILL=y
+CONFIG_PIDOF=y
+CONFIG_FEATURE_PIDOF_SINGLE=y
+CONFIG_FEATURE_PIDOF_OMIT=y
+CONFIG_PMAP=y
+# CONFIG_POWERTOP is not set
+# CONFIG_FEATURE_POWERTOP_INTERACTIVE is not set
+CONFIG_PS=y
+# CONFIG_FEATURE_PS_WIDE is not set
+# CONFIG_FEATURE_PS_LONG is not set
+CONFIG_FEATURE_PS_TIME=y
+# CONFIG_FEATURE_PS_UNUSUAL_SYSTEMS is not set
+CONFIG_FEATURE_PS_ADDITIONAL_COLUMNS=y
+CONFIG_PSTREE=y
+CONFIG_PWDX=y
+# CONFIG_SMEMCAP is not set
+CONFIG_BB_SYSCTL=y
+CONFIG_TOP=y
+CONFIG_FEATURE_TOP_INTERACTIVE=y
+CONFIG_FEATURE_TOP_CPU_USAGE_PERCENTAGE=y
+CONFIG_FEATURE_TOP_CPU_GLOBAL_PERCENTS=y
+CONFIG_FEATURE_TOP_SMP_CPU=y
+# CONFIG_FEATURE_TOP_DECIMALS is not set
+CONFIG_FEATURE_TOP_SMP_PROCESS=y
+CONFIG_FEATURE_TOPMEM=y
+CONFIG_UPTIME=y
+CONFIG_FEATURE_UPTIME_UTMP_SUPPORT=y
+CONFIG_WATCH=y
+# CONFIG_CHPST is not set
+# CONFIG_SETUIDGID is not set
+# CONFIG_ENVUIDGID is not set
+# CONFIG_ENVDIR is not set
+# CONFIG_SOFTLIMIT is not set
+# CONFIG_RUNSV is not set
+# CONFIG_RUNSVDIR is not set
+# CONFIG_FEATURE_RUNSVDIR_LOG is not set
+# CONFIG_SV is not set
+CONFIG_SV_DEFAULT_SERVICE_DIR=""
+# CONFIG_SVC is not set
+# CONFIG_SVOK is not set
+# CONFIG_SVLOGD is not set
+# CONFIG_CHCON is not set
+# CONFIG_GETENFORCE is not set
+# CONFIG_GETSEBOOL is not set
+# CONFIG_LOAD_POLICY is not set
+# CONFIG_MATCHPATHCON is not set
+# CONFIG_RUNCON is not set
+# CONFIG_SELINUXENABLED is not set
+# CONFIG_SESTATUS is not set
+# CONFIG_SETENFORCE is not set
+# CONFIG_SETFILES is not set
+# CONFIG_FEATURE_SETFILES_CHECK_OPTION is not set
+# CONFIG_RESTORECON is not set
+# CONFIG_SETSEBOOL is not set
+CONFIG_SH_IS_ASH=y
+# CONFIG_SH_IS_HUSH is not set
+# CONFIG_SH_IS_NONE is not set
+# CONFIG_BASH_IS_ASH is not set
+# CONFIG_BASH_IS_HUSH is not set
+CONFIG_BASH_IS_NONE=y
+CONFIG_SHELL_ASH=y
+CONFIG_ASH=y
+CONFIG_ASH_OPTIMIZE_FOR_SIZE=y
+CONFIG_ASH_INTERNAL_GLOB=y
+CONFIG_ASH_BASH_COMPAT=y
+CONFIG_ASH_BASH_SOURCE_CURDIR=y
+CONFIG_ASH_BASH_NOT_FOUND_HOOK=y
+CONFIG_ASH_JOB_CONTROL=y
+CONFIG_ASH_ALIAS=y
+CONFIG_ASH_RANDOM_SUPPORT=y
+CONFIG_ASH_EXPAND_PRMT=y
+CONFIG_ASH_IDLE_TIMEOUT=y
+CONFIG_ASH_MAIL=y
+CONFIG_ASH_ECHO=y
+CONFIG_ASH_PRINTF=y
+CONFIG_ASH_TEST=y
+# CONFIG_ASH_SLEEP is not set
+CONFIG_ASH_HELP=y
+CONFIG_ASH_GETOPTS=y
+CONFIG_ASH_CMDCMD=y
+CONFIG_ASH_VERSION_VAR=y
+# CONFIG_CTTYHACK is not set
+# CONFIG_HUSH is not set
+# CONFIG_SHELL_HUSH is not set
+# CONFIG_HUSH_BASH_COMPAT is not set
+# CONFIG_HUSH_BRACE_EXPANSION is not set
+# CONFIG_HUSH_BASH_SOURCE_CURDIR is not set
+# CONFIG_HUSH_LINENO_VAR is not set
+# CONFIG_HUSH_INTERACTIVE is not set
+# CONFIG_HUSH_SAVEHISTORY is not set
+# CONFIG_HUSH_JOB is not set
+# CONFIG_HUSH_TICK is not set
+# CONFIG_HUSH_IF is not set
+# CONFIG_HUSH_LOOPS is not set
+# CONFIG_HUSH_CASE is not set
+# CONFIG_HUSH_FUNCTIONS is not set
+# CONFIG_HUSH_LOCAL is not set
+# CONFIG_HUSH_RANDOM_SUPPORT is not set
+# CONFIG_HUSH_MODE_X is not set
+# CONFIG_HUSH_ECHO is not set
+# CONFIG_HUSH_PRINTF is not set
+# CONFIG_HUSH_TEST is not set
+# CONFIG_HUSH_HELP is not set
+# CONFIG_HUSH_EXPORT is not set
+# CONFIG_HUSH_EXPORT_N is not set
+# CONFIG_HUSH_READONLY is not set
+# CONFIG_HUSH_KILL is not set
+# CONFIG_HUSH_WAIT is not set
+# CONFIG_HUSH_COMMAND is not set
+# CONFIG_HUSH_TRAP is not set
+# CONFIG_HUSH_TYPE is not set
+# CONFIG_HUSH_TIMES is not set
+# CONFIG_HUSH_READ is not set
+# CONFIG_HUSH_SET is not set
+# CONFIG_HUSH_UNSET is not set
+# CONFIG_HUSH_ULIMIT is not set
+# CONFIG_HUSH_UMASK is not set
+# CONFIG_HUSH_GETOPTS is not set
+# CONFIG_HUSH_MEMLEAK is not set
+CONFIG_FEATURE_SH_MATH=y
+CONFIG_FEATURE_SH_MATH_64=y
+CONFIG_FEATURE_SH_MATH_BASE=y
+CONFIG_FEATURE_SH_EXTRA_QUIET=y
+# CONFIG_FEATURE_SH_STANDALONE is not set
+# CONFIG_FEATURE_SH_NOFORK is not set
+CONFIG_FEATURE_SH_READ_FRAC=y
+CONFIG_FEATURE_SH_HISTFILESIZE=y
+CONFIG_FEATURE_SH_EMBEDDED_SCRIPTS=y
+CONFIG_KLOGD=y
+CONFIG_FEATURE_KLOGD_KLOGCTL=y
+CONFIG_LOGGER=y
+CONFIG_LOGREAD=y
+CONFIG_FEATURE_LOGREAD_REDUCED_LOCKING=y
+CONFIG_SYSLOGD=y
+CONFIG_FEATURE_ROTATE_LOGFILE=y
+CONFIG_FEATURE_REMOTE_LOG=y
+CONFIG_FEATURE_SYSLOGD_DUP=y
+CONFIG_FEATURE_SYSLOGD_CFG=y
+# CONFIG_FEATURE_SYSLOGD_PRECISE_TIMESTAMPS is not set
+CONFIG_FEATURE_SYSLOGD_READ_BUFFER_SIZE=2048
+CONFIG_FEATURE_IPC_SYSLOG=y
+CONFIG_FEATURE_IPC_SYSLOG_BUFFER_SIZE=16
+CONFIG_FEATURE_KMSG_SYSLOG=y
+/bin # 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==============================================================================================================================================
+=																																			 =
+==============================================================================================================================================
+properlybusyboxBusyBox is copyrighted by many authors between 1998-2015
+.
+.
+endmode%d %d %d %d %d %d %d%d/%d,%d/%d,%d/%d,%d/%diverfallocate '%s'invalid character '%c'# 	
+mode "%ux%u-%u"
+	# D: %.3f MHz, H: %.3f kHz, V: %.3f Hz
+	geometry %u %u %u %u %u
+	timings %u %u %u %u %u %u %u
+	accel %s
+	rgba %u/%u,%u/%u,%u/%u,%u/%u
+endmode
+.
+.
+The number of cylinders for this disk is set to %u.
+There is nothing wrong with that, but this is larger than 1024,
+and could in certain setups cause problems with:
+1) software that runs at boot time (e.g., old versions of LILO)
+2) booting and partitioning software from other OSs
+   (e.g., DOS FDISK, OS/2 FDISK)
+.
+.
+ATF_MAGIC is not supported255.255.255.255No ARP entry for %s
+.
+.
+%u partitions:
+#       start       end      size     fstype   [fsize bsize   cpg]
+# %s:
+type: %s
+type: %u
+disk: %.*s
+label: %.*s
+flags: bytes/sector: %lu
+sectors/track: %lu
+tracks/cylinder: %lu
+sectors/cylinder: %lu
+cylinders: %lu
+rpm: %u
+interleave: %u
+trackskew: %u
+cylinderskew: %u
+headswitch: %lu		# milliseconds
+track-to-track seek: %lu	# milliseconds
+drivedata:   %c: %8lu%c %8lu%c %8lu%c    %c: %8lu  %8lu  %8lu   %8.8s    %5lu %5lu %5.5s     %5lu %5lu %5u %22.22s%u,%u,%uPartition (a-%c): This partition already exists
+The maximum number of partitions has been created
+.
+.
+device has more than 2^32 sectors, can't use all of themPartition %u has different physical/logical start (non-Linux?):
+     phys=(%u,%u,%u) logical=(%u,%u,%u)
+Partition %u has different physical/logical end:
+.
+.
+Disk %s: %u heads, %u sectors, %u cylinders
+.
+.
+There is a valid AIX label on this disk.
+Unfortunately Linux cannot handle these disks at the moment.
+Nevertheless some advice:
+1. fdisk will destroy its contents on write.
+2. Be sure that this disk is NOT a still vital part of a volume group.
+   (Otherwise you may erase the other disks as well, if unmirrored.)
+3. Before deleting this physical volume be sure to remove the disk
+   logically from your AIX machine. (Otherwise you become an AIXpert).
+.
+.
+Disk %s doesn't contain a valid partition table
+/proc/partitions %u %u %u %[^
+ ]Partition %s has invalid starting sector 0
+Reading disklabel of %s at sector %u
+%s contains no disklabel
+Do you want to create a disklabel? (y/n) /dev/sdThere is no *BSD partition on %s
+BSD disklabel command (m for help): sectors/cylinderMust be <= sectors/track * tracks/cylinder (default)
+rpminterleavetrackskewcylinderskewheadswitchtrack-to-track seekWriting disklabel to %s
+d	delete a BSD partitione	edit drive datai	install bootstrapl	list known filesystem typesn	add a new BSD partitionprint BSD partition tabler	return to main menus	show complete disklabelt	change a partition's filesystem idu	change units (cylinders/sectors)w	write disklabel to diskx	link BSD partition to non-BSD partition3,5" floppyLinux customb:+C:+H:+lS:+uDetected an OSF/1 disklabel on %s, entering disklabel mode
+Command (m for help): WARNING: Partition %u is an extended partition
+%c: unknown command
+.
+.
+HeadsSectors/trackCylindersAlternate cylindersPhysical cylindersRotation speed (rpm)Interleave factorExtra sectors per cylinderYou may change all the disk params from the x menu%s%s%s cyl %u alt %u hd %u sec %uPartition %u does not exist yet!
+.
+.
+Expert command (m for help): Number of alternate cylindersPartition %u has no data area
+New beginning of dataRecalculate C/H/S values? (Y/N): Number of cylindersDevice: %s
+Ordering is already correct
+SGI disklabelWarning: BLKGETSIZE ioctl failed on %s.  Using geometry cylinder value of %u.
+This value may be truncated for devices > 33.8 GB.
+.
+.
+Voluntary context switches: %w
+Involuntary context switches: %c
+
+
+
+
+
+
+
+
+
+
+==============================================================================================================================================
+=																																			 =
+==============================================================================================================================================
+
+/ # cat usr/bin/hostid
+
+.
+.
+.
+SGI disklabelWarning: BLKGETSIZE ioctl failed on %s.  Using geometry cylinder value of %u.
+This value may be truncated for devices > 33.8 GB.
+.
+.
+.
+
+  ??	8 multi-call binary.
+
+No help available
+
+Usage: --helpmust be suid to work properlybusyboxBusyBox is copyrighted by many authors between 1998-2015.
+Licensed under GPLv2. See source distribution for detailed
+copyright notices.
+
+Usage: busybox [function [arguments]...]
+   or: busybox --list[-full]
+   or: busybox --install [-s] [DIR]
+   or: function [arguments]...
+
+	BusyBox is a multi-call binary that combines many common Unix
+	utilities into a single executable.  Most people will create a
+	link to busybox for each function they wish to use and BusyBox
+	will act like whatever it was invoked as.
+
+Currently defined functions:
+,
+--list--install'%s' is not an absolute path-s: applet not found
+/dev/ttyLINESCOLUMNSdumbcan't open '%s'can't remove file '%s'can't move '%s' to '%s'can't create pipecan't duplicate file descriptorshort writeclose failedlseek(%lu, %d)can't create temp file '%s'%s: I/O errorsetgidsetuidsetegidseteuidcan't change directory to '%s'fchdircan't change root directory to '%s'INETINET6NETLINKsocket(AF_%s,%d,%d)bindlistensendtocan't stat '%s'ioctl %#x failed/dev/urandomvforkwaitpidsettimeofdaynot a symlink%s: cannot read link: %sshort readclock_gettime(MONOTONIC) failed%2u%2u%2u%2u%2u%c%4u%2u%2u%2u%2u%c%Y-%m-%d %H:%M:%Sgetcwd/etc/shells%s.tmp%s: write error/etc/group/etc/gshadow%s '%s' in useno %cids leftx:%u:!::addgroup--gid/etc/skelLinux User,,,/home/%snogroup/sbin/nologinuserx:%u:%u:%s:%s:%s/etc/passwd!:%u:0:99999:7:::/etc/shadowchown-Rcan't execute passwd, you must set password manuallysha512missing new passwordmd5an error occurred updating password for %spassword for '%s' changedPassword: '%s' still has '%s' as their primary group!tcsetattr/bin/login/etc/issuebad speed: %stoo many alternate speedssetsid/dev/%sstdin is not open for read/writegetty: %sTIOCSCTTYtcsetpgrptcgetattcan't execute '%s'
+Login timed out after %u seconds
+LOGIN_TIMEOUTf:h:p-f is for root onlyUNKNOWN on '%s' from '%s' on '%s'Login incorrectinvalid password for '%s'%s/etc/nologin
+LOGIN_PRE_SUID_SCRIPTLOGIN_TTYLOGIN_USERLOGIN_UIDLOGIN_GIDLOGIN_SHELL.hushlogin/etc/motdroot login%sa:lud%s can't change password for %sno record of %s in %s, using %scan't change locked password for %sChanging password for %s
+Old password: incorrect password for %sIncorrect passwordNew password: Retype password: Passwords don't matchpassword for %s is unchanged!%scan't update password file %spassword for %s changed by %spassword for %s is already %slockednonemplc:s:%c %s %s:%sincorrect password-cusing restricted shellVirtual console%s locked by %s.
+application/octet-streamus-asciic:e:o:C:N:a:*%u-%u-%uMime-Version: 1.0
+Content-Type: multipart/mixed; boundary="%s"
+
+--%s
+Content-Type: %s; charset=%s
+Content-Disposition: inline; filename="%s"
+Content-Transfer-Encoding: base64
+
+--%s--
+
+%%llu.%uContent-Type:;=" 	
+text/plainmultipart/mixedno support of content type '%s'boundarynot found: '%s'charset7bitContent-Transfer-Encoding:CONTENT_TYPECHARSETENCODINGFILENAME8bitencoding '%s' not supportedrecv:'%.*s'RCPT TO:<%s>Bad recipient: <%s>=+_-.@bad address '%s'127.0.0.1To: %s,To: %sSMTPHOSTunsupported AUTH method %sSMTP_ANTISPAM_DELAYNOOPSMTP init failedEHLO %sHELO %sAUTH PLAINAUTH LOGIN%s@%sMAIL FROM:<%s>To:Bcc:DATAQUIThelper killed by signal %uhelper exited (%u)send:'%s'User: no username or password |     mode:         %d
+-o  offset:       %ld us
+-f  freq.adjust:  %ld (65536 = 1ppm)
+    maxerror:     %ld
+    esterror:     %ld
+    status:       %d ()
+-p  timeconstant: %ld
+    precision:    %ld us
+    tolerance:    %ld
+-t  tick:         %ld us
+    time.tv_sec:  %ld
+    time.tv_usec: %ld
+    return value: %d (%s)
+wvsqliPOSIXLY_CORRECT%s 1.36.1
+Adapted from https://github.com/gavinhoward/bc
+Original code (c) 2018 Gavin D. Howard and contributors
+%s: %s:%luduplicate function parameter or auto namenumber too long: must be [1,4294967294]variable is wrong typeoverflownegative numberstack has too few elementsillegal character 0x%02xNUL characterbad character '%c'output errorinput error%s at '%.*s'bad expressionbad token
+interrupted executionfile '%s' is not textnot an integerdivide by zeroBC_ENV_ARGSbad number stringBUG:%d
+
+	\\\bad assignment: left side must be variable or array elementboolean operators; this is bad:POSIX does not allow %s%s %sunterminated string'#' script comments&&'.' as 'last'unterminated comment%sthe '%.8s' keywordPOSIX only allows one character names; this is bad: '%.*s'||comparison operators outside if or loopsexactly one comparison operator per conditionPOSIX requires %sbad 'auto' syntaxbad statement terminator%san empty %s expression in 'for()'BC_BASE_MAX     = 999
+BC_DIM_MAX      = 2147483647
+BC_SCALE_MAX    = 4294967295
+BC_STRING_MAX   = 4294967294
+MAX Exponent    = 999999999
+Number of vars  = 999999999
+'return' not in a functionparentheses around return expressionsno statement after '%s'bad function definitionvoidvars can't be referencesthe left brace be on the same line as the function headerfunction { body } expectedundefined functionfunction has %u parameters, but called with %ubad read() expressionarray too long; must be [1,2147483647]BUG:call stackBUG:not MAINBUG:data stackBC_LINE_LENGTHDC_LINE_LENGTHe:f:xbad ibase; must be [2,16]bad obase; must be [2,999]bad scale; must be [0,4294967295]f:l:d:r:nuser %s: parse error at %signoring file '%s' (no such user)user %s: too many lines# 	user:%s entry:%sMAILTO=SHELL=PATH=cron.updatesendmailcan't get uid for %sLOGNAMEHOMEchild running %s/var/spool/croncan't execute '%s' for user %s-ti%s/cron.%s.%dTo: %s
+Subject: cron: %s
+
+can't create mail file %s for user %s, discarding outputUSER %s pid %3d cmd %s/var/spool/cron/crontabscrond (busybox 1.36.1) started, log level %dcrond/run/crond.rebootwakeup dt=%ldtime disparity of %ld minutes detectedfile %s: line %s job: %d %suser %s: process already running: %syearlyannuallymonthlyweeklydailymidnighthourlyVISUALEDITOR%s.%u%s.newcan't create %s/%scan't append to %s/%s/dev/fb0cs:d:i:f:T:+syntax error: %s/dev/tty%d
+unsupported %u bppmmapbad PPM file '%s'P6 %u %u %uno kernel supportadd watch (%s) failed;0H/proc/self/fd/0%s (file %i of %i) lines %i-%i/%i (END) - next: %s %i%%%s (file %i of %i)%s%7u ;%uH%s%.*s%.*sNo next fileNo previous fileNo matches foundExamine: Cannot read this fileError opening log fileDoneEMmN~IFSRsXLESSMark: Invalid mark letterGo to mark: Mark not setLog file: No bracket in top lineNo matching bracket foundNo bracket in bottom line ::%c/var/lock/LCK..%scan't create '%s'%4d
+can't tcsetattr for %snot enough space in MTD deviceSkipping bad block at 0x%08x
+skipbadpadbadstart address is not page alignedWriting at 0x%08x
+input size is not rounded up to page size, use -p to zero paduwbwlanyesunblockwifiultrawideband/dev/rfkill/sys/class/rfkill/rfkill%u/ueventRFKILL_NAMERFKILL_TYPE
+=%u: %s: %s
+	Soft blocked: %s
+	Hard blocked: %s
+can't set serial infocan't autoconfigure portcan't get serial infoundefined, Flags: 	Flags: invalid flag: %scan't invert %sillegal UART type: %sinfinite%s, UART: %s, Port: 0x%.4x, IRQ: %d%s at 0x%.4x (irq = %d) is a %s%s uart %s port 0x%.4x irq %d baud_base %d%s, Line %d, UART: %s, Port: 0x%.4x, IRQ: %d
+	Baud_base: %d, close_delay: %u, divisor: %d
+	closing_wait: {%s}: afon:t:%%7l%s Command terminated by signal %u
+Command exited with non-zero status %u
+%\%uh %um %02us%um %u.%02us%u%%?%%%u.%02u`-- |-- |   └── ├── │    [error opening dir]%s -> %s
+
+%u directories, %u files
+/dev/cdrom%32.32s
+watchdog.kodepends=alias=__ksymtab_gplstringssymbol:%s%s%s %s
+bad module nametmp.%s.binaAb:eF:nruqC:/lib/modulesmodules.aliasalias modules.symbolsmodules.builtincan't insert '%s': %s/proc/modulesModule%-24sSize  Used by/proc/sys/kernel/tainted    Tainted: %c%c%c
+    Not tainted%s%*s %8s %2s %s
+%s/%s/%smodule '%s' not foundauthordescriptionlicenseparmsrcversiondependsuts_releaseintreevermagic/proc/cmdlinesymbol:module %s is builtinmodule %s not found in modules.depinsmod %s/%s/%s %s
+insmod %s/%s/%s
+can't unload module '%s'can't load module %s (%s): %soptionsincludeblacklist/etc/modprobe.conf/etc/modprobe.dmodprobeblacklist=%.*s%s %.*s"%s" no such moduleinvalid module formatunknown symbol in module, or unknown parametermodule has wrong symbol versionkernel does not support requested operationwfasrmmod/proc/net/arp%s 0x%x 0x%x %s %s %s
+ether%s (%s) at * <incomplete> %s [%s] netmask %s No match found in %u entries
+inetA:p:H:t:i:adnDsvaddress family%s: unknown %shardware type%s: kernel only supports 'inet'%s: %s without ARP supportneed host nameneed hardware addresscan't get HW-Address for '%s'protocol type mismatchinvalid hardware addressfeature ATF_DONTPUB is not supportedfeature ATF_MAGIC is not supported255.255.255.255No ARP entry for %s
+SIOCDARP(priv)SIOCDARP(pub)Sent %u probe(s) (%u broadcast(s))
+Received %u response(s) (%u request(s), %u broadcast(s))
+UniBroadeth0interface %s %%sis not ARPableinvalid source address %sSO_DONTROUTEsetsockopt(%s)no IP address configuredis not ARPable (no ll address)ARPING %s from %s %s
+recvfrom%scast re%s from %s [%02x:%02x:%02x:%02x:%02x:%02x] %u.%03ums
+ UNSOLICITED?%.16s/bridge/bridge_idbridge name	bridge id		STP enabled	interfaces%s		%s						%s%4u.%.2u%.16s/brport/port_no%s (%u)
+ port id		%.4x			state		%15s
+designated_rootpath_cost	path cost		%4u
+designated_bridge designated bridge	%smessage_age_timer	message age timer	designated_port
+ designated port	%.4xforward_delay_timer			forward delay timer	designated_cost
+ designated cost	%4uhold_timer			hold timer		
+ flags			config_pendingCONFIG_PENDING change_ackTOPOLOGY_CHANGE_ACK hairpin_mode
+ hairpin mode		%4u%.16s/%s/sys/class/netbridge %s does not existbridge %s%.16s/brforwardcan't read bridge %s forward dbport no	mac addr		is local?	ageing timer
+%3u	%.2x:%.2x:%.2x:%.2x:%.2x:%.2x	%s		%4u.%.2u
+%s
+ bridge id		%sroot_id
+ designated root	%s
+ root port		%4u			max_age			bridge max age		hello_time
+ hello time					bridge hello time	forward_delay
+ forward delay					bridge forward delay	ageing_time
+ ageing time		hello_timer
+ hello timer		tcn_timer			tcn timer		topology_change_timer
+ topology change timer	gc_timer			gc timer		topology_changeTOPOLOGY_CHANGE topology_change_detectedTOPOLOGY_CHANGE_DETECTED 
+
+
+bridge/stp_statetimespecbridge/priorityiface %s%2x:%2x:%2x:%2x:%2x:%2xcan't read Wake-On-LAN passSIOCGIFHWADDR on %s failedSO_BROADCASTsethostnamedfisF:vbad: '%s'defaultSIOC%sinvalid hw-addr %smetricmtutxqueuelendstaddrnetmaskhwpointopointkeepaliveoutfillmem_startio_addrtrailerspromiscmulticastallmultidynamicSIFMETRICSIFMTUSIFTXQLENSIFDSTADDRSIFNETMASKSIFBRDADDRSIFHWADDRSKEEPALIVESOUTFILLSIFMAPSIFADDRDIFADDRifenslave%s: SIOCETHTOOL error%s: can't down%s is already a slave%s: can't clear address%s: can't set MTU%s: can't set hw address%s: can't up%s: can't set addresscdfa%s: can't get settings%s is not a master%s is not up%s: can't get flags%s is not a slavemaster %s, slave %s: can't change activeskipping %s: can't get %scan't release %s from %scan't enslave %s to %sIF_%s=%sIFACEADDRFAMMETHODMODEPHASErun-parts /etc/network/if-%s.dpre-downstoppost-downpre-uppost-upifacehwaddressbnmaskip link set %iface% downip addr add ::1 dev %iface%ip link set %iface% upip addr add %address%/%netmask% dev %iface%[[ label %label%]]ip link set[[ mtu %mtu%]][[ addr %hwaddress%]] %iface% up[[ip route add ::/0 via %gateway% dev %iface%]][[ metric %metric%]]ip tunnel del %iface%ip tunnel add %iface% mode sit remote %endpoint%[[ local %local%]][[ ttl %ttl%]]ip addr add %address%/%netmask% dev %iface%[[ip route add ::/0 via %gateway% dev %iface%]]ip addr flush dev %iface%ip addr add 127.0.0.1/8 dev %iface%bootpc[[ --bootfile %bootfile%]] --dev %iface%[[ --server %server%]][[ --hwaddr %hwaddr%]] --returniffail --serverbcastip addr add %address%/%bnmask%[[ broadcast %broadcast%]] dev %iface%[[ peer %pointopoint%]][[ label %label%]][[ip route add default via %gateway% dev %iface%[[ metric %metric%]]]]poff[[ %provider%]]pon[[ %provider%]]start-stop-daemon --stop -x wvdial -p /var/run/wvdial.%iface% -s 2start-stop-daemon --start -x wvdial -p /var/run/wvdial.%iface% -b -m --[[ %provider%]]ip addr flush dev %iface%[[ label %label%]]ip link set[[ addr %hwaddress%]] %iface% upno dhcp clients foundwarning: no dhcp clients found and stopped/run/ifstatemappingtoo few parameters for line "%s"too many parameters "%s"unknown address type "%s"unknown method "%s"interface declared auto twice "%s"source-diroption with empty value "%s"duplicate option "%s"misplaced option "%s"/etc/network/interfacesanvfi:interface %s already configuredinterface %s not configureddon't have all variables for %s/%signoring unknown interface %s/run/ifstate.newmanualwvdialpppstaticbootpdhcploopbackdhcpcddhcpcd[[ -h %hostname%]][[ -i %vendor%]][[ -I %client%]][[ -l %leasetime%]] %iface%dhcpcd -k %iface%dhclientdhclient -pf /var/run/dhclient.%iface%.pid %iface%kill -9 `cat /var/run/dhclient.%iface%.pid` 2>/dev/nullpumppump -i %iface%[[ -h %hostname%]][[ -l %leasehours%]]pump -i %iface% -kudhcpcudhcpc -b -R -p /var/run/udhcpc.%iface%.pid -i %iface%[[ -x hostname:%hostname%]][[ -c %client%]][[ -s %script%]][[ %udhcpc_opts%]]kill `cat /var/run/udhcpc.%iface%.pid` 2>/dev/nullv4tunnel%02X-[NONE SET]%02X:%02X:%02X:%02X:%02X:%02XX bytes:%llu (%llu.%u %sB)%scompressedDevice not found%s: error fetching interface information: %s%-9s Link encap:%s  HWaddr %s  Media:%s(auto)          %s addr:%s  P-t-P:%s  Bcast:%s  Mask:%s
+/proc/net/if_inet6%s:%s:%s:%s:%s:%s:%s:%s          inet6 addr: %s/%d Scope:GlobalSiteCompatHostUnknown%4s%4s%4s%4s%4s%4s%4s%4s %08x %02x %02x %02x %20s
+          [NO FLAGS]  MTU:%d  Metric:%dRX packets:%llu errors:%lu dropped:%lu overruns:%lu frame:%lu
+             compressed:%lu
+TX packets:%llu errors:%lu dropped:%lu overruns:%lu carrier:%lu
+          collisions:%lu compressed:%lu txqueuelen:%d 
+          R  TInterrupt:%d Base address:0x%lx Memory:%lx-%lx DMA chan:%x 10base210baseTAUI100baseT100baseTX100baseFXinfinibandInfiniBandIPv6-in-IPv4Point-to-Point ProtocolEthernetLocal LoopbackunspecUNSPEC%n%llu%lu%lu%lu%lu%n%n%n%llu%lu%lu%lu%lu%lu%llu%llu%lu%lu%lu%lu%n%n%llu%llu%lu%lu%lu%lu%lu%llu%llu%lu%lu%lu%lu%lu%lu%llu%llu%lu%lu%lu%lu%lu%luIPv6DARPA Internetbad IP address: %suse prefix or netmask, not bothbad netmask: %sNETMASK=%s
+BROADCAST=%s
+NETWORK=%s
+PREFIX=%i
+can't find hostname for %sHOSTNAME=%s
+interface name '%s' too longbus=driver=phyaddr=mac=can't parse %sno selectors found for %s/etc/mactabsc:can't change ifname %s to %s10809dN:NBDMAGIClogin failedIHAVEOPTBLKROSETNBD_SET_TIMEOUTNBD_SET_SOCK/sys/block/%.32s/pidblock-sizepersistsent %llu, rcvd %llu
+punt!
+ %8.8x pollnet timeout
+net readtoo many output retrieslistening on %s ...
+acceptconnect from wrong ip/port %s ignoredIP options: %s
+connect to %s from %s (%s)
+-enuvlkzudptest first write%s (%s) open
+STREAMDGRAMRDMSEQPACKETFREECONNECTEDDISCONNECTINGLISTENING%*p: %lX %lX %lX %X %X %lu %n[ ACC W N %-5s %-6lu %-11s %-10s %-13s %6lu %-20s%08X%08X%08X%08X%s   %6lu %6lu %-*s %-*s %-12s%.20ssocket:[[0000]:%s/cmdlinefd%s: bogus data on line %d%*d: %32[0-9A-Fa-f]:%X %32[0-9A-Fa-f]:%X %X %lX:%lX %*X:%*X %*X %d %*d %lu ESTABLISHEDlaentuwxrWpPID/Program name    can't scan /proc - are you root?showing only processes with your user IDActive Internet connections (servers and established)(only servers)(w/o servers)Foreign AddressLocal Address
+Proto Recv-Q Send-Q %-*s %-*s State       %s
+/proc/net/tcp/proc/net/tcp6/proc/net/udp/proc/net/udp6/proc/net/raw/proc/net/raw6Active UNIX domain sockets 
+Proto RefCnt Flags       Type       State         I-Node %sPath
+/proc/net/unixSYN_SENTSYN_RECVFIN_WAIT1FIN_WAIT2TIME_WAITCLOSECLOSE_WAITLAST_ACKLISTENCLOSING/etc/resolv.confdomainnameserver%s.%.*s%s	name = %s
+%s	canonical name = %s
+%s	nameserver = %s
+Non-authoritative answer:
+Name:	%s
+Address: %s
+MX record too short
+%s	mail exchanger = %d %s
+%s	text = "%s"
+%s	service = %u %u %u %s
+	origin = %s
+	mail addr = %s
+	serial = %lu
+	refresh = %lu
+	retry = %lu
+	expire = %lu
+	minimum = %lu
+write to '%s'Server:		%s
+Address:	%s
+
+Query #%d completed in %ums:
+** server can't find %s: %s
+*** Can't find %s: Parse error
+invalid query type "%s"ip6.arpa%u.%u.%u.%u.in-addr.arpa;; connection timed out; no servers could be reached
+
+*** Can't find %s: No answer
+NOERRORFORMERRSERVFAILNXDOMAINNOTIMPREFUSEDYXDOMAINYXRRSETNXRRSETNOTAUTHNOTZONE11131415'%s' is %sduplicate peer %s (%s)peer %s unfit for selection: root distance %f too high, jitter:%f, no peer selectedno valid datapoints%sfalsetickers:%d, candidates:%d%ssurvivors:%d%sexecuting '%s %s'stratum%s=%ufreq_drift_ppm%s=%ldpoll_intervaloffset%s=%fshaonly MD5 and SHA1 keys supportedmalformed key at line %ukeyno:key %u is not defined/etc/ntp.confskipping %s:%u: unimplemented command '%s'ntpdrecvmalformed packet received from %s: size %usend failedresponded to query from %scurrent time is %s.%06usetting time to %s.%06u (offset %+fs)update from %s: same or older datapoint, not using itstepadjtimexupdate from:%s offset:%+f delay:%f jitter:%f clock drift:%+.3fppm tc:%drecv(%s) errorinvalid cryptographic hash received from %sreply from %s: peer is unsyncedreply from %s: delay %f is too high, ignoringreply from %s: offset:%+f delay:%f status:0x%02x strat:%d refid:0x%08x rootdelay:%f reach:0x%02xwant smaller interval: offset/jitter = %usending query to %stimed out waiting for %s, reach 0x%02x, next query in %uspoll:%us sockets:%u interval:%usperiodicunsync
+--- %s ping statistics ---
+%lu packets transmitted, %lu packets received, %lu duplicates, %lu%% packet loss
+round-trip min/avg/max = %u.%03u/%u.%03u/%u.%03u ms
+ (DUP!)%d bytes from %s: seq=%u ttl=%d time=%u.%03u msDestination UnreachablePacket too bigTime ExceededParameter Problemunknown ICMP typeListener ReductionListener QueryListener ReportSource QuenchRedirect (change route)Echo RequestTimestamp RequestTimestamp ReplyInformation RequestInformation ReplyAddress Mask RequestAddress Mask ReplyPING %s (%s): %d data bytes
+getsocknameICMP6_FILTERwarning: got ICMP %d (%s)can't set multicast source interfaceWARNING: setsockopt(IP_RECVTTL)WARNING: setsockopt(IP_RETOPTS)blocked10245000Scanning %s ports %u to %u
+ Port	Proto	State	Service
+closed%5u	tcp	%s	%s
+%u closed, %u open, %u timed out (or blocked) ports
+/proc/net/ipv6_routeNext HopDestinationKernel IPv6 routing table
+%-44s%-40sFlags Metric Ref    Use Iface
+%32s%x%*s%x%32s%x%x%x%x%s
+%-43s %-39s %-5s %-6d %-2d %7d %-8s
+resolving %sgateway %s is a NETWORKnetmask %.8x and host route conflictbogus netmask %snetmask and route address conflict  MSS Window  irttMetric Ref    Use/proc/net/routeKernel IP routing table
+Destination     Gateway         Genmask         Flags %s Iface
+%*[^
+]
+%63s%lx%lx%X%d%d%d%lx%d%d%d
+%-15.15s %-15.15s %-16s%-6s%5d %-5d %6d %s
+%-6d %-2d %7d %s
+-net-hostA:necslipprotocolbaud rateIPV6_CHECKSUMSO_SNDBUFTOSsetsockopt(%s,%d)traceroute to %s (%s), %d hops max, %d byte packets
+OUT-OF-RANGE
+%04x:
+%d bytes from %s to %s: icmp type %u (%s) code %u
+ %02x%2dUNICAST_HOPSsetsockopt(%s) %dTTLsent %d octets, ret=%d  *packet too short (%d bytes) from %s
+  %s (%s) %d bytes to %s  %u.%03u ms ! !N !H !P !F-%d !S !A !C !V !U !I !T !<%d>Echo ReplyICMP 1ICMP 2Dest UnreachableRedirectICMP 6ICMP 7EchoRouter AdvertRouter SolicitParam ProblemTimestampInfo RequestInfo ReplyErrorPacket Too BigMembership QueryMembership ReportMembership ReductionNeighbor SolicitNeighbor Adverttap%d/dev/net/tunSet '%s' nonpersistent
+Set '%s' %spersistent and owned by uid %ld gid %ldioctl error for %sdownload timed outr+socketpairssl_client-s3-n-Irestart failed://not an http or ftp url: %serror getting responsebad header line: %swriting to stdout
+saving to '%s'
+bad chunk length '%s'connection closed prematurelywritten to stdout
+'%s' saved
+%s%s
+--> %s%s
+
+ftp_proxyhttp_proxyindex.htmlPOSTGETanonymousWgetConnecting to %s (%s)
+GET %s://%s/%s HTTP/1.1
+%s /%s HTTP/1.1
+Host: %s
+User-Agent: %s
+Connection: close
+Proxy-Authorization: Basic %s
+Range: bytes=%lu-
+Content-Type: application/x-www-form-urlencoded
+Content-Length: %u
+
+%sserver returned error: %scontent-length %s is garbagechunkedtransfer encoding '%s' is not supportedtoo many redirectionsUSER PASS ftp login: %sTYPE ISIZE bad SIZE value '%s'EPSVPASVbad response to %s: %sPROT PREST %luRETR RETRremote file exists
+ftp error: %s[Querying %s:%d '%s%s']
+domain:domain name:whois server:whois:domain [%s]
+%swhois.iana.org[Redirected to %s]
+%s %s %sip=%sscript %s %s failed, exitcode=%d169.254.0.0invalid network addressinvalid link addressstart, interface %siface %s is downdeconfigcan't send flush requestDeleted %u: %s    inet     inet6     family %d  peer %s/%d brd %s any %s scope %s secondary tentative dadfailed deprecated dynamic noprefixroute flags %02x valid_lft forevervalid_lft %dsec preferred_lft forever preferred_lft %dsec       %snil ifname%d: %s@NONE: @%s: NO-CARRIER,,M-DOWNmtu %u qdisc %s master %s state %s qlen %d%c    link/%s  peer  brd scopeneed "dev IFACE""dev" (%s) must match "label" (%s)broadcast can be set only for IPv4 addressesvalid_lft is zero
+preferred_lft is greater than valid_lft
+can't flush link addressestype vlanunknown VLAN encapsulation protocol '%s'argument of "%s" must be "on" or "off"type vrfqlennetns"dev"wrong address (%s) length: expected %d bytes"ip neigh flush"nud statecan't find device '%s'flush terminatedNothing to flush*** Flush is complete after %d round(s) ***
+
+*** Round %d, deleting %d entries ***
+*** Flush not complete bailing out after %d roundscan't send dump requestdump terminatednot RTM_NEWNEIGH: %08x %08x %08xBUG: wrong nlmsg len %dlladdr %s router proxy ref %d used %d/%d/%d probes %u%cINCOMPLETE%cREACHABLE%cSTALE%cDELAY%cPROBE%cFAILED%cNOARP%cPERMANENTNot a route: %08x %08x %08x
+default from %s/%u from %s from 0/%u via %s table %s  src %s  metric %d dead onlink pervasive notify %c    cache  expires %dsec iif %sneed at least destination addressnot a route?wrong len %dcan't connect the route"ip route flush"-1can't flush routing cachefwmasktable ID%u:	from 0/%dto %s/%u to 0/%d tos %s fwmark %#x/%#x fwmark %#x iif %s lookup %s %s %d realms %s/map-to %s masqueradeyou managed to ask for more than one%s tunnel modecan't guessikeyokeygreipipkeys are not allowed with ipip and sitbroadcast tunnel requires a source addressttl != 0 and noptmudisc are incompatibletunl0gre0sit0can't determine tunnel mode (ipip, gre or sit)anyipv6%s: %s/ip  remote %s  local %s  dev %s  ttl %d  ttl inherit  tos inherit%c%s  nopmtudisc key %s ikey %s  okey %s %c  Drop packets out of sequence.
+%c  Checksum in received packet is required.%c  Sequence packets on output.%c  Checksum output packets.wrong format of /proc/net/dev%lu%lu%lu%lu%lu%lu%lu%*d%lu%lu%lu%lu%lu%lu%lucan't get type of [%s]ERROR truncatedOVERRUNEOF on netlinksender address length == %dRTNETLINK answersmessage truncatedremnant of size %d!can't talk to rtnetlinktruncated messagemalformed message: len=%d!unexpected reply!deficit %d, rta_len=%d!:%02x"%s" is invalid lladdrif%d[%d]/etc/iproute2/rt_%sdatabase %s is corrupted at line %dglobalnowheresitescopesrealmsdsfieldtablesprotosredirectkernelgatedmrtzebrabird/proc/net/psched%*08x%*08x%08x%08x"%s" may be inet %s, but it is not allowed in this contextan %s %s is expected rather than "%s"prefixIPcommand line is not complete, try "help"duplicate "%s": "%s" is the second valueeither "%s" is duplicate, or "%s" is garbage???ipv6=%sipv6prefix_lease=%uipv6prefix=%s/%udns=search=fqdn=%.*sfqdn=tz=%.*stz_name=%.*scan't find option name for 0x%x, skippingoption data exceeds option length%s=%.*sinterface=%sunicasting a releasesending %sentering released stateinfo requestselectbound/usr/share/udhcpc/default.scriptbad IPv6 address '%s'started, v1.36.1leasefailno lease, failingno lease, forking to backgroundlease lost, entering init stateSIGTERMreceived %sread error: %m, reopening socketreceived DHCP NAK (%u)nakno server ID, ignoring packetIA_NAno %s option%s%s option is too short:%d bytesIAADDR%s obtained, lease time %uIA_PDIAPREFIXpacket with bad magic, ignoringbind(%s)socket(%s)connectUDPMAClink-local IPv6 addresssending renew to server %sbroadcasting renew%s%u.%u.%u.%ubroadcasting declinebroadcasting select for %s, server %sbroadcasting discover%s=mask=%uopt%u=siaddr=giaddr=boot_file=%.128ssname=%.64sunicasting a release of %s to %s (default)2000udhcp 1.36.1no server ID, using 0.0.0.0lease of %s obtained from %s, lease time %u%soffered address is in use (got ARP reply), decliningDHCP NAKbindtodevicecan't send signalis interface %s up and configured?can't enable bcast on ARP socketunknown option '%s', known options: %sbad packet, malformed option fieldoption 0x%02x did not fit into the packetcan't add option 0x%02xmalformed hex string '%s' 	=:, 	, 	/-%.4s:%.4s:%.4s:%.4s:%.4s:%.4s:%.4s:%.4s/proc/meminfoCached: %lu %*s
+Every %.1fs: %-*sfuncDone(%d) (core dumped)You have stopped jobs.
+%um%u.%03us%cline %d: %.*s: is read only%.*s: bad variable name%llu.%06uOLDPWDIllegal number: %sillegal option -%cno arg for -%c optionvf%s: %s not found
+No current jobNo previous job%s: ambiguous%s: no such jobjob %s not created under job control -%u-l%04o
+illegal mode: %s%s=%s
+%lld(...)$((${${#))"}%:%s%s%.*s%s
+npcan't open '%s': %m%d: %munexpected %s (expecting %s)can't set tty process group: %mexpression expectedtrap -- %s %s
+%s: invalid signal specificationillegal option %co %s%-16s%s
+set %co %s
+illegal option %c%ccan't access tty; job control turned off[%d]   Running
+%*c%d %s%*c%s%sBuilt-in commands:
+------------------
+ &&  || while until ; fi; done() { ... }<<...esac>|>>>&<&if ; then ; else ; do for  in case ;; can't fork: %m[%d]  | %sp:u:rt:n:sd:IFSCDPATHcan't cd to %s: %mLC_ALLLC_CTYPELANGbad substitutionusage: getopts optstring var [arg]OPTARGOPTERRIllegal option -%c
+No arg for -%c option
+OPTINDPS1=\w \$ SHLVLHOSTNAMETMOUT^C
+timed out waiting for input: auto-logoutmissing '))'unterminated quoted stringmissing '}'EOF in backquote substitutioncan't create pipe: %m/dev/fd/%dno such filecan't open %s: %snonexistent directorycan't create %s: %sredir errorbad fd numberbad for loop variablebad function nameparameter not set or null%.*s: %s%s*?[\you have mail
+
+Use "exit" to leave shell.
+%s not defined in %scommand_not_found_handle is a shell keywordspecial  is an alias for %s is a function is a %sshell builtin: not found
+pvVBASH_XTRACEFD%s%.*s%sLINENO=FUNCNAME=/etc/profile$HOME/.profileENVHISTFILE.ash_historyHISTFILESIZE3.3:2[2[[6alias2bg3break2cd0chdir2command3continue2echo3eval3exec3exit7export2false2fg2getopts2hash0help0history2jobs2kill0let7local2printf2pwd2read7readonly3return3set3shift3source2test3times3trap2true2type2ulimit2umask2unalias3unset2waitnewlineredirection;;`casedoelifelsethenuntilwhileMAILMAILPATHPS1=$ PS2=> PS4=+ BB_ASH_VERSION=1.36.1RANDOMEPOCHSECONDSEPOCHREALTIMEeerrexitfnoglobIignoreeofmmonitornnoexecxxtracevverboseCnoclobberaallexportbnotifyunounsetEerrtracemalformed ?: operatorarithmetic syntax errorexponent less than 0expression recursion loop detectedunlimitedinvalid file descriptorinvalid timeoutinvalid countread: '%s': bad variable nameREPLY%-32s(-%c) error setting limitc:nklogd started: %sklogdklogctl(2) errorklogd: exitingsemop[SMrup]fFfindcan't %s syslogd bufferaccesscan't get access to semaphores for syslogd buffersemop[SMrdn]/dev/log/dev/console<%d>%s
+%s %.64s %s %s
+SMwdnSMwup%s.%s/etc/syslog.conferror in '%s' at line %dshmgetshmatsemget/dev/kmsgsyslogd started: BusyBox v1.36.1syslogdread from %ssyslogd exitingp:st:facilityunknown %s name: %s/var/log/messagesauthauthprivdaemonftpkernlprmarknewssecuritysysloguucplocal0local1local2local3local4local5local6local7alertcritdebugemergnoticepanicwarnwarning/etc/acpi/dev/input/event/var/log/acpid.log/etc/acpid.conf/etc/acpi.map/run/acpid.pid%s%u./%srun-partsPWRFPWRF/00000080LID0LID/00000080EV_KEYKEY_POWERbutton/power PWRF 00000080button/power PWRB 00000080EV_SWSW_LIDbutton/lid LID0 00000080BLKSECDISCARDBLKDISCARD%s: %s failed%lld
+%*s%*sjmy%B%a%s %u%*s%s
+%s
+
+endmode%d %d %d %d %d %d %d%d/%d,%d/%d,%d/%d,%d/%diverfallocate '%s'invalid character '%c'# 	
+mode "%ux%u-%u"
+	# D: %.3f MHz, H: %.3f kHz, V: %.3f Hz
+	geometry %u %u %u %u %u
+	timings %u %u %u %u %u %u %u
+	accel %s
+	rgba %u/%u,%u/%u,%u/%u,%u/%u
+endmode
+
+/etc/fb.modesoption '%s' not handledunknown video mode '%s'sectorDisk %s: %llu %cB, %llu bytes, %u sectors
+%u cylinders, %u heads, %u sectors/track
+Units: %ss of %u * %u = %u bytes
+
+Detected sun disklabel with wrong checksum.
+Probably you'll have to set all the values,
+e.g. heads, sectors, cylinders and partitions
+or force a fresh label (s command in main menu)
+
+The number of cylinders for this disk is set to %u.
+There is nothing wrong with that, but this is larger than 1024,
+and could in certain setups cause problems with:
+1) software that runs at boot time (e.g., old versions of LILO)
+2) booting and partitioning software from other OSs
+   (e.g., DOS FDISK, OS/2 FDISK)
+Changing display/entry units to %ss
+%c%2x %-22.22s0x%03X: %02XUnknown value(s) for: (settable in the extra functions menu)Command Actiona	toggle a read only flagb	edit bsd disklabelc	toggle the mountable flagd	delete a partitionl	list known partition typesn	add a new partitiono	create a new empty DOS partition tablep	print the partition tableq	quit without saving changess	create a new empty Sun disklabelt	change a partition's system idu	change display/entry unitsv	verify the partition tablew	write table to disk and exitx	extra functionality (experts only)a	select bootable partitionb	edit bootfile entryc	select sgi swap partitiona	toggle a bootable flagc	toggle the dos compatibility flagcan't seek '%s'Warning: too many partitions (%u, maximum is %u)
+part%*.*s%s%-2u%.*s%s%-2u
+%u partitions:
+#       start       end      size     fstype   [fsize bsize   cpg]
+# %s:
+type: %s
+type: %u
+disk: %.*s
+label: %.*s
+flags: bytes/sector: %lu
+sectors/track: %lu
+tracks/cylinder: %lu
+sectors/cylinder: %lu
+cylinders: %lu
+rpm: %u
+interleave: %u
+trackskew: %u
+cylinderskew: %u
+headswitch: %lu		# milliseconds
+track-to-track seek: %lu	# milliseconds
+drivedata:   %c: %8lu%c %8lu%c %8lu%c    %c: %8lu  %8lu  %8lu   %8.8s    %5lu %5lu %5.5s     %5lu %5lu %5u %22.22s%u,%u,%uPartition (a-%c): This partition already exists
+The maximum number of partitions has been created
+
+Invalid Bootfile!
+	The bootfile must be an absolute non-zero pathname,
+	e.g. "/unix" or "/unix.save".
+
+Name of Bootfile too long (>16 bytes)
+
+Bootfile must have a fully qualified pathname
+
+Be aware, that the bootfile is not checked for existence.
+	SGI's default is "/unix" and for backup "/unix.save".
+%s (%u):  ... %s
+Bootstrap: %sboot -> boot%s (%s): /usr/ucb/mdec%s/%sboot%s/boot%sBootstrap overlaps with disk label!
+Bootstrap installed on %s
+Syncing disks
+%s (%u-%u, default %u): %s (%u-%u): Using default value %u
+Value is out of rangeFirst %sLast %s or +size or +sizeM or +sizeKPartition numberWarning: partition %u has empty type
+Selected partition %u
+No partition is defined yet!All primary partitions have been defined already!Hex code (type L to list codes): Calling ioctl() to re-read partition tableWARNING: rereading partition table failed, kernel still uses old tableMore than one entire disk entry present
+No partitions defined
+IRIX likes when Partition 11 covers the entire disk
+The entire disk partition should start at block 0,
+not at diskblock %u
+One Partition (#11) should cover the entire disk
+Partitions %u and %u overlap by %u sectors
+Unused gap of %u sectors - sectors %u-%u
+
+The boot partition does not exist
+
+The swap partition does not exist
+
+The swap partition has no swap type
+	You have chosen an unusual boot file name
+Partition overlap detected
+If you want to maintain SunOS/Solaris compatibility, consider leaving this
+partition as Whole disk (5), starting at 0, with %u sectors
+Partition %u doesn't end on cylinder boundary
+Partition %u overlaps with others in sectors %u-%u
+Unused gap - sectors %u-%u
+Host: scsi%u Channel: %02u Id: %02u Lun: %02u
+/proc/scsi/scsiVendor: Model:  Rev: Autoconfigure found a %s%s%s
+sgilabelIBM OEM 0662S12         3 300000Sfx version 5.3, Oct 18, 1994The partition table has been altered.Note: sector size is %u (not 512)
+device has more than 2^32 sectors, can't use all of themPartition %u has different physical/logical start (non-Linux?):
+     phys=(%u,%u,%u) logical=(%u,%u,%u)
+Partition %u has different physical/logical end:
+
+Disk %s: %u heads, %u sectors, %u cylinders
+
+Nr AF  Hd Sec  Cyl  Hd Sec  Cyl      Start       Size ID%2u %02x%4u%4u%5u%4u%4u%5u%11u%11u %02x
+Warning: bad start-of-data in partition %u
+Partition %u contains sector 0
+Partition %u: head %u greater than maximum %u
+Partition %u: sector %u greater than maximum %u
+Partition %u: cylinder %u greater than maximum %u
+Partition %u: previous sectors %u disagrees with total %u
+Warning: partition %u overlaps partition %u
+Warning: partition %u is empty
+Logical partition %u not entirely in partition %u
+Total allocated sectors %u greater than CHS size %u
+%u unallocated sectors
+
+Disk %s (Sun disk label): %u heads, %u sectors, %u rpm
+%u cylinders, %u alternate cylinders, %u physical cylinders
+%u extra sects/cyl, interleave %u:1
+%s
+Units = %ss of %u * 512 bytes
+
+
+Disk %s (Sun disk label): %u heads, %u sectors, %u cylinders
+Units = %ss of %u * 512 bytes
+
+Device%*s Flag    Start       End    Blocks   Id  System
+%s %c%c %9lu %9lu %9lu%c  %2x  %s
+
+Disk %s (SGI disk label): %u heads, %u sectors
+%u cylinders, %u physical cylinders
+%u extra sects/cyl, interleave %u:1
+%s
+Units = %ss of %u * 512 bytes
+
+
+Disk %s (SGI disk label): %u heads, %u sectors, %u cylinders
+Units = %ss of %u * 512 bytes
+
+----- partitions -----
+Pt# %*s  Info     Start       End   Sectors  Id  System
+%2u: %s %4s %9lu %9lu %9lu  %2x  %s
+----- Bootinfo -----
+Bootfile: %s
+----- Directory Entries -----
+%2u: %-10s sector%5u size%8u
+ KMGTPEZYDisk %s: %llu sectors, %s
+Logical sector size: %u
+Disk identifier (GUID): %02x%02x%02x%02x-%02x%02x-%02x%02x-%02x%02x-%02x%02x%02x%02x%02x%02x
+Partition table holds up to %u entries
+First usable sector is %llu, last usable sector is %llu
+
+Number  Start (sector)    End (sector)  Size Name%6u %15llu %15llu %s %-*s Boot StartCHS    EndCHS        StartLBA     EndLBA    Sectors  Size Id Type
+%s%s %-11s %-11s %10u %10u %10u %s %2x %s
+
+Partition table entries are not in disk orderSector %u is already allocated
+No free sectors availableLast %s or +size{,K,M,G,T}l   logical (5 or over)e   extendedOther partitions already cover the whole disk.
+Delete/shrink them before retry.
+It is highly recommended that the third partition covers the whole disk
+and is of type 'Whole disk'
+You haven't covered the whole disk with the 3rd partition,
+but your value %u %s covers some other partition.
+Your entry has been changed to %u %s
+Attempting to generate entire disk entry automatically
+The entire disk is already covered with partitions
+You got a partition overlap on the disk. Fix it first!
+It is highly recommended that eleventh partition
+covers the entire disk and is of type 'SGI volume'
+You will get a partition overlap on the disk. Fix it first!
+ Last %sSorry - this fdisk cannot handle AIX disk labels.
+If you want to add DOS-type partitions, create a new empty DOS partition
+table first (use 'o'). This will destroy the present disk contents.The maximum number of partitions has been createdYou must delete some partition and add an extended partition firstPartition type
+   p   primary partition (1-4)
+   %s
+Invalid partition number for type '%c'
+'%s' is opened for read only
+Detected sgi disklabel with wrong checksum
+
+There is a valid AIX label on this disk.
+Unfortunately Linux cannot handle these disks at the moment.
+Nevertheless some advice:
+1. fdisk will destroy its contents on write.
+2. Be sure that this disk is NOT a still vital part of a volume group.
+   (Otherwise you may erase the other disks as well, if unmirrored.)
+3. Before deleting this physical volume be sure to remove the disk
+   logically from your AIX machine. (Otherwise you become an AIXpert).
+
+warning: GPT header CRC is invalid
+
+warning: unable to parse GPT disklabel
+
+warning: GPT array CRC is invalid
+Found valid GPT with protective MBR; using GPT
+This disk has both DOS and BSD magic.
+Give the 'b' command to go to BSD mode.Device contains neither a valid DOS partition table, nor Sun, SGI, OSF or GPT disklabelIgnoring extra extended partition %u
+Bad offset in primary extended partitionWarning: deleting partitions after %u
+Warning: extra link pointer in partition table %u
+Warning: ignoring extra data in partition table %u
+Omitting empty partition (%u)
+Warning: invalid flag 0x%02x,0x%02x of partition table %u will be corrected by w(rite)
+DOS disklabel/dev/hd/proc/ide/%s/mediatape
+BSD label for device: %s
+Disk %s doesn't contain a valid partition table
+/proc/partitions %u %u %u %[^
+ ]Partition %s has invalid starting sector 0
+Reading disklabel of %s at sector %u
+%s contains no disklabel
+Do you want to create a disklabel? (y/n) /dev/sdThere is no *BSD partition on %s
+BSD disklabel command (m for help): sectors/cylinderMust be <= sectors/track * tracks/cylinder (default)
+rpminterleavetrackskewcylinderskewheadswitchtrack-to-track seekWriting disklabel to %s
+d	delete a BSD partitione	edit drive datai	install bootstrapl	list known filesystem typesn	add a new BSD partitionprint BSD partition tabler	return to main menus	show complete disklabelt	change a partition's filesystem idu	change units (cylinders/sectors)w	write disklabel to diskx	link BSD partition to non-BSD partition3,5" floppyLinux customb:+C:+H:+lS:+uDetected an OSF/1 disklabel on %s, entering disklabel mode
+Command (m for help): WARNING: Partition %u is an extended partition
+%c: unknown command
+
+The current boot file is: %s
+Please enter the name of the new boot file: Boot file unchanged
+	Bootfile is changed to "%s"
+DOS Compatibility flag is %sset
+not sun disklabelDrive type
+   ?   auto configure
+   0   custom (with hardware detected defaults)   %c   %s%s%s
+Select type (? for auto, 0 for custom): Autoconfigure failed
+HeadsSectors/trackCylindersAlternate cylindersPhysical cylindersRotation speed (rpm)Interleave factorExtra sectors per cylinderYou may change all the disk params from the x menu%s%s%s cyl %u alt %u hd %u sec %uPartition %u does not exist yet!
+Type 0 means free space to many systems
+(but not to Linux). Having partitions of
+type 0 is probably unwise.You cannot change a partition into an extended one or vice versaConsider leaving partition 3 as Whole disk (5),
+as SunOS/Solaris expects it and even Linux likes it
+Consider leaving partition 9 as volume header (0),
+and partition 11 as entire volume (6)as IRIX expects it
+It is highly recommended that the partition at offset 0
+is UFS, EXT2FS filesystem or SunOS swap. Putting Linux swap
+there may destroy your partition table and bootblock.
+Type YES if you're very sure you would like that partition
+tagged with 82 (Linux swap): YESSorry you may change the Tag of non-empty partitions
+It is highly recommended that the partition at offset 0
+is of type "SGI volhdr", the IRIX system will rely on it to
+retrieve from its directory standalone tools like sash and fx.
+Only the "SGI volume" entire disk section may violate this.
+Type YES if you are sure about tagging this partition differently.
+Changed system type of partition %u to %x (%s)
+
+	Sorry, no experts menu for SGI partition tables available
+Expert command (m for help): Number of alternate cylindersPartition %u has no data area
+New beginning of dataRecalculate C/H/S values? (Y/N): Number of cylindersDevice: %s
+Ordering is already correct
+SGI disklabelWarning: BLKGETSIZE ioctl failed on %s.  Using geometry cylinder value of %u.
+This value may be truncated for devices > 33.8 GB.
+Trying to keep parameters of partition %u
+Number of headsNumber of sectorsWarning: setting sector offset for DOS compatibilityNumber of physical cylindersa	change number of alternate cylindersc	change number of cylindersd	print the raw data in the partition tablee	change number of extra sectors per cylinderh	change number of headsi	change interleave factoro	change rotation speed (rpm)s	change number of sectors/tracky	change number of physical cylindersb	move beginning of data in a partitione	list extended partitionsg	create an IRIX (SGI) partition tablef	fix partition orderQuantumProDrive 80SProDrive 105SCDCWren IV 94171-344IBMDPES-31080DORS-32160DNES-318350SEAGATEST34371SUN0104SUN0207SUN0327SUN0340SUN0424SUN0535SUN0669SUN1.0GSUN1.05SUN1.3GSUN2.1GIOMEGAJazBootSunOS rootSunOS swapSunOS usrWhole diskSunOS standSunOS vaSunOS home?Linux swap?Linux native?Linux LVM?Linux raid autodetectSGI trkreplSGI secreplSGI rawSGI bsdSGI sysvSGI volumeSGI efSGI lvol	SGI rlvol
+SGI xfs
+       SGI xfslog
+SGI xvm?Linux LVM?Linux RAIDswapVersion 6Version 7System V4.1BSDEighth Edition4.2BSMS-DOS	4.4LFS
+unknown
+       HPFS
+bootADOSHFSAdvFSSMDMSCPold DECSCSIESDIST506HP-IBHP-FLtype 9FAT12FAT16 <32MExtendedFAT16HPFS/NTFS
+OS/2 Boot Manager
+                 Win95 FAT32
+                            Win95 FAT32 (LBA)Win95 FAT16 (LBA)Win95 Ext'd (LBA)Hidden FAT12Compaq diagnosticsHidden FAT16 <32MHidden FAT16Hidden HPFS/NTFSidden Win95 FAT32Hidden W95 FAT32 (LBA)Hidden W95 FAT16 (LBA)<Part.Magic recoveryAPPC PReP BootBSFScGNU HURD or SysV?Old Minix?Minix / old Linux?Linux?OS/2 hidden C: drive?Linux extended?NTFS volume set?NTFS volume set?BSD/OS?Thinkpad hibernation?FreeBSD?OpenBSD?Darwin UFS?NetBSD?Darwin boot?HFS / HFS+?BSDI fs?BSDI swap?Solaris boot?BeOS fs?EFI GPT?EFI (FAT-12/16/32)?Linux/PA-RISC boot?DOS secondary?EBBR protective/dev/-command-c takes only one argument%s: %llu bytes trimmed
+ --%s --GETOPT_COMPATIBLEmissing optstring argument-++o:n:qQs:Tual:*, 	
+empty long option specifiedunknown shell '%s', assuming bash"%08.8_Ax
+""%08.8_ax  "8/1 "%02x ""  "8/1 "%02x ""  |"16/1 "%_p""|
+""%07.7_ax "8/2 "%04x ""
+""%07.7_ax "16/1 "%03o ""
+""%07.7_ax "16/1 "%3_c ""
+""%07.7_ax "8/2 "  %05u ""
+""%07.7_ax "8/2 " %06o ""
+""%07.7_ax "8/2 "   %04x ""
+"__cannot seek" ""%08.8_ax: "%u/1 "%%02x"%u/1 " 0x%%02x,"%u/1 "%%02x "/1 "%02x""  "%u/1 "%%_p""
+"unsigned char %s[] = {
+};
+unsigned int %s_len = %lu;
+%s  0.000000 seconds
+%s: prio %d
++n:+c:+p:+tbad class %dioprio_%cetpermission denied foralready removedinvalidunknown error ininvalid id: %scan't remove id %sresource(s) deletedillegal key (%s)%s %s (%s)q:m:s:Q:M:S:%-10d %-10o %-10sNot setmessage queueskernel not configured for %s
+s: Limits------ Message%s --------
+max queues system wide = %d
+max size of message (bytes) = %d
+default max size of queue (bytes) = %d
+s: Statusallocated queues = %d
+used headers = %d
+used space = %d bytes
+ Queues: Creators/Ownerscgidcuidpermsmsqid%-10s %-10s %-10s %-10s %-10s %-10s
+ Queues Send/Recv/Change Timessend%-8s %-10s %-20s %-20s %-20s
+ Queues PIDslrpidlspid Queuesused-bytes%-10s %-10s %-10s %-10s %-12s %-12s
+%-8d %-10.10s%-8d %-10d %-20.16s %-20.16s
+  %5d     %5d
+0x%08x %-10d %-10.10s%-10d %-10d %-10o %-12ld %-12ld
+destshared memory------ Shared Memory %s --------
+max number of segments = %lu
+max seg size (kbytes) = %lu
+max total shared memory (pages) = %lu
+min seg size (bytes) = %lu
+segments allocated %d
+pages allocated %lu
+pages resident  %lu
+pages swapped   %lu
+Swap performance: %lu attempts	%lu successes
+Segment Creators/OwnersshmidAttach/Detach/Change Timesdetachedattached%-10s %-10s %-20s %-20s %-20s
+Creator/Last-oplpidcpidSegments%-10s %-10s %-10s %-10s %-10s %-10s %-12s
+statusnattch %-10o %-10lu %-10ld %-6s %-6s
+semaphores------ Semaphore %s --------
+max number of arrays = %d
+max semaphores per array = %d
+max semaphores system wide = %d
+max ops per semop call = %d
+semaphore max value = %d
+used arrays = %d
+allocated semaphores = %d
+Arrays Creators/OwnerssemidOperation/Change Timeslast-changedlast-op%-8s %-10s %-26.24s %-26.24s
+Arraysnsems  %-26.24s%-10d %-10.9s%-10d %-9d %-10o %-10ld
+i:aqsmtcplushmctl
+Shared memory Segment shmid=%d
+uid=%d	gid=%d	cuid=%d	cgid=%d
+mode=%#o	access_perms=%#o
+bytes=%ld	lpid=%d	cpid=%d	nattch=%ld
+att_time=%-26.24s
+det_time=%-26.24s
+change_time=%-26.24s
+
+semctl
+Semaphore Array semid=%d
+uid=%d	 gid=%d	 cuid=%d	 cgid=%d
+mode=%#o, access_perms=%#o
+nsems = %ld
+otime = %-26.24s
+zcountncountsemnumctime = %-26.24s
+%-10s %-10s %-10s %-10s %-10s
+%-10u %-10d %-10d %-10d %-10d
+msgctl
+Message Queue msqid=%d
+uid=%d	gid=%d	cuid=%d	cgid=%d	mode=%#o
+cbytes=%ld	qbytes=%ld	qnum=%ld	lspid=%d	lrpid=%d
+send_time=%-26.24s
+rcv_time=%-26.24s
+%-10s %-14s %-18s %-12.12s %s
+system boot%-10s %-14s %-18s %-12.12s
+/dev/loop%uno free loop devicesDEVTYPEPRODUCTBUSNUMDEVNUM\/=Bus %s Device %s: ID %04x:%04x
+/sys/bus/usb/devicesACTION=add/sys/devdev %u,%u
+DEVNAME=/block/@%u,%u-%ubad @maj,min on line %dbad $envvar=regex on line %dunknown user/group '%s' on line %d>=!$@*bad line %urule matched, line %dmknod %s (%d,%d) %o %u:%usymlink: %sMDEVcan't run '%s'unlink: %s FW:DEVNAMESUBSYSTEMACTIONDEVPATHFIRMWARESEQNUMmdev.log%s[%s]mdev.seqfirst seq written%s mdev.seq='%s', need '%u'%s mdev.seq='%s'%s ACTION:%s SEQNUM:%s SUBSYSTEM:%s DEVNAME:%s DEVPATH:%s%s%s/sys%s/lib/firmwareloadingmdevuevent overrun, rescanning/subsystem/etc/mdev.conf%s exitingis yis nnot a tty%-11.11simage size must be specifiedfor this device sector size is %uthe image is too small for FAT32can't make FAT32 with >128 sectors/clusterDevice '%s':
+heads:%u, sectors/track:%u, bytes/sector:%u
+media descriptor:%02x
+total sectors:%lu, clusters:%u, sectors/cluster:%u
+FATs:2, sectors/FAT:%u
+volumeID:%08x, label:'%s'
+?X?mkdosfsFAT32   Setting up swapspace version 1, size = %lu bytes
+UUID=%.8s-%.4s-%.4s-%.4s-%.12s
+(Enter:next line Space:next page Q:quit R:show the rest)mount('%s','%s','%s',0x%08lx,'%s'):%d%s,%.*swould do mount('%s','%s','%s',0x%08lx,'%s')mount.%s-f-o%s is write-protected, mounting read-onlyunc=\\%s\%.*s,prefixpath=%sunc=\\%s\%.*scifs/\,ip=nfs%s%saddr=%soffset=sizelimit=can't setup loop devicenodevmounting %s on %s failed/etc/fstab/proc/mountsrwno %s%s on %s type %s (%s)
+according to %s, %s is already mounted on %scan't find %s in %s%s: not a block device%s/..%s is %sa mountpoint
+/proc/%u/%ssetns(): can't reassociate to namespace '%s'timeout connecting to time servercurrent time matches remote time%s /
+unknown user %s+Rpersonality(0x%lx)invalid capability '%s'+d?:?:GET_NO_NEW_PRIVSprctl: %seuid: %u
+egid: %u
+Supplementary groups: [none]
+no_new_privs: %d
+Inheritable capabilities: 
+index: %u u32s: %u capability: %u
+unsupported capability
+Ambient capabilities: CAP_AMBIENT_IS_SET
+Capability bounding set: CAPBSET_READSET_NO_NEW_PRIVScapsetcap_ambient_raisecap_ambient_loweroncepages%s: file has holesaeaed::p:/proc/swapsdiscardnoautopri/init'%s' is not a regular fileroot filesystem is not ramfs/tmpfserror moving root%s busy - remounted read-onlycan't remount %s read-onlyfldnrat:O:cvican't unmount %scan't mount %s on %s (flags:0x%lx)/proc/%u/ns/%.4sallow--setgroups=allow and --map-root-user are mutually exclusivedenyunrecognized: --%s=%spropagationunshare(0x%x)/proc/self/setgroups0 %u 1/proc/self/uid_map/proc/self/gid_map LABEL="%s" UUID="%s" TYPE="%s"ubiUUID=LABEL=XFSBbcache_BHRfS_MbtrfscramfserofsEXFAT   exfatext4ext3ext2f2fsMSWINFAT16   MSDOSFAT12   NO NAME    vfatCD001%/@%/C%/ECDROMiso9660JFS1jfslittlefslinux_raid_memberSWAP-SPACESWAPSPACE2S1SUSPENDS2SUSPENDULSUSPENDcrypto_LUKSminixnilfs2ntfsOCFSV2ocfs2ReIsErFsReIsEr2FsReIsEr3FsReIsEr4reiserfssquashfsubifsNSR02NSR03BEA01BOOT2CDW02TEA03udf%0sttysane
+        COLUMNS=%d;LINES=%d;export COLUMNS LINES;
+can't set SCANCODE %x to KEYCODE %d/dev/tty%ucan't tcsetattr for stdinXLATEMEDIUMRAWUNICODEakson EOF (ctrl-D)Press any keys, program terminates %s:
+
+%3u 0%03o 0x%02x
+Keyboard mode was %s.
+
+10s after last keypress0x%02x keycode %3u %s%6u  invalid mode '%s'mode of '%s' changed to %04o (%s)
+-Rvcfchanged ownership of '%s' to %u:%u
+-i%u %lu %s
+%u %lu
+always'%s' is a directorywith --parents, the destination must be a directoryexpected a list of bytes, characters, or fieldssuppressing non-delimited lines makes sense%sa delimiter may be specified%s%d<%dmissing list of positions%s%.*s%a, %d %b %Y %H:%M:%S %z%a %b %e %H:%M:%S %Z %YTZ=UTC0can't set date%Y-%m-%dT%H:%M:%S,%09uerror writing '%s'%lu+%lu records in
+%lu+%lu records out
+%llu bytes (%sB) copied, %f seconds, %sB/s
+conviflagoflagcan't swab %lu byte buffer     Size   InodesCapacityUse%Type       %s-blocksFilesystem           %s%-15sUsed Available %s Mounted on
+%s: can't find mount pointrootfs%s
+%20s %s
+%31s %s%*s %9s %9s %3u%% %s
+%sXXXXXX+i0u:*putenvit:	 %*s%.*swarning: '%s': using '^' as the first character
+of a basic regular expression is not portable; it is ignorednon-numeric argumentdivision by zero<=!=>=too few arguments%llu:bsw:
+==> %s <==
+count is too big: %luunknown ID %u groups= gid= euid= egid=can't get groupsstrip-pownershipcan't change %s of %spermissions-T accepts 2 args max'%s' -> '%s'
+%7llu %7s %-10s %4lu %-8u %-8u %-8.8s %-8.8s %4u, %3u %9lu %Y-%m-%d %H:%M:%S %z%.12s %.7s%6s;%um -> total %-7s
+total %lu
+LS_COLORSbad -a%u%s: OK                                                                                            u%s: FAILED
+WARNING: %d of %d computed checksums did NOT match%s: no checksum lines found%s  %s
+m:pvTMPDIR/tmptmp.XXXXXXmv: overwrite '%s'? can't rename '%s'non-can't remove '%s'setpriority(%d)pw:+s:v:+i:+b:nohup.outappending output to %s?:+/sys/devices/system/cpuintegralinvalid type string '%s'; %u-byte %s type is not supportedfloating point %%%d.%de %%%d.%dLeinvalid character '%c' in type string '%s'  \0  \a  \b  \f  \n  \r  \t  \v del%s: read errorcan't skip past end of combined input  >%0nlxcA:N:abcdfhij:lot:*vxsS:w:+:bad output address radix '%c' (must be [doxn])oCu2x2d2d4o2invalid second argument '%s'the last two arguments must be offsetstoo many argumentsSKIP + SIZE is too largewarning: invalid width %u; using %d insteadd:s-d '' is not supported.*usage: printf FORMAT [ARGUMENT...]-+ #0%s: invalid formatcan't remove '.' or '..'rmdir: removing directory, '%s'
++ws:%s%0*.*f/dev/zerobad range '%s'%llu%cinfbad field specificationunknown sort type%bbad -t parameterunknown key optionCheck line %u
+suffix too longsuffixes exhaustedllx#-+.I 0123456789  File: "%n"
+    ID: %-8i Namelen: %-7l Type: %T
+Block size: %-10s
+Blocks: Total: %-10b Free: %-10f Available: %a
+Inodes: Total: %-10c Free: %d%n %i %l %t %s %b %f %a %c %dcan't read file system information for '%s'%n %s %b %f %u %g %D %i %h %t %T %X %Y %Z %o  File: %N
+  Size: %-10s	Blocks: %-10b IO Block: %-6o %F
+Device: %Dh/%dd	Inode: %-10i  Links: %-5h Device type: %t,%T
+Access: (%04a/%10.10A)  Uid: (%5u/%8U)   Gid: (%5g/%8G)
+Access: %x
+Modify: %y
+Change: %z  File: %N
+  Size: %-10s	Blocks: %-10b IO Block: %-6o %F
+Device: %Dh/%dd	Inode: %-10i  Links: %h
+Access: (%04a/%10.10A)  Uid: (%5u/%8U)   Gid: (%5g/%8G)
+Access: %x
+Modify: %y
+Change: %z.%09u %%zblock special filecharacter special filefifosymbolic linkweird fileregular empty file'%s' -> '%s'%lx:%lx:%lx:%lx:%x^-undefrows %u; columns %u;%u %u
+%lx:%lx:%lx:%lx%n:%x%nline = %u;
+<undef>%s = %s;min = %u; time = %u;only one device may be specified-Finvalid argument '%s'-a and -g are mutually exclusivemodes may not be set when -a or -g is used%s: cannot perform all requested operations%u %llu %s
+%05u %5llu %s
+appearedbeen replacedno files%s has %s; following end of new file%s has been renamed or deletedbad numberargument expectedclosing paren expectedmissing ]missing ]]%s: unknown operand+s:k:STRING2 cannot be empty%s: open%s: truncatesnrvmpioacduf:+s:+w:+izshort filebegin-base64 begin no 'begin' line/dev/stdout-base64
+`
+end
+
+====
+begin%s %o %s %9llulwmcLUSER		TTY		IDLE	TIME		 HOST%02d:%02dold%-15.*s %-15.*s %-7s %-16.16s %.*s
+m:22%s: exit status %usetting %s on %sproject IDgetting %s on %s= is incompatible with - and +can't set and unset a flagmust use -v, -p, =, - or +rd/from fstabusing filesystem type '%s' %s
+opts=from -tfsck.%s[%s (%d) -- %s]wait: no more childrenWarning: %s %s terminated by signal %u
+Finished with %s (exit status %u)
+either all or none of the filesystem types passed to -t must be prefixed with 'no' or '!'FSCK_FORCE_ALL_PARALLELFSCK_MAX_INSTfsck (busybox 1.36.1)FSTAB_FILEChecking all filesystems/dev/md--waiting-- (pass %d)
+----------------------------------%-10u %-28s reading %s
+%s:
+Radlvp%u %u %u %u %u %u %d%s:%i: %sdiouxXeEfFgGaANF set to negative valueEmpty sequence'break' not in a loop'continue' not in a loopDuplicate functionpopenToo many argumentsRLENGTHRSTART%a %b %d %H:%M:%S %Z %Y%*x formats are not supported+F:v:*f:*e:*W:warning: option -W is ignoredcmd. lineawk/dev/stdin/dev/stderrFiles %s and %s differ
+Files %s and %s are identical
+
+\ No newline at end of file--- %s
++++ %s
+ %c%d,%d @@can't compare stdin to a directoryOnly in %s: %s
+Common subdirectories: %s and %s
+File %s is not a regular file or directory and was skipped
+File %s is a %s while file %s is a %s
+unmatched '%c'
+rno previous regexpbad format in substitution expressionempty filename%s
+%s
+no address after commamissing commandbad option in substitution expressioncommand '%c' uses only one addressunsupported command %cunterminated {can't find label for jump to '%s'This is not GNU sed version 4.0()[]{}(NULL)'%s' is not implemented!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~No previous filenameNo current filenameAlready at oldest changecan't read user input [Modified] [Readonly]No file%c %s%s%s %d/%d %d%%[Hit return to continue]'%s' %m)]} [New file]Pattern not foundInvalid range
+shell returned %i
+
+deleteNo write since last change (:%s! overrides)'%s'%s%s %uL, %uCNo address allowed on this commandfeaturesThese features are available:
+	Pattern searches with / and ?
+	Last command repeat with .
+	Line marking with 'x
+	Named buffers with "x
+	Some colon mode commands with :
+	Settable options with ":set"
+	Signal catching- ^C
+	Job suspend and resume with ^Z
+quitnextprev%u more file(s) to editNo more files to editNo previous files to edit'%s'%s %uL, %uCrewind%sautoindent %sexpandtab %sflash %signorecase %sshowmatch tabstop=%ubad option: %s:s expression missing delimitersNo previous searchNo matchFile exists (:w! overrides)'%s' is read only'%s' %uL, %uCyankYank %d lines (%d chars) into [%c]search hit %s, continuing at %sNothing in register %cTOPBOTTOMWrite error: %m:%{}'GHLMz/?Nncdy><^%$0bBeEfFtThnN/?|{nN/?wWGHL+-gjk'
+^0bBFThnN/?c:*HhREXINIT.exrc.exrc: permission denied-execonly one '{}' allowed for -exec +unpaired '('-typeunrecognized: %s+HLP%i%c(standard input)singledoubleunmatched %s quote'%s' terminated by signal %u%s: exited with status 255; aborting+trn:s:e::E:opx0I:i::P:+a:can't fit single argument within argument list size limitargument line too long ?...shutdownd:+nfwi/etc/init.d/rcS/dev/tty2/dev/tty3/dev/tty4umount -a -rswapoff -aBad inittab entry at line %d#:can't open %s: %m-/bin/sh~`!$^&*()=|\{}[];"'<>?exec %scan't run '%s': %mcan't forkstarting pid %u, tty '%s': '%s'The system is going down NOW!Sent SIG%s to all processesKILLhaltpoweroffreloading /etc/inittabRequesting system %s-qmust be run as PID 1CONSOLETERM=vt102TERM=linuxSHELL=/bin/shUSER=rootRUNLEVELprocess '%s' (pid %u) exited. Scheduling for restart.getgroupsunknown group %sunknown uid %uunknown capability '%s'%scap_%ucapgetunsupported capability versiondac_overridedac_read_searchfownerfsetidsetpcaplinux_immutablenet_bind_servicenet_broadcastnet_adminnet_rawipc_lockipc_ownersys_modulesys_rawiosys_chrootsys_ptracesys_pacctsys_adminsys_bootsys_nicesys_resourcesys_timesys_tty_configmknodaudit_writeaudit_controlsetfcapmac_overridemac_adminwake_alarmblock_suspendaudit_readcan't set groups%s: overwrite '%s'? removed '%s'
+'%s' and '%s' are the same filerecursion detected, omitting directory '%s'target '%s' is not a directorycan't create directory '%s'can't preserve %s of '%s'can't create link '%s'failed to clone '%s' from '%s'error writing to '%s'unrecognized file '%s' with mode %xaaillegal character with code %u at position %uname is too lonbad byte count for conversion character %seEfgG%s needs precision or byte countbad conversion character %%%sbyte count with multiple conversion characters -0+#bad format {%s}0123456789.can't open console/dev/tty0image size is too bigimage is too smallNO A%s%-*s%4d %su%c%llu%*c 123456789getaddrinfo: %s: %d `'"\#$~?*[{()&;|<>~%s/D
+(reverse-i-search)'%s': %s.%u.newLOGGING login: %lu %s/dev/loop-controlcreateset permissions ofcreated directory: '%s'
+can't %s directory '%s'too many similar characterssimilar to usernametoo shortsimilar to old passwordtoo weaksimilar to hostnamesimilar to gecosBad password: %s
+bad line %u: %d tokens found, %d needed/run/%s.pid%*u%sM-/proc/%u/smapsPss:Swap:Private_Dirty:Private_Clean:Shared_Dirty:Shared_Clean:/dev/zero
+[stack]
+%s %3u%% |%s|   - stalled - --:--:-- ETA%3u:%02u:%02u ETAbad salt%s: descend into directory '%s'? %s: remove directory '%s'? removed directory: '%s'
+%s: remove '%s'? /var/lib/hwclock/adjtimeUTCTZ/etc/securettySIGRTMINRTMAX%2u) %s
+,%s%s+warning: can't create backup copy '%s'warning: can't lock '%s'%s%s:%u%s
+====truncated inputignoring all argumentsnumber %s is not in %llu..%llu rangenumber %s is not in %lld..%lld rangelocal:%.*s[%s]:%scan't bind to interface %scan't connect to remote hostbad port '%s'local:bad regex '%s': %sunknown user/group %s/run/utmps/.wtmpd-socket/run/utmps/.utmpd-socket/usr/sbin//usr/bin/h11AY&SYR+???߀tp???????????`?"^??>v?ҙ̳?C?]6?????oO??Z?ZiVڅ??m"?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+?^Xs:+d:+t:+=1bb?^ons:f:l:=1^pns:-1:?2allwlanbluetoothuwbwimaxwwangpsfm^bGavzgq-1:b-aG:G-ab:a-bGspd_normalspd_hispd_vhispd_shispd_warpspd_custsakfourporthup_notifyskip_testauto_irqsplit_termiossession_lockoutpgrp_lockoutcallout_nohuplow_latencyportirqdivisoruartbaud_baseclose_delayclosing_waitautoconfigunknown8250164501655016550ACirrus1665016650V21675016950169541665416850RSANS16550AXSCALERM9000OCTEONAR7U6_16550A^+vpao:f:-1	Command being timed: "%C"
+	User time (seconds): %U
+	System time (seconds): %S
+	Percent of CPU this job got: %P
+	Elapsed (wall clock) time (h:mm:ss or m:ss): %E
+	Average shared text size (kbytes): %X
+	Average unshared data size (kbytes): %D
+	Average stack size (kbytes): %p
+	Average total size (kbytes): %K
+	Maximum resident set size (kbytes): %M
+	Average resident set size (kbytes): %t
+	Major (requiring I/O) page faults: %F
+	Minor (reclaiming a frame) page faults: %R
+	Voluntary context switches: %w
+	Involuntary context switches: %c
+	Swaps: %W
+	File system inputs: %I
+	File system outputs: %O
+	Socket messages sent: %s
+	Socket messages received: %r
+	Signals delivered: %k
+	Page size (bytes): %Z
+	Exit status: %xreal %e
+user %U
+sys %Sreal	%E
+user	%u
+sys	%T^Ft:T:=1V^0k:F:nadlp-1^vqsalrDbq-v:v-q:l--arD:r--alD:a--lr:D--rlshow-dependsDPERMPUPTRAILpubprivtemptraildontpubautodevnetmask^UDAqfbc:+w:I:s:=1:Df:AUbridge/ageing_timebridge/forward_delaybridge/hello_timebridge/max_agebrport/path_costbrport/prioritydisabledlisteninglearningforwardingblocking0offnno1onyyesaddbrdelbraddifdelifstpshowstpsetageingsetfdsethellosetmaxagesetpathcostsetportpriosetbridgeprioshowmacsshow^bi:p:=1domaindfqdnffileFetherinfinibandchange-activecdetachdforcefupdownpre-uppost-downUPBROADCASTDEBUGLOOPBACKPOINTOPOINTNOTRAILERSRUNNINGNOARPPROMISCALLMULTISLAVEMASTERMULTICASTKiMiGiTiaddressrouterlinktunneltunlruleneigh^mbnphs-1:?2netmaskmbroadcastbnetworknprefixphostnamehsilents: 	B??S^np:s:ubvw:+lki:o:z?2:vv:lltypequerytypeportretrydebugttimeout??SOANSAAAAACNAMEMXTXT!SRV
+                                                                                                                   PTR?ANY^nqNxk:wp:*S:lI:d46aAbgL=0:dd:wn:Il^qvAc:+s:t:+w:+W:+I:np:i:46=1:q--v:v--q^cbp:P:t:T:=1adddeldeleteUGHRDMDAC!nmetricnetmaskgwgatewaymsswindowirttdevdevice reject!mod"dyn#reinstate#net#host^p:s:c:ehmLF=1slipcslipslip6cslip6adaptive^FIlnrdvt:i:m:p:q:s:w:z:f:46-1^f:t:d:u:g:b=0:t--d:d--tVLAN_PLUS_VIDVLAN_PLUS_VID_NO_PADDEV_PLUS_VIDDEV_PLUS_VID_NO_PADaddremset_name_type
+
+
+
+
+
+
+
+is already defined, delete it before re-adding
+Building a new %s. Changes will remain in memory only,
+until you decide to write them. After that the previous content
+won't be recoverable.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
