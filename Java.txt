@@ -357,6 +357,171 @@ Terminal originated in NeXTSTEP and OPENSTEP, the predecessor operating systems 
 
 
 
+	jstack -l 75341
+
+	jstack -e 75341
+
+
+
+(base) yathvi@Madan-MacBook-Pro-175 ~ % jcmd --help
+Usage: jcmd <pid | main class> <command ...|PerfCounter.print|-f file>
+   or: jcmd -l                                                    
+   or: jcmd -h                                                    
+                                                                  
+  command must be a valid jcmd command for the selected jvm.      
+  Use the command "help" to see which commands are available.   
+  If the pid is 0, commands will be sent to all Java processes.   
+  The main class argument will be used to match (either partially 
+  or fully) the class used to start Java.                         
+  If no options are given, lists Java processes (same as -l).     
+                                                                  
+  PerfCounter.print display the counters exposed by this process  
+  -f  read and execute commands from the file                     
+  -l  list JVM processes on the local machine                     
+  -? -h --help print this help message                            
+(base) yathvi@Madan-MacBook-Pro-175 ~ % 
+(base) yathvi@Madan-MacBook-Pro-175 ~ % 
+
+
+
+(base) yathvi@Madan-MacBook-Pro-175 ~ % jstack --help
+Usage:
+    jstack [-l][-e] <pid>
+        (to connect to running process)
+
+Options:
+    -l  long listing. Prints additional information about locks
+    -e  extended listing. Prints additional information about threads
+    -? -h --help -help to print this help message
+(base) yathvi@Madan-MacBook-Pro-175 ~ % 
+(base) yathvi@Madan-MacBook-Pro-175 ~ % 
+(base) yathvi@Madan-MacBook-Pro-175 ~ % 
+
+
+
+(base) yathvi@Madan-MacBook-Pro-175 ~ % jps --help
+usage: jps [--help]
+       jps [-q] [-mlvV] [<hostid>]
+
+Definitions:
+    <hostid>:      <hostname>[:<port>]
+    -? -h --help -help: Print this help message and exit.
+(base) yathvi@Madan-MacBook-Pro-175 ~ % 
+(base) yathvi@Madan-MacBook-Pro-175 ~ % 
+(base) yathvi@Madan-MacBook-Pro-175 ~ % 
+
+
+
+(base) yathvi@Madan-MacBook-Pro-175 ~ % jinfo --help
+Usage:
+    jinfo <option> <pid>
+       (to connect to a running process)
+
+where <option> is one of:
+    -flag <name>         to print the value of the named VM flag
+    -flag [+|-]<name>    to enable or disable the named VM flag
+    -flag <name>=<value> to set the named VM flag to the given value
+    -flags               to print VM flags
+    -sysprops            to print Java system properties
+    <no option>          to print both VM flags and system properties
+    -? | -h | --help | -help to print this help message
+(base) yathvi@Madan-MacBook-Pro-175 ~ % 
+(base) yathvi@Madan-MacBook-Pro-175 ~ % 
+(base) yathvi@Madan-MacBook-Pro-175 ~ % 
+
+
+
+(base) yathvi@Madan-MacBook-Pro-175 ~ % jconsole --help
+(base) yathvi@Madan-MacBook-Pro-175 ~ % 
+
+
+
+
+Usage: jconsole [ -interval=n ] [ -notile ] [ -pluginpath <path> ] [ -version ] [ connection ... ]
+
+  -interval   Set the update interval to n seconds (default is 4 seconds)
+  -notile     Do not tile windows initially (for two or more connections)
+  -pluginpath Specify the path that jconsole uses to look up the plugins
+  -version    Print program version
+
+  connection = pid || host:port || JMX URL (service:jmx:<protocol>://...)
+  pid         The process id of a target process
+  host        A remote host name or IP address
+  port        The port number for the remote connection
+
+  -J          Specify the input arguments to the Java virtual machine
+              on which jconsole is running
+
+
+
+(base) yathvi@Madan-MacBook-Pro-175 ~ % jcmd 75341
+75341:
+The following commands are available:
+Compiler.CodeHeap_Analytics
+Compiler.codecache
+Compiler.codelist
+Compiler.directives_add
+Compiler.directives_clear
+Compiler.directives_print
+Compiler.directives_remove
+Compiler.queue
+GC.class_histogram
+GC.finalizer_info
+GC.heap_dump
+GC.heap_info
+GC.run
+GC.run_finalization
+JFR.check
+JFR.configure
+JFR.dump
+JFR.start
+JFR.stop
+JFR.view
+JVMTI.agent_load
+JVMTI.data_dump
+ManagementAgent.start
+ManagementAgent.start_local
+ManagementAgent.status
+ManagementAgent.stop
+Thread.dump_to_file
+Thread.print
+VM.cds
+VM.class_hierarchy
+VM.classes
+VM.classloader_stats
+VM.classloaders
+VM.command_line
+VM.dynlibs
+VM.events
+VM.flags
+VM.info
+VM.log
+VM.metaspace
+VM.native_memory
+VM.set_flag
+VM.stringtable
+VM.symboltable
+VM.system_properties
+VM.systemdictionary
+VM.uptime
+VM.version
+help
+
+For more information about a specific command use 'help <command>'.
+(base) yathvi@Madan-MacBook-Pro-175 ~ %
+
+
+
+
+
+
+
+
+
+
+
+
+
 (base) yathvi@Madan-MacBook-Pro-175 java % jstack 18399
 2024-02-15 20:40:53
 Full thread dump Java HotSpot(TM) 64-Bit Server VM (21.0.1+12-LTS-29 mixed mode, sharing):

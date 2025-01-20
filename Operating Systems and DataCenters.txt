@@ -831,7 +831,6 @@ Linux File System Explained!	||	(5 minutes Video)
 
 
 
-
 =====================================================
 CPU Cores VS Threads Explained	||	(5 minutes Video)
 =====================================================
@@ -1380,7 +1379,7 @@ Check 'External links' at the End of Webpage	-->		https://en.wikipedia.org/wiki/
 
  ------------------------------------------------------------------------------------------------------- 
 |																										|
-|										PARALLEL COMPUTING												|
+|	V.T.E								PARALLEL COMPUTING										[hide]	|
 |																										|
 |-------------------------------------------------------------------------------------------------------|
 |				|	Distributed computing , Parallel computing , Massively parallel						|
@@ -1481,7 +1480,7 @@ Check 'External links' at the End of Webpage	-->		https://en.wikipedia.org/wiki/
 
  ----------------------------------------------------------------------------------------------------------- 
 |																											|
-|										CONCURRENT COMPUTING												|
+|	V.T.E								CONCURRENT COMPUTING										[hide]	|
 |																											|
 |-----------------------------------------------------------------------------------------------------------|
 |					|																						|
@@ -1517,7 +1516,7 @@ Check 'External links' at the End of Webpage	-->		https://en.wikipedia.org/wiki/
 
  ---------------------------------------------------------------------------------------------------------------
 |																												|
-|									TYPES OF PROGRAMMING LANGUAGES												|
+|	V.T.E								TYPES OF PROGRAMMING LANGUAGES									[hide]	|
 |																												|
 |---------------------------------------------------------------------------------------------------------------|
 |					|	Actor-based , Array , Aspect-oriented , Class-based , Concatenative						|
@@ -1556,65 +1555,66 @@ https://en.wikipedia.org/wiki/Template:Programming_paradigms_navbox
 or
 Check 'External links' at the End of Webpage	-->		https://en.wikipedia.org/wiki/Programming_paradigm
 
- ---------------------------------------------------------------------------------------
-|																						|
-|						Programming paradigms (Comparison by language)					|
-|																						|
-|---------------------------------------------------------------------------------------|
-|					|								   |								|
-|					|	Structured					   |								|
-|	  				|								   |								|
-|	Imperative		|----------------------------------|								|
-|					|	Object-oriented				   |								|
-|					|   (Comparison, List)			   |								|
-|					|								   |								|
-|-------------------|-------------------------------------------------------------------|
-|					|	Functional					   |								|
-|					|	(Comparison)				   |								|
-|	  				|----------------------------------|								|
-|	Declarative		|	Dataflow					   |								|
-|					|----------------------------------|								|
-|					|	Logic						   |								|
-|					|----------------------------------|								|
-|					| 	DSL (domain-specific language) |								|
-|-------------------|-------------------------------------------------------------------|
-|					|																	|
-|					|	Actor-based 													|
-|					|	Automatic mutual exclusion 										|
-|					|	Choreographic programming 										|
-|					|	Concurrent logic (Concurrent constraint logic) 					|
-|					|	Concurrent OO													|
-|	Concurrent/		|	Macroprogramming												|
-|	Distributed/	|	Multitier programming											|
-|	Parallel		|	Organic computing												|
-|					|	Parallel programming models										|
-|					|	Partitioned global address space 								|
-|					|	Process-oriented												|
-|					|	Relativistic programming 										|
-|					|	Service-oriented 												|
-|					|	Structured concurrency											|
-|					|																	|
-|-------------------|-------------------------------------------------------------------|
-|					|																	|
-|	Metaprogramming	|																	|
-|	  				|																	|
-|-------------------|-------------------------------------------------------------------|
-|					|	Aspects , Components , Data-driven , Data-oriented 				|
-|					|	  																|
-|	Separation of 	|	Event-driven , Features , Intentional							|
-|	concerns  		|																	|
-|					|	Literate , Roles , Subjects										|
-|					|																	|
-|					|																	|
- ---------------------------------------------------------------------------------------
+ -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|																																															|
+|	V.T.E																Programming paradigms (Comparison by language)																[hide]	|
+|																																															|
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|					|									|	Jackson structures , Block-structured , Modular , Non-structured , Procedural Programming in the large and in the small			|
+|					|	Structured						|	Design by contract , Invariant-based , Nested function																			|
+|	Imperative		|-----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+|					|	Object-oriented					|	Agent , Class-based , Prototype-based , Object-based , Immutable object , Persistent , Uniform Function Call Syntax				|
+|					|	(Comparison, List)				|																																	|
+|-------------------|-----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+|					|	Functional						|	Recursive , Anonymous function (Partial application) , Higher-order , Purely functional , Total , Strict						|
+|					|	(Comparison)					|	GADTs(Generalized algebraic data type) , Dependent types , Functional logic , Point-free style , Expression-oriented			|
+|					|									|	Applicative, Concatenative , Function-level, Value-level																		|
+|	  				|-----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+|	Declarative		|	Dataflow						|	Flow-based , Reactive (Functional reactive) , Signals , Streams , Synchronous													|
+|					|-----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+|					|	Logic							|	Abductive logic , Answer set , Constraint (Constraint logic) , Inductive logic , Nondeterministic , Ontology					|
+|					|									|	Probabilistic logic , Query																										|
+|					|-----------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+|					|	DSL (domain-specific language)	|	Algebraic modeling , Array , Automata-based (Action) , Command (Spacecraft) , Differentiable , End-user							|
+|					|									|	Grammar-oriented , Interface description , Language-oriented , List comprehension , Low-code , Modeling , Natural language		|
+|					|									|	Non-English-based , Page description , Pipes and filters , Probabilistic , Quantum , Scientific , Scripting , Set-theoretic		|
+|					|									|	Simulation , Stack-based , System , Tactile , Templating , Transformation (Graph rewriting, Production, Pattern) , Visual		|
+|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|					|																																										|
+|					|	Actor-based 																																						|
+|					|	Automatic mutual exclusion 																																			|
+|					|	Choreographic programming 																																			|
+|					|	Concurrent logic (Concurrent constraint logic) 																														|
+|					|	Concurrent OO																																						|
+|	Concurrent/		|	Macroprogramming																																					|
+|	Distributed/	|	Multitier programming																																				|
+|	Parallel		|	Organic computing																																					|
+|					|	Parallel programming models																																			|
+|					|	Partitioned global address space 																																	|
+|					|	Process-oriented																																					|
+|					|	Relativistic programming 																																			|
+|					|	Service-oriented 																																					|
+|					|	Structured concurrency																																				|
+|					|																																										|
+|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|	Metaprogramming	|	Attribute-oriented , Automatic (Inductive) , Dynamic , Extensible , Generic , Homoiconicity , Interactive , Macro (Hygienic) , Metalinguistic abstraction			|
+|					|	Multi-stage , Program synthesis (Bayesian, Inferential, by demonstration, by example) , Reflective , Self-modifying code , Symbolic , Template						|
+|-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|					|	Aspects , Components , Data-driven , Data-oriented 																													|
+|					|																																										|
+|	Separation of 	|	Event-driven , Features , Intentional																																|
+|	concerns  		|																																										|
+|					|	Literate , Roles , Subjects																																			|
+|					|																																										|
+ -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 ================================
 <==>	Operating systems	<==>
 ================================
 https://en.wikipedia.org/wiki/Operating_system
-	
-	 	 User
+
+		 User
 		|	/\
 		|	|
 		\/	|
@@ -1627,7 +1627,7 @@ https://en.wikipedia.org/wiki/Operating_system
 		|	|
 		\/	|	
 	  Hardware
-	  
+
 	Common features
 	---------------
 	Process management
@@ -1638,27 +1638,27 @@ https://en.wikipedia.org/wiki/Operating_system
 	Networking
 	Security
 	Input/output
-	
+
 	An operating system (OS) is system software that manages computer hardware and software resources, 
 	and provides common services for computer programs.
-	
-	
+
+
 	https://en.wikipedia.org/wiki/Template:Operating_systems
 
-							
+
  -------------------------------------------------------------------------------------------------------
 |																										|
-|										Operating Systems												|
+|	V.T.E									Operating Systems									[hide]	|
 |																										|
 |-------------------------------------------------------------------------------------------------------|
 |		General		|	Comparison , Forensic engineering , History , List 								|
 |					|	Timeline , Usage share , User features comparison								|
 |-------------------|-----------------------------------------------------------------------------------|
-|		Variants	|  Disk operating system , Distributed operating system , Embedded operating system |
-|					|  Hobbyist operating system , Just enough operating system							|
-|					|  Mobile operating system , Network operating system								|
-|					|  Object-oriented operating system , Real-time operating system					|
-|					|  Supercomputer operating system													|
+|		Variants	|	Disk operating system , Distributed operating system , Embedded operating system|
+|					|	Hobbyist operating system , Just enough operating system						|
+|					|	Mobile operating system , Network operating system								|
+|					|	Object-oriented operating system , Real-time operating system					|
+|					|	Supercomputer operating system													|
 |-------------------|-----------------------------------------------------------------------------------|
 |					|						|	Exokernel , Hybrid , Microkernel , Monolithic 			|
 |					|	Architectures		|	Multikernel , vkernel , Rump kernel , Unikernel			|
@@ -1670,7 +1670,7 @@ https://en.wikipedia.org/wiki/Operating_system
 |-------------------|-----------------------|-----------------------------------------------------------|
 |					|	Concepts			|	Computer multitasking , (Cooperative, Preemptive)		|
 |					|						|	Context switch											|
-|	  				|						|	Interrupt , IPC , Process , Process control block		|
+|					|						|	Interrupt , IPC , Process , Process control block		|
 |	Process 		|						|	Real-time , Thread , Time-sharing						|
 |	management		|-----------------------|-----------------------------------------------------------|
 |					|	Scheduling			|	Fixed-priority preemptive , Multilevel feedback queue	|
@@ -1693,6 +1693,14 @@ https://en.wikipedia.org/wiki/Operating_system
 |	concepts		|	PXE																				|
 |					|																					|
  -------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
 
 
 List of operating systems
@@ -1753,7 +1761,7 @@ Check 'External links' at the End of Webpage	-->		https://en.wikipedia.org/wiki/
 
  ----------------------------------------------------------------------------------------------------------- 
 |																											|
-|											CLOUD COMPUTING													|
+|	V.T.E										CLOUD COMPUTING										[hide]	|
 |																											|
 |-----------------------------------------------------------------------------------------------------------|
 |					|																						|
@@ -1767,21 +1775,23 @@ Check 'External links' at the End of Webpage	-->		https://en.wikipedia.org/wiki/
 |					|																						|
 |-------------------|---------------------------------------------------------------------------------------|
 |					|																						|
-|					|	Cloud database , Cloud storage , Data centers , Distributed file system for cloud	|
+|					|	Cloud database , Cloud-native computing , Cloud storage , Data centers				|
 |					|																						|
-|					|	Hardware virtualization , Internet , Native cloud application , Networking			|
+|					|	Dew computing , Distributed file system for cloud , Hardware virtualization			|
 |					|																						|
-|	Technologies	|	Security , Structured storage , Virtual appliance 									|
+|	Technologies	|	Internet , Mobile cloud computing , Native cloud application , Networking			|
 |					|																						|
-|					|	Web APIs , Virtual private cloud													|
+|					|	Personal cloud , Security , Serverless computing , Structured storage				|
+|					|																						|
+|					|	Virtual appliance , Web APIs , Virtual private cloud								|
 |					|																						|
 |-------------------|---------------------------------------------------------------------------------------|
 |					|																						|
 |					|	Box , Dropbox , Google (Workspace , Drive) , HP Cloud (closed) , IBM Cloud			|
 |					|																						|
-|	Applications	|	Microsoft (Office 365 , OneDrive) , Nextcloud , Oracle Cloud , Rackspace 			|
+|	Applications	|	Microsoft (Office 365 , OneDrive) , Nextcloud , Oracle Cloud , Owncloud				|
 |					|																						|
-|					|	Salesforce , Workday , Zoho															|
+|					|	Rackspace , Salesforce , Seafile , Workday , Zoho									|
 |					|																						|
 |-------------------|---------------------------------------------------------------------------------------|
 |					|																						|
@@ -2160,10 +2170,244 @@ Internet Protocol version 4
 	https://en.wikipedia.org/wiki/Internet_Protocol_version_4
 
 
+================================================================================================
+<==>	Service Name and Transport Protocol Port Number Registry	-->		Text Format		<==>
+================================================================================================
+https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.txt
+
+
+================================================================================================
+<==>	Service Name and Transport Protocol Port Number Registry	-->		XML Format		<==>
+================================================================================================
+https://www.iana.org/assignments/service-names-port-numbers/service-names-port-numbers.xml
+
+
+================================================================================================
+<==>	Service Name and Transport Protocol Port Number Registry	-->		CSV Format		<==>
+================================================================================================
+
+Available Formats
+	
+	CSV		XML 	HTML 	Plain text
+
+Click on CSV to download the service-names-port-numbers.csv file which is around 1.1 MB
+
+
+ ========================
+||	Transport Protocol	||
+ ========================
+
+(Blank)				1453
+dccp				11
+sctp				92
+tcp					6559
+udp					6329
+
+
+
+====================================================
+<==>	Comparison of file transfer protocols	<==>
+====================================================
+https://en.wikipedia.org/wiki/Comparison_of_file_transfer_protocols
+
+
+Ports
+=====
+
+	 -----------------------------------------------------------------------------------------------------------------------------------------------
+	|				|				Data Port				|				Control Port				|	Assigned	|				|			|
+	|	Protocol	|---------------------------------------|-------------------------------------------|	by IANA		|	Assignee	|	Refs	|
+	|				|	Server	|	Client	|	Transport	|	Server	|	Client	|	Transport		|				|				|			|
+	|-----------------------------------------------------------------------------------------------------------------------------------------------|
+
+========================================
+<==>	Comparison of SSH servers	<==>
+========================================
+https://en.wikipedia.org/wiki/Comparison_of_SSH_servers
+
+========================================
+<==>	Comparison of SSH clients	<==>
+========================================
+https://en.wikipedia.org/wiki/Comparison_of_SSH_clients
+
+Platform
+========
+
+	 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	|	Name	|	macOS	|	Windows	|	Cygwin	|	BSD	|	Linux	|	Solaris	|	OpenVMS	|	z/OS	|	AIX	|	HP-UX	|	iOS	|	Android	|	Maemo	|	Windows Phone	|
+	|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+Technical
+=========
+
+
+	 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	|			|	SSH1		|			|	Additional protocols	|	Port forwarding and Tunneling		|	Session			|				|			|				|				|	Proxy	|
+	|	Name	|	(insecure)	|	SSH2	|---------------------------|---------------------------------------|	multiplexing	|	Kerberos	|	IPv6	|	Terminal	|	SFTP/SCP	|	client	|
+	|			|				|			|	TELNET		|	rlogin	|	Port forwarding	|	Socks	|	VPN	|					|				|			|				|				|			|
+	|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+
+
+Features
+========
+
+	 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	|			|	keyboard	|	Session		|	ZMODEM		|	Find text 		|	Mouse			|	Unicode		|	URL				|	Public key		|	Smart		|	Hardware	|	FIPS 140-2	|				|	Shared		|	Auto-		|	CA				|
+	|	Name	|	mapping		|	tabs		|	transfers	|	in buffer		|	input			|	support		|	hyperlinking	|	authentication	|	card		|	encryption	|	validation	|	Scripting	|	Database	|	reconnect	|	Certificates	|
+	|			|				|				|				|					|	support			|				|					|					|	support		|				|				|				|				|				|					|
+	|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+
+Authentication key algorithms
+=============================
+
+	 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+	|			|			|			|				RSA with SHA-2			|				ECDSA with SHA-2				|			EdDSA			|			Security keys			|
+	|	Name	|	ssh-dss	|	ssh-rsa	|---------------------------------------|-----------------------------------------------|---------------------------|-----------------------------------|
+	|			|			|			|	rsa sha2 256	|	rsa sha2 512	|	ecdsa sha2	|	ecdsa sha2	|	ecdsa sha2	|	ssh		|	ssh			|	sk-ecdsa-sha2	|	sk-ssh		|
+	|			|			|			|					|					|	nistp256	|	nistp384	|	nistp521	|	ed25519	|	ed448		|	nistp256		|	ed25519		|
+	|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+
+
+
+========================================================
+<==>	Comparison of FTP server software packages	<==>
+========================================================
+https://en.wikipedia.org/wiki/Comparison_of_FTP_server_software_packages
+
+================================================
+<==>	Comparison of FTP client software	<==>
+================================================
+https://en.wikipedia.org/wiki/Comparison_of_FTP_client_software
+
+====================================================
+<==>	Comparison of remote desktop software	<==>
+====================================================
+https://en.wikipedia.org/wiki/Comparison_of_remote_desktop_software
+
+Remote desktop software
+=======================
+
+	 ---------------------------------------------------------------------------------------------------------------------------------------
+	|				|				|			|	First public	|	Latest stable	|			|	Free for		|	Free for		|
+	|	Software	|	Protocols	|	Creator	|	release date	|	year, version	|	License	|	personal use	|	commercial use	|
+	|				|				|			|					|					|			|					|					|
+	|---------------------------------------------------------------------------------------------------------------------------------------|
+
+
+Operating system support
+========================
+
+	 ---------------------------------------------------------------------------------------------------------------------------------------------------
+	|				|		Windows			|		macOS			|		Linux			|		FreeBSD			|	Java	|		Android			|
+	|	Software	|-----------------------|-----------------------|-----------------------|-----------------------|-----------|-----------------------|
+	|				|	Server	|	Client	|	Server	|	Client	|	Server	|	Client	|	Server	|	Client	|	Client	|	Server	|	Client	|
+	|---------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+====================================
+<==>	Remote desktop software	<==>
+====================================
+https://en.wikipedia.org/wiki/Remote_desktop_software
+
+In computing, the term remote desktop refers to a software- or operating system feature that allows a personal computer's desktop environment
+to be run remotely from one system (usually a PC, but the concept applies equally to a server or a smartphone),
+while being displayed on a separate client device.
+
+Remote desktop applications have varying features.
+Some allow attaching to an existing user's session and "remote controlling", either displaying the remote control session or blanking the screen.
+Taking over a desktop remotely is a form of remote administration.
+
+
+
+
+you can spin up till 65535 ports
+
+tcp        0      0 0.0.0.0:65535           0.0.0.0:*               LISTEN     
+
+
+=====================================
+ChatGPT 3.5		IPs and Ports Summary	
+=====================================
+
+Sure, let's delve into the concept of port ranges in more detail.
+
+In networking, a port range refers to a contiguous series of ports within a specified range. Ports are identified by numbers ranging from 0 to 65535,
+
+1.	where ports 0 to 1023 are well-known ports reserved for system services,
+2.	and ports 1024 to 49151 are registered ports allocated to user services by the Internet Assigned Numbers Authority (IANA).
+3.	Ports 49152 to 65535 are dynamic or private ports, often used for temporary connections.
+
+
+
+When you specify a port range, you're indicating a set of ports that you want to scan or work with.
+For example, if you specify a range from 1 to 1000, you're including all ports from 1 to 1000 inclusive.
+Here's what each part of the range signifies:
+
+Starting Port: The lower bound of the port range. In the example range 1-1000, 1 is the starting port.
+Ending Port: The upper bound of the port range. In the example range 1-1000, 1000 is the ending port.
+
+When scanning with tools like Nmap, specifying a port range allows you to focus your scan on a subset of ports rather than scanning the entire range of 0 to 65535.
+This can save time and resources, especially if you're only interested in certain services or protocols.
+
+For example, if you specify -p 1-1000 with Nmap, it will scan ports from 1 to 1000.
+If any of these ports are open and accessible on the target system, Nmap will report them in its scan results.
+This targeted approach can be useful for security audits, network troubleshooting, or discovering specific services running on a server.
+
+Port ranges are flexible and can be adjusted to suit your needs.
+You can specify any valid range of ports, whether it's a small range like 1-100 or a larger range like 1000-5000.
+However, keep in mind that scanning a wide range of ports may take longer and consume more resources, so it's essential to balance your scanning requirements with efficiency.
+
+
+
+
+root@d87258154693:/etc# uname -a
+Linux d87258154693 5.10.76-linuxkit #1 SMP Mon Nov 8 10:21:19 UTC 2021 x86_64 x86_64 x86_64 GNU/Linux
+root@d87258154693:/etc# 
+root@d87258154693:/etc# cat /etc/os-release 
+PRETTY_NAME="Ubuntu 22.04.4 LTS"
+NAME="Ubuntu"
+VERSION_ID="22.04"
+VERSION="22.04.4 LTS (Jammy Jellyfish)"
+VERSION_CODENAME=jammy
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=jammy
+root@d87258154693:/etc# 
+root@d87258154693:/etc# 
+root@d87258154693:/etc# cat bindresvport.blacklist
+#
+# This file contains a list of port numbers between 600 and 1024,
+# which should not be used by bindresvport. bindresvport is mostly
+# called by RPC services. This mostly solves the problem, that a
+# RPC service uses a well known port of another service.
+#
+631	# cups
+636	# ldaps
+655	# tinc
+774	# rpasswd
+783	# spamd
+873	# rsync
+921	# lwresd
+993	# imaps
+995	# pops
+root@d87258154693:/etc# 
+root@d87258154693:/etc# 
+root@d87258154693:/etc# 
+
+
+
+
+
 DNS Explained (6 Mins)
 ======================
 https://www.youtube.com/watch?v=72snZctFFtA
-
 
 
 
@@ -2415,14 +2659,88 @@ Multi-core processor
 	=	OR ONTO MULTIPLE DIES IN A SINGLE CHIP PACKAGE.																				=
 	=	THE MICROPROCESSORS CURRENTLY USED IN ALMOST ALL PERSONAL COMPUTERS ARE MULTI-CORE.											=
 	=================================================================================================================================
-	
-	A multi-core processor implements multiprocessing in a single physical package.
+
+	A MULTI-CORE PROCESSOR IMPLEMENTS MULTIPROCESSING IN A SINGLE PHYSICAL PACKAGE.
 	Designers may couple cores in a multi-core device tightly or loosely.
 	For example, cores may or may not share caches, and they may implement message passing or shared-memory inter-core communication methods.
 	Common network topologies used to interconnect cores include bus, ring, two-dimensional mesh, and crossbar.
 	Homogeneous multi-core systems include only identical cores; HETEROGENEOUS multi-core systems have cores that are not identical
 	(e.g. big.LITTLE have HETEROGENEOUS cores that share the same instruction set, while AMD Accelerated Processing Units have cores that do not share the same instruction set).
 	Just as with single-processor systems, cores in multi-core systems may implement architectures such as VLIW, superscalar, vector, or multithreading.
+
+	Terminology
+	===========
+
+	Development
+	===========
+
+	Commercial incentives
+	---------------------
+
+	Technical factors
+	-----------------
+
+	Advantages
+	----------
+	The proximity of multiple CPU cores on the same die allows the cache coherency circuitry to operate at a much higher clock rate than what is possible if the signals have to travel off-chip.
+	Combining equivalent CPUs on a single die significantly improves the performance of cache snoop (alternative: Bus snooping) operations.
+	Put simply, this means that signals between different CPUs travel shorter distances, and therefore those signals degrade less.
+	These higher-quality signals allow more data to be sent in a given time period, since individual signals can be shorter and do not need to be repeated as often.
+
+	Assuming that the die can physically fit into the package, multi-core CPU designs require much less printed circuit board (PCB) space than do multi-chip SMP designs.
+	Also, a dual-core processor uses slightly less power than two coupled single-core processors, principally because of the decreased power required to drive signals external to the chip.
+	Furthermore, the cores share some circuitry, like the L2 cache and the interface to the front-side bus (FSB).
+	In terms of competing technologies for the available silicon die area, multi-core design can make use of proven CPU core library designs and produce a product with lower risk of design error than devising a new wider-core design.
+	Also, adding more cache suffers from diminishing returns.
+
+	Multi-core chips also allow higher performance at lower energy.
+	This can be a big factor in mobile devices that operate on batteries.
+	Since each core in a multi-core CPU is generally more energy-efficient, the chip becomes more efficient than having a single large monolithic core.
+	This allows higher performance with less energy.
+	A challenge in this, however, is the additional overhead of writing parallel code.
+
+	See also
+	--------
+	-	CPU shielding
+	-	CUDA
+	-	GPGPU
+	-	Hyper-threading
+	-	Manycore
+	-	Multicore Association
+	-	Multitasking
+	-	OpenCL (Open Computing Language) – a framework for heterogeneous execution
+	-	Parallel random access machine
+	-	Partitioned global address space (PGAS)
+	-	Race condition
+	-	Thread
+
+
+	External links
+	--------------
+	V.T.E									Processor technologies
+	V.T.E									Parallel computing
+
+	 -----------------------------------------------------------------------------------------------
+	|																								|
+	|	Categories: Computer architecture	|	Digital signal processing	|	Flynn's taxonomy	|
+	|																								|
+	|	|	Microprocessors	|	Parallel computing													|
+	|																								|
+	 -----------------------------------------------------------------------------------------------
+
+
+
+==================
+Manycore processor
+==================
+	https://en.wikipedia.org/wiki/Manycore_processor
+
+	Manycore processors are special kinds of multi-core processors designed for a high degree of parallel processing,
+	containing numerous simpler, independent processor cores (from a few tens of cores to thousands or more).
+	Manycore processors are used extensively in embedded computers and high-performance computing.
+
+
+
 
 
 ================================
@@ -2445,11 +2763,11 @@ Multi-core processor
 	
 	mostly as a function of how CPUs are defined (
 	
-	MULTIPLE CORES ON ONE DIE, 
+	1.	MULTIPLE CORES ON ONE DIE, 
 	
-	MULTIPLE DIES IN ONE PACKAGE, 
+	2.	MULTIPLE DIES IN ONE PACKAGE, 
 	
-	MULTIPLE PACKAGES IN ONE SYSTEM UNIT, 
+	3.	MULTIPLE PACKAGES IN ONE SYSTEM UNIT, 
 	
 	etc.).
 	
@@ -2499,7 +2817,7 @@ Multi-core processor
 	reserve the term MULTIPROCESSING for the HARDWARE aspect of having MORE THAN ONE PROCESSOR. 
 	
 	 -------------------------------------------------------------------------------------------
-	|	The remainder of this article discusses multiprocessing only in this hardware sense.	|
+	|	The remainder of this article discusses MULTIPROCESSING only in this hardware sense.	|
 	 -------------------------------------------------------------------------------------------
 	
 	
@@ -2596,18 +2914,18 @@ In its paradigm an overall computation is factored into subcomputations that may
 
 The concept of concurrent computing is frequently confused with the related but distinct concept of parallel computing, 
 although both can be described as "multiple processes executing during the same period of time".
-In parallel computing, execution occurs at the same physical instant: for example, on separate processors of a multi-processor machine, with the goal of speeding up computations—
+In parallel computing, execution occurs at the same physical INSTANT: for example, on separate processors of a multi-processor machine, with the goal of speeding up computations—
 =========================================================================================
 =	parallel computing is impossible on a (one-core) single processor,					=
-=	as only one computation can occur at any instant (during any single clock cycle).	=
+=	as only one computation can occur at any INSTANT (during any single clock cycle).	=
 =========================================================================================
-By contrast, concurrent computing consists of process lifetimes overlapping, but execution need not happen at the same instant. 
+By contrast, concurrent computing consists of process lifetimes overlapping, but execution need not happen at the same INSTANT. 
 The goal here is to model processes in the outside world that happen concurrently, such as multiple clients accessing a server at the same time. 
 Structuring software systems as composed of multiple concurrent, communicating parts can be useful for tackling complexity, regardless of whether the parts can be executed in parallel.
 
 For example, concurrent processes can be executed on one core by interleaving the execution steps of each process via time-sharing slices: only one process runs at a time, and if it does not complete during its time slice,
 it is paused, another process begins or resumes, and then later the original process is resumed.
-In this way, multiple processes are part-way through execution at a single instant, but only one process is being executed at that instant.
+In this way, multiple processes are part-way through execution at a single INSTANT, but only one process is being executed at that INSTANT.
 
 Concurrent computations may be executed in parallel, for example, by assigning each process to a separate processor or processor core, or distributing a computation across a network.
 
@@ -2615,7 +2933,7 @@ The exact timing of when tasks in a concurrent system are executed depends on th
 
 	-	T1 may be executed and finished before T2 or vice versa (serial and sequential)
 	-	T1 and T2 may be executed alternately (serial and concurrent)
-	-	T1 and T2 may be executed simultaneously at the same instant of time (parallel and concurrent)
+	-	T1 and T2 may be executed simultaneously at the same INSTANT of time (parallel and concurrent)
 
 The word "sequential" is used as an antonym for both "concurrent" and "parallel";
 when these are explicitly distinguished, concurrent/sequential and parallel/serial are used as opposing pairs. 
@@ -2989,23 +3307,25 @@ https://en.wikipedia.org/wiki/Shared_memory
 
 		AN ILLUSTRATION OF A SHARED MEMORY SYSTEM OF THREE PROCESSORS
 
-		 -----------			 -----------			 -----------
-		|			|			|			|			|			|
-		|	 CPU	|			|	 CPU	|			|	 CPU	|
-		|			|			|			|			|			|
-		 ----------- 			 -----------			 -----------
+			___________				___________				___________
+		   /		  /|		   /		  /|		   /		  /|
+		  /   CPU	 / |		  /   CPU	 / |		  /   CPU	 / |
+		 /_|_____|__/|			 /_|_____|__/|			 /_|_____|__/|
+		   |  |	 |	 |			   |  |	 |	 |			   |  |	 |	 |
+			  |						  |						  |
 		 	  |						  |						  |				 -------
-		 -----|-----------------------|-----------------------|-----		|-------|
-		|	  |						  |						  |		|		|		|
-		|				System Bus or Crossbar Switch				|-------|  I/O	|
-		|															|		|		|
-		 -----------------------------------------------------------		 -------
+		 _____|_______________________|_______________________|_____		|-------|
+		/	  |						  |						  |	   /		|		|
+	   /				System Bus or Crossbar Switch			  /---------|  I/O	|
+	  /__________________________________________________________/			|		|
+						|							|						 -------
 		 				|							|
-		  --------------|---------------------------|----------------
-		|				|							|				|
-		|							Memory							|
-		|															|
-		 -----------------------------------------------------------
+		 _______________|___________________________|_______________
+		/				|							|			   /|
+	   /							Memory						  / /
+	  /__________________________________________________________/ /
+	 |															| /
+	 |__________________________________________________________|/
 
 
 	In hardware
@@ -3611,18 +3931,29 @@ Understanding CPU statistics
 	
 	system (sy)
 		The "system" CPU state shows the amount of CPU time used by the kernel.
-		The kernel is responsible for low-level tasks, like interacting with the hardware, memory allocation, 
-		communicating between OS processes, running device drivers and managing the file system. 
-		Even the CPU scheduler, which determines which process gets access to the CPU, is run by the kernel.
+		The kernel is responsible 
+		for LOW-LEVEL TASKS, 
+		like interacting with the HARDWARE, 
+		MEMORY ALLOCATION, 
+		communicating between OS PROCESSES, 
+		running DEVICE DRIVERS and 
+		managing the FILE SYSTEM. 
+		Even the CPU SCHEDULER, which determines which process gets access to the CPU, is run by the kernel.
 
 		While usually low, the "system" category can spike when a lot of data is being read from or written to disk, for example. 
 		If it stays high for longer periods of time, you might have a problem with a device driver.
 	
 	user (us)
 		One level up, the "user" CPU state shows CPU time used by user space processes.
-		These are higher-level processes, like your application, or the database server running on your machine.
-		In short, every CPU time used by anything else than the kernel is marked "user", even if it wasn't started from any user account.
-		If a user-space process needs access to the hardware, it needs to ask the kernel, meaning that would count towards "system" state.
+		These are HIGHER-LEVEL PROCESSES, 
+		like your APPLICATION, 
+		or the DATABASE SERVER 
+		running on your machine.
+		
+		In short, every CPU time used by anything else than the KERNEL is marked "user", 
+		even if it wasn't started from any USER account.
+		
+		If a user-space process needs access to the HARDWARE, it needs to ask the kernel, meaning that would count towards "system" state.
 
 		Usually, the "user" category uses most of your CPU time.
 		If it stays close to the maximum without leaving much idle time for too long, you might have a problem with your application,
@@ -3631,7 +3962,12 @@ Understanding CPU statistics
 	nice (ni)
 		The "nice" CPU state is a subset of the "user" state and shows the CPU time used by processes that have a positive niceness,
 		meaning a lower priority than other tasks. The nice utility is used to start a program with a particular priority.
-		The default niceness is 0, but can be set anywhere between -20 for the highest priority to 19 for the lowest.
+		The default niceness is 0, but can be set anywhere between 
+		
+		-20 FOR THE HIGHEST PRIORITY 
+		to 
+		19 FOR THE LOWEST.
+		
 		CPU time in the "nice" category marks lower-priority tasks that are run when the CPU has some time left to do extra tasks.
 	
 	idle (id)
@@ -4401,9 +4737,9 @@ It shows 4 Cores in GUI, Core 1, Core 2, Core 3, Core 4
 |	|	|	|	|	|	|	|	|	|
 |	|	|	|	|	|	|	|	|	|
 |	|	|	|---|	|	|	|	|	|
-|	|---|	|	|	|	|	|	|	|
-|	|	|	|	|	|---|	|	|	|
-|	|	|	|	|	|	|	|---|	|
+|	|---|	|---|	|	|	|	|	|
+|	|---|	|---|	|---|	|	|	|
+|	|---|	|---|	|---|	|---|	|
 |	 ---	 ---	 ---	 ---	|
 |									|
  -----------------------------------
@@ -4412,21 +4748,22 @@ Monitors ->	Show CPU History
 
 It shows 4 Cores in GUI, Core 1, Core 2, Core 3, Core 4
 
- -----------------------------------------
-|  O O O		CPU History				  |
-|-----------------------------------------|
-|  -------------------------------------  |
-| | Core 1			 | Core 2			| |
-| |					 |					| |
-| |-   --	 ---	 |------	  ------| |
-| |	---	 ----	---- |		------		| |
-| |------------------|------------------| |
-| | Core 3			 | Core 4			| |
-| |					 |----				| |
-| |---------  -------|	  ----		----| |
-| |			--		 |		  ------	| |
-|  -------------------------------------  |
- -----------------------------------------
+ ------------------------------------------
+|  O O O		CPU History				   |
+|------------------------------------------|
+|  ------------------  ------------------  |
+| | Core 1			 || Core 2			 | |
+| |					 ||					 | |
+| |-   --	 ---	 ||-----	  -------| |
+| |	---	 ----	-----||		------		 | |
+|  ------------------  ------------------  |
+|  ------------------  ------------------  |
+| | Core 3			 || Core 4			 | |
+| |					 ||---				 | |
+| |---------  -------||	  ----		-----| |
+| |			--		 ||		  ------	 | |
+|  ------------------  ------------------  |
+ ------------------------------------------
 
 
 1.	CPU	-> 28 columns
@@ -4719,10 +5056,10 @@ These additional types highlight the specialized nature of operating systems and
 
 Can a single cpu do multiprocessing?
 ------------------------------------
-Yes, a single CPU can simulate multiprocessing through a technique called "time-sharing" or "time-slicing." In this approach, the CPU rapidly switches between different tasks, giving the appearance of parallel execution.
+Yes, a single CPU can simulate multiprocessing through a technique called "time-sharing" or "time-slicing." In this approach, the CPU rapidly switches between different tasks, giving the APPEARANCE OF PARALLEL EXECUTION.
 While the CPU is physically executing only one task at any given moment, it allocates small time slices to each task in a way that creates the illusion of simultaneous processing.
 
-This method is known as "software multiprocessing" and is a form of multitasking. It allows a single CPU to efficiently handle multiple tasks by rapidly switching between them, giving users the perception of concurrent execution.
+This method is known as "software multiprocessing" and is a form of multitasking. It allows a single CPU to efficiently handle multiple tasks by rapidly switching between them, giving users the perception of CONCURRENT EXECUTION.
 However, it's important to note that the actual execution is sequential, with the CPU dividing its processing time among the tasks.
 
 True parallel processing, where multiple tasks are executed simultaneously by separate physical processors, requires a multicore or multiprocessor system. 
@@ -4735,7 +5072,7 @@ This allows the CPU to handle multiple tasks simultaneously, achieving parallel 
 
 Multicore processors are designed to improve overall system performance by dividing the workload among the different cores. Each core can execute its thread, and the operating system manages the distribution of tasks across these cores.
 
-While it's not the same as having multiple physical processors, a multicore CPU can significantly enhance the system's ability to handle multiple tasks concurrently, making it well-suited for multiprocessing scenarios. 
+While it's not the same as having MULTIPLE PHYSICAL PROCESSORS, a multicore CPU can significantly enhance the system's ability to handle multiple tasks concurrently, making it well-suited for multiprocessing scenarios. 
 This architecture is common in modern computers, ranging from desktops to servers and even many mobile devices.
 
 Explain multiprocessing of single cpu with multiple cores and multiple cpus that has multiple cores
@@ -4802,7 +5139,8 @@ Certainly! Let's delve into the concepts of Asymmetric Multiprocessing (AMP) and
 		- Each CPU may have a different number of cores or serve a specific purpose.
 		- Tasks can be assigned to cores or CPUs based on their specific capabilities.
 		- It allows for a more specialized allocation of tasks.
-		- Example: A system with two CPUs where one CPU has high-performance cores for compute-intensive tasks, and the other CPU has power-efficient cores for background processes.
+		- Example:	A system with two CPUs where one CPU has HIGH-PERFORMANCE CORES for COMPUTE-INTENSIVE TASKS, and the
+					other CPU has POWER-EFFICIENT CORES for BACKGROUND PROCESSES.
 
 Comparison:
 	SMP provides a more balanced and interchangeable approach, where any core can handle any task.
@@ -5259,6 +5597,7 @@ Kernel (computer science)" redirects here. For other uses, see Kernel (disambigu
 	-----------------------------
 
 	Monolithic kernels
+	------------------
 	Main article: Monolithic kernel
 
 	DIAGRAM OF A MONOLITHIC KERNEL
@@ -5286,6 +5625,7 @@ Kernel (computer science)" redirects here. For other uses, see Kernel (disambigu
 	 ---------------
 
 	Microkernels
+	------------
 	Main article: Microkernel
 
 	IN THE MICROKERNEL APPROACH, THE KERNEL ITSELF ONLY PROVIDES BASIC FUNCTIONALITY 
@@ -5311,7 +5651,7 @@ Kernel (computer science)" redirects here. For other uses, see Kernel (disambigu
 
 
 	Hybrid (or modular) kernels
-	
+	---------------------------
 
 	THE HYBRID KERNEL APPROACH COMBINES THE SPEED AND SIMPLER DESIGN OF A MONOLITHIC KERNEL 
 	WITH THE MODULARITY AND EXECUTION SAFETY OF A MICROKERNEL
@@ -5408,12 +5748,23 @@ Device drivers can be added to the kernel as modules.
 https://en.wikipedia.org/wiki/Monolithic_kernel#/media/File:OS-structure2.svg
 or
 https://commons.wikimedia.org/wiki/File:OS-structure2.svg
+or
+http://en.wikipedia.org/wiki/Image:OS-structure.svg
+or
+https://en.wikipedia.org/wiki/GNU_Hurd#/media/File:OS-structure2.svg
 
-Structure of monolithic kernel, microkernel and hybrid kernel-based operating systems
+File:OS-structure2.svg
 
+						 -----------------------------------------------------------------------------------------------------------
+						|	General structure of monolithic, microkernel and hybrid kernel-based operating systems, respectively.	|
+						 -----------------------------------------------------------------------------------------------------------
 
+						 -------------------------------------------------------------------------------------------
+						|	Structure of monolithic kernel, microkernel and hybrid kernel-based operating systems	|
+						 -------------------------------------------------------------------------------------------
 
-
+							Monolithic Kernel										Microkernel												"Hybrid kernel"
+							based Operating System									based Operating System									based Operating System
 
 					 -----------------------------------					 -----------------------------------					 -----------------------------------			
 					|			Application				|					|			Application				|					|			Application				|			
@@ -5441,6 +5792,40 @@ Structure of monolithic kernel, microkernel and hybrid kernel-based operating sy
 					|			Hardware				|					|			Hardware				|					|			Hardware				|			
 					|									|					|									|					|									|			
 					 -----------------------------------					 -----------------------------------					 -----------------------------------			
+
+
+File usage on Commons
+---------------------
+The following page uses this file:
+
+	-	File:OS-structure.svg
+
+File usage on other wikis
+-------------------------
+The following other wikis use this file:
+
+.
+.
+
+	-	Usage on en.wikipedia.org
+		-	GNU Hurd
+		-	Monolithic kernel
+		-	Hybrid kernel
+		-	Distributed operating system
+
+	-	Usage on en.wikibooks.org
+		-	Operating System Design/Kernel Architecture
+		-	Minix 3/Architecture and Design of MINIX 3
+		-	Operating System Design/Print Version
+
+.
+.
+
+ ---------------------------------------
+|	Category: Operating system kernels	|
+ ---------------------------------------
+
+
 
 
 
@@ -5477,6 +5862,9 @@ User space usually refers to the various programs and libraries that the operati
 
 Various layers within Linux, also showing separation between the userland and kernel space
 
+
+Template:Linux layers
+https://en.wikipedia.org/wiki/Template:Linux_layers
 
  ---------------------------------------------------------------------------------------------------------------
 |					|					|																		|
@@ -5537,6 +5925,52 @@ Implementation
 
 2.	Many other operating systems have a per-process address space, a separate address space for each and every user-mode process.
 
+
+============
+Linux kernel
+============
+https://en.wikipedia.org/wiki/Linux_kernel
+
+The Linux kernel is a free and open-source, monolithic, modular, multitasking, Unix-like operating system kernel.
+
+Linux is deployed on a wide variety of computing systems, such as embedded devices, 
+mobile devices (including its use in the Android operating system), personal computers, servers, mainframes, and supercomputers. 
+It can be tailored for specific architectures and for several usage scenarios using a family of simple commands 
+(that is, without the need of manually editing its source code before compilation); privileged users can also fine-tune kernel parameters at runtime.
+
+
+Scheduling (computing)
+----------------------
+https://en.wikipedia.org/wiki/Scheduling_(computing)
+
+In computing, scheduling is the action of assigning resources to perform tasks. 
+The resources may be processors, network links or expansion cards. 
+The tasks may be threads, processes or data flows.
+
+The scheduling activity is carried out by a process called scheduler. 
+Schedulers are often designed so as to keep all computer resources busy (as in load balancing), 
+allow multiple users to share system resources effectively, or to achieve a target quality-of-service.
+
+Scheduling is fundamental to computation itself, and an intrinsic part of the execution model of a computer system; 
+the concept of scheduling makes it possible to have computer multitasking with a single central processing unit (CPU). 
+
+
+
+
+Check 'External links' at the End of Webpage	-->		https://en.wikipedia.org/wiki/Linux_kernel
+--------------------------------------------------------------------------------------------------
+
+Template:Linux kernel
+https://en.wikipedia.org/wiki/Template:Linux_kernel
+
+Template:Linux
+https://en.wikipedia.org/wiki/Template:Linux
+
+Template:Mobile operating systems
+https://en.wikipedia.org/wiki/Template:Mobile_operating_systems
+
+Template:Routing software
+https://en.wikipedia.org/wiki/Template:Routing_software
 
 
 
@@ -6795,9 +7229,11 @@ List of archive formats
 
 File system
 -----------
-	https://en.wikipedia.org/wiki/File_system
+	https://en.wikiversity.org/wiki/File_Systems
 
-	In computing, a file system or filesystem (often abbreviated to fs) is a method and data structure that the operating system uses to control how data is stored and retrieved.
+	In computing, a file system or filesystem (often abbreviated to fs) is a 
+	METHOD and DATA STRUCTURE
+	that the operating system uses to control how data is stored and retrieved.
 
 	Without a file system, 
 
@@ -6816,6 +7252,26 @@ File system
 	 -----------------------------------------------------------------------------------------------------------------------
 
 	The structure and logic rules used to manage the groups of data and their names is called a "file system."
+
+
+File system
+-----------
+	https://en.wikipedia.org/wiki/File_system
+
+	In computing, a file system or filesystem (often abbreviated to FS or fs) governs file organization and access.
+	A LOCAL FILE SYSTEM is a capability of an OPERATING SYSTEM that services the APPLICATIONS running on the same computer.
+	A DISTRIBUTED FILE SYSTEM is a protocol that provides file access between networked computers.
+
+	A file system provides a data storage service that allows applications to share mass storage.
+	Without a file system, applications could access the storage in incompatible ways that lead to RESOURCE CONTENTION, DATA CORRUPTION and DATA LOSS.
+
+	There are many file system designs and implementations – with various structure and features and various resulting characteristics such as SPEED, FLEXIBILITY, SECURITY, SIZE and more.
+
+	Files systems have been developed for many types of storage devices, including HARD DISK DRIVES (HDDs), SOLID-STATE DRIVES (SSDs), MAGNETIC TAPES and OPTICAL DISCS.
+
+	A portion of the computer main memory can be set up as a RAM disk that serves as a storage device for a file system. File systems such as tmpfs can store files in VIRTUAL MEMORY.
+
+	A VIRTUAL FILE SYSTEM provides access to files that are either computed on request, called virtual files (see procfs and sysfs), or are mapping into another, backing storage.
 
 
 
@@ -6868,6 +7324,9 @@ List of application servers
 	https://en.wikipedia.org/wiki/List_of_application_servers
 	https://en.wikipedia.org/wiki/List_of_application_servers#Java
 
+Java
+
+Main article: Web container
  -------------------------------------------------------------------------------------------
 |						Product				|					Vendor						|
 |-------------------------------------------|-----------------------------------------------|
@@ -6895,6 +7354,9 @@ List of application servers
 |	WildFly(formerly JBoss AS)				|	Red Hat(formerly JBoss)						|
 |											|												|
  -------------------------------------------------------------------------------------------
+
+	-	Apache MINA – an abstract event-driven asynchronous API over various transports such as TCP/IP and UDP/IP via Java NIO
+	-	Netty – a non-blocking I/O client-server framework for the development of Java network applications similar in spirit to Node.js
 
 Java virtual machine
 	https://en.wikipedia.org/wiki/Java_virtual_machine
@@ -6988,6 +7450,10 @@ Online integrated development environment
 -----------------------------------------
 https://en.wikipedia.org/wiki/Online_integrated_development_environment
 
+
+
+
+
 =====================
 <=>	IntelliJ IDEA <=>
 =====================
@@ -7012,17 +7478,28 @@ System requirements for IntelliJ IDEA 2023.3
 | Screen resolution	|		At least 1024×768 is required; at least 1920×1080 is recommended						|
  ------------------- -----------------------------------------------------------------------------------------------
 
-Features
---------
+
+ ================
+||	Features	||
+ ================
+
 Coding assistance
 -----------------
 The IDE provides certain features like code completion by analyzing the context, code navigation which allows jumping to a class or declaration in the code directly, code refactoring, code debugging , linting and options to fix inconsistencies via suggestions.
 
-Supported languages
--------------------
+Built in tools and integration
+------------------------------
+
+Plugin ecosystem
+----------------
+
+ ------------------------
+||	Supported languages	||
+ ------------------------
 The Community and Ultimate editions differ in their support for various programming languages as shown in the following table.
 
 Supported in both Community and Ultimate Edition:
+-------------------------------------------------
 
 CSS, Sass, SCSS, Less, Stylus
 Groovy
@@ -7033,6 +7510,7 @@ Markdown
 XSL, XPATH
 
 Supported in both Community and Ultimate Edition via plugins:
+-------------------------------------------------------------
 
 Clojure
 CloudSlang
@@ -7051,22 +7529,27 @@ Rust
 Scala
 
 Supported only in Ultimate Edition:
+-----------------------------------
 
 CoffeeScript, ActionScript
 JavaScript, TypeScript
 SQL
 
 Supported only in Ultimate Edition via plugins:
+-----------------------------------------------
 
 Cython
 Go
 PHP
 Ruby and JRuby
 
-Technologies and frameworks
----------------------------
+
+ --------------------------------
+||	Technologies and frameworks	||
+ --------------------------------
 
 Supported in both Community and Ultimate Edition:
+-------------------------------------------------
 
 Android (includes the Android Studio's functionality)
 Ant
@@ -7076,6 +7559,7 @@ JavaFX
 Maven
 
 Supported only in Ultimate Edition:
+-----------------------------------
 
 Django
 Thymeleaf, FreeMarker, Velocity
@@ -7086,20 +7570,32 @@ Node.js, React, Vue.js, Angular
 AspectJ, JBoss Seam, OSGi
 Play
 Ruby on Rails
-sbt[30]
+sbt
 Spring
 
 
+There was a free plugin from Atlassian for IntelliJ available to integrate with JIRA, Bamboo, Crucible and FishEye.
+However, the software, called IDE-Connector, was discontinued on June 1, 2015.
 
 
+ ------------------------------------------------
+||	Software versioning and revision control	||
+ ------------------------------------------------
+
+The two editions also differ in their support for software versioning and revision control systems.
+
+Supported in both Community and Ultimate Edition:
+-------------------------------------------------
+
+Git
+Mercurial
+Subversion
+Azure DevOps (formerly TFS/VSTS; via plug-in)
 
 
-
-
-
-
-
-
+Supported only in Ultimate Edition:
+-----------------------------------
+Perforce
 
 
 
@@ -8070,7 +8566,7 @@ Check 'External links' at the End of Webpage	-->		https://en.wikipedia.org/wiki/
 
  ----------------------------------------------------------------------------------------------------------- 
 |																											|
-|											SECURITY TYPE													|
+|	V.T.E									SECURITY TYPE											[hide]	|
 |																											|
 |-----------------------------------------------------------------------------------------------------------|
 |	Application security , Biosecurity , Collective security , Computer security 							|
@@ -8097,7 +8593,7 @@ Check 'External links' at the End of Webpage	-->		https://en.wikipedia.org/wiki/
 
  ----------------------------------------------------------------------------------------------------------- 
 |																											|
-|										INFORMATION SECURITY												|
+|	V.T.E									INFORMATION SECURITY									[hide]	|
 |																											|
 |-----------------------------------------------------------------------------------------------------------|
 |					|																						|
@@ -8786,8 +9282,56 @@ Architectural pattern
 Software design pattern
 	https://en.wikipedia.org/wiki/Software_design_pattern
 
+
+
+=================================================
 List of software architecture styles and patterns
-	https://en.wikipedia.org/wiki/List_of_software_architecture_styles_and_patterns
+=================================================
+https://en.wikipedia.org/wiki/List_of_software_architecture_styles_and_patterns
+
+Architectural patterns are often documented as software design patterns.
+An architectural pattern often uses the same description as a general, reusable solution to a commonly occurring problem in software architecture within a given context.
+
+The separation of what is architectural and what is design is not commonly agreed, nor are the patterns catalogued in any accepted form.
+
+Software Architecture is an ambiguous term which not only relates to the discipline of software architecture itself, but also structure and connections between components.
+
+An Introduction to Software Architecture describes it as such "We are still far from having a well-accepted taxonomy of such architectural paradigms, let alone a fully-developed theory of software architecture.
+But we can now clearly identify a number of architectural patterns, or styles, that currently form the basic repertoire of a software architect."
+
+
+Catalog of architectural patterns
+---------------------------------
+	-	Asynchronous messaging
+	-	Blackboard
+	-	Blackboard pattern
+	-	Client-server (multitier architecture exhibits this style)
+	-	Cloud computing patterns
+	-	Component-based
+	-	Database-centric
+	-	Domain-driven designing
+	-	Event-driven aka implicit invocation
+	-	Layered
+	-	Microkernel
+	-	Model–view–controller
+	-	Monolithic application
+	-	Object request broker
+	-	Peer-to-peer
+	-	Pipes and filters
+	-	Presentation–abstraction–control
+	-	Publish-subscribe
+	-	Reflection
+	-	Representational state transfer (REST)
+	-	Rule-based
+	-	Sensor–controller–actuator
+	-	Service-oriented
+	-	Shared nothing architecture
+	-	Space-based architecture
+	-	Strangler fig pattern
+
+
+
+
 
 Loose coupling
 	https://en.wikipedia.org/wiki/Loose_coupling
@@ -9254,8 +9798,10 @@ https://en.wikipedia.org/wiki/C10k_problem
 
 
 
-
-
+ ============================================================================
+||	Static vs Dynamic Load													||
+||	https://chat.openai.com/share/6bf7c217-ec03-47ba-88a3-db87db06a64d		||
+ ============================================================================
 
 
 Least Connections (LC):

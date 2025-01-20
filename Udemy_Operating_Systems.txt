@@ -10,8 +10,8 @@ Context of a process
 --------------------
 The Process Control Block (PCB) and attributes of a process is collectively called as Context.
 
-Process Control Block (PCB) - Each Process is represented in the Operating System by a Process Control Block
-							  (PCB) - also called a task control block.
+Process Control Block (PCB) - Each Process is represented in the Operating System by a PROCESS CONTROL BLOCK
+							  (PCB) - also called a TASK CONTROL BLOCK.
 
 
 
@@ -45,6 +45,16 @@ https://www.youtube.com/watch?v=4s2MKuVYKV8&list=PLBlnK6fEyqRiVhbXDGLXDk_OQAeuVc
 |			........			|
  -------------------------------
 
+Process Attributes:
+-------------------
+1.	Process Id
+2.	Program Counter
+3.	Process State
+4.	General Purpose Registers
+5.	Priority
+6.	List of Open Files
+7.	List of Open devices
+8.	Protection
 
 
 Operating System Code
@@ -466,7 +476,7 @@ In computer memory we store only 2 things either in RAM, Registers or Hard Disk.
 
    CPU			RAM
  -------	 --------  --
-|		|	|		 |	 | OS Space		(System Process)
+|		|	|		 |	 | OS Space		(System Process)	May be Kernel Space (Kernel Process)
 |		|	|	OS	 |	 |
  -------	|------- | --	--
 			|	P1	 |		  |
